@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/final_project_utf-8_front/static/css/main.7acaea2f.css",
+    "main.js": "/final_project_utf-8_front/static/js/main.07d3183d.js",
+    "index.html": "/final_project_utf-8_front/index.html",
+    "main.7acaea2f.css.map": "/final_project_utf-8_front/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/final_project_utf-8_front/static/js/main.07d3183d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.07d3183d.js"
+  ]
+}
