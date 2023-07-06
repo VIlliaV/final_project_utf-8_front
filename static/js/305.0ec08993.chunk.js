@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfinal_project_utf_8_front=self.webpackChunkfinal_project_utf_8_front||[]).push([[305],{305:function(e,n,t){t.r(n);t(791);var f=t(184);n.default=function(){return(0,f.jsx)("div",{children:"RecipePage RecipePage"})}}}]);
+//# sourceMappingURL=305.0ec08993.chunk.js.map

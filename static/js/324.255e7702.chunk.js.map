@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/324.255e7702.chunk.js","mappings":"qKAMA,UAJA,WACE,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,2BACd,C","sources":["pages/WellcomPage/WellcomPage.jsx"],"sourcesContent":["import React from 'react';\n\nfunction WellcomPage() {\n  return <div>WellcomPage WellcomPage</div>;\n}\n\nexport default WellcomPage;\n"],"names":["_jsx","children"],"sourceRoot":""}
