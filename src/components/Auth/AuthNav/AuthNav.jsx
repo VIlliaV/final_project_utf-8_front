@@ -1,7 +1,3 @@
-
-
 export const AuthNav = () => {
-    return (
-        <Container></Container>
-    )
-}
+  return <div></div>;
+};
