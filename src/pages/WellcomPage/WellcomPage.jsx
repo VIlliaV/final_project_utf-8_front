@@ -1,7 +1,9 @@
-import React from 'react';
+import { Container } from './WellcomPage.styled';
 
 function WellcomPage() {
-  return <div>WellcomPage WellcomPage</div>;
+  return <Container>
+    
+  </Container>;
 }
 
 export default WellcomPage;
