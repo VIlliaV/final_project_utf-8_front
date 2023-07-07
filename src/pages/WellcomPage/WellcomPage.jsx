@@ -1,7 +1,12 @@
-import React from 'react';
+import { Container, Icon } from './WellcomPage.styled';
+import icon from './images/icon.svg';
 
 function WellcomPage() {
-  return <div>WellcomPage WellcomPage</div>;
+  return (
+    <Container>
+      <Icon src={icon} />
+    </Container>
+  );
 }
 
 export default WellcomPage;
