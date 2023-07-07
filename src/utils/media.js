@@ -12,4 +12,5 @@ export const media = {
   desktop: `screen and (min-width: ${size.desktop})`,
   mobTab: `screen and (min-width: ${size.mobile}) and (max-width: ${size.tablet})`,
   tabDesk: `screen and (min-width: ${size.tablet}) and (max-width: ${size.desktop})`,
+  //   tabDesk: `screen and (min-width: ${size.tablet}) and (max-width: ${size.desktop})`,
 };
