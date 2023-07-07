@@ -14,7 +14,7 @@ export const Container = styled.div`
   /* justify-content: center;
   align-items: center; */
   max-width: 375px;
-  max-height: 817px;
+  height: 100wh;
   padding: 275px 35px 261px 35px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 46.3%, rgba(0, 0, 0, 0.35) 72.75%, rgba(0, 0, 0, 0) 100%);
   background-image: url(${backgroundMobile});
@@ -26,26 +26,22 @@ export const Container = styled.div`
     background-image: url(${backgroundX2Mobile});
   }
 
-  @media screen and (min-width: 376px) and (max-width: 767px) {
+  @media screen and (min-width: 376px) and (max-width: 768px) {
     background-image: url(${backgroundTablet});
-    max-width: 767px;
-    max-height: 1024px;
+    max-width: 768px;
   }
 
-  @media screen and (min-width: 376px) and (max-width: 767px) and (min-resolution: 192dpi) {
+  @media screen and (min-width: 376px) and (max-width: 768px) and (min-resolution: 192dpi) {
     background-image: url(${backgroundX2Tablet});
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     background-image: url(${backgroundDesktop});
     max-width: 100vw;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
     padding: 342px 132px;
   }
 
-  @media screen and (min-width: 768px) and (min-resolution: 192dpi) {
+  @media screen and (min-width: 769px) and (min-resolution: 192dpi) {
     background-image: url(${backgroundX2Desktop});
   }
 
@@ -75,24 +71,8 @@ export const Title = styled.h1`
   letter-spacing: -0.56px;
 `;
 
-// export const TextBlockContainer = styled.div`
-//   display: inline-flex;
-//   margin-left: auto;
-//   margin-right: auto;
-//   width: 305px;
-//   height: 72px;
-//   @media screen and (min-width: 376px) and (max-width: 767px) {
-//     width: 768px;
-//     height: 1024px;
-//   }
-//   @media screen and (min-width: 768px) {
-//     width: 1440px;
-//     height: 770px;
-//   }
-// `;
-
 export const TextBlock = styled.p`
-  margin-top: 14px;
+margin-top: 14px;
   color: #fafafa;
   text-align: center;
   font-size: 18px;
@@ -100,21 +80,4 @@ export const TextBlock = styled.p`
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -0.36px;
-  
-`;
-
-export const AuthNavContainer = styled.div`
-  margin-top: 44px;
-  width: 239px;
-  height: 45px;
-  margin-left: auto;
-  margin-right: auto;
-  @media screen and (min-width: 376px) and (max-width: 767px) {
-    width: 184px;
-    height: 67px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 344px;
-    height: 45px;
-  }
 `;
