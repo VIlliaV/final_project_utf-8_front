@@ -8,11 +8,11 @@ import Header from 'components/Header/Header';
 export const SharedLayout = () => {
   return (
     <Container>
-      {/* <Header /> */}
+      <Header />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      {/* <Footer /> */}
+      <Footer />
     </Container>
   );
 };
