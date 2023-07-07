@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const HeadText = styled.h1`
-  margin-top: 150px;
   position: relative;
   color: #001833;
   font-family: Poppins;
