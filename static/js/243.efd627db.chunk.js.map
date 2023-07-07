@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/243.efd627db.chunk.js","mappings":"qKAMA,UAJA,WACE,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,kBACd,C","sources":["pages/CategoriesPage/CategoriesPage.jsx"],"sourcesContent":["import React from 'react';\n\nfunction CategoriesPage() {\n  return <div>CategoriesPage</div>;\n}\n\nexport default CategoriesPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

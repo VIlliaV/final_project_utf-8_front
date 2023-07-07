@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/454.fa9de003.chunk.js","mappings":"qKAMA,UAJA,WACE,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,yBACd,C","sources":["pages/SigninPage/SigninPage.jsx"],"sourcesContent":["import React from 'react';\n\nfunction SigninPage() {\n  return <div>SigninPage SigninPage</div>;\n}\n\nexport default SigninPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

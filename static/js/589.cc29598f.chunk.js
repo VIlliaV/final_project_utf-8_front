@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfinal_project_utf_8_front=self.webpackChunkfinal_project_utf_8_front||[]).push([[589],{589:function(e,t,n){n.r(t);n(791);var r=n(329);t.default=function(){return(0,r.jsx)("div",{children:"RegisterPage RegisterPage"})}}}]);
+//# sourceMappingURL=589.cc29598f.chunk.js.map

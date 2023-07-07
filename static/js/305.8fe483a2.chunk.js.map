@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/305.8fe483a2.chunk.js","mappings":"qKAMA,UAJA,WACE,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,yBACd,C","sources":["pages/RecipePage/RecipePage.jsx"],"sourcesContent":["import React from 'react';\n\nfunction RecipePage() {\n  return <div>RecipePage RecipePage</div>;\n}\n\nexport default RecipePage;\n"],"names":["_jsx","children"],"sourceRoot":""}
