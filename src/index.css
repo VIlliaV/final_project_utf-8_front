@@ -1,5 +1,16 @@
 @import-normalize; /* bring in normalize.css styles */
 
+:root {
+  --primary: rgb(55, 55, 55);
+  --back_theme_1: rgb(250, 250, 250);
+  --back_theme_2: rgb(30, 31, 40);
+  --text_theme_1: rgb(35, 38, 42);
+  --text_theme_2: rgba(250, 250, 250, 0.6);
+  --text_second_theme_1: rgb(62, 68, 98);
+
+  --active: rgb(139, 170, 54);
+}
+
 body {
   margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
@@ -23,8 +34,15 @@ ol {
   padding: 0;
 }
 
-ul {
+ul,
+li {
   list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 code {
