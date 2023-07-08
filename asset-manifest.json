@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/final_project_utf-8_front/static/css/main.4825e1ef.css",
+    "main.css": "/final_project_utf-8_front/static/css/main.937cad3a.css",
     "main.js": "/final_project_utf-8_front/static/js/main.9a82f4a3.js",
     "static/js/674.28a963bd.chunk.js": "/final_project_utf-8_front/static/js/674.28a963bd.chunk.js",
     "static/js/589.cc29598f.chunk.js": "/final_project_utf-8_front/static/js/589.cc29598f.chunk.js",
@@ -26,7 +26,7 @@
     "static/media/Sugar_pie.jpg": "/final_project_utf-8_front/static/media/Sugar_pie.c1c3d7ea510533d6ecc2.jpg",
     "static/media/icon.svg": "/final_project_utf-8_front/static/media/icon.f50029e1cb9edc825efe6c1ffca0bfb8.svg",
     "index.html": "/final_project_utf-8_front/index.html",
-    "main.4825e1ef.css.map": "/final_project_utf-8_front/static/css/main.4825e1ef.css.map",
+    "main.937cad3a.css.map": "/final_project_utf-8_front/static/css/main.937cad3a.css.map",
     "main.9a82f4a3.js.map": "/final_project_utf-8_front/static/js/main.9a82f4a3.js.map",
     "674.28a963bd.chunk.js.map": "/final_project_utf-8_front/static/js/674.28a963bd.chunk.js.map",
     "589.cc29598f.chunk.js.map": "/final_project_utf-8_front/static/js/589.cc29598f.chunk.js.map",
@@ -42,7 +42,7 @@
     "502.c0487040.chunk.js.map": "/final_project_utf-8_front/static/js/502.c0487040.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4825e1ef.css",
+    "static/css/main.937cad3a.css",
     "static/js/main.9a82f4a3.js"
   ]
 }
