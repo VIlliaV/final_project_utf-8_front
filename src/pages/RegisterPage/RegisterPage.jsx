@@ -1,7 +1,9 @@
-import {AuthForm} from '../../components/Auth/AuthForm/AuthForm'
+import { AuthLayout } from 'components/Auth/AuthLayout/AuthLayout';
 
 function RegisterPage() {
-  return <AuthForm/>;
+  return (
+    <AuthLayout/>
+  );
 }
 
 export default RegisterPage;

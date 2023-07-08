@@ -1,7 +1,9 @@
-import React from 'react';
+import { AuthLayout } from 'components/Auth/AuthLayout/AuthLayout';
 
 function SigninPage() {
-  return <div>SigninPage SigninPage</div>;
+  return (
+    <AuthLayout />
+  );
 }
 
 export default SigninPage;
