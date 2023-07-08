@@ -9,12 +9,12 @@ import backgroundX2Desktop from './images/welcomePageBackground-Desktop@X2.png';
 
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   /* justify-content: center;
   align-items: center; */
   max-width: 375px;
-  height: 100wh;
+  max-height: 100wh;
   padding: 275px 35px 261px 35px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 46.3%, rgba(0, 0, 0, 0.35) 72.75%, rgba(0, 0, 0, 0) 100%);
   background-image: url(${backgroundMobile});
