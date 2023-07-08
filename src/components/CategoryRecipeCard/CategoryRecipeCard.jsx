@@ -1,8 +1,12 @@
-export const CategoryRecipeCard = ({ imageUrl, imageAtl, title }) => {
+import { Link } from 'react-router-dom';
+
+export const CategoryRecipeCard = ({ itemId, imageUrl, imageAlt, title }) => {
   return (
     <div>
-      <img src={imageUrl} alt={imageAtl}></img>
-      <a href="123">{title}</a>
+      <Link to={`/recipe/${itemId}`}>
+        <img src={imageUrl} alt={imageAlt}></img>
+        {title}
+      </Link>
     </div>
   );
 };
