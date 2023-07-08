@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/final_project_utf-8_front/static/css/main.973f0230.css",
-    "main.js": "/final_project_utf-8_front/static/js/main.f8428105.js",
+    "main.js": "/final_project_utf-8_front/static/js/main.40b39fc1.js",
     "static/js/583.d919ffc2.chunk.js": "/final_project_utf-8_front/static/js/583.d919ffc2.chunk.js",
     "static/js/29.1743fd45.chunk.js": "/final_project_utf-8_front/static/js/29.1743fd45.chunk.js",
     "static/js/454.822ee533.chunk.js": "/final_project_utf-8_front/static/js/454.822ee533.chunk.js",
-    "static/js/852.0f80ef04.chunk.js": "/final_project_utf-8_front/static/js/852.0f80ef04.chunk.js",
+    "static/js/232.8b0a1e9c.chunk.js": "/final_project_utf-8_front/static/js/232.8b0a1e9c.chunk.js",
     "static/js/243.2b25efa8.chunk.js": "/final_project_utf-8_front/static/js/243.2b25efa8.chunk.js",
     "static/css/709.b666af5d.chunk.css": "/final_project_utf-8_front/static/css/709.b666af5d.chunk.css",
     "static/js/709.8f8f3e17.chunk.js": "/final_project_utf-8_front/static/js/709.8f8f3e17.chunk.js",
@@ -27,11 +27,11 @@
     "static/media/icon.svg": "/final_project_utf-8_front/static/media/icon.f50029e1cb9edc825efe6c1ffca0bfb8.svg",
     "index.html": "/final_project_utf-8_front/index.html",
     "main.973f0230.css.map": "/final_project_utf-8_front/static/css/main.973f0230.css.map",
-    "main.f8428105.js.map": "/final_project_utf-8_front/static/js/main.f8428105.js.map",
+    "main.40b39fc1.js.map": "/final_project_utf-8_front/static/js/main.40b39fc1.js.map",
     "583.d919ffc2.chunk.js.map": "/final_project_utf-8_front/static/js/583.d919ffc2.chunk.js.map",
     "29.1743fd45.chunk.js.map": "/final_project_utf-8_front/static/js/29.1743fd45.chunk.js.map",
     "454.822ee533.chunk.js.map": "/final_project_utf-8_front/static/js/454.822ee533.chunk.js.map",
-    "852.0f80ef04.chunk.js.map": "/final_project_utf-8_front/static/js/852.0f80ef04.chunk.js.map",
+    "232.8b0a1e9c.chunk.js.map": "/final_project_utf-8_front/static/js/232.8b0a1e9c.chunk.js.map",
     "243.2b25efa8.chunk.js.map": "/final_project_utf-8_front/static/js/243.2b25efa8.chunk.js.map",
     "709.b666af5d.chunk.css.map": "/final_project_utf-8_front/static/css/709.b666af5d.chunk.css.map",
     "709.8f8f3e17.chunk.js.map": "/final_project_utf-8_front/static/js/709.8f8f3e17.chunk.js.map",
@@ -43,6 +43,6 @@
   },
   "entrypoints": [
     "static/css/main.973f0230.css",
-    "static/js/main.f8428105.js"
+    "static/js/main.40b39fc1.js"
   ]
 }
