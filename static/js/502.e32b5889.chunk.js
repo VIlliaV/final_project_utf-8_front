@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfinal_project_utf_8_front=self.webpackChunkfinal_project_utf_8_front||[]).push([[502],{2502:function(n,t,e){e.r(t);e(2791);var f=e(3329);t.default=function(){return(0,f.jsx)("div",{children:"ShoppingListPage ShoppingListPage"})}}}]);
+//# sourceMappingURL=502.e32b5889.chunk.js.map

@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/852.68b8314d.chunk.js","mappings":"qKAMA,UAJA,WACE,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,YACd,C","sources":["pages/MainPage/MainPage.jsx"],"sourcesContent":["import React from 'react';\n\nfunction MainPage() {\n  return <div>MainPage</div>;\n}\n\nexport default MainPage;\n"],"names":["_jsx","children"],"sourceRoot":""}
