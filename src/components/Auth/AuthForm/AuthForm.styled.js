@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 32px 28px 40px;
   border-radius: 30px;
-  background: #2a2c36;
+  background-color: #2a2c36;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
 `;
 

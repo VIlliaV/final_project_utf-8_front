@@ -1,6 +1,6 @@
 import { Container, Icon, Title, TextBlock } from './WellcomPage.styled';
 import icon from './images/icon.svg';
-import {AuthNav} from '../../components/Auth/AuthNav/AuthNav';
+import {AuthNav} from 'components/Auth/AuthNav/AuthNav';
 
 function WellcomPage() {
   return (
