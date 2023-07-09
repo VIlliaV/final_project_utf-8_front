@@ -1,12 +1,11 @@
 import { Form, selectStyles } from './SearchTypeSelector.styled';
 import Select, { components } from 'react-select';
-import { useState } from 'react';
 
 import arrow from './chevron-up.svg';
 
 const selectOptions = [
-  { value: 'title', label: 'Title' },
-  { value: 'ingredients', label: 'Ingredients' },
+  { value: 'query', label: 'Title' },
+  { value: 'ingredient', label: 'Ingredients' },
 ];
 
 const DropdownIndicator = props => {
@@ -17,15 +16,13 @@ const DropdownIndicator = props => {
   );
 };
 
-const SearchTypeSelector = () => {
-  const [value, setValue] = useState(selectOptions[0].value);
+const SearchTypeSelector = ({ setValue }) => {
   return (
     <Form>
       <label>Search by:</label>
       <Select
         onChange={choice => {
           setValue(choice.value);
-          console.log(choice.value);
         }}
         components={{ DropdownIndicator }}
         styles={selectStyles}
