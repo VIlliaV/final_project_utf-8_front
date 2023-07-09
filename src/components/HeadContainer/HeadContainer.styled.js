@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { media } from '../../utils/media';
 
-export const HeadContainer = styled.div`
+export const Container = styled.div`
   @media ${media.mobile} {
     max-width: 768px;
     padding: 50px 16px 100px;
