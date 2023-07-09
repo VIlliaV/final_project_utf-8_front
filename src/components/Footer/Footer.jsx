@@ -111,7 +111,7 @@ const Footer = () => {
       </Media>
       <Copyright>
         <TermsLink>© 2023 All Rights Reserved.</TermsLink>
-        <TermsLink to="/" activeClassName="active">
+        <TermsLink to="/">
           Terms of Service
         </TermsLink>
       </Copyright>
