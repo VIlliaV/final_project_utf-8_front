@@ -65,19 +65,19 @@ const Footer = () => {
 		</HideContentMobile>
 		</FooterLeftContainer>
         <Navigation>
-          <StyledNavLink to="/" activeClassName="active">
+          <StyledNavLink to="/">
             Ingredients
           </StyledNavLink>
-          <StyledNavLink to="/add" activeClassName="active">
+          <StyledNavLink to="/add">
             Add recipes
           </StyledNavLink>
-          <StyledNavLink to="/my" activeClassName="active">
+          <StyledNavLink to="/my">
             My recipes
           </StyledNavLink>
-          <StyledNavLink to="/favorite" activeClassName="active">
+          <StyledNavLink to="/favorite">
             Favorite
           </StyledNavLink>
-          <StyledNavLink to="/shopping-list" activeClassName="active">
+          <StyledNavLink to="/shopping-list">
             Shopping list
           </StyledNavLink>
         </Navigation>

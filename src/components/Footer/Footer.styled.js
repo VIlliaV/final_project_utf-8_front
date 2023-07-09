@@ -32,6 +32,7 @@ export const Navigation = styled.nav`
   }
 
   @media ${media.desktop} {
+	margin-top: 65px;
     margin-left: 160px;
     margin-right: 235px;
   }
@@ -73,12 +74,13 @@ export const ResponsiveFooterContainer = styled(FooterContainer)`
 `;
 
 export const TextUl = styled.ul`
-  list-style-type: disc;
+padding-left: 10px;
 `;
 
 export const TextLi = styled.li`
-  display: flex;
-  align-items: flex-start;
+  display: list-item;
+  list-style-type: disc;
+  text-align: start;
   flex-direction: row;
   color: var(--back_theme_1);
   padding-bottom: 10px;
@@ -88,6 +90,7 @@ export const TextLi = styled.li`
   letter-spacing: -0.28px;
   margin-bottom: 10px;
 `;
+
 
 export const TextP = styled.p`
 text-align: left;
@@ -153,8 +156,12 @@ export const FooterLeftContainer = styled.div`
   }
 `;
 export const SubscribeContainer = styled.div`
+
  display: flex;
  flex-direction: column;
+ @media ${media.desktop} {
+    margin-top: 65px;
+  }
 `
 export const SubscribeForm = styled.div`
   display: flex;
