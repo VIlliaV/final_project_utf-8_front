@@ -4,7 +4,9 @@
   "private": true,
   "homepage": "https://VIlliaV.github.io/final_project_utf-8_front/",
   "dependencies": {
-    "@mui/material": "^5.12.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.7",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
