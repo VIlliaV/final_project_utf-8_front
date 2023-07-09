@@ -68,16 +68,16 @@ const Footer = () => {
           <StyledNavLink to="/" activeClassName="active">
             Ingredients
           </StyledNavLink>
-          <StyledNavLink to="/about" activeClassName="active">
+          <StyledNavLink to="/add" activeClassName="active">
             Add recipes
           </StyledNavLink>
-          <StyledNavLink to="/contact" activeClassName="active">
+          <StyledNavLink to="/my" activeClassName="active">
             My recipes
           </StyledNavLink>
-          <StyledNavLink to="/contact" activeClassName="active">
+          <StyledNavLink to="/favorite" activeClassName="active">
             Favorite
           </StyledNavLink>
-          <StyledNavLink to="/contact" activeClassName="active">
+          <StyledNavLink to="/shopping-list" activeClassName="active">
             Shopping list
           </StyledNavLink>
         </Navigation>
