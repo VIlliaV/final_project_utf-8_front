@@ -51,7 +51,7 @@ const Footer = () => {
 	<FooterDivContainer>
 	<FooterMainContainer>
       <FooterLeftContainer>
-        <LogoNav to="/" activeClassName="active">
+        <LogoNav to="/">
           <LogoImg src={logo} alt="" />
           So Yummy
         </LogoNav>
