@@ -1,12 +1,14 @@
 import React from 'react';
 import SearchedRecipesList from 'components/SearchedRecipesList/SearchedRecipesList';
 import SearchBar from 'components/SerchBar/SerchBar';
-import { Title } from './SearchPage.styled';
+import MainPageTitle from 'components/MainPageTitle/MainPageTitle';
+// import { Title } from './SearchPage.styled';
 
 function SearchPage() {
   return (
     <div>
-      <Title>Search</Title>
+      <MainPageTitle title="Search" />
+      {/* <Title>Search</Title> */}
       <SearchBar />
       <SearchedRecipesList />
     </div>
