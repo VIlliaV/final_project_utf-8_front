@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
+import { RecipeLink, RecipeName, RecipeCardWrapper, RecipeImg } from './CategoryRecipeCard.styled';
 
 export const CategoryRecipeCard = ({ itemId, imageUrl, imageAlt, title }) => {
   return (
-    <div>
-      <Link to={`/recipe/${itemId}`}>
-        <img src={imageUrl} alt={imageAlt}></img>
-        {title}
-      </Link>
-    </div>
+    <RecipeCardWrapper>
+      <RecipeLink to={`/recipe/${itemId}`}>
+        <RecipeImg src={imageUrl} alt={imageAlt} loading="lazy" width={343}></RecipeImg>
+        <RecipeName>{title}</RecipeName>
+      </RecipeLink>
+    </RecipeCardWrapper>
   );
 };
