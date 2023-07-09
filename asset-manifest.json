@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/final_project_utf-8_front/static/css/main.973f0230.css",
-    "main.js": "/final_project_utf-8_front/static/js/main.358e64c2.js",
+    "main.js": "/final_project_utf-8_front/static/js/main.d1f9d209.js",
     "static/js/583.d919ffc2.chunk.js": "/final_project_utf-8_front/static/js/583.d919ffc2.chunk.js",
     "static/js/589.cf5e0a81.chunk.js": "/final_project_utf-8_front/static/js/589.cf5e0a81.chunk.js",
     "static/js/454.93cf68e5.chunk.js": "/final_project_utf-8_front/static/js/454.93cf68e5.chunk.js",
-    "static/js/232.8b0a1e9c.chunk.js": "/final_project_utf-8_front/static/js/232.8b0a1e9c.chunk.js",
+    "static/js/325.adc9b121.chunk.js": "/final_project_utf-8_front/static/js/325.adc9b121.chunk.js",
     "static/js/696.ae128375.chunk.js": "/final_project_utf-8_front/static/js/696.ae128375.chunk.js",
     "static/css/709.b666af5d.chunk.css": "/final_project_utf-8_front/static/css/709.b666af5d.chunk.css",
     "static/js/709.8f8f3e17.chunk.js": "/final_project_utf-8_front/static/js/709.8f8f3e17.chunk.js",
@@ -26,14 +26,20 @@
     "static/media/Squash_linguine.jpg": "/final_project_utf-8_front/static/media/Squash_linguine.6fc5cefa8cb21d625703.jpg",
     "static/media/Banana_pancakes.jpg": "/final_project_utf-8_front/static/media/Banana_pancakes.83aec4a9eb57878fbb53.jpg",
     "static/media/Sugar_pie.jpg": "/final_project_utf-8_front/static/media/Sugar_pie.c1c3d7ea510533d6ecc2.jpg",
+    "static/media/instagram.svg": "/final_project_utf-8_front/static/media/instagram.07572963e7d5682b58bf075f71051efd.svg",
+    "static/media/twiter.svg": "/final_project_utf-8_front/static/media/twiter.902aa34fc2f2dc25809b616a3b0b71dc.svg",
+    "static/media/logo.svg": "/final_project_utf-8_front/static/media/logo.b9b1aa8a134d0deafd2c2cd9104c83cb.svg",
     "static/media/icon.svg": "/final_project_utf-8_front/static/media/icon.f50029e1cb9edc825efe6c1ffca0bfb8.svg",
     "index.html": "/final_project_utf-8_front/index.html",
+    "static/media/youtube.svg": "/final_project_utf-8_front/static/media/youtube.18e2c0c1bab9a8fa41459bf3047bc0b8.svg",
+    "static/media/mail.svg": "/final_project_utf-8_front/static/media/mail.7de94a7e735d99f72fdc8875f622b8c0.svg",
+    "static/media/facebook.svg": "/final_project_utf-8_front/static/media/facebook.23f49388f976212b3200f80211d9115e.svg",
     "main.973f0230.css.map": "/final_project_utf-8_front/static/css/main.973f0230.css.map",
-    "main.358e64c2.js.map": "/final_project_utf-8_front/static/js/main.358e64c2.js.map",
+    "main.d1f9d209.js.map": "/final_project_utf-8_front/static/js/main.d1f9d209.js.map",
     "583.d919ffc2.chunk.js.map": "/final_project_utf-8_front/static/js/583.d919ffc2.chunk.js.map",
     "589.cf5e0a81.chunk.js.map": "/final_project_utf-8_front/static/js/589.cf5e0a81.chunk.js.map",
     "454.93cf68e5.chunk.js.map": "/final_project_utf-8_front/static/js/454.93cf68e5.chunk.js.map",
-    "232.8b0a1e9c.chunk.js.map": "/final_project_utf-8_front/static/js/232.8b0a1e9c.chunk.js.map",
+    "325.adc9b121.chunk.js.map": "/final_project_utf-8_front/static/js/325.adc9b121.chunk.js.map",
     "696.ae128375.chunk.js.map": "/final_project_utf-8_front/static/js/696.ae128375.chunk.js.map",
     "709.b666af5d.chunk.css.map": "/final_project_utf-8_front/static/css/709.b666af5d.chunk.css.map",
     "709.8f8f3e17.chunk.js.map": "/final_project_utf-8_front/static/js/709.8f8f3e17.chunk.js.map",
@@ -46,6 +52,6 @@
   },
   "entrypoints": [
     "static/css/main.973f0230.css",
-    "static/js/main.358e64c2.js"
+    "static/js/main.d1f9d209.js"
   ]
 }
