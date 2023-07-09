@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkfinal_project_utf_8_front=self.webpackChunkfinal_project_utf_8_front||[]).push([[645],{1645:function(e,n,r){r.r(n);r(2791);var t=r(3329);n.default=function(){return(0,t.jsx)("div",{children:"SearchPage SearchPage"})}}}]);
-//# sourceMappingURL=645.2a9a3b3b.chunk.js.map
