@@ -15,9 +15,9 @@ import {
 
 import dataIngredients from '../../back/ingredients.json';
 
-const RecipeInngredientsList = ({ id, measure }) => {
+const RecipeInngredientsList = ({ measure }) => {
   const ingredients = dataIngredients.slice(0, 8);
-  console.log(ingredients);
+  console.log(ingredients[0]);
 
   return (
     <>
@@ -29,7 +29,7 @@ const RecipeInngredientsList = ({ id, measure }) => {
       <ListContainer>
         {ingredients.map(ingredient => {
           return (
-            <ListItem>
+            <ListItem key={ingredient._id.$oid}>
               <Image src={ingredient.img} alt={ingredient.name} />
               <Name>{ingredient.name}</Name>
               <MeasureWrapper>
