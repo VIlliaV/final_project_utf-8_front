@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/final_project_utf-8_front/static/css/main.b10acce4.css",
-    "main.js": "/final_project_utf-8_front/static/js/main.d30cc5b1.js",
-    "static/js/583.b112f558.chunk.js": "/final_project_utf-8_front/static/js/583.b112f558.chunk.js",
-    "static/js/589.56c4a4f0.chunk.js": "/final_project_utf-8_front/static/js/589.56c4a4f0.chunk.js",
-    "static/js/454.aeb27e17.chunk.js": "/final_project_utf-8_front/static/js/454.aeb27e17.chunk.js",
+    "main.js": "/final_project_utf-8_front/static/js/main.1b24494d.js",
+    "static/js/583.c3807473.chunk.js": "/final_project_utf-8_front/static/js/583.c3807473.chunk.js",
+    "static/js/589.701557af.chunk.js": "/final_project_utf-8_front/static/js/589.701557af.chunk.js",
+    "static/js/454.127976d5.chunk.js": "/final_project_utf-8_front/static/js/454.127976d5.chunk.js",
     "static/js/875.46adc414.chunk.js": "/final_project_utf-8_front/static/js/875.46adc414.chunk.js",
     "static/js/612.ebac9024.chunk.js": "/final_project_utf-8_front/static/js/612.ebac9024.chunk.js",
     "static/css/906.8128b178.chunk.css": "/final_project_utf-8_front/static/css/906.8128b178.chunk.css",
@@ -18,8 +18,8 @@
     "static/js/217.50b85e67.chunk.js": "/final_project_utf-8_front/static/js/217.50b85e67.chunk.js",
     "static/js/316.ca6cf887.chunk.js": "/final_project_utf-8_front/static/js/316.ca6cf887.chunk.js",
     "static/js/453.3742a643.chunk.js": "/final_project_utf-8_front/static/js/453.3742a643.chunk.js",
+    "static/js/120.b7bc7954.chunk.js": "/final_project_utf-8_front/static/js/120.b7bc7954.chunk.js",
     "static/js/650.fca04fe9.chunk.js": "/final_project_utf-8_front/static/js/650.fca04fe9.chunk.js",
-    "static/js/883.edde5c4f.chunk.js": "/final_project_utf-8_front/static/js/883.edde5c4f.chunk.js",
     "static/media/welcomePageBackground-Desktop@X2.png": "/final_project_utf-8_front/static/media/welcomePageBackground-Desktop@X2.f03eed7da42726cb61ad.png",
     "static/media/welcomePageBackground-Tablet@X2.png": "/final_project_utf-8_front/static/media/welcomePageBackground-Tablet@X2.bdc19a51cb77adc2f40a.png",
     "static/media/welcomePageBackground@x2-Mobile.png": "/final_project_utf-8_front/static/media/welcomePageBackground@x2-Mobile.270f51148f5e53da9075.png",
@@ -27,6 +27,7 @@
     "static/media/welcomePageBackground-Tablet.png": "/final_project_utf-8_front/static/media/welcomePageBackground-Tablet.21dbae2d07c0c4e14ee8.png",
     "static/media/welcomePageBackground-Mobile.png": "/final_project_utf-8_front/static/media/welcomePageBackground-Mobile.70fd5a8fb421e58fe1bf.png",
     "static/media/authorizationPageImage.svg": "/final_project_utf-8_front/static/media/authorizationPageImage.385bc53ff93756268481b368cafeeb4b.svg",
+    "static/media/authorizationPageImageDesktop.svg": "/final_project_utf-8_front/static/media/authorizationPageImageDesktop.6361a1e99fbaf698d48f38ee699bb430.svg",
     "static/media/Baked_salmon.jpg": "/final_project_utf-8_front/static/media/Baked_salmon.d967c695b4038826ebed.jpg",
     "static/media/Squash_linguine.jpg": "/final_project_utf-8_front/static/media/Squash_linguine.6fc5cefa8cb21d625703.jpg",
     "static/media/Banana_pancakes.jpg": "/final_project_utf-8_front/static/media/Banana_pancakes.83aec4a9eb57878fbb53.jpg",
@@ -41,13 +42,15 @@
     "static/media/youtube.svg": "/final_project_utf-8_front/static/media/youtube.18e2c0c1bab9a8fa41459bf3047bc0b8.svg",
     "static/media/mail.svg": "/final_project_utf-8_front/static/media/mail.7de94a7e735d99f72fdc8875f622b8c0.svg",
     "static/media/facebook.svg": "/final_project_utf-8_front/static/media/facebook.e7d3d982cfdf5f759e711124a0f98bc1.svg",
-    "static/media/bottomAuthContainerBckgrnd.svg": "/final_project_utf-8_front/static/media/bottomAuthContainerBckgrnd.31c9268a099e562b491a4960e7229dd5.svg",
+    "static/media/authContainerBckgrnd.svg": "/final_project_utf-8_front/static/media/authContainerBckgrnd.31c9268a099e562b491a4960e7229dd5.svg",
+    "static/media/authContainerBckgrndTablet.svg": "/final_project_utf-8_front/static/media/authContainerBckgrndTablet.81e3e6544b2c24db1f522bd58424f5e3.svg",
+    "static/media/authContainerBckgrndDesktop.svg": "/final_project_utf-8_front/static/media/authContainerBckgrndDesktop.d5d5440654b186017ddacb2e9f52c512.svg",
     "static/media/chevron-up.svg": "/final_project_utf-8_front/static/media/chevron-up.6c7efe19cd047dac9e6e5a497eb427ee.svg",
     "main.b10acce4.css.map": "/final_project_utf-8_front/static/css/main.b10acce4.css.map",
-    "main.d30cc5b1.js.map": "/final_project_utf-8_front/static/js/main.d30cc5b1.js.map",
-    "583.b112f558.chunk.js.map": "/final_project_utf-8_front/static/js/583.b112f558.chunk.js.map",
-    "589.56c4a4f0.chunk.js.map": "/final_project_utf-8_front/static/js/589.56c4a4f0.chunk.js.map",
-    "454.aeb27e17.chunk.js.map": "/final_project_utf-8_front/static/js/454.aeb27e17.chunk.js.map",
+    "main.1b24494d.js.map": "/final_project_utf-8_front/static/js/main.1b24494d.js.map",
+    "583.c3807473.chunk.js.map": "/final_project_utf-8_front/static/js/583.c3807473.chunk.js.map",
+    "589.701557af.chunk.js.map": "/final_project_utf-8_front/static/js/589.701557af.chunk.js.map",
+    "454.127976d5.chunk.js.map": "/final_project_utf-8_front/static/js/454.127976d5.chunk.js.map",
     "875.46adc414.chunk.js.map": "/final_project_utf-8_front/static/js/875.46adc414.chunk.js.map",
     "612.ebac9024.chunk.js.map": "/final_project_utf-8_front/static/js/612.ebac9024.chunk.js.map",
     "906.8128b178.chunk.css.map": "/final_project_utf-8_front/static/css/906.8128b178.chunk.css.map",
@@ -60,10 +63,10 @@
     "988.f5ce327c.chunk.js.map": "/final_project_utf-8_front/static/js/988.f5ce327c.chunk.js.map",
     "217.50b85e67.chunk.js.map": "/final_project_utf-8_front/static/js/217.50b85e67.chunk.js.map",
     "316.ca6cf887.chunk.js.map": "/final_project_utf-8_front/static/js/316.ca6cf887.chunk.js.map",
-    "883.edde5c4f.chunk.js.map": "/final_project_utf-8_front/static/js/883.edde5c4f.chunk.js.map"
+    "120.b7bc7954.chunk.js.map": "/final_project_utf-8_front/static/js/120.b7bc7954.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b10acce4.css",
-    "static/js/main.d30cc5b1.js"
+    "static/js/main.1b24494d.js"
   ]
 }
