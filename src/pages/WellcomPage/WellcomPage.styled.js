@@ -13,8 +13,8 @@ export const Container = styled.div`
   flex-direction: column; */
   /* justify-content: center;
   align-items: center; */
-  max-width: 375px;
-  max-height: 100wh;
+  width: 375px;
+  height: 817px;
   padding: 275px 35px 261px 35px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 46.3%, rgba(0, 0, 0, 0.35) 72.75%, rgba(0, 0, 0, 0) 100%);
   background-image: url(${backgroundMobile});
