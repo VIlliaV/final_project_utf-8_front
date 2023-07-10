@@ -6,7 +6,6 @@ import RecipePreparation from '../../components/RecipePreparation/RecipePreparat
 function RecipePage() {
   return (
     <>
-      <div>RecipePage </div>
       <RecipePageHero />
       <RecipeInngredientsList />
       <RecipePreparation />
