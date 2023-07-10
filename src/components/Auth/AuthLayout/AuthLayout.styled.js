@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import bottomAuthContainerBckgrnd from 'img/bottomAuthContainerBckgrnd.svg'
-import bottomAuthContainerBckgrndTablet from 'img/bottomAuthContainerBckgrndTablet.svg'
-import bottomAuthContainerBckgrndDesktop from 'img/bottomAuthContainerBckgrndDesktop.svg';
+// import bottomAuthContainerBckgrndTablet from 'img/bottomAuthContainerBckgrndTablet.svg'
+// import bottomAuthContainerBckgrndDesktop from 'img/bottomAuthContainerBckgrndDesktop.svg';
 
 
 export const Container = styled.div`
