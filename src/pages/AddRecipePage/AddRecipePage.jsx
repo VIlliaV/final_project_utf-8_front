@@ -4,10 +4,11 @@ import Banana_pancakes from '../../img/Banana_pancakes.jpg';
 import Backed_salmon from '../../img/Baked_salmon.jpg';
 import Sugar_pie from '../../img/Sugar_pie.jpg';
 import Squash_linguine from '../../img/Squash_linguine.jpg';
+import HeadContainer from 'components/HeadContainer/HeadContainer';
 
 function AddRecipePage() {
   return (
-    <div className={CSS.container}>
+    <HeadContainer>
       <h1 className={CSS.name_page}>Add recipe</h1>
       <div>
         <svg
@@ -150,7 +151,7 @@ function AddRecipePage() {
           </ul>
         </div>
       </div>
-    </div>
+    </HeadContainer>
   );
 }
 
