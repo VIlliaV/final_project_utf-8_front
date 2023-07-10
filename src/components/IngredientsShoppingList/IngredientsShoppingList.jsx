@@ -22,20 +22,20 @@ function IngredientsShoppingList() {
     <>
       <SLList>
         <SLItem>
-          <SLItemImage class="cards__animation">
+          <SLItemImage className="cards__animation">
             <picture>
               <source
-                srcset="./images/desktop/portfolio2-1x.jpg 1x,
+                srcSet="./images/desktop/portfolio2-1x.jpg 1x,
                         ./images/desktop/portfolio2-2x.jpg 2x"
                 media="(min-width: 1200px)"
               />
               <source
-                srcset="./images/tablet/portfolio2-1x.jpg 1x,
+                srcSet="./images/tablet/portfolio2-1x.jpg 1x,
                         ./images/tablet/portfolio2-2x.jpg 2x"
                 media="(min-width: 768px)"
               />
               <source
-                srcset="./images/mobile/portfolio2-1x.jpg 1x,
+                srcSet="./images/mobile/portfolio2-1x.jpg 1x,
                         ./images/mobile/portfolio2-2x.jpg 2x"
                 media="(max-width: 767px)"
               />

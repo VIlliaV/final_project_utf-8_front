@@ -1,0 +1,130 @@
+// * Блок перемикання теми
+.theme {
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: ($tablet - 1px)) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    margin-left: 24px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-left: 147px;
+  }
+}
+
+// ~ Кнопка перемикання теми
+.theme__btn {
+  display: flex; // прибирає 4px знизу
+  align-items: center;
+  padding: 0;
+
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+
+  // & Написи навколо кнопки у $desktop
+  &::before,
+  &::after {
+    content: 'Light';
+    display: none;
+    margin-right: 12px;
+
+    font-family: var(--font-second);
+    @include font(400, 18, 24);
+    color: var(--theme-switch-light-side);
+
+    @media screen and (min-width: $desktop) {
+      display: flex;
+    }
+  }
+
+  &::after {
+    content: 'Dark';
+    margin-right: 0;
+    color: var(--theme-switch-dark-side);
+  }
+}
+
+// & Іконки навколо кнопки у $mobile та $tablet
+.theme__sun-icon,
+.theme__moon-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  fill: transparent;
+
+  @media screen and (min-width: $desktop) {
+    display: none;
+  }
+}
+
+.theme__sun-icon {
+  stroke: var(--theme-switch-light-side);
+}
+
+.theme__moon-icon {
+  stroke: var(--theme-switch-dark-side);
+}
+
+// & Перемикач малюється за допомогою css (copy-paste from https://codepen.io/mburnette/pen/LxNxNg):
+.switch-input {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+
+  &:checked + label {
+    background: var(--brand-main-opt);
+  }
+
+  &:checked + .switch-lbl:after {
+    left: calc(100% - 2px); // позиція праворуч
+    translate: -100% 0%; // переміщення праворуч
+
+    // розмір коли коло праворуч (біле) зменшено на 1px:
+    width: 13px;
+    height: 13px;
+  }
+}
+
+.switch-lbl {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  // text-indent: -9999px; // потрібен щоб сховати текст у label.switch-lbl
+  width: 40px;
+  height: 20px;
+  margin-right: 12px;
+
+  background-color: var(--brand-light);
+  // border: 1px solid var(--theme-tgl-bg); // бордер по розмиітці
+  border: 1.5px solid var(--theme-tgl-bg); // бордер збільшений на 0.5px
+  border-radius: 20px;
+
+  &:after {
+    content: '';
+    position: absolute;
+
+    // центрування по -y
+    top: 50%;
+    transform: translateY(-50%);
+
+    // left: 1px; // позиція ліворуч по розмітці
+    left: 1.5px; // позиція ліворуч
+
+    // розмір коли коло ліворуч (синє):
+    width: 14px;
+    height: 14px;
+
+    background-color: var(--theme-tgl-bg);
+    border-radius: 20px;
+
+    transition: 250ms;
+  }
+}
+// &/ Перемикач малюється за допомогою css (copy-paste)
+// ~/ Кнопка перемикання теми
+// */ Блок перемикання теми
