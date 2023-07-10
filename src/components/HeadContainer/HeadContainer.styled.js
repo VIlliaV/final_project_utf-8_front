@@ -6,6 +6,7 @@ import kissingdesktop2 from './images/kisspng-pasta.desktop@2x.png';
 export const Container = styled.div`
     margin: 0 auto;
 
+
     @media ${media.mobile} {
         max-width: 768px;
         padding: 50px 16px 100px;
@@ -26,6 +27,7 @@ export const Container = styled.div`
         background-position: left 0px bottom -500px;
         background-repeat: no-repeat;
         background-size: 50%;
+
         padding: 102px 100px 200px;
     }
 `;
