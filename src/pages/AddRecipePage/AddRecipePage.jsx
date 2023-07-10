@@ -13,6 +13,7 @@ import {
 import Backed_salmon from '../../img/Baked_salmon.jpg';
 import Sugar_pie from '../../img/Sugar_pie.jpg';
 import Squash_linguine from '../../img/Squash_linguine.jpg';
+
 import IngredientList from '../../components/AddRecipeForm/Ingradients_list';
 import FileInput from '..//../components/AddRecipeForm/AddRecipeForm';
 import HeadContainer from '../../components/HeadContainer/HeadContainer';
@@ -208,6 +209,7 @@ function AddRecipePage() {
             </div>
         </HeadContainer>
     );
+
 }
 
 export default AddRecipePage;
