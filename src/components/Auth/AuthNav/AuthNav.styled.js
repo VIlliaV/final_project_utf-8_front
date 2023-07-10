@@ -7,7 +7,7 @@ justify-content: space-between;
 margin-left: auto;
 margin-right: auto;
 margin-top: 44px;
-width: 239px;
+max-width: 239px;
 height: 45px;
 `
 export const RegisterButton = styled.button`
