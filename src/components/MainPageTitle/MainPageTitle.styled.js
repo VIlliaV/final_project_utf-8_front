@@ -4,7 +4,7 @@ import { media } from 'utils/media';
 export const HeadText = styled.h1`
     position: relative;
     color: #001833;
-    /* font-family: Poppins; */
+
     font-style: normal;
     font-weight: 600;
     font-size: 28px;
@@ -16,7 +16,9 @@ export const HeadText = styled.h1`
     }
     @media ${media.desktop} {
         font-size: 44px;
-        line-height: 1, 1;
+
+        line-height: 1.1;
+
         letter-spacing: -0.88px;
     }
 
