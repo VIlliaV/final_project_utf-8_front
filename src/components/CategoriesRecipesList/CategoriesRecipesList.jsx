@@ -1,4 +1,5 @@
 import { CategoryRecipeCard } from '../CategoryRecipeCard/CategoryRecipeCard';
+import { CategoriesRecipesContainer } from './CategoriesRecipesList.styled';
 import { useParams } from 'react-router-dom';
 
 const recipes = require('../../back/recipes.json');
@@ -11,10 +12,10 @@ export const CategoriesRecipesList = () => {
   const filteredRecipes = recipes.filter(el => el.category === currentCategory);
   //   console.log(filteredRecipes);
   return (
-    <ul>
+    <CategoriesRecipesContainer>
       {filteredRecipes.map(({ _id: { $oid: id }, title, thumb }) => {
         return <CategoryRecipeCard key={id} itemId={id} imageUrl={thumb} imageAlt={title} title={title}></CategoryRecipeCard>;
       })}
-    </ul>
+    </CategoriesRecipesContainer>
   );
 };

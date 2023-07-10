@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { TitleRecipe, Description, Button, Time } from './RecipePageHero.styled';
 
@@ -15,5 +16,6 @@ const RecipePageHero = ({ title, description, time }) => {
     </>
   );
 };
+
 
 export default RecipePageHero;
