@@ -1,3 +1,27 @@
+import { useNavigate } from 'react-router-dom';
+import { Container, RegisterButton, LoginButton } from './AuthNav.styled';
+
 export const AuthNav = () => {
-  return <div></div>;
+    const navigate = useNavigate();
+
+
+
+  return (
+    <Container>
+      <RegisterButton
+        onClick={() => {
+          navigate('/register');
+        }}
+      >
+        Registration
+      </RegisterButton>
+      <LoginButton
+        onClick={() => {
+          navigate('/signin');
+        }}
+      >
+        Sign in
+      </LoginButton>
+    </Container>
+  );
 };
