@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { media } from '../../utils/media';
 
 export const SearchForm = styled.form`
+  text-align: center;
+
   input {
     box-sizing: border-box;
     width: 295px;
@@ -28,7 +30,6 @@ export const SearchForm = styled.form`
     height: 52px;
     color: #fafafa;
     border-radius: 24px 44px;
-    border: none;
     outline: none;
     font-size: 14px;
     cursor: pointer;
@@ -36,23 +37,29 @@ export const SearchForm = styled.form`
 
   .origin-button {
     background-color: #22252a;
+    border: 1px solid #22252a;
 
     &:focus,
     &:hover {
       background-color: #8baa36;
+      border-color: #8baa36;
     }
   }
 
   .inversion-button {
     background-color: #8baa36;
+    border: 1px solid #8baa36;
 
     &:focus,
     &:hover {
       background-color: #22252a;
+      border-color: #22252a;
     }
   }
 
   @media ${media.tablet} {
+    text-align: left;
+
     input {
       width: 362px;
       height: 59px;
