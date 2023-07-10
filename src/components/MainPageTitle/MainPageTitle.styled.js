@@ -67,7 +67,7 @@ export const HeadText = styled.h1`
   }
   & .third-square {
     position: absolute;
-    bottom: -22.9px;
+    bottom: 22.9px;
     left: 333px;
     display: block;
     width: 8px;
@@ -77,13 +77,13 @@ export const HeadText = styled.h1`
     border-radius: 3px;
     background: var(--active);
     @media ${media.tablet} {
-      bottom: -51.4px;
+      bottom: 51.4px;
       left: 694px;
       width: 14px;
       height: 14px;
     }
     @media ${media.desktop} {
-      bottom: -60.4px;
+      bottom: 60.4px;
       left: 1150px;
     }
   }
