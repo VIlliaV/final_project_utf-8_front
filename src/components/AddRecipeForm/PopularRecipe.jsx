@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import { StyledH3, StyledPopularRecipe } from './AddRecipeForm.styled';
 import Banana_pancakes from '../../img/Banana_pancakes.jpg';
 import Backed_salmon from '../../img/Baked_salmon.jpg';

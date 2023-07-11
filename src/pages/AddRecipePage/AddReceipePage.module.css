@@ -1,26 +1,3 @@
-.test {
-    margin-top: 145px;
-}
-
-.rectangle_8_position {
-    position: relative;
-    top: 50px;
-    left: 690px;
-}
-.rectangle_9_position {
-    position: relative;
-    top: -15px;
-    left: 1118px;
-}
-.rectangle_11_position {
-    position: relative;
-    top: -30px;
-    left: 228px;
-}
-
-.rectangles {
-    position: relative;
-}
 .ZAGALOM {
     display: flex;
     column-count: 2;
@@ -103,16 +80,4 @@
 }
 
 .Recipe_enter {
-    width: 510px;
-    height: 230px;
-}
-.btn_add {
-    color: white;
-    border: none;
-}
-
-.btn_add__text {
-    top: 45px;
-    position: relative;
-    text-align: center;
 }

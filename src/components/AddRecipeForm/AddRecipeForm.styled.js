@@ -88,6 +88,46 @@ export const StyledSection2 = style.div`
     
     `;
 
+export const StyledSection3 = style.div`
+    width: 610px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin:100px 300px 0 0;
+    & input {
+        margin-top: 30px;
+        width: 510px;
+        height: 230px;
+    }
+    & div {
+        position: relative;
+        width: 160px;
+        height: 50px;
+        & button {
+            cursor: pointer;
+            margin-top: 30px;
+            display: flex;
+            color: white;
+            border: none;
+            align-items: center;
+                & svg {
+                    width: 160px;
+                    height: 50px;
+                    
+                
+                }
+                 & span {
+                    color: #FAFAFA; 
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    position: absolute;
+                    left: 40%;
+                }
+    }}
+`;
+
 export const StyledH3 = style.h3`
     color: #3e4462;
     font-size: 24px;

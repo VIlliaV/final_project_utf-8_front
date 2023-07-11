@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 
 import { nanoid } from 'nanoid';
 import { StyledInputBtn, StyledButtonGroup, StyledSection2, StyledH3 } from './AddRecipeForm.styled';

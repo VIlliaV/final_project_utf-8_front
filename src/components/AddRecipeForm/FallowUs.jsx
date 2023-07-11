@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import { StyledH3, StyledSvg, Fallow } from './AddRecipeForm.styled';
 
 export default function FallowUs() {

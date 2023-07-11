@@ -1,23 +1,13 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import {
-    IngredientsName,
-    IngrediantsCountWeigth,
-    IngrediantsWeigth,
     IngredientBtn,
-    IngredianceList,
     StyledNativeSelect,
     BootstrapInput,
     StyledIngredientList,
     StyledFormControl,
 } from './AddRecipeForm.styled';
-import { styled } from '@mui/material/styles';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import NativeSelect from '@mui/material/NativeSelect';
-import InputBase from '@mui/material/InputBase';
 
 const weigthName = [
     {
