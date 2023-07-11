@@ -3,32 +3,25 @@ import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: { name: null, email: null },
-  token: null,
-  isLoggedIn: false,
-  isRefreshing: false,
-  isLoginFailed: false,
+    user: { name: null, email: null },
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+    isLoginFailed: false,
 };
-
 
 const authSlice = createSlice({
-    name: "auth",
+    name: 'auth',
     initialState,
     reducers: {},
-    extraReducers: builder => {}
+    extraReducers: builder => {},
 });
 
-
 const persistConfig = {
-  key: 'auth',
-  version: 1,
-  storage,
-  whitelist: ['token'],
+    key: 'auth',
+    version: 1,
+    storage,
+    whitelist: ['token'],
 };
 
-export const authPersistedReducer = persistReducer(
-  persistConfig,
-  authSlice.reducer
-);
-
-
+export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);
