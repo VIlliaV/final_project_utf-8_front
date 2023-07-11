@@ -1,4 +1,4 @@
-import { Container, Header, Form, Input, SubmitButton, Link } from './AuthForm.styled';
+import { Container, Header, Form, Input, SubmitButton, Link, FormContainer } from './AuthForm.styled';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 
@@ -13,7 +13,7 @@ export const AuthForm = () => {
     
 
     return (
-      <>
+      <FormContainer>
         <Container>
           <Header>{pathname === '/register' ? 'Registration' : 'Sign In'}</Header>
           <Form>
@@ -24,6 +24,6 @@ export const AuthForm = () => {
           </Form>
         </Container>
     <Link onClick={handleNavigate}>{pathname === '/register' ? 'Sign In' : 'Registration'}</Link>
-     </> 
+     </FormContainer> 
     );
 };

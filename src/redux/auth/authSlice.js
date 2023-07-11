@@ -3,7 +3,7 @@ import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, photo: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
