@@ -48,7 +48,7 @@ function IngredientsShoppingList() {
           <SlItemAmount>400g</SlItemAmount>
 
           <SLItemRemove type="button">
-            <GrClose>GrClose</GrClose>
+            <GrClose />
           </SLItemRemove>
         </SLItem>
 
