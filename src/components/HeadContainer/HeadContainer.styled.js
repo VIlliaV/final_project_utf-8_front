@@ -3,30 +3,42 @@ import { media } from '../../utils/media';
 import kissingdesktop from './images/kisspng-pasta.desktop.png';
 import kissingdesktop2 from './images/kisspng-pasta.desktop@2x.png';
 
-export const Container = styled.div`
+export const Section = styled.section`
     margin: 0 auto;
-
+    max-width: 374px;
     @media ${media.mobile} {
-        max-width: 768px;
-        padding: 50px 16px 100px;
+        max-width: 767px;
     }
 
     @media ${media.tablet} {
-        max-width: 1440px;
-        padding: 72px 32px 200px;
+        max-width: 1439px;
     }
     @media ${media.desktop} {
         background: url(${kissingdesktop});
         background-position: left 0px bottom -400px;
         background-repeat: no-repeat;
         background-size: 558px auto;
-        padding: 102px 100px 200px;
     }
-    @media ${media.desktop} ${media.retina} {
+    @media ${media.desktop} /* ${media.retina} */ {
         background: url(${kissingdesktop2});
         background-position: left 0px bottom -400px;
         background-repeat: no-repeat;
         background-size: 558px auto;
+    }
+`;
+
+export const Container = styled.div`
+    @media ${media.mobile} {
+        width: 375px;
+        padding: 50px 16px 100px;
+    }
+
+    @media ${media.tablet} {
+        width: 768px;
+        padding: 72px 32px 200px;
+    }
+    @media ${media.desktop} {
+        width: 1440px;
         padding: 102px 100px 200px;
     }
 `;
