@@ -3,7 +3,6 @@ import SearchedRecipesList from 'components/SearchedRecipesList/SearchedRecipesL
 import SearchBar from 'components/SerchBar/SerchBar';
 import MainPageTitle from 'components/MainPageTitle/MainPageTitle';
 import HeadContainer from 'components/HeadContainer/HeadContainer';
-// import { Title } from './SearchPage.styled';
 
 function SearchPage() {
     return (
