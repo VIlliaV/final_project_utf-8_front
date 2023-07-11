@@ -20,11 +20,13 @@
 // Клік по кнопці видалення повинен видалити елемент на бекенді, та його ж в списку на сторінці.
 
 import IngredientsShoppingList from 'components/IngredientsShoppingList/IngredientsShoppingList';
+// import ThemeSwitcher from 'services/switcherTheme';
 import { SLContainer, SLMainTitle, SLHeader, SLHeaderText } from './ShoppingListPage.styled';
 
 function ShoppingListPage() {
   return (
     <SLContainer>
+      {/* <ThemeSwitcher /> */}
       <SLMainTitle>Shopping list</SLMainTitle>
       <SLHeader>
         <SLHeaderText>Products</SLHeaderText>

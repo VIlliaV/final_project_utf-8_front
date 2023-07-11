@@ -9,45 +9,48 @@ import backgroundX2Desktop from './images/welcomePageBackground-Desktop@X2.png';
 
 
 export const Container = styled.div`
-  /* display: flex;
+    /* display: flex;
   flex-direction: column; */
-  /* justify-content: center;
+    /* justify-content: center;
   align-items: center; */
-  width: 375px;
-  height: 817px;
-  padding: 275px 35px 261px 35px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 46.3%, rgba(0, 0, 0, 0.35) 72.75%, rgba(0, 0, 0, 0) 100%);
-  background-image: url(${backgroundMobile});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    box-sizing: border-box;
+    max-width: 375px;
+    height: 817px;
+    padding: 275px 35px 261px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 46.3%, rgba(0, 0, 0, 0.35) 72.75%, rgba(0, 0, 0, 0) 100%);
+    background-image: url(${backgroundMobile});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-  @media (min-resolution: 192dpi) {
-    background-image: url(${backgroundX2Mobile});
-  }
+    @media (min-resolution: 192dpi) {
+        background-image: url(${backgroundX2Mobile});
+    }
 
-  @media screen and (min-width: 376px) and (max-width: 768px) {
-    background-image: url(${backgroundTablet});
-    max-width: 768px;
-  }
+    @media screen and (min-width: 376px) and (max-width: 768px) {
+        background-image: url(${backgroundTablet});
+        max-width: 100%;
+        height: auto;
+    }
 
-  @media screen and (min-width: 376px) and (max-width: 768px) and (min-resolution: 192dpi) {
-    background-image: url(${backgroundX2Tablet});
-  }
+    @media screen and (min-width: 376px) and (max-width: 768px) and (min-resolution: 192dpi) {
+        background-image: url(${backgroundX2Tablet});
+    }
 
-  @media screen and (min-width: 769px) {
-    background-image: url(${backgroundDesktop});
-    max-width: 100vw;
-    padding: 342px 132px;
-  }
+    @media screen and (min-width: 769px) {
+        background-image: url(${backgroundDesktop});
+        max-width: 100%;
+        height: auto;
+        padding: 342px 132px;
+    }
 
-  @media screen and (min-width: 769px) and (min-resolution: 192dpi) {
-    background-image: url(${backgroundX2Desktop});
-  }
+    @media screen and (min-width: 769px) and (min-resolution: 192dpi) {
+        background-image: url(${backgroundX2Desktop});
+    }
 
-  @media screen and (min-width: 1440px) {
-    padding: 214px 450px;
-  }
+    @media screen and (min-width: 1440px) {
+        padding: 214px 450px;
+    }
 `;
 
 export const Icon = styled.img`

@@ -7,23 +7,36 @@ justify-content: space-between;
 margin-left: auto;
 margin-right: auto;
 margin-top: 44px;
-width: 239px;
+max-width: 239px;
 height: 45px;
 `
 export const RegisterButton = styled.button`
-  background-color: #8baa36;
-  color: #fafafa;
-  border-radius: 24px 44px;
-  width: 132px;
-  height: 45px;
-  border: none;
+    background-color: #8baa36;
+    color: #fafafa;
+    border-radius: 24px 44px;
+    width: 132px;
+    height: 45px;
+    border: none;
+
+    &:hover {
+        background-color: #22252a;
+        color: #fafafa;
+        cursor: pointer;
+    }
 `;
 
 export const LoginButton = styled.button`
-  background-color: transparent;
-  color: #fafafa;
-  border-radius: 24px 44px;
-  width: 95px;
-  height: 45px;
-  border: 2px solid #fafafa;
+    background-color: transparent;
+    color: #fafafa;
+    border-radius: 24px 44px;
+    width: 95px;
+    height: 45px;
+    border: 2px solid #fafafa;
+
+    &:hover {
+        background-color: #8baa36;
+        color: #fafafa;
+        border: none;
+        cursor: pointer;
+    }
 `;

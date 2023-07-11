@@ -131,6 +131,8 @@ const SLItemRemove = styled.button`
   height: 14px;
 
   margin-right: 18px;
+  background-color: transparent;
+  border: none;
 
   @media screen and (min-width: ${tablet}) {
     width: 20px;

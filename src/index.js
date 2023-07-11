@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { App } from 'components/App';
 
+import './styles/modern-normalize.css';
+import './styles/project-normalize.css';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
