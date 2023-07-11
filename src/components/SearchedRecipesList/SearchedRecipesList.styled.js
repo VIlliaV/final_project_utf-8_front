@@ -20,6 +20,10 @@ export const ListContainer = styled.ul`
 
 export const NoResultWrapper = styled.div`
     margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     img {
         width: 208px;
         height: 133px;
