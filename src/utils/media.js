@@ -12,5 +12,5 @@ export const media = {
     desktop: `screen and (min-width: ${size.desktop})`,
     mobTab: `screen and (min-width: ${size.mobile}) and (max-width: ${size.tablet - 1})`,
     tabDesk: `screen and (min-width: ${size.tablet}) and (max-width: ${size.desktop - 1})`,
-    retina: `and  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) `, //   tabDesk: `screen and (min-width: ${size.tablet}) and (max-width: ${size.desktop})`,
+    retina: `and (-webkit-min-device-pixel-ratio: 2) `, //   tabDesk: `screen and (min-width: ${size.tablet}) and (max-width: ${size.desktop})`,
 };
