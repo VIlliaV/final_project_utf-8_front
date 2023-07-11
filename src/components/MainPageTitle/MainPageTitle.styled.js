@@ -3,22 +3,22 @@ import { media } from 'utils/media';
 
 export const HeadText = styled.h1`
     position: relative;
+    margin-top: 50px;
     color: #001833;
-
     font-style: normal;
     font-weight: 600;
     font-size: 28px;
     line-height: 1;
     letter-spacing: -0.56px;
     @media ${media.tablet} {
+        margin-top: 72px;
         font-size: 32px;
         letter-spacing: -0.64px;
     }
     @media ${media.desktop} {
+        margin-top: 102px;
         font-size: 44px;
-
         line-height: 1.1;
-
         letter-spacing: -0.88px;
     }
 

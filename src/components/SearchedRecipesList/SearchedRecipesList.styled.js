@@ -19,11 +19,11 @@ export const ListContainer = styled.ul`
 `;
 
 export const NoResultWrapper = styled.div`
-    margin-bottom: 100px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
     img {
         width: 208px;
         height: 133px;
@@ -39,7 +39,7 @@ export const NoResultWrapper = styled.div`
     }
 
     @media ${media.tablet} {
-        margin-bottom: 200px;
+        padding-bottom: 0;
         img {
             width: 350px;
             height: 225px;

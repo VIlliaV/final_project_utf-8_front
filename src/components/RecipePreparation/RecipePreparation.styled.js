@@ -92,7 +92,6 @@ const Image = styled.img`
         height: 332px;
         margin-bottom: 200px;
     }
- 
-`;
+ `;
 
 export { Wrapper, WrapperForDesktop, Title, List, Item, Image };
