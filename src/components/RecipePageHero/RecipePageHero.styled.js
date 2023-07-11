@@ -67,6 +67,18 @@ const Button = styled.button`
     }
 `;
 
+const ClockWrapper = styled.div`
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    color: transparent;
+    @media ${media.tablet} {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+    }
+`;
+
 const Time = styled.p`
     margin-bottom: 90px;
     color: var(--text_theme_1);
@@ -80,4 +92,8 @@ const Time = styled.p`
     }
 `;
 
-export { TitleRecipe, Description, Button, Time };
+const TimeWrapper = styled.div`
+    display: flex;
+`;
+
+export { TitleRecipe, Description, Button, ClockWrapper, Time, TimeWrapper };
