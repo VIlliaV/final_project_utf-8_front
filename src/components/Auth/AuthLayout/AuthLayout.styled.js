@@ -13,32 +13,22 @@ export const Container = styled.div`
     background-color: #fafafa;
     padding: 87px 20px 118px;
     background-image: url(${authContainerBckgrnd});
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: left 0px top 322px;
+    background-position-x: center;
+    background-position-y: 300px;
     box-sizing: border-box;
 
-    @media screen and (min-width: 570px) {
-        background-image: url(${authContainerBckgrndTablet});
-        /* background-size: cover; */
-    }
-
     @media screen and (min-width: 768px) {
-        /* background-image: url(${authContainerBckgrndTablet}); */
-        background-position: top 419px right 0;
+        background-image: url(${authContainerBckgrndTablet});
+        background-position-y: 350px;
         padding: 96px 134px 59px;
-        /* background-size: cover; */
-    }
-
-    @media screen and (min-width: 1150px) {
-        background-size: cover;
-        /* background-position: top 419px; */
     }
 
     @media screen and (min-width: 1440px) {
         background-image: url(${authContainerBckgrndDesktop});
-        background-size: contain;
-        background-position: top 444px right 0;
+        background-size: 100vw 50vh;
+        background-position-y: 450px;
         flex-direction: row;
         padding: 115px 180px 122px 113px;
     }
@@ -49,17 +39,17 @@ export const Container = styled.div`
 export const Image = styled.div`
     margin-left: auto;
     margin-right: auto;
-    width: 285px;
+    width: 100%;
     height: 250px;
     background-image: url(${authorizationPageImage});
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 
-
     @media screen and (min-width: 768px) and (max-width: 1439px) {
-        width: 409px;
-        height: 359px;
+        min-width: 409px;
+        min-height: 359px;
+        background-size: contain;
     }
 
     @media screen and (min-width: 1440px) {
