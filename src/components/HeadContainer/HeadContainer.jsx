@@ -1,8 +1,12 @@
 import React from 'react';
-import { Container } from './HeadContainer.styled';
+import { Container, Section } from './HeadContainer.styled';
 
 function HeadContainer({ children }) {
-  return <Container>{children}</Container>;
+    return (
+        <Section>
+            <Container>{children}</Container>
+        </Section>
+    );
 }
 
 export default HeadContainer;
