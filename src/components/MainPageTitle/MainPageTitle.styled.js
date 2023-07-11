@@ -23,6 +23,12 @@ export const HeadText = styled.h1`
     }
 
     & .first-square {
+        @media ${media.mini} {
+            top: -26.83px;
+            left: calc(100vw - 65%);
+            width: 4px;
+            height: 4px;
+        }
         position: absolute;
         top: -26.83px;
         left: 104px;
@@ -46,6 +52,12 @@ export const HeadText = styled.h1`
     }
 
     & .second-square {
+        @media ${media.mini} {
+            bottom: 7.5px;
+            left: calc(100vw - 32%);
+            width: 3px;
+            height: 3px;
+        }
         position: absolute;
         bottom: 7.5px;
         left: 231px;
@@ -68,6 +80,12 @@ export const HeadText = styled.h1`
         }
     }
     & .third-square {
+        @media ${media.mini} {
+            bottom: 22.9px;
+            left: calc(100vw - 15%);
+            width: 4px;
+            height: 4px;
+        }
         position: absolute;
         bottom: 22.9px;
         left: 333px;
