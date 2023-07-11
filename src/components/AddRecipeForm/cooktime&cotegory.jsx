@@ -31,7 +31,7 @@ export default function CookCategoryGroup() {
                     value={cook_time}
                     onChange={handleChangeCookTime}
                 >
-                    <StyledMenuItem value={'10'}>10</StyledMenuItem>
+                    <StyledMenuItem value={10}>10</StyledMenuItem>
                     <StyledMenuItem value={20}>20</StyledMenuItem>
                     <StyledMenuItem value={30}>30</StyledMenuItem>
                     <StyledMenuItem value={40}>40</StyledMenuItem>

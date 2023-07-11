@@ -64,7 +64,7 @@ export const ResponsiveFooterContainer = styled(FooterContainer)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 378px;
+  min-width: 100vw;
   min-height: 435px;
 
   @media ${media.tablet} {
