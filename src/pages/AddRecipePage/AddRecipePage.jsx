@@ -1,7 +1,7 @@
 import React from 'react';
 import CSS from './AddReceipePage.module.css';
 import MainPageTitle from '../../components/MainPageTitle/MainPageTitle';
-import { StyledTextField, StyledLabel, StyledH1, IngredientBtn } from './AddRecipePage.styled';
+import { StyledTextField, StyledLabel, IngredientBtn } from './AddRecipePage.styled';
 import FileInput from '..//../components/AddRecipeForm/AddRecipeForm';
 import HeadContainer from '../../components/HeadContainer/HeadContainer';
 import CookCategoryGroup from '../../components/AddRecipeForm/cooktime&cotegory';
@@ -14,8 +14,7 @@ function AddRecipePage() {
         <HeadContainer>
             <div className={CSS.container}>
                 <div className={CSS.test}>
-                    <MainPageTitle />
-                    <StyledH1>Add recipe</StyledH1>
+                    <MainPageTitle title="Add recipe" />
                     <div className={CSS.ZAGALOM}>
                         <div className={CSS.lef_column}>
                             <div className={CSS.section1}>

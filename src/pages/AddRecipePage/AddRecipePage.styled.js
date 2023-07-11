@@ -22,15 +22,6 @@ export const StyledLabel = style.label`
         },
 `;
 
-export const StyledH1 = style.h1`
-    margin: 0;
-    color: #001833;
-    font-size: 44px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 44px;
-    letter-spacing: -0.88px;
-`;
 export const StyledH3 = style.h3`
     color: #3e4462;
     font-size: 24px;
