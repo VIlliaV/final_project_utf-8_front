@@ -89,7 +89,6 @@ const ListItem = styles.li`
     display: flex;
     width: 343px;
     height: 86px;
-    /* padding: 0px 10px; */
     margin-bottom: 16px;
     align-items: center;
     justify-content: space-between;
@@ -102,12 +101,10 @@ const ListItem = styles.li`
         width: 704px;
         height: 178px;
         margin-bottom: 24px;
-        /* padding: 0px 24px; */
     }
     @media ${media.desktop} {
         width: 1240px;
         height: 182px;
-        /* padding: 0px 32px; */
     }
 `;
 
