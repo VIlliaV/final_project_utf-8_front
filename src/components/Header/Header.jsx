@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { HideContentMobile, HideContentTablet, LogoImg, LogoNav, Navigation, ResponsiveHeaderContainer, StyledNavLink } from './Header.styled';
+import { HideContentTablet, LogoImg, LogoNav, Navigation, ResponsiveHeaderContainer, StyledNavLink } from './Header.styled';
 import logo from '../../pages/WellcomPage/images/icon.svg';
 import AvatarButton from './AvatarButton/AvatarButton';
 import ThemeSwitcher from './ThemeSwircher/ThemeSwitch';
