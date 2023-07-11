@@ -6,7 +6,6 @@ import kissingdesktop2 from './images/kisspng-pasta.desktop@2x.png';
 export const Container = styled.div`
     margin: 0 auto;
 
-
     @media ${media.mobile} {
         max-width: 768px;
         padding: 50px 16px 100px;
@@ -18,16 +17,16 @@ export const Container = styled.div`
     }
     @media ${media.desktop} {
         background: url(${kissingdesktop});
-        background-position: left 0px bottom -500px;
+        background-position: left 0px bottom -400px;
         background-repeat: no-repeat;
+        background-size: 558px auto;
         padding: 102px 100px 200px;
     }
-    @media ${media.desktop} and (min-resolution: 192dpi) {
+    @media ${media.desktop} ${media.retina} {
         background: url(${kissingdesktop2});
-        background-position: left 0px bottom -500px;
+        background-position: left 0px bottom -400px;
         background-repeat: no-repeat;
-        background-size: 50%;
-
+        background-size: 558px auto;
         padding: 102px 100px 200px;
     }
 `;
