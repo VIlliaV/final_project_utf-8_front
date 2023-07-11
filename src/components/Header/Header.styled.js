@@ -2,17 +2,27 @@ import { NavLink } from 'react-router-dom';
 import { media } from '../../utils/media';
 import styled from 'styled-components';
 
+export const HideContentTablet = styled.div`
+
+min-width: 340px;
+
+  @media (max-width: 1440px) {
+    display: none;
+  }
+`;
 
 export const ResponsiveHeaderContainer = styled.div`
-margin-bottom: 110px;
   display: flex;
   position: absolute;
   flex-direction: row;
   align-items: center;
-  margin-left: 100px;
+
   margin-top: 15px;
-  min-width: 1240px;
+  min-width: 100%;
   min-height: 45px;
+  @media ${media.desktop} {
+	/* margin-left: 100px; */
+  }
 `
 
 export const Navigation = styled.nav`
@@ -31,7 +41,6 @@ export const StyledNavLink = styled(NavLink)`
 
 export const LogoNav = styled(NavLink)`
   color: white;
-  width: 145px;
   height: 35px;
   
 
@@ -54,6 +63,7 @@ export const LogoNav = styled(NavLink)`
     padding-bottom: 0;
   }
   @media ${media.desktop} {
+	width: 145px;
   }
 `;
 
