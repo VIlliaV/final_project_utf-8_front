@@ -11,33 +11,6 @@
   --active: rgb(139, 170, 54);
 }
 
-/* Стилі для світлої теми: */
-body {
-  --theme-text-color: #111321;
-  --theme-bg-color: #f4f4f4;
-
-  --theme-switch-light-side: #4b48db;
-  --theme-switch-dark-side: #5f6775;
-
-  --theme-tgl-bg: #4b48db;
-
-  --read-cover-color: #a2a2a2;
-  --calendar-icon: #a2a2a2;
-  /* #4440F6 */
-}
-/* Стилі для темної теми: */
-body.dark-theme {
-  --theme-text-color: #f4f4f4;
-  --theme-bg-color: #111321;
-
-  --theme-switch-light-side: #5f6775;
-  --theme-switch-dark-side: #4b48db;
-
-  --theme-tgl-bg: #fff;
-  --read-cover-color: rgba(244, 244, 244, 0.4);
-  --calendar-icon: #f4f4f4;
-}
-
 @font-face {
   font-family: 'Poppins';
   font-style: normal;

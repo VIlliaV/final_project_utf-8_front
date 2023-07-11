@@ -19,23 +19,26 @@
 //  - кнопку для видалення елементу зі списку
 // Клік по кнопці видалення повинен видалити елемент на бекенді, та його ж в списку на сторінці.
 
+import HeadContainer from 'components/HeadContainer/HeadContainer';
 import IngredientsShoppingList from 'components/IngredientsShoppingList/IngredientsShoppingList';
 // import ThemeSwitcher from 'services/switcherTheme';
-import { SLContainer, SLMainTitle, SLHeader, SLHeaderText } from './ShoppingListPage.styled';
+import { SLContainer, SLHeader, SLHeaderText } from './ShoppingListPage.styled';
 
 function ShoppingListPage() {
   return (
-    <SLContainer>
-      {/* <ThemeSwitcher /> */}
-      <SLMainTitle>Shopping list</SLMainTitle>
-      <SLHeader>
-        <SLHeaderText>Products</SLHeaderText>
-        <SLHeaderText>Amount</SLHeaderText>
-        <SLHeaderText>Remove</SLHeaderText>
-      </SLHeader>
+    <HeadContainer>
+      <SLContainer>
+        {/* <ThemeSwitcher /> */}
+        {/* <SLMainTitle>Shopping list</SLMainTitle> */}
+        <SLHeader>
+          <SLHeaderText>Products</SLHeaderText>
+          <SLHeaderText>Amount</SLHeaderText>
+          <SLHeaderText>Remove</SLHeaderText>
+        </SLHeader>
 
-      <IngredientsShoppingList />
-    </SLContainer>
+        <IngredientsShoppingList />
+      </SLContainer>
+    </HeadContainer>
   );
 }
 
