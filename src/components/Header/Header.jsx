@@ -19,23 +19,23 @@ function Header() {
             <LogoNav to="/">
                 <LogoImg src={logo} alt="" />
             </LogoNav>
-			<Navigation>
-      <StyledNavLink exact to="/" active={activeLink === '/'}>
+		    <Navigation>
+      <StyledNavLink exact="true" to="/" active={activeLink === '/' ? 'true' : 'false'}>
         Categories
       </StyledNavLink>
-      <StyledNavLink to="/add" active={activeLink === '/add'}>
+      <StyledNavLink exact="true" to="/add" active={activeLink === '/add' ? 'true' : 'false'}>
         Add recipes
       </StyledNavLink>
-      <StyledNavLink to="/my" active={activeLink === '/my'}>
+      <StyledNavLink exact="true" to="/my" active={activeLink === '/my' ? 'true' : 'false'}>
         My recipes
       </StyledNavLink>
-      <StyledNavLink to="/favorite" active={activeLink === '/favorite'}>
+      <StyledNavLink exact="true" to="/favorite" active={activeLink === '/favorite' ? 'true' : 'false'}>
         Favorites
       </StyledNavLink>
-      <StyledNavLink to="/shopping-list" active={activeLink === '/shopping-list'}>
+      <StyledNavLink exact="true" to="/shopping-list" active={activeLink === '/shopping-list' ? 'true' : 'false'}>
         Shopping list
       </StyledNavLink>
-      <StyledNavLink to="/search" active={activeLink === '/search'}>
+      <StyledNavLink exact="true" to="/search" active={activeLink === '/search' ? 'true' : 'false'}>
         Search
       </StyledNavLink>
     </Navigation>
