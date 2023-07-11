@@ -39,7 +39,7 @@ export const Section = styled.section`
 
     @media ${media.tablet + media.retina} {
         max-width: 1439px;
-        background: url(${kissingtab});
+        background: url(${kissingtab2});
         background-position: left 0px bottom -300px;
         background-repeat: no-repeat;
         background-size: 423px auto;
