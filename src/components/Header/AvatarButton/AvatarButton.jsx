@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 
 export default function AvatarButton() {
   return (
-    <Stack direction="row" spacing={2} sx={{ m: 10 }}  >
+    <Stack direction="row" spacing={2} sx={{ m: 5 }}  >
       <Avatar alt="Olena" />
     </Stack>
   );
