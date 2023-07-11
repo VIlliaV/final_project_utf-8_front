@@ -10,7 +10,9 @@ import {
 } from './authOperations';
 
 const initialState = {
+
     user: { name: null, email: null, avatarURL: null, shoppingList: [] },
+
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
@@ -21,6 +23,7 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {},
+
     extraReducers: builder => {
         builder
             .addCase(signupUser.fulfilled, (state, action) => {
@@ -47,6 +50,7 @@ const authSlice = createSlice({
                 state.isLoggedIn = false;
             });
     },
+
 });
 
 const persistConfig = {

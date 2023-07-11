@@ -30,7 +30,7 @@ export const RecipeImg = styled.img`
 `;
 
 export const RecipeName = styled.p`
-    width: 275px;
+    width: 307px;
     padding: 16px 16px 16px 16px;
     border-radius: 8px;
 
@@ -52,11 +52,11 @@ export const RecipeName = styled.p`
     }
 
     @media ${media.tablet} {
-        width: 268px;
+        width: 300px;
     }
 
     @media ${media.desktop} {
-        width: 236px;
+        width: 268px;
         bottom: 24px;
     }
 `;

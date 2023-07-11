@@ -2,17 +2,18 @@ import React from 'react';
 import SearchedRecipesList from 'components/SearchedRecipesList/SearchedRecipesList';
 import SearchBar from 'components/SerchBar/SerchBar';
 import MainPageTitle from 'components/MainPageTitle/MainPageTitle';
-// import { Title } from './SearchPage.styled';
+import HeadContainer from 'components/HeadContainer/HeadContainer';
 
 function SearchPage() {
-  return (
-    <div>
-      <MainPageTitle title="Search" />
-      {/* <Title>Search</Title> */}
-      <SearchBar />
-      <SearchedRecipesList />
-    </div>
-  );
+    return (
+        <div>
+            <HeadContainer>
+                <MainPageTitle title="Search" />
+                <SearchBar />
+                <SearchedRecipesList />
+            </HeadContainer>
+        </div>
+    );
 }
 
 export default SearchPage;
