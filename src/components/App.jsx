@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
@@ -18,6 +20,12 @@ const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
 const ShoppingListPage = lazy(() => import('pages/ShoppingListPage/ShoppingListPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch])
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
