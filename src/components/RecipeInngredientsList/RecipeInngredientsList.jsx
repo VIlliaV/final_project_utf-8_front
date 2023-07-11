@@ -10,7 +10,6 @@ import {
     MeasureWrapper,
     Measure,
     CheckboxInput,
-    // Icon,
 } from './RecipeInngredientsList.styled';
 import SvgIcon from '@mui/material/SvgIcon';
 
@@ -38,20 +37,29 @@ const RecipeInngredientsList = ({ measure }) => {
                             </MeasureWrapper>
 
                             <CheckboxInput
-                                checkedIcon={
+                                icon={
                                     <SvgIcon>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            // width="20"
-                                            // height="20"
-                                            // viewBox="0 0 20 20"
-                                            fill="none"
-                                        >
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
                                             <rect
                                                 x="1"
                                                 y="1"
-                                                // width="18"
-                                                // height="18"
+                                                width="18"
+                                                height="18"
+                                                rx="4"
+                                                stroke="#7E7E7E"
+                                                stroke-opacity="0.5"
+                                            />
+                                        </svg>
+                                    </SvgIcon>
+                                }
+                                checkedIcon={
+                                    <SvgIcon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+                                            <rect
+                                                x="1"
+                                                y="1"
+                                                width="18"
+                                                height="18"
                                                 rx="4"
                                                 stroke="#7E7E7E"
                                                 stroke-opacity="0.5"
