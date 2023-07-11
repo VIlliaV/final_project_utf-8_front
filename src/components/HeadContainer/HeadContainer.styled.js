@@ -4,7 +4,6 @@ import kissingdesktop from './images/kisspng-pasta.desktop.png';
 import kissingdesktop2 from './images/kisspng-pasta.desktop@2x.png';
 
 export const Section = styled.section`
-    margin: 0 auto;
     max-width: 374px;
     @media ${media.mobile} {
         max-width: 767px;
@@ -14,12 +13,14 @@ export const Section = styled.section`
         max-width: 1439px;
     }
     @media ${media.desktop} {
+        max-width: none;
         background: url(${kissingdesktop});
         background-position: left 0px bottom -400px;
         background-repeat: no-repeat;
         background-size: 558px auto;
     }
     @media ${media.desktop} /* ${media.retina} */ {
+        max-width: none;
         background: url(${kissingdesktop2});
         background-position: left 0px bottom -400px;
         background-repeat: no-repeat;
@@ -28,6 +29,7 @@ export const Section = styled.section`
 `;
 
 export const Container = styled.div`
+    margin: 0 auto;
     @media ${media.mobile} {
         width: 375px;
         padding: 50px 16px 100px;
