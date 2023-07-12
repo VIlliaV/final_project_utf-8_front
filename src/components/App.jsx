@@ -24,7 +24,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <Routes>
@@ -34,7 +34,10 @@ export const App = () => {
         <Route path="signin" element={<RestrictedRoute component={<SigninPage />} redirectTo="/" />} />
 
         <Route path="main" element={<PrivateRoute component={<MainPage />} redirectTo="/" />} />
-        <Route path="categories/:categoryName" element={<PrivateRoute component={<CategoriesPage />} redirectTo="/" />} />
+        <Route
+          path="categories/:categoryName"
+          element={<PrivateRoute component={<CategoriesPage />} redirectTo="/" />}
+        />
         <Route path="add" element={<PrivateRoute component={<AddRecipePage />} redirectTo="/" />} />
         <Route path="favorite" element={<PrivateRoute component={<FavoritePage />} redirectTo="/" />} />
         <Route path="recipe/:recipeId" element={<PrivateRoute component={<RecipePage />} redirectTo="/" />} />
