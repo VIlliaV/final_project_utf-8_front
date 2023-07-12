@@ -15,6 +15,7 @@ const SLContainer = styled.div`
 `;
 
 const SLHeader = styled.div`
+  min-width: fit-content;
   max-width: 703px;
   height: 38px;
 
