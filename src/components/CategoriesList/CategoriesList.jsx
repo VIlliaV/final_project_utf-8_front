@@ -1,16 +1,55 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import axios from 'axios';
 
 import { CategoriesWrapper, CategoriesContainer, CategoryLink, CategoriesItem } from './CategoriesList.styled';
 
-const categories = require('../../back/categories.json');
+const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
-// console.log(categories);
+// const Status = {
+//   IDLE: 'idle',
+//   PENDING: 'pending',
+//   RESOLVED: 'resolved',
+//   REJECTED: 'rejected',
+// };
 
 export const CategoriesList = () => {
   const tabListRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [startX, setStartX] = useState(null);
   const [scrollLeft, setScrollLeft] = useState(null);
+  const [categories, setCategories] = useState([]);
+  // const [status, setStatus] = useState(Status.IDLE);
+
+  const getCategories = async () => {
+    try {
+      const config = {
+        method: 'GET',
+        url: BASE_URL + '/recipes/category-list',
+      };
+      const res = await axios(config);
+      return res.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    // setStatus(Status.PENDING);
+    getCategories()
+      .then(res => {
+        setCategories(res);
+        // setStatus(Status.RESOLVED);
+      })
+      .catch(error => {
+        // setStatus(Status.REJECTED);
+        handleError(error);
+      });
+  }, []);
+
+  function handleError(error) {
+    console.error(error);
+    alert(`${error.message}`);
+  }
 
   const handleMouseDown = event => {
     setIsScrolling(true);
@@ -66,11 +105,11 @@ export const CategoriesList = () => {
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
       >
-        {categories.map(({ _id: { $oid: id }, name }) => {
-          const linkName = name.toLowerCase();
+        {categories.map(el => {
+          const linkName = el.toLowerCase();
           return (
-            <CategoriesItem key={id}>
-              <CategoryLink to={`/categories/${linkName}`}>{name}</CategoryLink>
+            <CategoriesItem key={el}>
+              <CategoryLink to={`/categories/${linkName}`}>{el}</CategoryLink>
             </CategoriesItem>
           );
         })}
