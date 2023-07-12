@@ -22,69 +22,44 @@ function IngredientsShoppingList() {
   // };
 
   const handleRemoveItem = id => {
-    shoppingListStateIngredients = shoppingListStateIngredients.filter(value => value._id !== id);
+    console.log('click ID :>> ', id);
+    testShoppingList = testShoppingList.filter(value => value.id !== id); // action.payload.id
+
+    // shoppingListStateIngredients = shoppingListStateIngredients.filter(value => value._id !== id);
   };
 
   return (
-    // shoppingListStateIngredients.length > 0 && (
-    <>
-      <SLList>
-        {/* <SLItem>
-          <SLItemImage className="cards__animation">
-            <picture>
-              <source
-                srcSet="./images/desktop/portfolio2-1x.jpg 1x,
-                        ./images/desktop/portfolio2-2x.jpg 2x"
-                media="(min-width: 1200px)"
-              />
-              <source
-                srcSet="./images/tablet/portfolio2-1x.jpg 1x,
-                        ./images/tablet/portfolio2-2x.jpg 2x"
-                media="(min-width: 768px)"
-              />
-              <source
-                srcSet="./images/mobile/portfolio2-1x.jpg 1x,
-                        ./images/mobile/portfolio2-2x.jpg 2x"
-                media="(max-width: 767px)"
-              />
-              <img src="source-name-here" alt="goods-imgName" />
-            </picture>
-          </SLItemImage>
-
-          <SLItemImageName>Item name</SLItemImageName>
-
-          <SlItemAmount>400g</SlItemAmount>
-
-          <SLItemRemove type="button">
-            <GrClose />
-          </SLItemRemove>
-        </SLItem> */}
-
-        {testShoppingList.length > 0 &&
-          testShoppingList.map(({ id, name, img, measure }) => {
-            return (
-              <SLItem key={id}>
-                <SLItemImage>
-                  <picture>
-                    {/* <source srcset={img} media="(min-width: 1200px)" />
+    <SLList>
+      {testShoppingList.length > 0 &&
+        testShoppingList.map(({ id, name, img, measure }) => {
+          return (
+            <SLItem key={id}>
+              <SLItemImage>
+                <picture>
+                  {/* <source srcset={img} media="(min-width: 1200px)" />
                     <source srcset={img} media="(min-width: 768px)" />
                     <source srcset={img} media="(max-width: 767px)" /> */}
-                    <img src={img} alt={name} />
-                  </picture>
-                </SLItemImage>
+                  <img src={img} alt={name} />
+                </picture>
+              </SLItemImage>
 
-                <SLItemImageName>{name}</SLItemImageName>
+              <SLItemImageName>{name}</SLItemImageName>
 
-                <SlItemAmount>{measure}</SlItemAmount>
+              <SlItemAmount>{measure}</SlItemAmount>
 
-                <SLItemRemove type="button" data-menu-close="" onClick={handleRemoveItem}>
-                  <GrClose />
-                </SLItemRemove>
-              </SLItem>
-            );
-          })}
-      </SLList>
-    </>
+              <SLItemRemove
+                type="button"
+                data-menu-close=""
+                onClick={() => {
+                  handleRemoveItem(id);
+                }}
+              >
+                <GrClose />
+              </SLItemRemove>
+            </SLItem>
+          );
+        })}
+    </SLList>
   );
 }
 
