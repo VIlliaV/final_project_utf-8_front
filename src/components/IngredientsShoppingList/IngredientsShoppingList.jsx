@@ -62,7 +62,7 @@ function IngredientsShoppingList() {
 
         {testShoppingList.map(({ id, name, img, measure }) => {
           return (
-            <SLItem>
+            <SLItem key={id}>
               <SLItemImage id={id}>
                 <picture>
                   {/* <source srcset={img} media="(min-width: 1200px)" />
