@@ -5,18 +5,18 @@ import { authPersistedReducer } from './auth/authSlice';
 import shoppingListSlice from './shoppingList/shoppingListSlice';
 
 const rootReducer = combineReducers({
-  auth: authPersistedReducer,
-  shoppingList: shoppingListSlice,
+    auth: authPersistedReducer,
+    shoppingList: shoppingListSlice,
 });
 
 export const store = configureStore({
-  reducer: rootReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+    reducer: rootReducer,
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }),
 });
 
 export const persistor = persistStore(store);
