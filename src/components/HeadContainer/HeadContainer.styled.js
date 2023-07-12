@@ -10,9 +10,9 @@ import kissingdesktop2 from './images/kisspng-pasta.desktop@2x.png';
 export const Section = styled.section`
     max-width: 374px;
     background: url(${kissingmob});
-    background-position: left 0px bottom -200px;
+    background-position: left 0px bottom -260px;
     background-repeat: no-repeat;
-    background-size: 256px auto;
+    background-size: 320px auto;
     @media ${media.mobile} {
         max-width: 767px;
         /* background: url(${kissingmob});
@@ -24,48 +24,48 @@ export const Section = styled.section`
     @media ${media.mobile + media.retina} {
         max-width: 767px;
         background: url(${kissingmob2});
-        /* background-position: left 0px bottom -200px; */
-        /* background-repeat: no-repeat;
-        background-size: 256px auto; */
+        background-position: left 0px bottom -260px;
+        background-repeat: no-repeat;
+        background-size: 320px auto;
     }
 
     @media ${media.tablet} {
         max-width: 1439px;
         background: url(${kissingtab});
-        background-position: left 0px bottom -300px;
+        background-position: left 0px bottom -380px;
         background-repeat: no-repeat;
-        background-size: 423px auto;
+        background-size: 520px auto;
     }
 
     @media ${media.tablet + media.retina} {
         max-width: 1439px;
         background: url(${kissingtab2});
-        background-position: left 0px bottom -300px;
+        background-position: left 0px bottom -380px;
         background-repeat: no-repeat;
-        background-size: 423px auto;
+        background-size: 520px auto;
     }
 
     @media ${media.desktop} {
         max-width: none;
         background: url(${kissingdesktop});
-        background-position: left 0px bottom -400px;
+        background-position: left 0px bottom -490px;
         background-repeat: no-repeat;
-        background-size: 558px auto;
+        background-size: 660px auto;
     }
     @media ${media.desktop + media.retina} {
         max-width: none;
         background: url(${kissingdesktop2});
-        background-position: left 0px bottom -400px;
+        background-position: left 0px bottom -490px;
         background-repeat: no-repeat;
-        background-size: 558px auto;
+        background-size: 660px auto;
     }
 `;
 
 export const Container = styled.div`
     margin: 0 auto;
+    padding: 50px 16px 100px;
     @media ${media.mobile} {
         width: 375px;
-        padding: 50px 16px 100px;
     }
 
     @media ${media.tablet} {

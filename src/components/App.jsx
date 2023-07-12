@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
@@ -18,6 +20,12 @@ const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
 const ShoppingListPage = lazy(() => import('pages/ShoppingListPage/ShoppingListPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
@@ -26,7 +34,10 @@ export const App = () => {
         <Route path="signin" element={<RestrictedRoute component={<SigninPage />} redirectTo="/" />} />
 
         <Route path="main" element={<PrivateRoute component={<MainPage />} redirectTo="/" />} />
-        <Route path="categories/:categoryName" element={<PrivateRoute component={<CategoriesPage />} redirectTo="/" />} />
+        <Route
+          path="categories/:categoryName"
+          element={<PrivateRoute component={<CategoriesPage />} redirectTo="/" />}
+        />
         <Route path="add" element={<PrivateRoute component={<AddRecipePage />} redirectTo="/" />} />
         <Route path="favorite" element={<PrivateRoute component={<FavoritePage />} redirectTo="/" />} />
         <Route path="recipe/:recipeId" element={<PrivateRoute component={<RecipePage />} redirectTo="/" />} />

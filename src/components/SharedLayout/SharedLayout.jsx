@@ -6,13 +6,13 @@ import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
 
 export const SharedLayout = () => {
-  return (
-    <Container>
-      <Header />
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
-      <Footer />
-    </Container>
-  );
+    return (
+        <Container>
+            <Header />
+            <Suspense fallback={null}>
+                <Outlet />
+            </Suspense>
+            <Footer />
+        </Container>
+    );
 };

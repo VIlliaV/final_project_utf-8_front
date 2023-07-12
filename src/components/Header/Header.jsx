@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
     HideContentDesktop,
@@ -63,5 +64,6 @@ const Header = () => {
         </ResponsiveHeaderContainer>
     );
 };
+
 
 export default Header;

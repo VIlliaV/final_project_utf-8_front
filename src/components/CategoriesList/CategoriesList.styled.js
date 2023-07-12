@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 export const CategoriesWrapper = styled.div`
     width: 100%;
-    height: 55px;
+    height: 56px;
     border-bottom: 1px solid rgba(224, 224, 224, 1);
 
     margin-top: 50px;
@@ -58,11 +58,11 @@ export const CategoryLink = styled(NavLink)`
     &.active::after {
         content: '';
         display: block;
-        margin-top: 30px;
+        margin-top: 29px;
         border-bottom: 2px solid ${props => css`var(--active)`};
 
         @media ${media.tablet} {
-            margin-top: 26px;
+            margin-top: 25px;
         }
     }
 

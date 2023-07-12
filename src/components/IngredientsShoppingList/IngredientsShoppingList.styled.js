@@ -74,7 +74,7 @@ const SLItemImage = styled.div`
 const SLItemImageName = styled.p`
   margin-left: 10px;
 
-  color: #3e4462;
+  color: var(--text_second_theme_1);
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-style: normal;
@@ -90,8 +90,9 @@ const SLItemImageName = styled.p`
 `;
 
 const SlItemAmount = styled.p`
-  min-width: 38px;
-  height: 23px;
+  max-width: 140px;
+  min-height: 23px;
+  height: 100%;
 
   display: flex;
   align-items: center;
@@ -101,9 +102,10 @@ const SlItemAmount = styled.p`
   padding: 4px;
 
   border-radius: 4px;
-  background: #8baa36;
+  background: var(--active);
+  word-break: break-word;
 
-  color: #fafafa;
+  color: var(--back_theme_1);
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
@@ -112,8 +114,7 @@ const SlItemAmount = styled.p`
   line-height: normal;
 
   @media screen and (min-width: ${tablet}) {
-    min-width: 68px;
-    height: 35px;
+    min-height: 35px;
 
     margin-right: 110px;
     padding: 4px 8px;
@@ -143,11 +144,6 @@ const SLItemRemove = styled.button`
   @media screen and (min-width: ${desktop}) {
     margin-right: 28px;
   }
-
-  /* <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <path d="M15.625 4.375L4.375 15.625" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M15.625 15.625L4.375 4.375" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg> */
 `;
 
 export { SLList, SLItem, SLItemRemove, SlItemAmount, SLItemImageName, SLItemImage };

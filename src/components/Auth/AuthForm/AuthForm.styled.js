@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-
-export const Container = styled.div`
+export const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: -32px;
@@ -9,17 +8,12 @@ export const Container = styled.div`
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    /* margin-bottom: auto; */
-    border-radius: 30px;
     box-sizing: border-box;
-    padding: 32px 28px 40px;
-    background-color: #2a2c36;
     box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
 
     @media screen and (min-width: 768px) {
         margin-top: -12px;
         max-width: 500px;
-        padding: 44px 50px;
     }
 
     @media screen and (min-width: 1440px) {
@@ -29,6 +23,23 @@ export const Container = styled.div`
         margin-bottom: 0;
     }
 `;
+
+
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 30px;
+    box-sizing: border-box;
+    padding: 32px 28px 40px;
+    background-color: #2a2c36;
+
+     @media screen and (min-width: 768px) {
+        padding: 44px 50px;
+    }
+`;
+
+
 
 export const Header = styled.h1`
   color: #fafafa;
@@ -85,15 +96,14 @@ export const SubmitButton = styled.button`
         height: 59px;
     }
 
-    @media screen and (min-width: 1440px) {
-    }
+    
 `;
 
 export const Link = styled.a`
-  display: inline-flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 18px;
-  color: #fafafa;
-  cursor: pointer;
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 18px;
+    color: #fafafa;
+    cursor: pointer;
 `;

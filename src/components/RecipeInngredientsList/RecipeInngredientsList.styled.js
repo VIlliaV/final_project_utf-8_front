@@ -1,8 +1,10 @@
-import styled from 'styled-components';
+import styles from 'styled-components';
 import { media } from '../../utils/media';
+import { Checkbox } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-const ListBox = styled.ul`
-    width: calc(343px - 2 * 14px);
+const ListBox = styles.ul`
+    width: 343px;
     padding: 12px 14px;
     margin-top: 32px;
     margin-bottom: 24px;
@@ -12,18 +14,18 @@ const ListBox = styled.ul`
     border-radius: 8px;
     background: var(--active);
     @media ${media.tablet} {
-        width: calc(704px - 2 * 32px);
+        width: 704px;
         padding: 21px 32px;
         margin-top: 50px;
         margin-bottom: 32px;
     }
     @media ${media.desktop} {
-        width: calc(1240px - 2 * 32px);
+        width: 1240px;
         margin-bottom: 50px;
     }
 `;
 
-const ListTitle = styled.li`
+const ListTitle = styles.li`
     color: var(--back_theme_1);
     font-size: 10px;
     font-weight: 600;
@@ -35,7 +37,7 @@ const ListTitle = styled.li`
     }
 `;
 
-const FirstListTitle = styled(ListTitle)`
+const FirstListTitle = styles(ListTitle)`
     width: 76px;
     margin-right: auto;
     @media ${media.tablet} {
@@ -48,7 +50,7 @@ const FirstListTitle = styled(ListTitle)`
     }
 `;
 
-const SecondListTitle = styled(ListTitle)`
+const SecondListTitle = styles(ListTitle)`
     width: 45px;
     margin-right: 18px;
     @media ${media.tablet} {
@@ -61,7 +63,7 @@ const SecondListTitle = styled(ListTitle)`
     }
 `;
 
-const LastListTitle = styled(ListTitle)`
+const LastListTitle = styles(ListTitle)`
     width: 54px;
     @media ${media.tablet} {
         width: 97px;
@@ -71,7 +73,7 @@ const LastListTitle = styled(ListTitle)`
     }
 `;
 
-const ListContainer = styled.ul`
+const ListContainer = styles.ul`
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
@@ -83,11 +85,10 @@ const ListContainer = styled.ul`
     }
 `;
 
-const ListItem = styled.li`
+const ListItem = styles.li`
     display: flex;
     width: 343px;
     height: 86px;
-    /* padding: 0px 10px; */
     margin-bottom: 16px;
     align-items: center;
     justify-content: space-between;
@@ -100,16 +101,14 @@ const ListItem = styled.li`
         width: 704px;
         height: 178px;
         margin-bottom: 24px;
-        /* padding: 0px 24px; */
     }
     @media ${media.desktop} {
         width: 1240px;
         height: 182px;
-        /* padding: 0px 32px; */
     }
 `;
 
-const Image = styled.img`
+const Image = styles.img`
     margin-right: 12px;
     margin-left: 10px;
     width: 57px;
@@ -131,7 +130,7 @@ const Image = styled.img`
     }
 `;
 
-const Name = styled.p`
+const Name = styles.p`
     color: var(--text_second_theme_1);
     font-size: 12px;
     font-weight: 500;
@@ -143,7 +142,7 @@ const Name = styled.p`
     }
 `;
 
-const MeasureWrapper = styled.div`
+const MeasureWrapper = styles.div`
     padding: 4px;
     justify-content: center;
     display: flex;
@@ -152,7 +151,7 @@ const MeasureWrapper = styled.div`
     background: var(--active);
 `;
 
-const Measure = styled.p`
+const Measure = styles.p`
     color: var(--back_theme_1);
     font-size: 10px;
     font-weight: 600;
@@ -161,11 +160,12 @@ const Measure = styled.p`
     }
 `;
 
-const Checkbox = styled.input`
+const CheckboxInput = styled(Checkbox)`
     width: 18px;
     height: 18px;
     margin-right: 19px;
     margin-left: 28px;
+    color: rgba(126, 126, 126, 0.5);
     @media ${media.tablet} {
         width: 35px;
         height: 35px;
@@ -190,5 +190,5 @@ export {
     Name,
     MeasureWrapper,
     Measure,
-    Checkbox,
+    CheckboxInput,
 };

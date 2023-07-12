@@ -47,7 +47,7 @@ const List = styled.ol`
 
 const Item = styled.li`
     margin-bottom: 14px;
-    /* display: inline-flex; */
+    display: flex;
     color: #000000cc;
     font-size: 12px;
     font-weight: 400;
@@ -74,6 +74,7 @@ const Item = styled.li`
         display: inline-flex;
         width: 21px;
         height: 21px;
+        padding: 12px 10px 12px 12px;
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -92,7 +93,6 @@ const Image = styled.img`
         height: 332px;
         margin-bottom: 200px;
     }
- 
-`;
+ `;
 
 export { Wrapper, WrapperForDesktop, Title, List, Item, Image };
