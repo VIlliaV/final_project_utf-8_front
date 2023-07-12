@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/final_project_utf-8_front/static/css/main.ee05332a.css",
+    "main.css": "/final_project_utf-8_front/static/css/main.f8ec6933.css",
     "main.js": "/final_project_utf-8_front/static/js/main.dfeb3c89.js",
     "static/js/145.4276f35d.chunk.js": "/final_project_utf-8_front/static/js/145.4276f35d.chunk.js",
     "static/js/589.701557af.chunk.js": "/final_project_utf-8_front/static/js/589.701557af.chunk.js",
@@ -45,6 +45,10 @@
     "static/media/plate-mobile.png": "/final_project_utf-8_front/static/media/plate-mobile.68662c8f1c68a847ec01.png",
     "static/media/spinach-desktop@2x.png": "/final_project_utf-8_front/static/media/spinach-desktop@2x.f3d3ccd491c2ffdbe064.png",
     "static/media/authorizationPageImage.svg": "/final_project_utf-8_front/static/media/authorizationPageImage.385bc53ff93756268481b368cafeeb4b.svg",
+    "static/media/Poppins-Regular.ttf": "/final_project_utf-8_front/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
+    "static/media/Poppins-Medium.ttf": "/final_project_utf-8_front/static/media/Poppins-Medium.673ed42382ab264e0bf5.ttf",
+    "static/media/Poppins-SemiBold.ttf": "/final_project_utf-8_front/static/media/Poppins-SemiBold.ac8d04b620e54be9b0f0.ttf",
+    "static/media/Poppins-Bold.ttf": "/final_project_utf-8_front/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "static/media/main-spinach-mobile.png": "/final_project_utf-8_front/static/media/main-spinach-mobile.bab681d4d3c03c87746d.png",
     "static/media/kisspng-pasta.tablet.png": "/final_project_utf-8_front/static/media/kisspng-pasta.tablet.d71c1cbb6098f6d03f89.png",
     "static/media/authorizationPageImageDesktop.svg": "/final_project_utf-8_front/static/media/authorizationPageImageDesktop.6361a1e99fbaf698d48f38ee699bb430.svg",
@@ -80,7 +84,7 @@
     "static/media/arrow-narrow-right.svg": "/final_project_utf-8_front/static/media/arrow-narrow-right.41fb12e5ad0a1aafe3c8e69b9cefc5ec.svg",
     "static/media/authContainerBckgrndDesktop.svg": "/final_project_utf-8_front/static/media/authContainerBckgrndDesktop.d5d5440654b186017ddacb2e9f52c512.svg",
     "static/media/chevron-up.svg": "/final_project_utf-8_front/static/media/chevron-up.6c7efe19cd047dac9e6e5a497eb427ee.svg",
-    "main.ee05332a.css.map": "/final_project_utf-8_front/static/css/main.ee05332a.css.map",
+    "main.f8ec6933.css.map": "/final_project_utf-8_front/static/css/main.f8ec6933.css.map",
     "main.dfeb3c89.js.map": "/final_project_utf-8_front/static/js/main.dfeb3c89.js.map",
     "145.4276f35d.chunk.js.map": "/final_project_utf-8_front/static/js/145.4276f35d.chunk.js.map",
     "589.701557af.chunk.js.map": "/final_project_utf-8_front/static/js/589.701557af.chunk.js.map",
@@ -100,7 +104,7 @@
     "120.d3b9a3da.chunk.js.map": "/final_project_utf-8_front/static/js/120.d3b9a3da.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ee05332a.css",
+    "static/css/main.f8ec6933.css",
     "static/js/main.dfeb3c89.js"
   ]
 }
