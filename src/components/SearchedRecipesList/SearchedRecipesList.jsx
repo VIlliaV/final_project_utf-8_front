@@ -9,6 +9,8 @@ import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipe
 import { store } from 'redux/store';
 
 const token = store.getState().auth.token;
+
+axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 const SearchedRecipesList = () => {
