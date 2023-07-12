@@ -1,27 +1,30 @@
 import styled from 'styled-components';
 
 export const FormContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: -32px;
-    max-width: 335px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin-top: -32px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
 
-    @media screen and (min-width: 768px) {
-        margin-top: -12px;
-        max-width: 500px;
-    }
+  @media screen and (min-width: 375px) {
+    width: 335px;
+    /* height: 812px; */
+  }
 
-    @media screen and (min-width: 1440px) {
-        margin-top: auto;
-        margin-left: 0;
-        margin-right: auto;
-        margin-bottom: 0;
-    }
+  @media screen and (min-width: 768px) {
+    margin-top: -12px;
+    width: 500px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
 `;
 
 
@@ -57,23 +60,22 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
+width: 100%;
     height: 45px;
     background: transparent;
     border: 1px solid #57575e;
     border-radius: 6px;
     padding: 13.5px 14px;
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
     color: #fafafa;
     box-sizing: border-box;
 
     @media screen and (min-width: 768px) {
         height: 59px;
-        margin-bottom: 24px;
+        /* margin-bottom: 24px; */
         padding: 16px 18px;
     }
 
-    @media screen and (min-width: 1440px) {
-    }
 `;
 
 export const SubmitButton = styled.button`
@@ -106,4 +108,17 @@ export const Link = styled.a`
     margin-top: 18px;
     color: #fafafa;
     cursor: pointer;
+`;
+
+
+export const InputContainer = styled.div`
+  margin-bottom: 12px;
+  min-width: 100%;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+`;
+export const InputErrorContainer = styled.div`
+  margin-top: 8px;
+  color: red;
 `;
