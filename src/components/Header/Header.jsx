@@ -22,7 +22,7 @@ function Header() {
 			<HideContentTablet>
 		    <Navigation>
 
-      <StyledNavLink exact="true" to="/" active={activeLink === '/' ? 'true' : 'false'}>
+      <StyledNavLink exact="true" to="categories/beef" active={activeLink === '/' ? 'true' : 'false'}>
         Categories
       </StyledNavLink>
       <StyledNavLink exact="true" to="/add" active={activeLink === '/add' ? 'true' : 'false'}>
