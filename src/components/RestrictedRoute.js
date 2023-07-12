@@ -1,9 +1,8 @@
-// import { useAuth } from 'Hooks/useAuth';
+import { useAuth } from 'utils/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 
 export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
-  // const { isLogin } = useAuth();
-  const isLogin = false;
+  const { isLoggedIn } = useAuth();
 
-  return !isLogin ? Component : <Navigate to={redirectTo} />;
+  return !isLoggedIn ? Component : <Navigate to={redirectTo} />;
 };
