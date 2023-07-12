@@ -26,7 +26,7 @@ const Header = () => {
             <HideContentDesktop>
                 <Nav>
                     <StyledNavLink
-                        to="/categories/:categoryName"
+                        to="/categories/beef"
                         className={navData => (navData.isActive ? 'active-style' : 'none')} >Categories
                     </StyledNavLink>
                     <StyledNavLink to="/add" className={navData => (navData.isActive ? 'active-style' : 'none')}>
