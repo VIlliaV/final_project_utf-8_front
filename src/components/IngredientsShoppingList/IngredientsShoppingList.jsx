@@ -76,7 +76,9 @@ function IngredientsShoppingList() {
 
               <SlItemAmount>{measure}</SlItemAmount>
 
-              <SLItemRemove type="button" data-menu-close="" onClick={handleRemoveItem}></SLItemRemove>
+              <SLItemRemove type="button" data-menu-close="" onClick={handleRemoveItem}>
+                <GrClose />
+              </SLItemRemove>
             </SLItem>
           );
         })}
