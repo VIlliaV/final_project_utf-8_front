@@ -1,80 +1,128 @@
 import { NavLink } from 'react-router-dom';
-import { media } from '../../utils/media';
 import styled from 'styled-components';
+import { media } from '../../utils/media';
 
 export const HideContentTablet = styled.div`
-
-min-width: 340px;
-
-  @media (max-width: 1440px) {
     display: none;
-  }
+    @media (max-width: 768px) {
+        display: block;
+    }
 `;
 
-export const ResponsiveHeaderContainer = styled.div`
-  display: flex;
-  position: absolute;
-  flex-direction: row;
-  align-items: center;
+export const HideContentDesktop = styled.div`
+    display: block;
+    @media (max-width: 1439px) {
+        display: none;
+    }
+`;
 
-  margin-top: 15px;
-  min-width: 100%;
-  min-height: 45px;
-  @media ${media.desktop} {
-	/* margin-left: 100px; */
-  }
-`
+export const ShowContentTablet = styled.div`
+    display: none;
+    @media (max-width: 1439px) {
+        display: block;
+    }
+`;
 
-export const Navigation = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const ResponsiveHeaderContainer = styled.header`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`;
+
+export const MainDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    margin-top: 15px;
+    height: 45px;
+    width: 340px;
+
+    @media ${media.tablet} {
+        width: 750px;
+    }
+
+    @media ${media.desktop} {
+        width: 1240px;
+    }
+`;
+
+export const HeaderContainer = styled.header`
+    background-color: transparent;
+    padding: 20px;
+`;
+
+export const Nav = styled.nav`
+    display: flex;
+    justify-content: space-between;
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  margin: 0 10px;
-  padding: 5px 10px;
-  text-decoration: none;
-  color: ${(props) => (props.active ? '#8BAA36' : 'black')};
+    color: var(--text_theme_1);
+    text-decoration: none;
+    margin-right: 30px;
+
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22.4px;
+
+    &.active {
+        color: #8baa36;
+        font-weight: bold;
+    }
 `;
 
-
 export const LogoNav = styled(NavLink)`
-  color: white;
-  height: 35px;
-  
+    color: white;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.27px;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 18px;
-  letter-spacing: 0.27px;
-
-  @media ${media.tablet} {
-    width: 215px;
-    font-size: 28px;
-    line-height: 28px;
-    letter-spacing: 0.42px;
-    justify-content: normal;
-    padding-bottom: 0;
-  }
-  @media ${media.desktop} {
-	width: 145px;
-  }
+    @media ${media.tablet} {
+        font-size: 28px;
+        line-height: 28px;
+        letter-spacing: 0.42px;
+        justify-content: normal;
+        padding-bottom: 0;
+    }
+    @media ${media.desktop} {
+        width: 145px;
+    }
 `;
 
 export const LogoImg = styled.img`
-    width: 44px;
-    height: 44px;
-  border-radius: 8px;
-  background-color: #8BAA36;
-  color: black;
-  @media ${media.desktop} {
-    width: 44px;
-    height: 44px;
-  }
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #8baa36;
+    color: black;
+    @media ${media.desktop} {
+        width: 44px;
+        height: 44px;
+    }
+`;
+
+export const UserDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 140px;
+
+    @media ${media.tablet} {
+        width: 185px;
+    }
+    @media ${media.desktop} {
+        width: 100px;
+    }
 `;
