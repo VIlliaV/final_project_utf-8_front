@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { signupUser, loginUser, logoutUser, fetchCurrentUser } from './authOperations';
 
 const initialState = {
-  user: { name: null, email: null, avatarURL: null,},
+  user: { name: null, email: null, avatarURL: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -62,6 +62,7 @@ const authSlice = createSlice({
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
+
         state.isRefreshing = false;
       })
       .addCase(fetchCurrentUser.rejected, state => {
@@ -75,7 +76,7 @@ const persistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'isLoggedIn'],
 };
 
 export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);
