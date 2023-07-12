@@ -7,19 +7,19 @@ import { CategoriesRecipesList } from '../../components/CategoriesRecipesList/Ca
 import { CategoriesPageContainer } from './CategoriesPage.styled';
 
 function CategoriesPage() {
-    return (
-        // Temporary styles before general container is done. Remove than
-        // <div style={{ width: '375px', paddingLeft: '16px', paddingRight: '16px', marginLeft: 'auto', marginRight: 'auto' }}>
-        // </div>
+  return (
+    // Temporary styles before general container is done. Remove than
+    // <div style={{ width: '375px', paddingLeft: '16px', paddingRight: '16px', marginLeft: 'auto', marginRight: 'auto' }}>
+    // </div>
 
-        <HeadContainer>
-            <MainPageTitle title="Categories"></MainPageTitle>
-            <CategoriesList></CategoriesList>
-            <CategoriesPageContainer>
-                <CategoriesRecipesList></CategoriesRecipesList>
-            </CategoriesPageContainer>
-        </HeadContainer>
-    );
+    <HeadContainer>
+      <MainPageTitle title="Categories"></MainPageTitle>
+      <CategoriesList></CategoriesList>
+      <CategoriesPageContainer>
+        <CategoriesRecipesList></CategoriesRecipesList>
+      </CategoriesPageContainer>
+    </HeadContainer>
+  );
 }
 
 export default CategoriesPage;

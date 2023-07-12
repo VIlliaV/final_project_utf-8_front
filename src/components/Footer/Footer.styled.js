@@ -59,15 +59,15 @@ export const FooterContainer = styled.footer`
     text-align: center;
 `;
 
-export const ResponsiveFooterContainer = styled(FooterContainer)`
+export const ResponsiveFooterContainer = styled.footer`
     display: flex;
+	background-color: var(--back_theme_2);
+    text-align: center;
     flex-direction: column;
     align-items: center;
-    /* min-width: 100vw; */
     min-height: 435px;
 
     @media ${media.tablet} {
-        /* width: tablet; */
         min-height: 425px;
     }
 `;
@@ -161,8 +161,8 @@ export const SubscribeContainer = styled.div`
 `;
 export const SubscribeForm = styled.div`
     display: flex;
-
     position: relative;
+
     justify-content: center;
     align-items: center;
     margin-bottom: 45px;
@@ -179,6 +179,7 @@ export const SubscribeForm = styled.div`
 `;
 
 export const EmailInput = styled.input`
+
     padding: 0 0 0 42px;
     width: 205px;
     height: 40px;

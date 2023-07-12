@@ -9,6 +9,7 @@ import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipe
 import { store } from 'redux/store';
 
 const token = store.getState().auth.token;
+let value;
 
 axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -18,34 +19,22 @@ const SearchedRecipesList = () => {
     const [recipeList, setRecipeList] = useState([]);
 
     useEffect(() => {
-        const currentParams = Object.keys(Object.fromEntries([...searchParams]));
-        if (currentParams.length === 0) {
+        const [currentParams] = Object.keys(Object.fromEntries([...searchParams]));
+        value = searchParams.get(currentParams);
+        if (!value) {
             return;
         }
 
-        const value = searchParams.get(...currentParams);
-
-        if (value) {
-            fetchData(...currentParams, value).then(data => setRecipeList(data));
-
-            // return;
+        if (currentParams === 'query') {
+            fetchData('search', value).then(data => setRecipeList(data));
+            return;
         }
-        // const ingredientValue = searchParams.get('ingredient');
-        // if (ingredientValue) {
-        //     const recipes = fetchData(ingredientValue);
-        //     const ingredient = ingredients.find(el => el.name?.toUpperCase() === ingredientValue?.toUpperCase().trim());
-        //     if (!ingredient) {
-        //         return;
-        //     }
-        //     const result = recipes.filter(recipe => recipe.ingredients.find(el => el.id === ingredient._id.$oid));
-        //     setRecipeList(result);
-        //     return;
-        // }
+        fetchData('ingredients', value).then(data => setRecipeList(data));
     }, [searchParams]);
 
     const fetchData = async (query, value) => {
         try {
-            const response = await axios.post(`/search`, { search: value });
+            const response = await axios.post(`/${query}`, { search: value });
             return response.data;
         } catch (error) {
             console.log(error);
@@ -54,7 +43,7 @@ const SearchedRecipesList = () => {
 
     return (
         <>
-            {recipeList.length > 0 ? (
+            {recipeList?.length > 0 ? (
                 <ListContainer>
                     {recipeList.map(({ _id, title, thumb }) => {
                         return (
@@ -71,7 +60,7 @@ const SearchedRecipesList = () => {
             ) : (
                 <NoResultWrapper>
                     <img src={noResultsImg} alt="no results img" />
-                    <p>Try looking for something else...</p>
+                    {value ? <p>Try looking for something else...</p> : <p>Find recipes by title or ingredient</p>}
                 </NoResultWrapper>
             )}
         </>
