@@ -1,7 +1,8 @@
+import { MyRecipesList } from 'components/MyRecipesList/MyRecipesList';
 import React from 'react';
 
 function FavoritePage() {
-  return <div>FavoritePage</div>;
+    return <MyRecipesList page="Favorites" />;
 }
 
 export default FavoritePage;
