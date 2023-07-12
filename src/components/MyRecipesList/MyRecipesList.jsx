@@ -1,5 +1,6 @@
 import recipes from '../../back/recipes.json';
-import trashIcon from '../../img/trash.svg';
+import trashIconWhite from '../../img/trashWhite.svg';
+import trashIconBlack from '../../img/trashBlack.svg';
 import {
     ImgWrapper,
     MyRecipesImg,
@@ -14,16 +15,30 @@ import {
     MyRecipeTime,
     MyRecipeBtn,
     TimeBtnWrapper,
+    PageTitle,
+    List,
 } from './MyRecipesList.styled';
 
-export const MyRecipesList = () => {
+export const MyRecipesList = ({ page }) => {
+    let backgroundColor = '';
+    let buttonsColor = '';
+
+    if (page === 'Favorites') {
+        backgroundColor = '#EBF3D4';
+        buttonsColor = '#22252A';
+    } else {
+        backgroundColor = '#8BAA36';
+        buttonsColor = '#8BAA36';
+    }
+
     const newArr = [];
     for (let i = 0; i < 4; i += 1) {
         newArr.push(recipes[i]);
     }
     return (
         <Container>
-            <ul>
+            <PageTitle>{page}</PageTitle>
+            <List>
                 {newArr.map(({ preview, title, description, time, _id }) => {
                     return (
                         <MyRecipesItem key={_id.$oid}>
@@ -34,21 +49,23 @@ export const MyRecipesList = () => {
                                 <div>
                                     <TitleIconWrapper>
                                         <MyRecipesItemTitle>{title}</MyRecipesItemTitle>
-                                        <SvgWrapper>
-                                            <TrashIcon src={trashIcon} width={14} height={14} />
+                                        <SvgWrapper style={{ backgroundColor: backgroundColor }}>
+                                            <TrashIcon src={page === 'Favorites' ? trashIconBlack : trashIconWhite} />
                                         </SvgWrapper>
                                     </TitleIconWrapper>
                                     <MyRecipesDescription>{description}</MyRecipesDescription>
                                 </div>
                                 <TimeBtnWrapper>
                                     <MyRecipeTime>{time} min</MyRecipeTime>
-                                    <MyRecipeBtn to={`/recipe/${_id}`}>See reecipe</MyRecipeBtn>
+                                    <MyRecipeBtn to={`/recipe/${_id}`} style={{ backgroundColor: buttonsColor }}>
+                                        See reecipe
+                                    </MyRecipeBtn>
                                 </TimeBtnWrapper>
                             </MyRecipeInfo>
                         </MyRecipesItem>
                     );
                 })}
-            </ul>
+            </List>
         </Container>
     );
 };
