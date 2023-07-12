@@ -30,35 +30,35 @@ function IngredientsShoppingList() {
     <>
       <SLList>
         {/* <SLItem>
-                    <SLItemImage className="cards__animation">
-                        <picture>
-                            <source
-                                srcSet="./images/desktop/portfolio2-1x.jpg 1x,
+          <SLItemImage className="cards__animation">
+            <picture>
+              <source
+                srcSet="./images/desktop/portfolio2-1x.jpg 1x,
                         ./images/desktop/portfolio2-2x.jpg 2x"
-                                media="(min-width: 1200px)"
-                            />
-                            <source
-                                srcSet="./images/tablet/portfolio2-1x.jpg 1x,
+                media="(min-width: 1200px)"
+              />
+              <source
+                srcSet="./images/tablet/portfolio2-1x.jpg 1x,
                         ./images/tablet/portfolio2-2x.jpg 2x"
-                                media="(min-width: 768px)"
-                            />
-                            <source
-                                srcSet="./images/mobile/portfolio2-1x.jpg 1x,
+                media="(min-width: 768px)"
+              />
+              <source
+                srcSet="./images/mobile/portfolio2-1x.jpg 1x,
                         ./images/mobile/portfolio2-2x.jpg 2x"
-                                media="(max-width: 767px)"
-                            />
-                            <img src="source-name-here" alt="goods-imgName" />
-                        </picture>
-                    </SLItemImage>
+                media="(max-width: 767px)"
+              />
+              <img src="source-name-here" alt="goods-imgName" />
+            </picture>
+          </SLItemImage>
 
-                    <SLItemImageName>Item name</SLItemImageName>
+          <SLItemImageName>Item name</SLItemImageName>
 
-                    <SlItemAmount>400g</SlItemAmount>
+          <SlItemAmount>400g</SlItemAmount>
 
-                    <SLItemRemove type="button">
-                        <GrClose />
-                    </SLItemRemove>
-                </SLItem> */}
+          <SLItemRemove type="button">
+            <GrClose />
+          </SLItemRemove>
+        </SLItem> */}
 
         {testShoppingList.map(({ id, name, img, measure }) => {
           return (
