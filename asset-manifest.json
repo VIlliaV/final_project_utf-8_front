@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/final_project_utf-8_front/static/css/main.ee05332a.css",
-    "main.js": "/final_project_utf-8_front/static/js/main.11a14164.js",
+    "main.js": "/final_project_utf-8_front/static/js/main.ba4fac16.js",
     "static/js/145.4276f35d.chunk.js": "/final_project_utf-8_front/static/js/145.4276f35d.chunk.js",
     "static/js/589.701557af.chunk.js": "/final_project_utf-8_front/static/js/589.701557af.chunk.js",
     "static/js/454.127976d5.chunk.js": "/final_project_utf-8_front/static/js/454.127976d5.chunk.js",
@@ -10,7 +10,7 @@
     "static/css/281.cf292757.chunk.css": "/final_project_utf-8_front/static/css/281.cf292757.chunk.css",
     "static/js/281.e581874e.chunk.js": "/final_project_utf-8_front/static/js/281.e581874e.chunk.js",
     "static/js/212.d60d694e.chunk.js": "/final_project_utf-8_front/static/js/212.d60d694e.chunk.js",
-    "static/js/700.46a5dd6d.chunk.js": "/final_project_utf-8_front/static/js/700.46a5dd6d.chunk.js",
+    "static/js/431.9e4b3f1e.chunk.js": "/final_project_utf-8_front/static/js/431.9e4b3f1e.chunk.js",
     "static/js/570.67459947.chunk.js": "/final_project_utf-8_front/static/js/570.67459947.chunk.js",
     "static/js/27.352f85e5.chunk.js": "/final_project_utf-8_front/static/js/27.352f85e5.chunk.js",
     "static/js/412.21ce7410.chunk.js": "/final_project_utf-8_front/static/js/412.21ce7410.chunk.js",
@@ -39,6 +39,7 @@
     "static/media/kisspng-pasta.desktop.png": "/final_project_utf-8_front/static/media/kisspng-pasta.desktop.4ed776f3b00d2495d4bd.png",
     "static/media/plate-tablet.png": "/final_project_utf-8_front/static/media/plate-tablet.57329ba675e2aee976f3.png",
     "static/media/kisspng-pasta.mob@2x.png": "/final_project_utf-8_front/static/media/kisspng-pasta.mob@2x.672803031abe65ed772d.png",
+    "static/media/assortment-vegetables-mobile.png": "/final_project_utf-8_front/static/media/assortment-vegetables-mobile.1598053b7a1587fb46e7.png",
     "static/media/main-spinach-tablet.png": "/final_project_utf-8_front/static/media/main-spinach-tablet.a0e52e6b76ef1d44b22d.png",
     "static/media/plate-mobile.png": "/final_project_utf-8_front/static/media/plate-mobile.68662c8f1c68a847ec01.png",
     "static/media/spinach-desktop@2x.png": "/final_project_utf-8_front/static/media/spinach-desktop@2x.f3d3ccd491c2ffdbe064.png",
@@ -78,7 +79,7 @@
     "static/media/authContainerBckgrndDesktop.svg": "/final_project_utf-8_front/static/media/authContainerBckgrndDesktop.d5d5440654b186017ddacb2e9f52c512.svg",
     "static/media/chevron-up.svg": "/final_project_utf-8_front/static/media/chevron-up.6c7efe19cd047dac9e6e5a497eb427ee.svg",
     "main.ee05332a.css.map": "/final_project_utf-8_front/static/css/main.ee05332a.css.map",
-    "main.11a14164.js.map": "/final_project_utf-8_front/static/js/main.11a14164.js.map",
+    "main.ba4fac16.js.map": "/final_project_utf-8_front/static/js/main.ba4fac16.js.map",
     "145.4276f35d.chunk.js.map": "/final_project_utf-8_front/static/js/145.4276f35d.chunk.js.map",
     "589.701557af.chunk.js.map": "/final_project_utf-8_front/static/js/589.701557af.chunk.js.map",
     "454.127976d5.chunk.js.map": "/final_project_utf-8_front/static/js/454.127976d5.chunk.js.map",
@@ -87,7 +88,7 @@
     "281.cf292757.chunk.css.map": "/final_project_utf-8_front/static/css/281.cf292757.chunk.css.map",
     "281.e581874e.chunk.js.map": "/final_project_utf-8_front/static/js/281.e581874e.chunk.js.map",
     "212.d60d694e.chunk.js.map": "/final_project_utf-8_front/static/js/212.d60d694e.chunk.js.map",
-    "700.46a5dd6d.chunk.js.map": "/final_project_utf-8_front/static/js/700.46a5dd6d.chunk.js.map",
+    "431.9e4b3f1e.chunk.js.map": "/final_project_utf-8_front/static/js/431.9e4b3f1e.chunk.js.map",
     "570.67459947.chunk.js.map": "/final_project_utf-8_front/static/js/570.67459947.chunk.js.map",
     "27.352f85e5.chunk.js.map": "/final_project_utf-8_front/static/js/27.352f85e5.chunk.js.map",
     "412.21ce7410.chunk.js.map": "/final_project_utf-8_front/static/js/412.21ce7410.chunk.js.map",
@@ -98,6 +99,6 @@
   },
   "entrypoints": [
     "static/css/main.ee05332a.css",
-    "static/js/main.11a14164.js"
+    "static/js/main.ba4fac16.js"
   ]
 }
