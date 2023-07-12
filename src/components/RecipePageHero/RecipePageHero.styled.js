@@ -1,8 +1,21 @@
 import styled from 'styled-components';
 import { media } from '../../utils/media';
+import image from '../../img/assortment-vegetables-mobile.png';
+
+const BackgroundWrapper = styled.div`
+    max-width: 100%;
+    background-image: url(${image});
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media ${media.tablet} {
+    }
+    @media ${media.desktop} {
+    }
+`;
 
 const TitleRecipe = styled.h1`
-    margin-top: 80px;
+    margin-top: 144px;
     margin-bottom: 18px;
     color: var(--active);
     font-size: 24px;
@@ -11,7 +24,7 @@ const TitleRecipe = styled.h1`
     letter-spacing: -0.48px;
 
     @media ${media.tablet} {
-        margin-top: 72px;
+        margin-top: 136px;
         margin-bottom: 24px;
         font-size: 44px;
         letter-spacing: -0.88px;
@@ -19,7 +32,7 @@ const TitleRecipe = styled.h1`
 `;
 
 const Description = styled.p`
-    margin-bottom: 24px;
+    margin-bottom: 164px;
     display: flex;
     width: 299px;
     flex-direction: column;
@@ -96,4 +109,4 @@ const TimeWrapper = styled.div`
     display: flex;
 `;
 
-export { TitleRecipe, Description, Button, ClockWrapper, Time, TimeWrapper };
+export { BackgroundWrapper, TitleRecipe, Description, Button, ClockWrapper, Time, TimeWrapper };
