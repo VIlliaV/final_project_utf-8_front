@@ -60,28 +60,29 @@ function IngredientsShoppingList() {
           </SLItemRemove>
         </SLItem> */}
 
-        {testShoppingList.map(({ id, name, img, measure }) => {
-          return (
-            <SLItem>
-              <SLItemImage id={id}>
-                <picture>
-                  {/* <source srcset={img} media="(min-width: 1200px)" />
+        {testShoppingList.length > 0 &&
+          testShoppingList.map(({ id, name, img, measure }) => {
+            return (
+              <SLItem key={id}>
+                <SLItemImage>
+                  <picture>
+                    {/* <source srcset={img} media="(min-width: 1200px)" />
                     <source srcset={img} media="(min-width: 768px)" />
                     <source srcset={img} media="(max-width: 767px)" /> */}
-                  <img src={img} alt={name} />
-                </picture>
-              </SLItemImage>
+                    <img src={img} alt={name} />
+                  </picture>
+                </SLItemImage>
 
-              <SLItemImageName>{name}</SLItemImageName>
+                <SLItemImageName>{name}</SLItemImageName>
 
-              <SlItemAmount>{measure}</SlItemAmount>
+                <SlItemAmount>{measure}</SlItemAmount>
 
-              <SLItemRemove type="button" data-menu-close="" onClick={handleRemoveItem}>
-                <GrClose />
-              </SLItemRemove>
-            </SLItem>
-          );
-        })}
+                <SLItemRemove type="button" data-menu-close="" onClick={handleRemoveItem}>
+                  <GrClose />
+                </SLItemRemove>
+              </SLItem>
+            );
+          })}
       </SLList>
     </>
   );

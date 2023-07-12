@@ -5,15 +5,15 @@ import RecipePreparation from '../../components/RecipePreparation/RecipePreparat
 import { Wrapper } from './RecipePage.styled';
 
 function RecipePage() {
-  return (
-    <>
-      <Wrapper>
-        <RecipePageHero />
-        <RecipeInngredientsList />
-        <RecipePreparation />
-      </Wrapper>
-    </>
-  );
+    return (
+        <>
+            <RecipePageHero />
+            <Wrapper>
+                <RecipeInngredientsList />
+                <RecipePreparation />
+            </Wrapper>
+        </>
+    );
 }
 
 export default RecipePage;

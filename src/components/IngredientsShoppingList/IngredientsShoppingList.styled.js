@@ -90,8 +90,9 @@ const SLItemImageName = styled.p`
 `;
 
 const SlItemAmount = styled.p`
-  min-width: 38px;
-  height: 23px;
+  max-width: 140px;
+  min-height: 23px;
+  height: 100%;
 
   display: flex;
   align-items: center;
@@ -102,6 +103,7 @@ const SlItemAmount = styled.p`
 
   border-radius: 4px;
   background: var(--active);
+  word-break: break-word;
 
   color: var(--back_theme_1);
   text-align: center;
@@ -112,8 +114,7 @@ const SlItemAmount = styled.p`
   line-height: normal;
 
   @media screen and (min-width: ${tablet}) {
-    min-width: 68px;
-    height: 35px;
+    min-height: 35px;
 
     margin-right: 110px;
     padding: 4px 8px;

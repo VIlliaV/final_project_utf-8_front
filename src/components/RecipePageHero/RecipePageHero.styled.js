@@ -1,21 +1,38 @@
 import styled from 'styled-components';
 import { media } from '../../utils/media';
-import image from '../../img/assortment-vegetables-mobile.png';
+import imageMobile from '../../img/assortment-vegetables-mobile.png';
+import imageTablet from '../../img/assortment-vegetables-tab.png';
+import imageDesktop from '../../img/assortment-vegetables-desk.png';
 
 const BackgroundWrapper = styled.div`
-    max-width: 100%;
-    background-image: url(${image});
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 375px;
+    background-image: url(${imageMobile});
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0 auto;
+    padding: 144px 49.5px 90px 49.5px;
 
     @media ${media.tablet} {
+        max-width: 768px;
+        background-image: url(${imageTablet});
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 136px 131.5px 32px 131.5px;
     }
     @media ${media.desktop} {
+        max-width: 1440px;
+        background-image: url(${imageDesktop});
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 164px 467.5px 32px 467.5px;
     }
 `;
 
 const TitleRecipe = styled.h1`
-    margin-top: 144px;
+    /* margin-top: 144px; */
     margin-bottom: 18px;
     color: var(--active);
     font-size: 24px;
@@ -24,7 +41,7 @@ const TitleRecipe = styled.h1`
     letter-spacing: -0.48px;
 
     @media ${media.tablet} {
-        margin-top: 136px;
+        /* margin-top: 136px; */
         margin-bottom: 24px;
         font-size: 44px;
         letter-spacing: -0.88px;
@@ -32,7 +49,7 @@ const TitleRecipe = styled.h1`
 `;
 
 const Description = styled.p`
-    margin-bottom: 164px;
+    margin-bottom: 24px;
     display: flex;
     width: 299px;
     flex-direction: column;
@@ -93,7 +110,7 @@ const ClockWrapper = styled.div`
 `;
 
 const Time = styled.p`
-    margin-bottom: 90px;
+    /* margin-bottom: 90px; */
     color: var(--text_theme_1);
     font-size: 10px;
     font-weight: 500;
@@ -101,7 +118,7 @@ const Time = styled.p`
     letter-spacing: -0.24px;
     @media ${media.tablet} {
         font-size: 14px;
-        margin-bottom: 32px;
+        /* margin-bottom: 32px; */
     }
 `;
 
