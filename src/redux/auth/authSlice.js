@@ -5,8 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { signupUser, loginUser, logoutUser, fetchCurrentUser } from './authOperations';
 
 const initialState = {
-  user: { name: null, email: null, avatarURL: null, shoppingList: [] },
-
+  user: { name: null, email: null, avatarURL: null,},
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
