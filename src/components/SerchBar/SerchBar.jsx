@@ -4,7 +4,7 @@ import SearchTypeSelector from 'components/SearchTypeSelector/SearchTypeSelector
 import Search from 'components/Search/Search';
 import { SearchBarWrapper } from './SerchBar.styled';
 
-const SearchBar = props => {
+const SearchBar = () => {
     const [state, setState] = useState('query');
     const navigate = useNavigate();
 

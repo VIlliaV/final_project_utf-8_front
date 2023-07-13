@@ -17,7 +17,7 @@ export default function AddRecipePage() {
           <StyledBody>
             <ImageRecipe />
             <IngredientBtn />
-            {/* <RecipePreparation /> */}
+            <RecipePreparation />
 
             {/* <div className={CSS.right_column}>
                             <FallowUs />

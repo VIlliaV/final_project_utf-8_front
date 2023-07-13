@@ -17,7 +17,6 @@ import dataIngredients from '../../back/ingredients.json';
 
 const RecipeInngredientsList = ({ measure }) => {
     const ingredients = dataIngredients.slice(0, 8);
-    console.log(ingredients[0]);
 
     return (
         <>

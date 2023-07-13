@@ -2,20 +2,21 @@ import styled from 'styled-components';
 import { media } from 'utils/media';
 
 const SLContainer = styled.div`
-  max-width: 767px;
+  max-width: 703px;
   margin: 0 auto;
 
   @media ${media.tablet} {
-    min-width: 768px;
+    min-width: 704px;
   }
 
   @media ${media.desktop} {
-    min-width: 1440px;
+    min-width: 1240px;
   }
 `;
 
 const SLHeader = styled.div`
-  max-width: 767px;
+  min-width: fit-content;
+  max-width: 703px;
   height: 38px;
 
   display: flex;
@@ -25,7 +26,7 @@ const SLHeader = styled.div`
   margin-top: 50px;
 
   border-radius: 8px;
-  background-color: #8baa36;
+  background-color: var(--active);
 
   *:nth-last-child(2) {
     margin-left: auto;
@@ -33,7 +34,7 @@ const SLHeader = styled.div`
   }
 
   @media ${media.tablet} {
-    min-width: 704px;
+    min-width: 704x;
     height: 58px;
 
     padding: 20px;
@@ -59,7 +60,7 @@ const SLHeader = styled.div`
 `;
 
 const SLHeaderText = styled.p`
-  color: #fafafa;
+  color: var(--back_theme_1);
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-style: normal;

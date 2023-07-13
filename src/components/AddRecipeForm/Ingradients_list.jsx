@@ -3,6 +3,8 @@ import { nanoid } from 'nanoid';
 // import TextField from '@mui/material/TextField';
 import {
   StyledAutoComplete,
+  StyledSelectIngredient,
+  StyledSelectWegth,
   StyledSelect,
   StyledMenuItem,
   StyledLabelCategory,
@@ -84,87 +86,40 @@ export default function IngredientsList() {
       <StyledIngredientList>
         <StyledFormControl size="small">
           <StyledLabelCategory htmlFor="category">
-            <StyledSelect labelid="Category" id="CAtegoryId" value={name} onChange={handleChangeName}>
+            <StyledSelectIngredient
+              labelid="nameIngredient"
+              id="nameIngredientId"
+              value={name}
+              onChange={handleChangeName}
+            >
               {ingredients.map(el => (
                 <StyledMenuItem key={el.value} value={el.value}>
                   {el.value}
                 </StyledMenuItem>
               ))}
-            </StyledSelect>
+            </StyledSelectIngredient>
 
-            <StyledInputIngredient type="text" placeholder="Count" />
-
-            <StyledSelect labelid="wegth" id="wegthId" value={wegth} onChange={handleChangeWegth}>
-              {weigthName.map(el => (
-                <StyledMenuItem key={el.value} value={el.value}>
-                  {el.value}
-                </StyledMenuItem>
-              ))}
-            </StyledSelect>
+            <StyledInputIngredient type="text" placeholder="count tbs,tps,kg,g" />
           </StyledLabelCategory>
+          <IngredientBtn>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
+              <path
+                d="M15.625 4.875L4.375 16.125"
+                stroke="#333333"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M15.625 16.125L4.375 4.875"
+                stroke="#333333"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </IngredientBtn>
         </StyledFormControl>
-        {/* <StyledAutoComplete
-            size=" small"
-            disablePortal
-            id="combo-box-demo"
-            options={ingredients}
-            onChange={handleChangeName}
-            renderInput={params => <StyledTextFieldAutoComplete {...params} label="Ingredients" />}
-          /> */}
-        {/* <StyledAutoComplete
-            labelId="demo-select-small-label"
-            id="demo-select-small"
-            value={name}
-            label="Age"
-            onChange={handleChangeName}
-          >
-            {ingredients.map(el => (
-              <MenuItem key={el.value} value={el.value}>
-                {el.value}
-              </MenuItem>
-            ))}
-          </StyledAutoComplete>
-          <StyledOutlinedInput
-            id="outlined-adornment-weight"
-            endAdornment={<InputAdornment position="end">{wegth}</InputAdornment>}
-            aria-describedby="outlined-weight-helper-text"
-            inputProps={{
-              'aria-label': 'weight',
-            }}
-          />
-          <StyledNativeSelect
-            sx={{ width: '70px' }}
-            id="demo-customized-select-native"
-            value={wegth}
-            onChange={handleChangeWegth}
-            input={<BootstrapInput />}
-          >
-            {weigthName.map(el => (
-              <option key={el.value} value={el.value}>
-                {el.value}
-              </option>
-            ))}
-          </StyledNativeSelect>
-        </StyledFormControl> */}
-        <IngredientBtn>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
-            <path
-              d="M15.625 4.875L4.375 16.125"
-              stroke="#333333"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M15.625 16.125L4.375 4.875"
-              stroke="#333333"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </IngredientBtn>
-        {/* </StyledFormControl> */}
       </StyledIngredientList>
     </li>
   );

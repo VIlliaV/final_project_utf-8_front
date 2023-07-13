@@ -1,5 +1,6 @@
 import style from 'styled-components';
 import { media } from '../../utils/media';
+import Input from '@mui/base/TextareaAutosize';
 import { Autocomplete, Button, TextField, OutlinedInput, FormControl, InputBase, NativeSelect } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Select from '@mui/material/Select';
@@ -83,6 +84,7 @@ export const StyledFormControl = styled(FormControl)(({ theme }) => ({
   width: '330px',
   display: 'flex',
   flexDirection: 'row',
+  alignItems: 'center',
 
   [theme.breakpoints.down(`${media.tablet}`)]: {
     border: 'none',
@@ -101,12 +103,14 @@ export const StyledTextFieldAutoComplete = styled(TextField)(({ theme }) => ({
 }));
 
 export const StyledInputIngredient = style.input`
-    width:50px;
+    width:85px;
     border:none;
-    padding: 3px 0;
+    padding: 5px 0;
     border: 1px solid grey;
     border-radius: 4px;
+    margin-right: 35px;
     display:flex;
+    justify-content: center;
 `;
 
 export const StyledIngredientList = style.div`
@@ -129,13 +133,20 @@ flex-direction: row;
 
 export const StyledSection2 = style.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin: 45px 0 25px 0;
     width: 345px;
+    & ul {
+      margin-top: 25px;
+    }
     @media ${media.tablet} {
         width:705px;
         margin: 100px 0 30px 0;
+        & ul {
+          margin-top: 35px;
+          }
         
     }
 
@@ -150,22 +161,20 @@ export const StyledSection2 = style.div`
     `;
 
 export const StyledSection3 = style.div`
-@media ${media.desktop} {
-    width: 610px;
+    width:230px;
+    margin: 100px 0 35px 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin:100px 300px 0 0;
-    & input {
-        margin-top: 30px;
-        width: 510px;
-        height: 230px;
-    }
-    & div {
-        position: relative;
-        width: 160px;
-        height: 50px;
+    // & input {
+    //     margin-top: 30px;
+    //     width: 510px;
+    //     height: 230px;
+    // }
         & button {
+          position: relative;
+          width: 160px;
+          height: 50px;
             cursor: pointer;
             margin-top: 30px;
             display: flex;
@@ -173,10 +182,10 @@ export const StyledSection3 = style.div`
             border: none;
             align-items: center;
                 & svg {
-                    width: 160px;
-                    height: 50px;
-                    
-                
+           
+                  & path{
+                   width:160px;
+                  }
                 }
                  & span {
                     color: #FAFAFA; 
@@ -187,10 +196,21 @@ export const StyledSection3 = style.div`
                     position: absolute;
                     left: 40%;
                 }
-    }}}
+    }}
+`;
+
+export const StyledInputRecipe = style.textarea`
+    width: 345px;
+    height: 270px;
+  @media ${media.tablet}{
+      width: 505px;
+      height: 225px;
+  }
 `;
 
 export const StyledH3 = style.h3`
+margin-bottom: 25px;
+
 @media ${media.desktop} {
     color: #3e4462;
     font-size: 24px;
@@ -274,7 +294,7 @@ export const StyledInputGroup = style.div`
             
 `;
 export const StyledLabelCategory = style.label`
-gap: 25px;
+
     display: flex;
     align-items: center;
     width: 345px;
@@ -315,6 +335,21 @@ export const StyledSelect = styled(Select)({
   fontStyle: 'normal',
   fontWeight: '400',
   letterSpacing: '-0.32px',
+  color: 'black',
+});
+
+export const StyledSelectIngredient = styled(Select)({
+  width: '195px',
+  height: '30px',
+  marginRight: '15px',
+  display: 'flex',
+  color: 'black',
+});
+
+export const StyledSelectWegth = styled(Select)({
+  width: '85px',
+  height: '30px',
+  display: 'flex',
   color: 'black',
 });
 
@@ -360,8 +395,9 @@ export const IngrediantsWeigth = styled(Select)({
   },
 });
 export const IngredientBtn = styled(Button)({
+  padding: '0',
   display: 'flex',
-  width: '20px',
+  minWidth: '20px',
   height: '20px',
 });
 

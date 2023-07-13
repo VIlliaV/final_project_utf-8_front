@@ -61,14 +61,15 @@ export default function BasicButtonGroup() {
             </svg>
           </StyledInputBtn>
         </StyledButtonGroup>
+
+        <ul>
+          {counter > 1 ? (
+            ingredients.map(() => <IngredientList id={nanoid()} key={nanoid()} />)
+          ) : (
+            <IngredientList id={nanoid()} key={nanoid()} />
+          )}
+        </ul>
       </StyledSection2>
-      <ul>
-        {counter > 1 ? (
-          ingredients.map(() => <IngredientList id={nanoid()} key={nanoid()} />)
-        ) : (
-          <IngredientList id={nanoid()} key={nanoid()} />
-        )}
-      </ul>
     </>
   );
 }
