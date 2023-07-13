@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import avatar from './img/Ellipse 3.png';
-import { AvatarButton, AvatarText, ButtonDiv, ButtonIconEdit, ButtonNo, ButtonRadius, ButtonYes, ConfirmTitle, LogoutButton, Popup, PopupConfirm, PopupEdit } from './AvatarButton.styled';
+import edit from './img/edit.svg';
+import { AvatarButton, AvatarText, ButtonDiv, ButtonIconEdit, ButtonNo, ButtonRadius, ButtonYes, ConfirmTitle, EditDiv, EditText, LogoutButton, Popup, PopupConfirm, PopupEdit } from './AvatarButton.styled';
 
 const logout = () => {
     return {
@@ -15,6 +16,7 @@ const AvatarButtonComponent = () => {
     const [showPopupEdit, setShowPopupEdit] = useState(false);
 
     const dispatch = useDispatch();
+    const popupRef = useRef(null);
 
     const handleLogout = () => {
         setShowPopup(false);
@@ -35,19 +37,38 @@ const AvatarButtonComponent = () => {
         setShowPopupEdit(true);
     };
 
+    const handleClickOutside = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            setShowPopup(false);
+			setShowPopupConfirm(false);
+            setShowPopupEdit(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <AvatarButton>
             <ButtonRadius onClick={() => setShowPopup(!showPopup)}>
                 <img src={avatar} alt="Avatar" />
             </ButtonRadius>
             {showPopup && (
-                <Popup>
-                    <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
-                    <ButtonIconEdit onClick={handlePopupEdit}>Edit</ButtonIconEdit>
+                <Popup ref={popupRef}>
+					<EditDiv>
+					<EditText>Edit profile</EditText>
+                    <ButtonIconEdit onClick={handlePopupEdit}><img src={edit} alt="Avatar" /></ButtonIconEdit>
+					</EditDiv>
+
+                    <LogoutButton onClick={handleLogout}>Log out</LogoutButton>
                 </Popup>
             )}
             {showPopupConfirm && (
-                <PopupConfirm>
+                <PopupConfirm ref={popupRef}>
                     <ConfirmTitle>Are you sure you want to log out?</ConfirmTitle>
                     <ButtonDiv>
                         <ButtonYes onClick={handleConfirm}>Yes</ButtonYes>
@@ -56,7 +77,7 @@ const AvatarButtonComponent = () => {
                 </PopupConfirm>
             )}
             {showPopupEdit && (
-                <PopupEdit>
+                <PopupEdit ref={popupRef}>
                     <ButtonYes onClick={handleConfirm}>Yes</ButtonYes>
                 </PopupEdit>
             )}
