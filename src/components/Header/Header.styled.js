@@ -27,6 +27,7 @@ export const ResponsiveHeaderContainer = styled.header`
     width: 100%;
     display: flex;
     justify-content: center;
+
 `;
 
 export const MainDiv = styled.div`
@@ -35,6 +36,7 @@ export const MainDiv = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
+	z-index: 10;
     margin-top: 15px;
     height: 45px;
     width: 340px;
