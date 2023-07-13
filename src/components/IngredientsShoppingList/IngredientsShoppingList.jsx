@@ -23,7 +23,9 @@ function IngredientsShoppingList() {
 
   const handleRemoveItem = id => {
     console.log('click ID :>> ', id);
-    testShoppingList = testShoppingList.filter(value => value.id !== id); // action.payload.id
+    // testShoppingList = testShoppingList.filter(value => value.id !== id); // action.payload.id
+    // фільтр повертає новий масив, тому return. Якщо є мутація, то без return
+    return testShoppingList.filter(value => value.id !== id); // action.payload.id
 
     // shoppingListStateIngredients = shoppingListStateIngredients.filter(value => value._id !== id);
   };
