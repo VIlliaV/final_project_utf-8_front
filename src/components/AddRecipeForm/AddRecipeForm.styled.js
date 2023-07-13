@@ -435,12 +435,8 @@ export const IngrediantsWeigth = styled(Select)({
 export const StyledIngredientBtn = styled(Button)(({theme})=>({
   padding: '0',
   display: 'flex',
-  width: '20px',
+  minWidth: '20px',
   height: '20px',
-  [theme.breakpoints.up(`${media.tablet}`)]:
-  {
-   width: '40px',
- }
 }));
 
 export const BootstrapInput = styled(InputBase)(({ theme }) => ({
