@@ -247,7 +247,7 @@ export const StyledInputBtn = styled(Button)({
   '&:hover': {
     border: 'none',
   },
-  '&:firstof-type': {
+  '&:first-of-type': {
     borderRight: 'none',
   },
 });
