@@ -18,16 +18,16 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
-  console.log(recipe);
-
+  const [ingredientsMeasure, setIngredientsMeasure] = useState([]);
+ 
   const { recipeId } = useParams();
-  console.log(recipeId);
-
+ 
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
         const response = await axios.get(`/recipes/${recipeId}`);
         setRecipe(response.data);
+        setIngredientsMeasure(response.data.ingredients);
       } catch (error) {
         console.error(error);
       }
@@ -41,11 +41,11 @@ function RecipePage() {
   return (
     <div>
       {recipe && (
-        <>
-          <RecipePageHero recipe={recipe} />
+           <>
+          <RecipePageHero title={recipe.title} description={recipe.description} time={recipe.time}  />
           <Wrapper>
-            <RecipeInngredientsList recipe={recipe} />
-            <RecipePreparation recipe={recipe} />
+            <RecipeInngredientsList ingredientsMeasure={ingredientsMeasure} />
+            <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title}/>
           </Wrapper>
         </>
       )}

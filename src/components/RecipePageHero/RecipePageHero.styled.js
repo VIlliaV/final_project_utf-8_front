@@ -5,30 +5,31 @@ import imageTablet from '../../img/assortment-vegetables-tab.png';
 import imageDesktop from '../../img/assortment-vegetables-desk.png';
 
 const BackgroundWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 375px;
-    background-image: url(${imageMobile});
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 375px;
+  background-image: url(${imageMobile});
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  padding: 144px 49.5px 90px 49.5px;
+
+  @media ${media.tablet} {
+    max-width: 768px;
+    background-image: url(${imageTablet});
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 0 auto;
-    padding: 144px 49.5px 90px 49.5px;
-
-    @media ${media.tablet} {
-        max-width: 768px;
-        background-image: url(${imageTablet});
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 136px 131.5px 32px 131.5px;
-    }
-    @media ${media.desktop} {
-        max-width: 1440px;
-        background-image: url(${imageDesktop});
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 164px 467.5px 32px 467.5px;
-    }
+    padding: 136px 131.5px 32px 131.5px;
+  }
+  @media ${media.desktop} {
+    max-width: 1440px;
+    background-image: url(${imageDesktop});
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 164px 467.5px 32px 467.5px;
+  }
 `;
 
 const TitleRecipe = styled.h1`

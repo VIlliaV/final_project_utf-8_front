@@ -1,25 +1,23 @@
 import { WrapperForDesktop, Wrapper, Title, List, Item, Image } from './RecipePreparation.styled';
-import dataRecipe from '../../back/recipes.json';
 
-const RecipePreparation = ({ instructions, preview }) => {
-    const recipe = dataRecipe[1];
-    const instructionsList = recipe.instructions.split('\r\n');
+const RecipePreparation = ({ instructions, preview, title }) => {
+  const instructionsList = instructions.split('\r\n');
 
-    return (
-        <>
-            <Wrapper>
-                <WrapperForDesktop>
-                    <Title>Recipe Preparation</Title>
-                    <List>
-                        {instructionsList.map(instruction => {
-                            return <Item>{instruction}</Item>;
-                        })}
-                    </List>
-                </WrapperForDesktop>
-                <Image src={recipe.preview} alt={recipe.name} />
-            </Wrapper>
-        </>
-    );
+  return (
+    <>
+      <Wrapper>
+        <WrapperForDesktop>
+          <Title>Recipe Preparation</Title>
+          <List>
+            {instructionsList.map(instruction => {
+              return <Item>{instruction}</Item>;
+            })}
+          </List>
+        </WrapperForDesktop>
+        <Image src={preview} alt={title} />
+      </Wrapper>
+    </>
+  );
 };
 
 export default RecipePreparation;
