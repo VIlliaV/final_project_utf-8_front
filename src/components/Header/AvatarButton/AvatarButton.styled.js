@@ -110,7 +110,6 @@ line-height: 22.4px;
 export const AvatarText = styled.p`
     margin-left: 15px;
     color: #22252a;
-    font-family: Poppins;
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
@@ -136,7 +135,6 @@ export const ButtonNo = styled.button`
 
 export const ConfirmTitle = styled.p`
     text-align: center;
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

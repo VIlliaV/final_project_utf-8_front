@@ -64,8 +64,6 @@ export const StyledNavLink = styled(NavLink)`
     color: var(--text_theme_1);
     text-decoration: none;
     margin-right: 30px;
-
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
