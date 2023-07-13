@@ -9,8 +9,8 @@ const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 export const CategoriesRecipesList = () => {
   const [recipes, setRecipes] = useState([]);
   const currentCategory = useParams().categoryName.charAt(0).toUpperCase() + useParams().categoryName.slice(1);
-  const [isLoading, setIsLoading] = useState();
-  console.log(currentCategory);
+  const [isLoading, setIsLoading] = useState(true);
+  const [dataError, setDataError] = useState(false);
 
   const getRecipesByCategory = async category => {
     try {
@@ -21,36 +21,43 @@ export const CategoriesRecipesList = () => {
       const res = await axios(config);
       return res.data;
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response.status);
     }
   };
 
   useEffect(() => {
-    console.log('useeff');
     setIsLoading(true);
     getRecipesByCategory(currentCategory)
       .then(res => {
-        console.log('response', res);
+        if (res.length === 0) {
+          setDataError(true);
+          alert('Ooops, there are no items');
+        }
         setRecipes(res);
         setIsLoading(false);
+        setDataError(false);
       })
       .catch(error => {
+        setDataError(true);
         console.log(error);
       });
   }, [currentCategory]);
 
+  const shouldRender = recipes.length > 0;
+
   return (
     <CategoriesRecipesContainer>
-      {recipes.map(({ _id: { $oid: id }, title, thumb }) => {
-        return (
-          <CategoryRecipeCardWrapper key={id}>
-            {isLoading && <div>Loading...</div>}
-            {!isLoading && (
+      {dataError && <div>Error!!!</div>}
+      {isLoading && <div>Loading...</div>}
+      {shouldRender &&
+        !isLoading &&
+        recipes.map(({ _id: id, title, thumb }) => {
+          return (
+            <CategoryRecipeCardWrapper key={id}>
               <CategoryRecipeCard itemId={id} imageUrl={thumb} imageAlt={title} title={title}></CategoryRecipeCard>
-            )}
-          </CategoryRecipeCardWrapper>
-        );
-      })}
+            </CategoryRecipeCardWrapper>
+          );
+        })}
     </CategoriesRecipesContainer>
   );
 };
