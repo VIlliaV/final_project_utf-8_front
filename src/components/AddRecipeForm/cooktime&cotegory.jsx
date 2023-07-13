@@ -1,39 +1,82 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 import { StyledSelect, StyledMenuItem, StyledLabelCategory } from './AddRecipeForm.styled';
+import axios from 'axios';
+const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
 export default function CookCategoryGroup() {
-  const [category, setCategory] = React.useState('');
-  const [cook_time, setCook_time] = React.useState('');
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState('');
+  const [cook_time, setCook_time] = useState([]);
+
+  const addCookTime = () => {
+    for (let i = 5; i <= 180; i = i + 5) {
+      console.log(i);
+      setCook_time(prevState => {
+        return [...prevState, i];
+      });
+    }
+  };
+
+  useEffect(() => {
+    addCookTime();
+  }, []);
+
+  const getCategories = async () => {
+    try {
+      const config = {
+        method: 'GET',
+        url: BASE_URL + '/recipes/category-list',
+      };
+      const res = await axios(config);
+      return res.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getCategories()
+      .then(res => {
+        setCategories(res);
+      })
+      .catch(error => {
+        handleError(error);
+      });
+  }, []);
+
+  function handleError(error) {
+    console.error(error);
+    alert(`${error.message}`);
+  }
+
   const handleChangeCategory = event => {
     setCategory(event.target.value);
   };
   const handleChangeCookTime = event => {
     setCook_time(event.target.value);
   };
+  console.log(cook_time);
   return (
     <>
       <StyledLabelCategory htmlFor="category">
         Category
         <StyledSelect labelid="Category" id="CAtegoryId" value={category} onChange={handleChangeCategory}>
-          <StyledMenuItem value={'Beef'}>Beef</StyledMenuItem>
-          <StyledMenuItem value={'Breakfast'}>Breakfast</StyledMenuItem>
-          <StyledMenuItem value={'Desert'}>Desert</StyledMenuItem>
-          <StyledMenuItem value={'Goat'}>Goat</StyledMenuItem>
-          <StyledMenuItem value={'Lamb'}>Lamb</StyledMenuItem>
-          <StyledMenuItem value={'Miscellaneous'}>Miscellaneous</StyledMenuItem>
+          {categories.map(el => (
+            <StyledMenuItem key={nanoid()} value={el}>
+              {el}
+            </StyledMenuItem>
+          ))}
         </StyledSelect>
       </StyledLabelCategory>
       <StyledLabelCategory htmlFor="cooking_time">
         Cooking time
         <StyledSelect labelId="cooking_time" id="cooking-timeId" value={cook_time} onChange={handleChangeCookTime}>
-          <StyledMenuItem value={10}>10</StyledMenuItem>
-          <StyledMenuItem value={20}>20</StyledMenuItem>
-          <StyledMenuItem value={30}>30</StyledMenuItem>
-          <StyledMenuItem value={40}>40</StyledMenuItem>
-          <StyledMenuItem value={50}>50</StyledMenuItem>
-          <StyledMenuItem value={60}>60</StyledMenuItem>
-          <StyledMenuItem value={120}>120</StyledMenuItem>
-          <StyledMenuItem value={180}>180</StyledMenuItem>
+          {cook_time.map(el => (
+            <StyledMenuItem key={el} value={el}>
+              {el}
+            </StyledMenuItem>
+          ))}
         </StyledSelect>
       </StyledLabelCategory>
     </>

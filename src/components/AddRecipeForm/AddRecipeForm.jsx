@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import backgroundUploadImg from '../../img/image.jpg';
-import { StyledButton, ImageSrc, StyledInpytImg } from './AddRecipeForm.styled';
+import { ImageSrc, StyledInpytImg } from './AddRecipeForm.styled';
 
 const FileInput = () => {
   const [selectedImage, setSelectedImage] = useState(null);
