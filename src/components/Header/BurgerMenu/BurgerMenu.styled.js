@@ -46,8 +46,6 @@ export const StyledNavLink = styled(NavLink)`
     text-decoration: none;
     transition: background-color 0.3s;
     margin-bottom: 32px;
-
-    font-family: Poppins;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -65,7 +63,6 @@ export const StyledNavLink = styled(NavLink)`
 
     @media ${media.tablet} {
         margin-bottom: 32px;
-        font-family: Poppins;
         font-size: 24px;
         font-style: normal;
         font-weight: 500;
