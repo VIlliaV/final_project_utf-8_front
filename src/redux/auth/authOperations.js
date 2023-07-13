@@ -55,6 +55,9 @@ export const fetchCurrentUser = createAsyncThunk('users/current', async (_, thun
     const response = await axios.get('/users/current');
     return response.data;
   } catch (error) {
+    if (error.response.status === 401) {
+      clearAuthHeader();
+    }
     return thunkAPI.rejectWithValue(error.message);
   }
 });
