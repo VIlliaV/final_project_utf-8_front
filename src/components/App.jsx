@@ -33,9 +33,9 @@ export const App = () => {
     !isRefreshing && (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<RestrictedRoute component={<WellcomPage />} redirectTo="/" />} />
-          <Route path="register" element={<RestrictedRoute component={<RegisterPage />} redirectTo="/" />} />
-          <Route path="signin" element={<RestrictedRoute component={<SigninPage />} redirectTo="/" />} />
+          <Route index element={<RestrictedRoute component={<WellcomPage />} redirectTo="/main" />} />
+          <Route path="register" element={<RestrictedRoute component={<RegisterPage />} redirectTo="/main" />} />
+          <Route path="signin" element={<RestrictedRoute component={<SigninPage />} redirectTo="/main" />} />
 
           <Route path="main" element={<PrivateRoute component={<MainPage />} redirectTo="/" />} />
           <Route
