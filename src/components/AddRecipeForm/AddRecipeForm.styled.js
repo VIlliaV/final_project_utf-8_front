@@ -6,16 +6,13 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-
 export const Fallow = style.div`
-visibility: hidden;
 display: none;
-opacity: 0;
 @media ${media.desktop} {
     display: flex;
-    visibility: visible;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-top:100px;
     & ul {
         display: flex;
         margin-top: 40px;
@@ -35,11 +32,12 @@ display: flex;
 `;
 
 export const StyledPopularRecipe = style.ul`
+
 margin-top: 70px;
 & h3 {
   margin-bottom:30px;
 }
-    @media ${media.tablet} {
+@media ${media.tablet} {
       margin-top: 100px;
     & ul {
         display: flex;
@@ -48,7 +46,22 @@ margin-top: 70px;
             &:nth-child(-n + 2) {
                 display: none;
             }
-} }
+          }
+        }
+      }
+@media ${media.desktop} {
+  width:320px;
+& ul {
+  display: flex;
+  flex-direction:column;
+  & li {
+    display: flex;
+     &:nth-child(-n + 2) {
+                display: flex;
+            }
+  }
+}
+}
 `;
 
 export const StyledNativeSelect = styled(NativeSelect)(({ theme }) => ({
@@ -84,7 +97,6 @@ export const StyledFormControl = styled(FormControl)(({ theme }) => ({
   },
 }));
 
-
 export const StyledInputIngredient = style.input`
     width:85px;
     border:none;
@@ -97,6 +109,10 @@ export const StyledInputIngredient = style.input`
     @media ${media.tablet}{
       width:100px;
       margin-right: 150px;
+    }
+      @media ${media.desktop} {
+      
+      margin-right: 60px;
     }
 `;
 
@@ -191,7 +207,6 @@ margin-top: 25px;
 `;
 
 export const StyledH3 = style.h3`
-
 color: #3e4462;
     font-size: 24px;
     font-style: normal;
@@ -200,40 +215,45 @@ color: #3e4462;
     letter-spacing: -0.25px;
     margin: 0;
     `;
+
 export const StyledList = style.li`
 display: flex;
 border-bottom: 1px solid rgba(112,112,112,0.4);
 margin-bottom: 25px;
-& img{
-  width: 100px;
-  height: 85px;
-  margin-bottom:15px;
-}
-& div{
-  margin-left: 15px;
-  margin-bottom: 0;
-  & h4 {
-    color:rgba(62, 68, 98, 1);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px; 
-    letter-spacing: -0.24px;
+& a {
+  display: flex;
+  width: 320px;
+  height:100px;
+  & img{
+    width: 100px;
+    height: 85px;
+    margin-bottom:15px;
+    }
+  & div{
+    margin-left: 15px;
+    margin-bottom: 0;
+      & h4 {
+        color:rgba(62, 68, 98, 1);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; 
+        letter-spacing: -0.24px;
+        }
+       & p {
+        margin-top:5px;
+        color:rgba(126, 126, 126, 1);
+        width: 210px;
+        height: 55px;
+        text-overflow: ellipsis;
+        whitespace: nowrap;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: -0.24px;
+        }
   }
-  & p {
-    margin-top:5px;
-    color:rgba(126, 126, 126, 1);
-    width: 210px;
-    height: 55px;
-    text-overflow: ellipsis;
-    whitespace: nowrap;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: -0.24px;
-  }
-}`
-
+}`;
 
 export const StyledInputBtn = styled(Button)({
   cursor: 'default',
@@ -291,10 +311,11 @@ export const StyledLabel = style.label`
             
     };
     @media ${media.desktop} {
+      margin-right: 120px;
         display: flex;
         column-count: 2;
-        justify-content: flex-start;
-        align-items: center;
+        height:345px;
+        align-items:flex-start;
             &:hover: {
                 border-color: rgba(170, 249, 190, 0.742),
                 box-shadow: 3px 3px 6px rgba(170, 249, 190, 0.742),
@@ -306,6 +327,9 @@ export const StyledInputGroup = style.div`
             display: flex;
             flex-direction: column;
             width: 100%;
+            height:270px;
+
+        
             
 `;
 export const StyledLabelCategory = style.label`
@@ -336,7 +360,7 @@ export const StyledInputIngredients = style.label`
       }
 }
 @media ${media.desktop} {
-    justify-content: space-between;
+   justify-content: space-between;
        &:hover: {
           border-color: rgba(170, 249, 190, 0.742),
           box-shadow: 3px 3px 6px rgba(170, 249, 190, 0.742),
@@ -374,13 +398,12 @@ export const StyledSelect = styled(Select)({
   color: 'black',
 });
 
-export const StyledSelectIngredient = styled(Select)(({theme})=>({
+export const StyledSelectIngredient = styled(Select)(({ theme }) => ({
   width: '100%',
   height: '30px',
   marginRight: '15px',
   display: 'flex',
   color: 'black',
-
 }));
 export const StyledSelectWegth = styled(Select)({
   width: '85px',
@@ -431,8 +454,7 @@ export const IngrediantsWeigth = styled(Select)({
   },
 });
 
-
-export const StyledIngredientBtn = styled(Button)(({theme})=>({
+export const StyledIngredientBtn = styled(Button)(({ theme }) => ({
   padding: '0',
   display: 'flex',
   minWidth: '20px',

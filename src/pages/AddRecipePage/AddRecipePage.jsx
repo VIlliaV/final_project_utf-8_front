@@ -11,16 +11,18 @@ import BasicButtonGroup from '../../components/AddRecipeForm/buttonGroup';
 export default function AddRecipePage() {
   return (
     <HeadContainer>
-          <MainPageTitle title="Add recipe" />
-          <StyledBody>
-            <ImageRecipe />
-            <BasicButtonGroup />
-            <RecipePreparation />
-            <div>
-              <FallowUs />
-              <Popular />
-            </div>
-          </StyledBody>
+      <MainPageTitle title="Add recipe" />
+      <StyledBody>
+        <div>
+          <ImageRecipe />
+          <BasicButtonGroup />
+          <RecipePreparation />
+        </div>
+        <div>
+          <FallowUs />
+          <Popular />
+        </div>
+      </StyledBody>
     </HeadContainer>
   );
 }
