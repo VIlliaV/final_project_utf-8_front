@@ -76,7 +76,7 @@ const persistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['token', 'isLoggedIn'],
+  whitelist: ['token'],
 };
 
 export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);
