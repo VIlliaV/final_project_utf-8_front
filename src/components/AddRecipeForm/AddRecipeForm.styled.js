@@ -1,15 +1,16 @@
 import style from 'styled-components';
 import { media } from '../../utils/media';
-import Input from '@mui/base/TextareaAutosize';
-import { Autocomplete, Button, TextField, OutlinedInput, FormControl, InputBase, NativeSelect } from '@mui/material';
+import { Button, TextField, FormControl, InputBase, NativeSelect } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+
 export const Fallow = style.div`
-// visibility: hidden;
+visibility: hidden;
 display: none;
+opacity: 0;
 @media ${media.desktop} {
     display: flex;
     visibility: visible;
@@ -34,34 +35,19 @@ display: flex;
 `;
 
 export const StyledPopularRecipe = style.ul`
-    @media ${media.desktop} {
-    margin-top: 100px;
+margin-top: 70px;
+& h3 {
+  margin-bottom:30px;
+}
+    @media ${media.tablet} {
+      margin-top: 100px;
     & ul {
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         & li {
-            display: flex;
-            border-bottom: 1px solid rgba(224, 224, 224, 1);
-            margin-top: 40px;
-            & img {
-                width: 100px;
-                height: 87px;
-                margin-right: 10px;
-                margin-bottom: 15px;
-                & p {
-                    width: 200px;
-                    margin-top: 5px;
-                    overflow: hidden;
-                    color: var(--color-text-secondary, #7e7e7e);
-                    text-overflow: ellipsis;      
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 16px;
-                    letter-spacing: -0.24px;
-    }
-    }
-    }
+            &:nth-child(-n + 2) {
+                display: none;
+            }
 } }
 `;
 
@@ -87,7 +73,7 @@ export const StyledFormControl = styled(FormControl)(({ theme }) => ({
   alignItems: 'center',
 
   [theme.breakpoints.down(`${media.tablet}`)]: {
-    border: 'none',
+    width: '705px',
   },
 
   [theme.breakpoints.down(`${media.desktop}`)]: {
@@ -98,9 +84,6 @@ export const StyledFormControl = styled(FormControl)(({ theme }) => ({
   },
 }));
 
-export const StyledTextFieldAutoComplete = styled(TextField)(({ theme }) => ({
-  //   height: '20px',
-}));
 
 export const StyledInputIngredient = style.input`
     width:85px;
@@ -111,14 +94,20 @@ export const StyledInputIngredient = style.input`
     margin-right: 35px;
     display:flex;
     justify-content: center;
+    @media ${media.tablet}{
+      width:100px;
+      margin-right: 150px;
+    }
 `;
 
 export const StyledIngredientList = style.div`
 width:345px;
 display: flex;
 flex-direction: row;
+margin-bottom:20px;
 @media ${media.tablet}{
     width:705px;
+    margin-bottom:25px;
 }
 @media ${media.desktop} {
     width: 620px;
@@ -162,64 +151,89 @@ export const StyledSection2 = style.div`
 
 export const StyledSection3 = style.div`
     width:230px;
-    margin: 100px 0 35px 0;
+    margin: 100px 0 0 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // & input {
-    //     margin-top: 30px;
-    //     width: 510px;
-    //     height: 230px;
-    // }
         & button {
-          position: relative;
-          width: 160px;
-          height: 50px;
-            cursor: pointer;
-            margin-top: 30px;
-            display: flex;
-            color: white;
-            border: none;
-            align-items: center;
-                & svg {
-           
-                  & path{
-                   width:160px;
-                  }
-                }
+          margin-top:20px;
+          width:160px;
+          height: 45px;
+          background-color:#22252A;
+          color: white;
+          border-radius: 24px 44px;
+          border: 1px solid #22252A;;
+        }
                  & span {
                     color: #FAFAFA; 
                     font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
-                    position: absolute;
-                    left: 40%;
+                    color: #FAFAFA;
                 }
-    }}
+    @media ${media.tablet}{
+      & button{
+        margin-top:32px;
+      }
+    }
 `;
 
 export const StyledInputRecipe = style.textarea`
+margin-top: 25px;
     width: 345px;
     height: 270px;
   @media ${media.tablet}{
+    margin-top: 35px;
       width: 505px;
       height: 225px;
   }
 `;
 
 export const StyledH3 = style.h3`
-margin-bottom: 25px;
 
-@media ${media.desktop} {
-    color: #3e4462;
+color: #3e4462;
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
     line-height: 25px;
     letter-spacing: -0.25px;
-    margin: 0;}
+    margin: 0;
     `;
+export const StyledList = style.li`
+display: flex;
+border-bottom: 1px solid rgba(112,112,112,0.4);
+margin-bottom: 25px;
+& img{
+  width: 100px;
+  height: 85px;
+  margin-bottom:15px;
+}
+& div{
+  margin-left: 15px;
+  margin-bottom: 0;
+  & h4 {
+    color:rgba(62, 68, 98, 1);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; 
+    letter-spacing: -0.24px;
+  }
+  & p {
+    margin-top:5px;
+    color:rgba(126, 126, 126, 1);
+    width: 210px;
+    height: 55px;
+    text-overflow: ellipsis;
+    whitespace: nowrap;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.24px;
+  }
+}`
+
 
 export const StyledInputBtn = styled(Button)({
   cursor: 'default',
@@ -291,14 +305,36 @@ export const StyledInputGroup = style.div`
             gap:25px;
             display: flex;
             flex-direction: column;
+            width: 100%;
             
 `;
 export const StyledLabelCategory = style.label`
-
     display: flex;
     align-items: center;
-    width: 345px;
     justify-content: space-between;
+@media ${media.desktop} {
+    justify-content: space-between;
+       &:hover: {
+          border-color: rgba(170, 249, 190, 0.742),
+          box-shadow: 3px 3px 6px rgba(170, 249, 190, 0.742),
+        },
+    }
+`;
+
+export const StyledInputIngredients = style.label`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & div {
+      width :195px;
+    }
+@media ${media.tablet} {
+       display: flex;
+       & div {
+        width :400px;
+        margin-right:30px;
+      }
+}
 @media ${media.desktop} {
     justify-content: space-between;
        &:hover: {
@@ -338,14 +374,14 @@ export const StyledSelect = styled(Select)({
   color: 'black',
 });
 
-export const StyledSelectIngredient = styled(Select)({
-  width: '195px',
+export const StyledSelectIngredient = styled(Select)(({theme})=>({
+  width: '100%',
   height: '30px',
   marginRight: '15px',
   display: 'flex',
   color: 'black',
-});
 
+}));
 export const StyledSelectWegth = styled(Select)({
   width: '85px',
   height: '30px',
@@ -354,7 +390,7 @@ export const StyledSelectWegth = styled(Select)({
 });
 
 export const StyledTextField = styled(TextField)(({ theme }) => ({
-  width: '345px',
+  width: '100%',
 
   alignContent: 'end',
   [theme.breakpoints.down(`${media.desktop}`)]: {
@@ -394,12 +430,18 @@ export const IngrediantsWeigth = styled(Select)({
     border: 'none',
   },
 });
-export const IngredientBtn = styled(Button)({
+
+
+export const StyledIngredientBtn = styled(Button)(({theme})=>({
   padding: '0',
   display: 'flex',
-  minWidth: '20px',
+  width: '20px',
   height: '20px',
-});
+  [theme.breakpoints.up(`${media.tablet}`)]:
+  {
+   width: '40px',
+ }
+}));
 
 export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {

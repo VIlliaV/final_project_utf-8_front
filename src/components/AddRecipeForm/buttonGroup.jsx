@@ -10,6 +10,7 @@ export default function BasicButtonGroup() {
   const [ingredients, setIngredients] = useState([{ id: nanoid(), name: '' }]);
 
   const handleIncrement = e => {
+   
     setCounter(counter + 1);
     setIngredients(prevState => {
       return [...prevState, { id: nanoid(), name: '' }];

@@ -1,46 +1,17 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-// import TextField from '@mui/material/TextField';
 import {
-  StyledAutoComplete,
   StyledSelectIngredient,
-  StyledSelectWegth,
-  StyledSelect,
   StyledMenuItem,
-  StyledLabelCategory,
+  StyledInputIngredients,
   StyledInputIngredient,
-  StyledOutlinedInput,
-  StyledTextFieldAutoComplete,
-} from './AddRecipeForm.styled';
-import { InputAdornment, Select, MenuItem, TextField } from '@mui/material';
-import OutlinedInput from '@mui/material/OutlinedInput';
-
-import {
-  IngredientBtn,
-  BootstrapInput,
+  StyledIngredientBtn,
   StyledIngredientList,
   StyledFormControl,
-  StyledNativeSelect,
+
 } from './AddRecipeForm.styled';
 
-const weigthName = [
-  {
-    value: 'tbs',
-    label: 'tbs',
-  },
-  {
-    value: 'tsp',
-    label: 'tsp',
-  },
-  {
-    value: 'kg',
-    label: 'kg',
-  },
-  {
-    value: 'g',
-    label: 'g',
-  },
-];
+
 const ingredients = [
   {
     value: 'Chicken',
@@ -70,22 +41,22 @@ const ingredients = [
 
 export default function IngredientsList() {
   const [name, setName] = useState('');
-  const [wegth, setWegth] = useState('');
+  // const [wegth, setWegth] = useState('');
 
   const handleChangeName = event => {
     setName(event.target.value);
     console.log(name);
   };
 
-  const handleChangeWegth = event => {
-    setWegth(event.target.value);
-  };
+  // const handleChangeWegth = event => {
+  //   setWegth(event.target.value);
+  // };
 
   return (
     <li key={nanoid()}>
       <StyledIngredientList>
         <StyledFormControl size="small">
-          <StyledLabelCategory htmlFor="category">
+          <StyledInputIngredients htmlFor="category">
             <StyledSelectIngredient
               labelid="nameIngredient"
               id="nameIngredientId"
@@ -100,8 +71,8 @@ export default function IngredientsList() {
             </StyledSelectIngredient>
 
             <StyledInputIngredient type="text" placeholder="count tbs,tps,kg,g" />
-          </StyledLabelCategory>
-          <IngredientBtn>
+          </StyledInputIngredients>
+          <StyledIngredientBtn>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
               <path
                 d="M15.625 4.875L4.375 16.125"
@@ -118,7 +89,7 @@ export default function IngredientsList() {
                 strokeLinejoin="round"
               />
             </svg>
-          </IngredientBtn>
+          </StyledIngredientBtn>
         </StyledFormControl>
       </StyledIngredientList>
     </li>
