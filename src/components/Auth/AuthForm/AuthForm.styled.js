@@ -24,10 +24,11 @@ import { CgLock } from 'react-icons/cg';
 export const NameIcon = styled(FiUser)`
   width: 18px;
   height: 18px;
-  color: #fafafa;
+  color: #fff;
   position: absolute;
   top: 13.5px;
   left: 14px;
+  opacity: 0.7;
 
   color: ${prop => {
     if (prop.$haserror) {
@@ -49,10 +50,11 @@ export const NameIcon = styled(FiUser)`
 export const EmailIcon = styled(HiOutlineMail)`
   width: 18px;
   height: 18px;
-  color: #fafafa;
+  color: #fff;
   position: absolute;
   top: 13.5px;
   left: 14px;
+  opacity: 0.7;
 
   color: ${prop => {
     if (prop.$haserror) {
@@ -74,10 +76,11 @@ export const EmailIcon = styled(HiOutlineMail)`
 export const PasswordIcon = styled(CgLock)`
   width: 18px;
   height: 18px;
-  color: #fafafa;
+  color: #fff;
   position: absolute;
   top: 13.5px;
   left: 14px;
+  opacity: 0.7;
 
   color: ${prop => {
     if (prop.$haserror) {
@@ -192,17 +195,34 @@ export const Input = styled.input`
     font-size: 18px;
     letter-spacing: -0.36px;
   }
+
+  &:hover {
+    border-color: #fafafa;
+    &::placeholder {
+      color: #fafafa;
+      opacity: 1;
+    }
+  }
+
+  &::placeholder {
+    color: #fff;
+    opacity: 0.5;
+  }
+  
 `;
+
 
 export const NameInput = styled(Input)`
   border-color: ${prop => {
-  if (prop.$haserror) {
-      return "red"
-  } else if (prop.$correct) {
-    return "green"
+    if (prop.$haserror) {
+      return 'red';
+    } else if (prop.$correct) {
+      return 'green';
     }
   }};
 `;
+
+
 export const EmailInput = styled(Input)`
   border-color: ${prop => {
     if (prop.$haserror) {
@@ -212,6 +232,7 @@ export const EmailInput = styled(Input)`
     }
   }};
 `;
+
 
 export const PasswordInput = styled(Input)`
   border-color: ${prop => {
@@ -256,6 +277,7 @@ export const Link = styled.a`
   margin-top: 18px;
   color: #fafafa;
   cursor: pointer;
+  text-decoration: underline;
 
   font-size: 14px;
   font-style: normal;
@@ -268,18 +290,40 @@ export const Link = styled.a`
 `;
 
 
-export const InputContainer = styled.div`
+ const InputContainer = styled.div`
   margin-bottom: 12px;
   min-width: 100%;
   position: relative;
+  color: #fff;
 
   @media ${media.tablet} {
     margin-bottom: 24px;
   }
 `;
 
+export const NameInputContainer = styled(InputContainer)`
+  &:hover ${NameIcon} {
+    color: #fafafa;
+    opacity: 1;
+  }
+`;
+
+export const EmailInputContainer = styled(InputContainer)`
+  &:hover ${EmailIcon} {
+    color: #fafafa;
+    opacity: 1;
+  }
+`;
+
+export const PasswordInputContainer = styled(InputContainer)`
+  &:hover ${PasswordIcon} {
+    color: #fafafa;
+    opacity: 1;
+  }
+`;
+
 export const InputErrorContainer = styled.div`
   margin-top: 8px;
-  color: red;
+  color: red; 
 `;
 

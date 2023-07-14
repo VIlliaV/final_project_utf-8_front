@@ -13,7 +13,6 @@ import {
   SubmitButton,
   Link,
   FormContainer,
-  InputContainer,
   InputErrorContainer,
   NameInput,
   EmailInput,
@@ -22,6 +21,9 @@ import {
   EmailIcon,
   PasswordIcon,
   SuccessStatusIcon,
+  NameInputContainer,
+EmailInputContainer,
+PasswordInputContainer,
 } from './AuthForm.styled';
 import { loginUser, signupUser } from 'redux/auth/authOperations';
 import inputIconSuccess from 'img/inputIconSuccess.svg';
@@ -106,7 +108,7 @@ export const AuthForm = () => {
         <Header>{isRegisterPage ? 'Registration' : 'Sign In'}</Header>
         <Form onSubmit={formik.handleSubmit}>
           {isRegisterPage && (
-            <InputContainer>
+            <NameInputContainer>
               <NameIcon
                 $haserror={formik.touched.name && formik.errors.name}
                 $correct={formik.touched.name && !formik.errors.name && formik.values.name !== ''}
@@ -128,10 +130,10 @@ export const AuthForm = () => {
                 </>
               ) : null}
               {formik.touched.name && !formik.errors.name && <SuccessStatusIcon src={inputIconSuccess} />}
-            </InputContainer>
+            </NameInputContainer>
           )}
 
-          <InputContainer>
+          <EmailInputContainer>
             <EmailIcon
               $haserror={formik.touched.email && formik.errors.email}
               $correct={formik.touched.email && !formik.errors.email && formik.values.email !== ''}
@@ -153,8 +155,8 @@ export const AuthForm = () => {
               </>
             ) : null}
             {formik.touched.email && !formik.errors.email && <SuccessStatusIcon src={inputIconSuccess} />}
-          </InputContainer>
-          <InputContainer>
+          </EmailInputContainer>
+          <PasswordInputContainer>
             <PasswordIcon
               $haserror={formik.touched.password && formik.errors.password}
               $correct={formik.touched.password && !formik.errors.password && formik.values.password !== ''}
@@ -176,7 +178,7 @@ export const AuthForm = () => {
               </>
             ) : null}
             {formik.touched.password && !formik.errors.password && <SuccessStatusIcon src={inputIconSuccess} />}
-          </InputContainer>
+          </PasswordInputContainer>
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
         </Form>
       </Container>
