@@ -15,27 +15,27 @@ const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 export default function IngredientsList() {
   const [ingredients, setIngredients] = useState([]);
   const [inputValue, setInputValue] = useState('Ingredients');
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
   // const [name, setName] = useState('');
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
 
-  const getIngredients = async () => {
-    try {
-      const config = {
-        method: 'GET',
-        url: BASE_URL + '/ingredients/list',
-      };
-
-      const res = await axios(config);
-      return res.data;
-    } catch (error) {
-      throw handleError(error);
-    }
-  };
-
   useEffect(() => {
+    const getIngredients = async () => {
+      try {
+        const config = {
+          method: 'GET',
+          url: BASE_URL + '/ingredients/list',
+        };
+
+        const res = await axios(config);
+        return res.data;
+      } catch (error) {
+        throw handleError(error);
+      }
+    };
+
     getIngredients()
       .then(res => {
         setIngredients(res);
@@ -87,7 +87,7 @@ export default function IngredientsList() {
         <StyledFormControl size="small">
           <StyledInputIngredients htmlFor="category">
             <StyledAutoComplete
-              disableClearable
+              // disableClearable
               id="asynchronous-demo"
               open={open}
               onOpen={() => {
@@ -96,10 +96,10 @@ export default function IngredientsList() {
               onClose={() => {
                 setOpen(false);
               }}
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
+              // value={value}
+              // onChange={(event, newValue) => {
+              //   setValue(newValue);
+              // }}
               inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
                 setInputValue(newInputValue);
@@ -113,6 +113,7 @@ export default function IngredientsList() {
                   {...params}
                   InputProps={{
                     ...params.InputProps,
+                    type: 'search',
                     endAdornment: (
                       <React.Fragment>
                         {loading ? <CircularProgress color="inherit" size={20} /> : null}
