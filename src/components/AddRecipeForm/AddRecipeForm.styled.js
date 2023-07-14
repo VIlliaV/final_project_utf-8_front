@@ -392,10 +392,6 @@ export const StyledInputIngredients = style.label`
 }
 @media ${media.desktop} {
    justify-content: space-between;
-       &:hover: {
-          border-color: rgba(170, 249, 190, 0.742),
-          box-shadow: 3px 3px 6px rgba(170, 249, 190, 0.742),
-        },
     }
 `;
 

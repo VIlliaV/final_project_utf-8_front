@@ -66,7 +66,7 @@ export default function IngredientsList() {
     return () => {
       active = false;
     };
-  }, [loading]);
+  }, [ingredients, loading]);
 
   // useEffect(() => {
   //   if (!open) {
@@ -84,7 +84,7 @@ export default function IngredientsList() {
   return (
     <li key={nanoid()}>
       <StyledIngredientList>
-        <StyledFormControl size="small">
+        <StyledFormControl>
           <StyledInputIngredients htmlFor="category">
             <StyledAutoComplete
               // disableClearable
