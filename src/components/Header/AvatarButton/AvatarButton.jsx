@@ -27,7 +27,7 @@ import {
   AddNewImgButton,
 } from './AvatarButton.styled';
 import { logoutUser } from 'redux/auth/authOperations';
-import avatarIcon from './img/userIcon.svg';
+// import avatarIcon from './img/userIcon.svg';
 import edit from './img/edit.svg';
 import arrow from './img/arrow-right.svg';
 import close from '../BurgerMenu/img/x.svg';
