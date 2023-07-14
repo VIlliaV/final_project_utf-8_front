@@ -38,8 +38,8 @@ const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
-//   const [userName, setUserName] = useState('');
-//   const [userImage, setUserImage] = useState('');
+//   const [newUserName, setNewUserName] = useState('');
+//   const [newUserAvatar, setNewUserAvatar] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
   const { userAvatar, userName } = useAuth();
 
@@ -85,7 +85,7 @@ const AvatarButtonComponent = () => {
   };
 
   const handleNameChange = event => {
-    // setUserName(event.target.value);
+    // setNewUserName(event.target.value);
   };
 
   const saveChanges = () => {
