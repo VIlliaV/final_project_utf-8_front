@@ -111,7 +111,8 @@ export const ButtonRadius = styled.button`
   border: 0;
   width: 34px;
   border-radius: 50px;
-
+  cursor: pointer;
+  
   @media ${media.tablet} {
     width: 44px;
   }

@@ -33,15 +33,17 @@ import arrow from './img/arrow-right.svg';
 import close from '../BurgerMenu/img/x.svg';
 import plus from './img/plus.svg';
 import { useAuth } from 'utils/hooks/useAuth';
-
+import avatarIMG from './img/Ellipse 3.png'
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
+
   //   const [newUserName, setNewUserName] = useState('');
   //   const [newUserAvatar, setNewUserAvatar] = useState('');
+
   const [selectedImage, setSelectedImage] = useState(null);
-  const { userAvatar, userName } = useAuth();
+  const { userName } = useAuth();
 
   const dispatch = useDispatch();
   const popupRef = useRef(null);
@@ -85,7 +87,7 @@ const AvatarButtonComponent = () => {
   };
 
   const handleNameChange = event => {
-    // setNewUserName(event.target.value);
+    // setUserName(event.target.value);
   };
 
   const saveChanges = () => {
@@ -123,7 +125,9 @@ const AvatarButtonComponent = () => {
   return (
     <AvatarButton>
       <ButtonRadius onClick={() => setShowPopup(!showPopup)}>
+
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
+
       </ButtonRadius>
       {showPopup && (
         <Popup ref={popupRef}>
@@ -183,7 +187,7 @@ const AvatarButtonComponent = () => {
           <EditConfirmButton onClick={saveChanges}>Save changes</EditConfirmButton>
         </PopupEdit>
       )}
-      <AvatarText>{userName}</AvatarText>
+      <AvatarText>Olena</AvatarText>
     </AvatarButton>
   );
 };
