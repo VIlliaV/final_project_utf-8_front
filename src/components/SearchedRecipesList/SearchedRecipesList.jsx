@@ -8,9 +8,6 @@ import noResultsImg from '../../img/no-results-img.webp';
 import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
 import { store } from 'redux/store';
 
-// import ingredients from '../../back/ingredients.json';
-// import recepies from '../../back/recipes.json';
-
 const token = store.getState().auth.token;
 let value;
 
@@ -29,14 +26,11 @@ const SearchedRecipesList = () => {
       return;
     }
 
-    // const { _id } = ingredients.find(item => item.name.toUpperCase() === value.toUpperCase().trim());
-    // const result = recepies.filter(item => item.ingredients.find(item => item.id === _id.$oid));
     if (currentParams === 'query') {
       fetchData('search', value).then(data => setRecipeList(data));
       return;
     }
     fetchData('ingredients', value).then(data => setRecipeList(data));
-    // .then(setIsLoading(false));
   }, [searchParams]);
 
   const fetchData = async (query, value) => {
@@ -50,13 +44,6 @@ const SearchedRecipesList = () => {
       setIsLoading(false);
     }
   };
-
-  // const NoResult = !isLoading ? (
-  //   <NoResultWrapper>
-  //     <img src={noResultsImg} alt="no results img" />
-  //     {value ? <p>Try looking for something else...</p> : <p>Find recipes by title or ingredient</p>}
-  //   </NoResultWrapper>
-  // ) : null;
 
   return (
     <>

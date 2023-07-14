@@ -1,6 +1,5 @@
 import { keyframes } from 'styled-components';
 import styled from 'styled-components';
-// import styled from '@emotion/styled';
 
 const jump = keyframes`
 0% {
@@ -117,8 +116,6 @@ export const Cooking = styled.div`
   top: 0;
   width: 50vh;
   height: 50vh;
-  /* width: 200px;
-  height: 200px; */
   overflow: hidden;
 
   .bubble {
@@ -126,14 +123,12 @@ export const Cooking = styled.div`
     border-radius: 100%;
     box-shadow: 0 0 0.25vh lighten(#333, 10%);
     opacity: 0;
-    /* bottom: 20px; */
   }
   > :nth-child(1) {
     margin-top: 2vh;
     left: 58%;
     width: 2.5vh;
     height: 2.5vh;
-    /* background-color: lighten(#333, 7%); */
     background-color: #333;
     filter: brightness(7%);
     animation: ${bubble} 2s cubic-bezier(0.53, 0.16, 0.39, 0.96) infinite;
@@ -183,7 +178,6 @@ export const Cooking = styled.div`
     height: 50%;
     bottom: 30%;
     right: 30px;
-    /* right: 100px; */
     background-color: transparent;
     transform-origin: 15% 60%;
     animation: ${flip} 2.1s ease-in-out infinite;
