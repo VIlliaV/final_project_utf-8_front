@@ -1,23 +1,31 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useCallback, useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+// import * as Yup from 'yup';
+
+
 
 import {
   Container,
   Header,
   Form,
-  Input,
   SubmitButton,
   Link,
   FormContainer,
   InputContainer,
   InputErrorContainer,
+  NameInput,
+  EmailInput,
+  PasswordInput,
+  NameIcon,
+  EmailIcon,
+  PasswordIcon,
+  SuccessStatusIcon,
 } from './AuthForm.styled';
-import {
-  loginUser, signupUser,
-  // logoutUser
-} from 'redux/auth/authOperations';
+import { loginUser, signupUser } from 'redux/auth/authOperations';
+import inputIconSuccess from 'img/inputIconSuccess.svg';
+import inputIconError from 'img/inputIconError.svg';
 
 const registerInitialValues = {
   name: '',
@@ -44,49 +52,13 @@ export const AuthForm = () => {
     }
   }, [pathname]);
 
-  
-  
-
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
   }, [navigate, isRegisterPage]);
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   const form = e.currentTarget;
-  //   if (pathname === '/signin') {
-  //     dispatch(
-  //       loginUser({
-  //         email: form.elements.email.value,
-  //         password: form.elements.password.value,
-  //       })
-  //     );
-  //     return;
-  //   }
-  //   dispatch(
-  //     signupUser({
-  //       name: form.elements.name.value,
-  //       email: form.elements.email.value,
-  //       password: form.elements.password.value,
-  //     })
-  //   );
-  // };
-
-  // const handleLogout = e => {
-  //   e.preventDefault();
-  //   dispatch(logoutUser());
-  // };
-
-  // let initialValues;
-
-  // pathname === '/register' ? (initialValues = registerInitialValues) : (initialValues = signInInitialValues);
-
-  
-  const onSubmit = ({name, email, password}) => {
-    // console.log('Formik values', values);
-    // const form = e.currentTarget;
+  const onSubmit = ({ name, email, password }) => {
     if (!isRegisterPage) {
-      dispatch(loginUser({ email, password}));
+      dispatch(loginUser({ email, password }));
       return;
     }
     dispatch(signupUser({ name, email, password }));
@@ -95,7 +67,9 @@ export const AuthForm = () => {
   const validate = values => {
     const errors = {};
 
-    if (isRegisterPage) {if (!values.name) errors.name = 'Required'};
+    if (isRegisterPage) {
+      if (!values.name) errors.name = 'Required';
+    }
 
     if (!values.email) {
       errors.email = 'Required';
@@ -112,6 +86,13 @@ export const AuthForm = () => {
     return errors;
   };
 
+  // const validationSchema = Yup.object({
+  //   name: Yup.string().required('Reruired'),
+  //   email: Yup.string()
+  //     .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/, 'Invalid email address')
+  //     .required('Reruired'),
+  //   password: Yup.string().min(6, 'The password should be at least 6 symbols').required('Reruired'),
+  // });
 
   const formik = useFormik({
     initialValues,
@@ -119,16 +100,20 @@ export const AuthForm = () => {
     validate,
   });
 
-
   return (
-    <FormContainer isRegisterPage={isRegisterPage}>
+    <FormContainer $isregisterpage={isRegisterPage.toString()}>
       <Container>
         <Header>{isRegisterPage ? 'Registration' : 'Sign In'}</Header>
         <Form onSubmit={formik.handleSubmit}>
           {isRegisterPage && (
             <InputContainer>
-              {' '}
-              <Input
+              <NameIcon
+                $haserror={formik.touched.name && formik.errors.name}
+                $correct={formik.touched.name && !formik.errors.name && formik.values.name !== ''}
+              />
+              <NameInput
+                $haserror={formik.touched.name && formik.errors.name}
+                $correct={formik.touched.name && !formik.errors.name && formik.values.name !== ''}
                 type="text"
                 name="name"
                 placeholder="Name"
@@ -137,13 +122,23 @@ export const AuthForm = () => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.name && formik.errors.name ? (
-                <InputErrorContainer>{formik.errors.name}</InputErrorContainer>
+                <>
+                  <SuccessStatusIcon src={inputIconError} />
+                  <InputErrorContainer>{formik.errors.name}</InputErrorContainer>
+                </>
               ) : null}
+              {formik.touched.name && !formik.errors.name && <SuccessStatusIcon src={inputIconSuccess} />}
             </InputContainer>
           )}
 
           <InputContainer>
-            <Input
+            <EmailIcon
+              $haserror={formik.touched.email && formik.errors.email}
+              $correct={formik.touched.email && !formik.errors.email && formik.values.email !== ''}
+            />
+            <EmailInput
+              $haserror={formik.touched.email && formik.errors.email}
+              $correct={formik.touched.email && !formik.errors.email && formik.values.email !== ''}
               type="email"
               name="email"
               placeholder="Email"
@@ -152,11 +147,21 @@ export const AuthForm = () => {
               onBlur={formik.handleBlur}
             />
             {formik.touched.email && formik.errors.email ? (
-              <InputErrorContainer>{formik.errors.email}</InputErrorContainer>
+              <>
+                <SuccessStatusIcon src={inputIconError} />
+                <InputErrorContainer>{formik.errors.email}</InputErrorContainer>
+              </>
             ) : null}
+            {formik.touched.email && !formik.errors.email && <SuccessStatusIcon src={inputIconSuccess} />}
           </InputContainer>
           <InputContainer>
-            <Input
+            <PasswordIcon
+              $haserror={formik.touched.password && formik.errors.password}
+              $correct={formik.touched.password && !formik.errors.password && formik.values.password !== ''}
+            />
+            <PasswordInput
+              $haserror={formik.touched.password && formik.errors.password}
+              $correct={formik.touched.password && !formik.errors.password && formik.values.password !== ''}
               type="password"
               name="password"
               placeholder="Password"
@@ -165,14 +170,15 @@ export const AuthForm = () => {
               onBlur={formik.handleBlur}
             />
             {formik.touched.password && formik.errors.password ? (
-              <InputErrorContainer>{formik.errors.password}</InputErrorContainer>
+              <>
+                <SuccessStatusIcon src={inputIconError} />
+                <InputErrorContainer>{formik.errors.password}</InputErrorContainer>
+              </>
             ) : null}
+            {formik.touched.password && !formik.errors.password && <SuccessStatusIcon src={inputIconSuccess} />}
           </InputContainer>
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
         </Form>
-        {/* <button style={{ marginTop: 30 }} type="button" onClick={handleLogout}>
-          Logout
-        </button> */}
       </Container>
       <Link onClick={handleNavigate}>{isRegisterPage ? 'Sign In' : 'Registration'}</Link>
     </FormContainer>

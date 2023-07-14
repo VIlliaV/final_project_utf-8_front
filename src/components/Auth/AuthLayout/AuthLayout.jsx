@@ -7,7 +7,7 @@ export const AuthLayout = () => {
 
 
     return (
-      <Container path={pathname}>
+      <Container $path={pathname}>
         <Image />
         <AuthForm />
       </Container>
