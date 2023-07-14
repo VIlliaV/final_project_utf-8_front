@@ -23,21 +23,21 @@ export default function CookCategoryGroup() {
     addCookTime();
   }, []);
 
-  const getCategories = async () => {
-    try {
-      const config = {
-        method: 'GET',
-        url: BASE_URL + '/recipes/category-list',
-      };
-
-      const res = await axios(config);
-      return res.data;
-    } catch (error) {
-      throw handleError(error);
-    }
-  };
-
   useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const config = {
+          method: 'GET',
+          url: BASE_URL + '/recipes/category-list',
+        };
+
+        const res = await axios(config);
+        return res.data;
+      } catch (error) {
+        throw handleError(error);
+      }
+    };
+
     getCategories()
       .then(res => {
         setCategories(res);
