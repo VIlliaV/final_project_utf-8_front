@@ -3,23 +3,16 @@ import { nanoid } from 'nanoid';
 import { CircularProgress, TextField } from '@mui/material';
 import {
   StyledAutoComplete,
-  StyledInputIngredients,
   StyledInputIngredient,
   StyledIngredientBtn,
   StyledIngredientList,
-  StyledFormControl,
 } from './AddRecipeForm.styled';
 import axios from 'axios';
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
 export default function IngredientsList() {
   const [ingredients, setIngredients] = useState([]);
-  // const [inputValue, setInputValue] = useState('Ingredients');
-  // const [value, setValue] = useState('');
-  // const [name, setName] = useState('');
-  const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState([]);
-  const loading = open && options.length === 0;
+  const loading = ingredients.length === 0;
 
   useEffect(() => {
     const getIngredients = async () => {
@@ -50,57 +43,20 @@ export default function IngredientsList() {
     alert(`${error.message}`);
   }
 
-  React.useEffect(() => {
-    let active = true;
-
-    if (!loading) {
-      return undefined;
-    }
-
-    (async () => {
-      // await sleep(1e3); // For demo purposes.
-
-      if (active) {
-        ingredients.map(el => setOptions(prevState => [...prevState, el.name]));
-      }
-    })();
-
-    return () => {
-      active = false;
-    };
-  }, [ingredients, loading]);
-
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
-
-  // const handleChangeName = event => {
-  //   setName(event.target.textContent);
-  //   console.log(name);
-  // };
-
   return (
     <li key={nanoid()}>
       <StyledIngredientList>
         <StyledAutoComplete
           disablePortal
           id="combo-box-demo"
-          // open={open}
-          // onOpen={() => {
-          //   setOpen(true);
-          // }}
-          // onClose={() => {
-          //   setOpen(false);
-          // }}
           isOptionEqualToValue={(option, value) => option === value}
           getOptionLabel={option => option}
           options={ingredients.map(el => el.name)}
+          loading={loading}
           renderInput={params => (
             <TextField
               {...params}
-              label="Asynchronous"
+              label="Ingredients"
               InputProps={{
                 ...params.InputProps,
                 endAdornment: (
