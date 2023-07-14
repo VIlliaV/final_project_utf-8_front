@@ -1,12 +1,13 @@
 import { styled } from 'styled-components';
 import { media } from 'utils/media';
+import defaultIcon from './img/userSvgDefault.svg';
 
 export const AvatarButton = styled.div`
-    position: relative;
-    width: 100px;
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
+  position: relative;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
 `;
 
 export const Popup = styled.div`
@@ -45,7 +46,7 @@ export const PopupConfirm = styled.div`
   background-color: #fff;
   padding: 10px;
   border-radius: 30px;
-  box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
 
   @media ${media.tablet} {
     width: 480px;
@@ -67,11 +68,21 @@ export const PopupEdit = styled.div`
   top: 50px;
   right: 0;
   width: 330px;
-  height: 180px;
+  height: 330px;
   background-color: #fff;
   padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
+
+  @media ${media.tablet} {
+    width: 480px;
+    height: 400px;
+  }
+
+  @media ${media.desktop} {
+    width: 500px;
+    height: 425px;
+  }
 `;
 
 export const LogoutButton = styled.button`
@@ -80,7 +91,7 @@ export const LogoutButton = styled.button`
   color: #fafafa;
   border-radius: 24px 44px;
   width: 125px;
-    height: 45px;
+  height: 45px;
   border: none;
   display: flex;
   align-items: center;
@@ -93,45 +104,36 @@ export const LogoutButton = styled.button`
   img {
     margin-left: 5px;
   }
-
 `;
 
 export const ButtonRadius = styled.button`
-    border: 0;
-    width: 34px;
-    border-radius: 50px;
+  border: 0;
+  width: 34px;
+  border-radius: 50px;
 
-	@media ${media.tablet} {
-        width: 44px;
-    }
+  @media ${media.tablet} {
+    width: 44px;
+  }
 `;
 
 export const EditDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-;
   width: 125px;
   margin-bottom: 25px;
   @media ${media.tablet} {
-        width: 140px;
-    }
+    width: 140px;
+  }
 `;
 
 export const CloseButton = styled.div`
-    position: absolute;
-	width: 20px;
-	height: 20px;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-
-	@media ${media.tablet} {
-        width: 24px;
-		height: 24px;
-		top: 20px;
-    right: 20px;
-    }
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
 `;
 
 export const ButtonIconEdit = styled.button`
@@ -157,30 +159,30 @@ export const AvatarText = styled.p`
 `;
 
 export const ButtonYes = styled.button`
-    width: 140px;
-    height: 50px;
-    background-color: #8baa36;
-    border: 0;
-    border-radius: 6px;
-    margin-right: 10px;
+  width: 140px;
+  height: 50px;
+  background-color: #8baa36;
+  border: 0;
+  border-radius: 6px;
+  margin-right: 10px;
 
-	@media ${media.tablet} {
-        width: 195px;
-		height: 60px;
-    }
+  @media ${media.tablet} {
+    width: 195px;
+    height: 60px;
+  }
 `;
 
 export const ButtonNo = styled.button`
-    width: 140px;
-    height: 50px;
-    background-color: #d9d9d9;
-    border: 0;
-    border-radius: 6px;
+  width: 140px;
+  height: 50px;
+  background-color: #d9d9d9;
+  border: 0;
+  border-radius: 6px;
 
-	@media ${media.tablet} {
-        width: 195px;
-		height: 60px;
-    }
+  @media ${media.tablet} {
+    width: 195px;
+    height: 60px;
+  }
 `;
 
 export const ConfirmTitle = styled.p`
@@ -193,15 +195,137 @@ export const ConfirmTitle = styled.p`
   margin-bottom: 25px;
 
   @media ${media.tablet} {
-	font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px;
-letter-spacing: -0.36px;
-    }
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.36px;
+  }
 `;
 
 export const ButtonDiv = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+export const EditConfirmButton = styled.button`
+  width: 285px;
+  height: 50px;
+  background-color: #8baa36;
+  border: 0;
+  border-radius: 6px;
+  color: white;
+
+  @media ${media.tablet} {
+    width: 400px;
+    height: 60px;
+  }
+`;
+
+export const AvatarSvg = styled.img`
+  position: absolute;
+  left: 15px;
+  top: 13px;
+`;
+
+export const EditButton = styled.button`
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border: 0;
+  background-color: transparent;
+  width: 17px;
+  height: 17px;
+`;
+
+export const NameInputDiv = styled.div`
+  position: relative;
+  width: 285px;
+  height: 50px;
+  margin-bottom: 25px;
+  @media ${media.tablet} {
+    width: 400px;
+  }
+`;
+
+export const NameInput = styled.input`
+  padding: 0 0 0 42px;
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid var(--back_theme_2);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.28px;
+  @media ${media.tablet} {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.28px;
+  }
+  @media ${media.desktop} {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.36px;
+  }
+`;
+
+export const AvatarDiv = styled.div`
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media ${media.tablet} {
+    width: 105px;
+    height: 105px;
+  }
+`;
+
+export const AvatarDefaultImg = styled.button`
+  width: 90px;
+  height: 90px;
+  background-color: #d9d9d9;
+  border: 0;
+  border-radius: 100px;
+
+  @media ${media.tablet} {
+    width: 105px;
+    height: 105px;
+  }
+`;
+
+export const ImgPlusButton = styled.button`
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background-color: #8baa36;
+  border: 0;
+  border-radius: 15px;
+`;
+
+export const AddNewImgButton = styled.button`
+  cursor: pointer;
+  background-image: url(${defaultIcon});
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  border-radius: 100px;
+  width: 90px;
+  height: 90px;
+
+  @media ${media.tablet} {
+    width: 105px;
+    height: 105px;
+  }
+`;
+
+export const ImageButtonEdit = styled.button;

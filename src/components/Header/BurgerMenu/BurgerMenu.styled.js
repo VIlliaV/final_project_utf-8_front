@@ -37,6 +37,11 @@ export const CloseButton = styled.div`
     right: 10px;
     font-size: 18px;
     cursor: pointer;
+
+	@media ${media.tablet} {
+		top: 32px;
+    right: 32px;
+    }
 `;
 
 export const StyledNavLink = styled(NavLink)`
@@ -77,4 +82,8 @@ export const Switcher = styled.div`
     left: 10px;
     font-size: 18px;
     cursor: pointer;
+	@media ${media.tablet} {
+		bottom: 32px;
+    left: 32px;
+    }
 `;
