@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { nanoid } from 'nanoid';
 import { StyledSelect, StyledMenuItem, StyledLabelCategory } from './AddRecipeForm.styled';
 import axios from 'axios';
@@ -7,11 +8,11 @@ const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 export default function CookCategoryGroup() {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState('');
-  const [cook_time, setCook_time] = useState([]);
+  const [cookTime, setCookTime] = useState('');
+  const [cooking_time, setCook_time] = useState([]);
 
   const addCookTime = () => {
     for (let i = 5; i <= 180; i = i + 5) {
-      console.log(i);
       setCook_time(prevState => {
         return [...prevState, i];
       });
@@ -28,10 +29,11 @@ export default function CookCategoryGroup() {
         method: 'GET',
         url: BASE_URL + '/recipes/category-list',
       };
+
       const res = await axios(config);
       return res.data;
     } catch (error) {
-      console.log(error.message);
+      throw handleError(error);
     }
   };
 
@@ -54,9 +56,9 @@ export default function CookCategoryGroup() {
     setCategory(event.target.value);
   };
   const handleChangeCookTime = event => {
-    setCook_time(event.target.value);
+    setCookTime(event.target.value);
   };
-  console.log(cook_time);
+
   return (
     <>
       <StyledLabelCategory htmlFor="category">
@@ -71,8 +73,8 @@ export default function CookCategoryGroup() {
       </StyledLabelCategory>
       <StyledLabelCategory htmlFor="cooking_time">
         Cooking time
-        <StyledSelect labelId="cooking_time" id="cooking-timeId" value={cook_time} onChange={handleChangeCookTime}>
-          {cook_time.map(el => (
+        <StyledSelect labelId="cooking_time" id="cooking-timeId" value={cookTime} onChange={handleChangeCookTime}>
+          {cooking_time.map(el => (
             <StyledMenuItem key={el} value={el}>
               {el}
             </StyledMenuItem>

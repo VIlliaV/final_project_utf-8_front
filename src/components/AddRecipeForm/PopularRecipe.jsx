@@ -1,51 +1,69 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { StyledH3, StyledPopularRecipe, StyledList } from './AddRecipeForm.styled';
-import Banana_pancakes from '../../img/Banana_pancakes.jpg';
-import Backed_salmon from '../../img/Baked_salmon.jpg';
-import Sugar_pie from '../../img/Sugar_pie.jpg';
-import Squash_linguine from '../../img/Squash_linguine.jpg';
+import axios from 'axios';
+const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
 export default function Popular() {
+  const [popular, setPopular] = useState([]);
+  let i = 0;
+  const getPopular = async () => {
+    try {
+      const config = {
+        method: 'GET',
+        url: BASE_URL + '/popular-recipe',
+      };
+
+      const res = await axios(config);
+      return res.data;
+    } catch (error) {
+      throw handleError(error);
+    }
+  };
+  useEffect(() => {
+    getPopular()
+      .then(res => {
+        res.map(el => {
+          if (i === 4) {
+            return i;
+          }
+          i++;
+          return setPopular(prevState => [...prevState, el]);
+        });
+      })
+      // getPopular()
+      //   .then(res => {
+      //     setPopular(res);
+      //   })
+      .catch(error => {
+        handleError(error);
+      });
+  }, []);
+
+  function handleError(error) {
+    console.error(error);
+    alert(`${error.message}`);
+  }
+
+  console.log(popular);
+  // popular.map(el => console.log(el.preview, el.title, el.description));
+
   return (
     <StyledPopularRecipe>
       <StyledH3>Popular recipe</StyledH3>
       <ul>
-        <StyledList>
-          {/* <a href="#" alt="popular_recipe"> */}
-          <img src={Banana_pancakes} alt="banana pincakes" />
-          <div>
-            <h4>Banana Pincakes</h4>
-            <p>In a bowl, mash the banana with a fork until it resembles a thick purée...</p>
-          </div>
-          {/* </a> */}
-        </StyledList>
-        <StyledList>
-          {/* <a href="#" alt="popular_recipe"> */}
-          <img src={Sugar_pie} alt="squash" />
-          <div>
-            <h4>Squash linguine</h4>
-            <p>Pasta is a type of food typically made from an unleavened dough of wheat flour...</p>
-          </div>
-          {/* </a> */}
-        </StyledList>
-        <StyledList>
-          {/* <a href="#" alt="popular_recipe"> */}
-          <img src={Backed_salmon} alt="Baked" />
-          <div>
-            <h4>Baked salmon</h4>
-            <p>Cook in boiling salted water for 10 mins...</p>
-          </div>
-          {/* </a> */}
-        </StyledList>
-        <StyledList>
-          {/* <a href="#" alt="popular_recipe"> */}
-          <img src={Squash_linguine} alt="Sugar" />
-          <div>
-            <h4>Sugar Pie</h4>
-            <p>Sugar pie is a dessert in northern French and Belgiancuisine, where it is called tarte...</p>
-          </div>
-          {/* </a> */}
-        </StyledList>
+        {popular.map(el => {
+          return (
+            <StyledList key={el._id} id={el._id}>
+              <a href={el.youtube} alt={el.title}>
+                <img src={el.thumb} alt={el.title} />
+                <div>
+                  <h4>{el.title}</h4>
+                  <p>{el.description}</p>
+                </div>
+              </a>
+            </StyledList>
+          );
+        })}
       </ul>
     </StyledPopularRecipe>
   );

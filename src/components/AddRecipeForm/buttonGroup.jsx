@@ -8,28 +8,37 @@ import IngredientList from '../../components/AddRecipeForm/Ingradients_list';
 export default function BasicButtonGroup() {
   const [counter, setCounter] = useState(1);
   const [ingredients, setIngredients] = useState([{ id: nanoid(), name: '' }]);
+  // const detailIngrediantList = document.querySelector("[name='detailIngrediantList']");
+
+  // const elements = ``;
 
   const handleIncrement = e => {
+    // console.log(detailIngrediantList);
+
+    // console.log(incrementBtn);
     setCounter(counter + 1);
+    // detailIngrediantList.insertAdjacentHTML('beforeend', elements);
+
     setIngredients(prevState => {
       return [...prevState, { id: nanoid(), name: '' }];
     });
   };
+
   const handleDecrement = e => {
     if (counter === 1) {
       e.currentTarget.disabled = true;
       return;
     }
+    // console.log(decrementBtn);
     setCounter(counter - 1);
   };
 
-  console.log(ingredients);
   return (
     <>
       <StyledSection2 name="label_ingredience">
         <StyledH3>Ingredients</StyledH3>
         <StyledButtonGroup color="secondary" variant="outlined" aria-label="outlined primary button group">
-          <StyledInputBtn onClick={handleDecrement}>
+          <StyledInputBtn onClick={handleDecrement} name="decrementBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
                 d="M2.50024 8H13.5003"
@@ -42,7 +51,7 @@ export default function BasicButtonGroup() {
             </svg>
           </StyledInputBtn>
           <StyledInputBtn>{counter}</StyledInputBtn>
-          <StyledInputBtn onClick={handleIncrement}>
+          <StyledInputBtn onClick={handleIncrement} name="incrementBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
                 d="M2.50024 8H13.5003"
@@ -62,7 +71,7 @@ export default function BasicButtonGroup() {
           </StyledInputBtn>
         </StyledButtonGroup>
 
-        <ul>
+        <ul name="detailIngrediantList">
           {counter > 1 ? (
             ingredients.map(() => <IngredientList id={nanoid()} key={nanoid()} />)
           ) : (

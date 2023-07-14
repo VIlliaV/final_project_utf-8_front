@@ -1,4 +1,5 @@
 import React from 'react';
+
 import MainPageTitle from '../../components/MainPageTitle/MainPageTitle';
 import { StyledBody } from './AddRecipePage.styled';
 import HeadContainer from '../../components/HeadContainer/HeadContainer';
@@ -12,6 +13,7 @@ export default function AddRecipePage() {
   return (
     <HeadContainer>
       <MainPageTitle title="Add recipe" />
+
       <StyledBody>
         <div>
           <ImageRecipe />
