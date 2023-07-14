@@ -26,21 +26,22 @@ import {
   ImgPlusButton,
   AddNewImgButton,
 } from './AvatarButton.styled';
-import { fetchCurrentUser, logoutUser } from 'redux/auth/authOperations';
-import avatar from './img/Ellipse 3.png';
+import { logoutUser } from 'redux/auth/authOperations';
 import avatarIcon from './img/userIcon.svg';
 import edit from './img/edit.svg';
 import arrow from './img/arrow-right.svg';
 import close from '../BurgerMenu/img/x.svg';
 import plus from './img/plus.svg';
+import { useAuth } from 'utils/hooks/useAuth';
 
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
-  const [name, setName] = useState('');
+//   const [newUserName, setNewUserName] = useState('');
+//   const [newUserAvatar, setNewUserAvatar] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const { userAvatar, userName } = useAuth();
 
   const dispatch = useDispatch();
   const popupRef = useRef(null);
@@ -84,25 +85,15 @@ const AvatarButtonComponent = () => {
   };
 
   const handleNameChange = event => {
-    setName(event.target.value);
+    // setNewUserName(event.target.value);
   };
-
-  const testUserFetch = event => {
-	dispatch(fetchCurrentUser())
-	.then(res => {
-	setName(res.payload.name);
-	})
-	.catch(error => {
-	  console.log(error);
-	});
-  }
 
   const saveChanges = () => {
     // Отправка картинки на сервер
     if (selectedImage) {
       const formData = new FormData();
       formData.append('image', selectedImage);
-	  formData.append('name', name);
+	  formData.append('name', userName);
 
       // Добавьте код для отправки formData на сервер
       // Используйте fetch или axios для отправки запроса
@@ -130,15 +121,10 @@ const AvatarButtonComponent = () => {
     };
   }, []);
 
-  useEffect(()=> {
-
-  })
-
-
   return (
     <AvatarButton>
       <ButtonRadius onClick={() => setShowPopup(!showPopup)}>
-        <img src={avatar} alt="Avatar" />
+        <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }}/>
       </ButtonRadius>
       {showPopup && (
         <Popup ref={popupRef}>
@@ -191,16 +177,16 @@ const AvatarButtonComponent = () => {
           </CloseButton>
           <NameInputDiv>
             <AvatarSvg src={avatarIcon} alt="" width={20} />
-            <EditButton onClick={testUserFetch}>
+            <EditButton onClick={handleClickOutside}>
               <img src={edit} alt="" width={17} height={17} />
             </EditButton>
-            <NameInput type="email" placeholder="Olena" value={name} onChange={handleNameChange} />
+            <NameInput type="email" placeholder={userName}  onChange={handleNameChange} />
           </NameInputDiv>
 
           <EditConfirmButton onClick={saveChanges}>Save changes</EditConfirmButton>
         </PopupEdit>
       )}
-      <AvatarText>Olena</AvatarText>
+      <AvatarText>{userName}</AvatarText>
     </AvatarButton>
   );
 };
