@@ -7,6 +7,7 @@ export const AvatarButton = styled.div`
     display: flex;
     align-items: center;
     border-radius: 20px;
+
 `;
 
 export const Popup = styled.div`
@@ -77,7 +78,8 @@ export const ButtonRadius = styled.button`
     border: 0;
     width: 34px;
     border-radius: 50px;
-
+	cursor: pointer;
+	
 	@media ${media.tablet} {
         width: 44px;
 
@@ -117,6 +119,7 @@ export const AvatarText = styled.p`
 `;
 
 export const ButtonYes = styled.button`
+	cursor: pointer;
     width: 140px;
     height: 50px;
     background-color: #8baa36;
@@ -126,6 +129,7 @@ export const ButtonYes = styled.button`
 `;
 
 export const ButtonNo = styled.button`
+	cursor: pointer;
     width: 140px;
     height: 50px;
     background-color: #d9d9d9;
