@@ -14,8 +14,8 @@ const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
 export default function IngredientsList() {
   const [ingredients, setIngredients] = useState([]);
-  const [inputValue, setInputValue] = useState('Ingredients');
-  const [value, setValue] = useState('Ingredients');
+  // const [inputValue, setInputValue] = useState('Ingredients');
+  // const [value, setValue] = useState('');
   // const [name, setName] = useState('');
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
@@ -50,7 +50,7 @@ export default function IngredientsList() {
     alert(`${error.message}`);
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     let active = true;
 
     if (!loading) {
@@ -58,8 +58,10 @@ export default function IngredientsList() {
     }
 
     (async () => {
+      // await sleep(1e3); // For demo purposes.
+
       if (active) {
-        ingredients.map(el => setOptions(prevState => [...prevState, { label: el.name }]));
+        ingredients.map(el => setOptions(prevState => [...prevState, el.name]));
       }
     })();
 
@@ -68,83 +70,68 @@ export default function IngredientsList() {
     };
   }, [ingredients, loading]);
 
-  // useEffect(() => {
-  //   if (!open) {
-  //     setOptions([]);
-  //   }
-  // }, [open]);
+  React.useEffect(() => {
+    if (!open) {
+      setOptions([]);
+    }
+  }, [open]);
 
   // const handleChangeName = event => {
   //   setName(event.target.textContent);
   //   console.log(name);
   // };
 
-  console.log(options);
-
   return (
     <li key={nanoid()}>
       <StyledIngredientList>
-        <StyledFormControl>
-          <StyledInputIngredients htmlFor="asynchronous">
-            <StyledAutoComplete
-              disableClearable
-              // disablePortal
-              id="asynchronous"
-              open={open}
-              onOpen={() => {
-                setOpen(true);
+        <StyledAutoComplete
+          disablePortal
+          id="combo-box-demo"
+          // open={open}
+          // onOpen={() => {
+          //   setOpen(true);
+          // }}
+          // onClose={() => {
+          //   setOpen(false);
+          // }}
+          isOptionEqualToValue={(option, value) => option === value}
+          getOptionLabel={option => option}
+          options={ingredients.map(el => el.name)}
+          renderInput={params => (
+            <TextField
+              {...params}
+              label="Asynchronous"
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
               }}
-              onClose={() => {
-                setOpen(false);
-              }}
-              value={inputValue}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              isOptionEqualToValue={(option, value) => option.title === value.title}
-              getOptionLabel={option => option.label}
-              options={options}
-              loading={loading}
-              renderInput={params => (
-                <TextField
-                  {...params}
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <React.Fragment>
-                        {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                        {params.InputProps.endAdornment}
-                      </React.Fragment>
-                    ),
-                  }}
-                />
-              )}
             />
-            <StyledInputIngredient type="text" placeholder="count tbs,tps,kg,g" />
-          </StyledInputIngredients>
-          <StyledIngredientBtn>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
-              <path
-                d="M15.625 4.875L4.375 16.125"
-                stroke="#333333"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M15.625 16.125L4.375 4.875"
-                stroke="#333333"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </StyledIngredientBtn>
-        </StyledFormControl>
+          )}
+        />
+        <StyledInputIngredient type="text" placeholder="count tbs,tps,kg,g" />
+        <StyledIngredientBtn>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
+            <path
+              d="M15.625 4.875L4.375 16.125"
+              stroke="#333333"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M15.625 16.125L4.375 4.875"
+              stroke="#333333"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </StyledIngredientBtn>
       </StyledIngredientList>
     </li>
   );

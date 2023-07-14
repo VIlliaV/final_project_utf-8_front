@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 import { StyledH3, StyledPopularRecipe, StyledList } from './AddRecipeForm.styled';
 import axios from 'axios';
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
@@ -52,7 +53,7 @@ export default function Popular() {
       <ul>
         {popular.map(el => {
           return (
-            <StyledList key={el._id} id={el._id}>
+            <StyledList key={nanoid()} id={el._id}>
               <a href={el.youtube} alt={el.title}>
                 <img src={el.thumb} alt={el.title} />
                 <div>
