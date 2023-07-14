@@ -1,10 +1,37 @@
 import style from 'styled-components';
 import { media } from '../../utils/media';
-import { Button, TextField, FormControl, InputBase, NativeSelect } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Select,
+  FormControl,
+  MenuItem,
+  InputBase,
+  ButtonGroup,
+  NativeSelect,
+  Autocomplete,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import { createTheme } from '@mui/material';
+
+export const theme = createTheme({
+  breakpoints: {
+    keys: {
+      0: 'start',
+      1: 'mini',
+      2: 'mobile',
+      3: 'tablet',
+      4: 'desktop',
+    },
+    values: {
+      start: 0,
+      mini: 374,
+      mobile: 375,
+      tablet: 768,
+      desktop: 1440,
+    },
+  },
+});
 
 export const Fallow = style.div`
 display: none;
@@ -99,6 +126,7 @@ export const StyledFormControl = styled(FormControl)(({ theme }) => ({
 
 export const StyledInputIngredient = style.input`
     width:85px;
+    height: 50px;
     border:none;
     padding: 5px 0;
     border: 1px solid grey;
@@ -289,7 +317,7 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   height: '270px',
 
   backgroundSize: 'contain',
-  [theme.breakpoints.down(`${media.desktop}`)]: {
+  [theme.breakpoints.down('desktop')]: {
     width: '360px',
     height: '345px',
     marginRight: '50px',
@@ -350,12 +378,21 @@ export const StyledInputIngredients = style.label`
     align-items: center;
     justify-content: space-between;
     & div {
+      border-radius:10px;
       width :195px;
+      height: 50px;
+      margin-right:15px;
+      & fieldset{
+        border-color: grey;
+        "&:focused":{
+          border-color:red;
+        }
+      }
     }
 @media ${media.tablet} {
        display: flex;
        & div {
-        width :400px;
+        width:400px;
         margin-right:30px;
       }
 }
@@ -384,6 +421,24 @@ export const ImageSrc = style.span`
   },
 `;
 
+export const StyledAutoComplete = styled(Autocomplete)({
+  padding: theme.spacing(1),
+  [theme.breakpoints.up('start')]: {
+    width: '195px',
+    // cursor: 'pointer',
+    '& div button': {
+      marginLeft: '180px',
+    },
+  },
+  [theme.breakpoints.up('tablet')]: {
+    width: '400px',
+    '& div button': {
+      marginLeft: '410px',
+    },
+  },
+  [theme.breakpoints.up('desktop')]: {},
+});
+
 export const StyledMenuItem = styled(MenuItem)({});
 
 export const StyledSelect = styled(Select)({
@@ -395,20 +450,6 @@ export const StyledSelect = styled(Select)({
   fontStyle: 'normal',
   fontWeight: '400',
   letterSpacing: '-0.32px',
-  color: 'black',
-});
-
-export const StyledSelectIngredient = styled(Select)(({ theme }) => ({
-  width: '100%',
-  height: '30px',
-  marginRight: '15px',
-  display: 'flex',
-  color: 'black',
-}));
-export const StyledSelectWegth = styled(Select)({
-  width: '85px',
-  height: '30px',
-  display: 'flex',
   color: 'black',
 });
 
@@ -443,15 +484,6 @@ export const IngrediantsCountWeigth = styled(TextField)({
   height: '30px',
   padding: '0px',
   marginRight: '60px',
-});
-export const IngrediantsWeigth = styled(Select)({
-  width: '100px',
-  height: '30px',
-  border: 'none',
-  padding: '0',
-  '&:hover': {
-    border: 'none',
-  },
 });
 
 export const StyledIngredientBtn = styled(Button)(({ theme }) => ({

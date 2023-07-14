@@ -1,74 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+import { CircularProgress, TextField } from '@mui/material';
 import {
-  StyledSelectIngredient,
+  StyledAutoComplete,
   StyledMenuItem,
   StyledInputIngredients,
   StyledInputIngredient,
   StyledIngredientBtn,
   StyledIngredientList,
   StyledFormControl,
-
 } from './AddRecipeForm.styled';
-
-
-const ingredients = [
-  {
-    value: 'Chicken',
-    label: 'Chicken',
-  },
-  {
-    value: 'Cheese',
-    label: 'Cheese',
-  },
-  {
-    value: 'Cheddar Cheese',
-    label: 'Cheddar Cheese',
-  },
-  {
-    value: 'Charlotte Potatoes',
-    label: 'Charlotte Potatoes',
-  },
-  {
-    value: 'Challots',
-    label: 'Challots',
-  },
-  {
-    value: 'Cherry',
-    label: 'Cherry',
-  },
-];
+import axios from 'axios';
+const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
 export default function IngredientsList() {
+  const [ingredients, setIngredients] = useState([]);
   const [name, setName] = useState('');
-  // const [wegth, setWegth] = useState('');
+  const [open, setOpen] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
+  const loading = open && options.length === 0;
+
+  const getIngredients = async () => {
+    try {
+      const config = {
+        method: 'GET',
+        url: BASE_URL + '/popular-recipe',
+      };
+
+      const res = await axios(config);
+      return res.data;
+    } catch (error) {
+      throw handleError(error);
+    }
+  };
+
+  useEffect(() => {
+    getIngredients()
+      .then(res => {
+        setIngredients(res);
+      })
+      .catch(error => {
+        handleError(error);
+      });
+  }, []);
+
+  function handleError(error) {
+    console.error(error);
+    alert(`${error.message}`);
+  }
+
+  useEffect(() => {
+    let active = true;
+
+    if (!loading) {
+      return undefined;
+    }
+
+    (async () => {
+      if (active) {
+        setOptions([...ingredients]);
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [loading]);
+
+  React.useEffect(() => {
+    if (!open) {
+      setOptions([]);
+    }
+  }, [open]);
 
   const handleChangeName = event => {
     setName(event.target.value);
     console.log(name);
   };
 
-  // const handleChangeWegth = event => {
-  //   setWegth(event.target.value);
-  // };
-
   return (
     <li key={nanoid()}>
-      <StyledIngredientList>
+      <StyledAutoComplete
+        freeSolo
+        disableClearable
+        id="asynchronous-demo"
+        open={open}
+        onOpen={() => {
+          setOpen(true);
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        isOptionEqualToValue={(option, value) => option.title === value.title}
+        getOptionLabel={option => option.title}
+        options={options}
+        loading={loading}
+        renderInput={params => (
+          <TextField
+            {...params}
+            value={name}
+            onChange={handleChangeName}
+            InputProps={{
+              ...params.InputProps,
+              type: 'search',
+              endAdornment: (
+                <React.Fragment>
+                  {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                  {params.InputProps.endAdornment}
+                </React.Fragment>
+              ),
+            }}
+          />
+        )}
+      />
+      {/* <StyledIngredientList>
         <StyledFormControl size="small">
           <StyledInputIngredients htmlFor="category">
-            <StyledSelectIngredient
-              labelid="nameIngredient"
-              id="nameIngredientId"
-              value={name}
-              onChange={handleChangeName}
-            >
-              {ingredients.map(el => (
-                <StyledMenuItem key={el.value} value={el.value}>
-                  {el.value}
-                </StyledMenuItem>
-              ))}
-            </StyledSelectIngredient>
+            
 
             <StyledInputIngredient type="text" placeholder="count tbs,tps,kg,g" />
           </StyledInputIngredients>
@@ -91,7 +139,7 @@ export default function IngredientsList() {
             </svg>
           </StyledIngredientBtn>
         </StyledFormControl>
-      </StyledIngredientList>
+      </StyledIngredientList> */}
     </li>
   );
 }
