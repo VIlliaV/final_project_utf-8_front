@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid';
 import { CircularProgress, TextField } from '@mui/material';
 import {
   StyledAutoComplete,
-  StyledMenuItem,
   StyledInputIngredients,
   StyledInputIngredient,
   StyledIngredientBtn,
@@ -15,6 +14,8 @@ const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
 export default function IngredientsList() {
   const [ingredients, setIngredients] = useState([]);
+  const [inputValue, setInputValue] = useState([]);
+  const [value, setValue] = useState([]);
   const [name, setName] = useState('');
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
@@ -24,7 +25,7 @@ export default function IngredientsList() {
     try {
       const config = {
         method: 'GET',
-        url: BASE_URL + '/popular-recipe',
+        url: BASE_URL + '/ingredients/list',
       };
 
       const res = await axios(config);
@@ -58,7 +59,7 @@ export default function IngredientsList() {
 
     (async () => {
       if (active) {
-        setOptions([...ingredients]);
+        ingredients.map(el => setOptions(prevState => [...prevState, { name: el.name }]));
       }
     })();
 
@@ -67,57 +68,63 @@ export default function IngredientsList() {
     };
   }, [loading]);
 
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
+  // useEffect(() => {
+  //   if (!open) {
+  //     setOptions([]);
+  //   }
+  // }, [open]);
 
   const handleChangeName = event => {
-    setName(event.target.value);
+    setName(event.target.textContent);
     console.log(name);
   };
 
+  console.log(options);
+
+  console.log(name);
+
   return (
     <li key={nanoid()}>
-      <StyledAutoComplete
-        freeSolo
-        disableClearable
-        id="asynchronous-demo"
-        open={open}
-        onOpen={() => {
-          setOpen(true);
-        }}
-        onClose={() => {
-          setOpen(false);
-        }}
-        isOptionEqualToValue={(option, value) => option.title === value.title}
-        getOptionLabel={option => option.title}
-        options={options}
-        loading={loading}
-        renderInput={params => (
-          <TextField
-            {...params}
-            value={name}
-            onChange={handleChangeName}
-            InputProps={{
-              ...params.InputProps,
-              type: 'search',
-              endAdornment: (
-                <React.Fragment>
-                  {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                  {params.InputProps.endAdornment}
-                </React.Fragment>
-              ),
-            }}
-          />
-        )}
-      />
-      {/* <StyledIngredientList>
+      <StyledIngredientList>
         <StyledFormControl size="small">
           <StyledInputIngredients htmlFor="category">
-            
-
+            <StyledAutoComplete
+              disableClearable
+              id="asynchronous-demo"
+              open={open}
+              onOpen={() => {
+                setOpen(true);
+              }}
+              onClose={() => {
+                setOpen(false);
+              }}
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              inputValue={inputValue}
+              // onInputChange={(event, newInputValue) => {
+              //   setInputValue(newInputValue);
+              // }}
+              isOptionEqualToValue={(option, value) => console.log(option, value)}
+              getOptionLabel={option => option.name}
+              options={options}
+              loading={loading}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <React.Fragment>
+                        {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                        {params.InputProps.endAdornment}
+                      </React.Fragment>
+                    ),
+                  }}
+                />
+              )}
+            />
             <StyledInputIngredient type="text" placeholder="count tbs,tps,kg,g" />
           </StyledInputIngredients>
           <StyledIngredientBtn>
@@ -139,7 +146,7 @@ export default function IngredientsList() {
             </svg>
           </StyledIngredientBtn>
         </StyledFormControl>
-      </StyledIngredientList> */}
+      </StyledIngredientList>
     </li>
   );
 }
