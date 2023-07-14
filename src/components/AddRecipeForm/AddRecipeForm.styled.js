@@ -424,15 +424,14 @@ export const ImageSrc = style.span`
 export const StyledAutoComplete = styled(Autocomplete)({
   padding: theme.spacing(1),
   [theme.breakpoints.up('start')]: {
-    '&:hover': {
-      border: 'green',
-    },
-    cursor: 'pointer',
+    width: '195px',
+    // cursor: 'pointer',
     '& div button': {
       marginLeft: '180px',
     },
   },
   [theme.breakpoints.up('tablet')]: {
+    width: '400px',
     '& div button': {
       marginLeft: '410px',
     },
