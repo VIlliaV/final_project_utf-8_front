@@ -1,5 +1,100 @@
 import styled from 'styled-components';
 import { media } from 'utils/media';
+import { FiUser } from 'react-icons/fi';
+import { HiOutlineMail } from 'react-icons/hi';
+import { CgLock } from 'react-icons/cg';
+
+
+ export const SuccessStatusIcon = styled.img`
+   width: 18px;
+   height: 18px;
+   position: absolute;
+   top: 13.5px;
+   right: 14px;
+
+   @media ${media.tablet} {
+     top: 17.5px;
+     right: 18px;
+     width: 20px;
+     height: 20px;
+   }
+ `;
+
+
+export const NameIcon = styled(FiUser)`
+  width: 18px;
+  height: 18px;
+  color: #fafafa;
+  position: absolute;
+  top: 13.5px;
+  left: 14px;
+
+  color: ${prop => {
+    if (prop.$haserror) {
+      return 'red';
+    } else if (prop.$correct) {
+      return 'green';
+    }
+  }};
+
+  @media ${media.tablet} {
+    top: 17.5px;
+    left: 18px;
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+
+export const EmailIcon = styled(HiOutlineMail)`
+  width: 18px;
+  height: 18px;
+  color: #fafafa;
+  position: absolute;
+  top: 13.5px;
+  left: 14px;
+
+  color: ${prop => {
+    if (prop.$haserror) {
+      return 'red';
+    } else if (prop.$correct) {
+      return 'green';
+    }
+  }};
+
+  @media ${media.tablet} {
+    top: 17.5px;
+    left: 18px;
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+
+export const PasswordIcon = styled(CgLock)`
+  width: 18px;
+  height: 18px;
+  color: #fafafa;
+  position: absolute;
+  top: 13.5px;
+  left: 14px;
+
+  color: ${prop => {
+    if (prop.$haserror) {
+      return 'red';
+    } else if (prop.$correct) {
+      return 'green';
+    }
+  }};
+
+  @media ${media.tablet} {
+    top: 17.5px;
+    left: 18px;
+    width: 24px;
+    height: 24px;
+  }
+`;
+
 
 export const FormContainer = styled.div`
   display: flex;
@@ -10,7 +105,8 @@ export const FormContainer = styled.div`
   margin-right: auto;
   box-sizing: border-box;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
-  background-color: transparent ;
+  background-color: transparent;
+  
 
   @media ${media.mobile} {
     width: 335px;
@@ -23,7 +119,7 @@ export const FormContainer = styled.div`
 
   @media ${media.desktop} {
     margin: 0;
-    margin-top: ${prop => (prop.isRegisterPage ? '7px' : '40px')};
+    margin-top: ${prop => (prop.$isregisterpage === "true" ? '7px' : '40px')};
     margin-bottom: auto;
     margin-right: auto;
   }
@@ -79,7 +175,7 @@ export const Input = styled.input`
   background: transparent;
   border: 1px solid #57575e;
   border-radius: 6px;
-  padding: 13.5px 14px;
+  padding: 13.5px 40px;
   color: #fafafa;
   box-sizing: border-box;
 
@@ -91,11 +187,40 @@ export const Input = styled.input`
 
   @media ${media.tablet} {
     height: 59px;
-    padding: 16px 18px;
+    padding: 16px 50px;
 
     font-size: 18px;
     letter-spacing: -0.36px;
   }
+`;
+
+export const NameInput = styled(Input)`
+  border-color: ${prop => {
+  if (prop.$haserror) {
+      return "red"
+  } else if (prop.$correct) {
+    return "green"
+    }
+  }};
+`;
+export const EmailInput = styled(Input)`
+  border-color: ${prop => {
+    if (prop.$haserror) {
+      return 'red';
+    } else if (prop.$correct) {
+      return 'green';
+    }
+  }};
+`;
+
+export const PasswordInput = styled(Input)`
+  border-color: ${prop => {
+    if (prop.$haserror) {
+      return 'red';
+    } else if (prop.$correct) {
+      return 'green';
+    }
+  }};
 `;
 
 export const SubmitButton = styled.button`
@@ -146,6 +271,7 @@ export const Link = styled.a`
 export const InputContainer = styled.div`
   margin-bottom: 12px;
   min-width: 100%;
+  position: relative;
 
   @media ${media.tablet} {
     margin-bottom: 24px;
@@ -156,3 +282,4 @@ export const InputErrorContainer = styled.div`
   margin-top: 8px;
   color: red;
 `;
+
