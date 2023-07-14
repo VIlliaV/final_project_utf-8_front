@@ -44,9 +44,6 @@ export default function Popular() {
     alert(`${error.message}`);
   }
 
-  console.log(popular);
-  // popular.map(el => console.log(el.preview, el.title, el.description));
-
   return (
     <StyledPopularRecipe>
       <StyledH3>Popular recipe</StyledH3>

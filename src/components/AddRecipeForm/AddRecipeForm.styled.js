@@ -382,12 +382,6 @@ export const StyledInputIngredients = style.label`
       width :195px;
       height: 50px;
       margin-right:15px;
-      & fieldset{
-        border-color: grey;
-        "&:focused":{
-          border-color:red;
-        }
-      }
     }
 @media ${media.tablet} {
        display: flex;
