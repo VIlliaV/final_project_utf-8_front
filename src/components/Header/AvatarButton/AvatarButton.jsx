@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { FileInput } from '../../AddRecipeForm/AddRecipeForm';
+// import { FileInput } from '../../AddRecipeForm/AddRecipeForm';
 import {
   AvatarButton,
   AvatarSvg,
@@ -33,14 +33,14 @@ import arrow from './img/arrow-right.svg';
 import close from '../BurgerMenu/img/x.svg';
 import plus from './img/plus.svg';
 import { useAuth } from 'utils/hooks/useAuth';
-import avatarIMG from './img/Ellipse 3.png'
+// import useavatar from './img/Ellipse 3.png'
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
 
   //   const [newUserName, setNewUserName] = useState('');
-  //   const [newUserAvatar, setNewUserAvatar] = useState('');
+  const [newUserAvatar, setNewUserAvatar] = useState('');
 
   const [selectedImage, setSelectedImage] = useState(null);
   const { userName } = useAuth();
@@ -125,9 +125,7 @@ const AvatarButtonComponent = () => {
   return (
     <AvatarButton>
       <ButtonRadius onClick={() => setShowPopup(!showPopup)}>
-
-        <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
-
+        <img src={newUserAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (
         <Popup ref={popupRef}>
