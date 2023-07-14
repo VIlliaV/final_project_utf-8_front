@@ -14,9 +14,9 @@ const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
 export default function IngredientsList() {
   const [ingredients, setIngredients] = useState([]);
-  const [inputValue, setInputValue] = useState([]);
-  const [value, setValue] = useState([]);
-  const [name, setName] = useState('');
+  const [inputValue, setInputValue] = useState('Ingredients');
+  const [value, setValue] = useState('');
+  // const [name, setName] = useState('');
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
@@ -74,14 +74,12 @@ export default function IngredientsList() {
   //   }
   // }, [open]);
 
-  const handleChangeName = event => {
-    setName(event.target.textContent);
-    console.log(name);
-  };
+  // const handleChangeName = event => {
+  //   setName(event.target.textContent);
+  //   console.log(name);
+  // };
 
   console.log(options);
-
-  console.log(name);
 
   return (
     <li key={nanoid()}>
@@ -103,9 +101,9 @@ export default function IngredientsList() {
                 setValue(newValue);
               }}
               inputValue={inputValue}
-              // onInputChange={(event, newInputValue) => {
-              //   setInputValue(newInputValue);
-              // }}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
               isOptionEqualToValue={(option, value) => console.log(option, value)}
               getOptionLabel={option => option.name}
               options={options}
