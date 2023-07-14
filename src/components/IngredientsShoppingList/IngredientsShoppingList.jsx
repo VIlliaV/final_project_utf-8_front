@@ -11,10 +11,27 @@ import {
 
 import { GrClose } from 'react-icons/gr';
 import testShoppingList from 'back/testShoppingList.json';
+import { useEffect } from 'react';
+
+// перемикання тем - посилання на кнопку перемикання за допомогою useRef():
+// const buttonRef = useRef(null)
+// ...
+// return (
+//   <button type='button' onClick={ stop} ref={ buttonRef}> зупинити таймер </button>
+// )
 
 function IngredientsShoppingList() {
   // const dispatch = useDispatch();
   let shoppingListStateIngredients = useSelector(shoppingList);
+
+  // Перший рендер - запит за даними на стор або сервер
+  useEffect(() => {
+    return () => {}; // ф-я запиту на стор, або сервер
+  }, []);
+
+  useEffect(() => {
+    return () => {}; // ф-я видалення інгредієнта з серверу і стору
+  }, ['залежності']);
 
   // // Отримання даних
   // const getInput = () => {

@@ -4,14 +4,7 @@ const shoppingListSlice = createSlice({
   name: 'shoppingList',
 
   initialState: {
-    shoppingListIngredients: [
-      // {
-      //   _id: { $oid: '' },
-      //   name: '',
-      //   desc: '',
-      //   img: '',
-      // },
-    ],
+    shoppingListIngredients: [],
   },
 
   reducers: {
