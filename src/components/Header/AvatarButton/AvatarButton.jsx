@@ -162,8 +162,8 @@ const AvatarButtonComponent = () => {
             style={{ display: 'none' }}
           />
           <AvatarDiv>
-            <FileInput />
-            {/* <AddNewImgButton onClick={handleAddImageClick}></AddNewImgButton> */}
+            {/* <FileInput /> */}
+            <AddNewImgButton onClick={handleAddImageClick}></AddNewImgButton>
             <ImgPlusButton>
               <img src={plus} alt="" width={20} height={20} />
             </ImgPlusButton>
