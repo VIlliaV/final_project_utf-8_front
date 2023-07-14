@@ -15,10 +15,10 @@ const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 export default function IngredientsList() {
   const [ingredients, setIngredients] = useState([]);
   const [inputValue, setInputValue] = useState('Ingredients');
-  // const [value, setValue] = useState('');
+  const [value, setValue] = useState('Ingredients');
   // const [name, setName] = useState('');
-  const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState([]);
+  const [open, setOpen] = useState(false);
+  const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function IngredientsList() {
 
     (async () => {
       if (active) {
-        ingredients.map(el => setOptions(prevState => [...prevState, { name: el.name }]));
+        ingredients.map(el => setOptions(prevState => [...prevState, { label: el.name }]));
       }
     })();
 
@@ -85,10 +85,11 @@ export default function IngredientsList() {
     <li key={nanoid()}>
       <StyledIngredientList>
         <StyledFormControl>
-          <StyledInputIngredients htmlFor="category">
+          <StyledInputIngredients htmlFor="asynchronous">
             <StyledAutoComplete
-              // disableClearable
-              id="asynchronous-demo"
+              disableClearable
+              // disablePortal
+              id="asynchronous"
               open={open}
               onOpen={() => {
                 setOpen(true);
@@ -96,16 +97,16 @@ export default function IngredientsList() {
               onClose={() => {
                 setOpen(false);
               }}
-              // value={value}
-              // onChange={(event, newValue) => {
-              //   setValue(newValue);
-              // }}
+              value={inputValue}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
               inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
                 setInputValue(newInputValue);
               }}
-              isOptionEqualToValue={(option, value) => console.log(option, value)}
-              getOptionLabel={option => option.name}
+              isOptionEqualToValue={(option, value) => option.title === value.title}
+              getOptionLabel={option => option.label}
               options={options}
               loading={loading}
               renderInput={params => (
@@ -113,7 +114,6 @@ export default function IngredientsList() {
                   {...params}
                   InputProps={{
                     ...params.InputProps,
-                    type: 'search',
                     endAdornment: (
                       <React.Fragment>
                         {loading ? <CircularProgress color="inherit" size={20} /> : null}

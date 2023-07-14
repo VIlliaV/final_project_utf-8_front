@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { FileInput } from '../../AddRecipeForm/AddRecipeForm';
 import {
   AvatarButton,
   AvatarSvg,
@@ -38,8 +38,10 @@ const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
-//   const [userName, setUserName] = useState('');
-//   const [userImage, setUserImage] = useState('');
+
+  //   const [newUserName, setNewUserName] = useState('');
+  //   const [newUserAvatar, setNewUserAvatar] = useState('');
+
   const [selectedImage, setSelectedImage] = useState(null);
   const { userName } = useAuth();
 
@@ -93,7 +95,7 @@ const AvatarButtonComponent = () => {
     if (selectedImage) {
       const formData = new FormData();
       formData.append('image', selectedImage);
-	  formData.append('name', userName);
+      formData.append('name', userName);
 
       // Добавьте код для отправки formData на сервер
       // Используйте fetch или axios для отправки запроса
@@ -114,7 +116,6 @@ const AvatarButtonComponent = () => {
   };
 
   useEffect(() => {
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -124,7 +125,9 @@ const AvatarButtonComponent = () => {
   return (
     <AvatarButton>
       <ButtonRadius onClick={() => setShowPopup(!showPopup)}>
-        <img src={avatarIMG} alt="Avatar" />
+
+        <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
+
       </ButtonRadius>
       {showPopup && (
         <Popup ref={popupRef}>
@@ -163,10 +166,8 @@ const AvatarButtonComponent = () => {
             style={{ display: 'none' }}
           />
           <AvatarDiv>
-            <AddNewImgButton onClick={handleAddImageClick}>
-
-            </AddNewImgButton>
-
+            {/* <FileInput /> */}
+            <AddNewImgButton onClick={handleAddImageClick}></AddNewImgButton>
             <ImgPlusButton>
               <img src={plus} alt="" width={20} height={20} />
             </ImgPlusButton>
@@ -180,7 +181,7 @@ const AvatarButtonComponent = () => {
             <EditButton onClick={handleClickOutside}>
               <img src={edit} alt="" width={17} height={17} />
             </EditButton>
-            <NameInput type="email" placeholder={userName}  onChange={handleNameChange} />
+            <NameInput type="email" placeholder={userName} onChange={handleNameChange} />
           </NameInputDiv>
 
           <EditConfirmButton onClick={saveChanges}>Save changes</EditConfirmButton>
