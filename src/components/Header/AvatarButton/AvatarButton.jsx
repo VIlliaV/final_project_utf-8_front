@@ -33,17 +33,17 @@ import arrow from './img/arrow-right.svg';
 import close from '../BurgerMenu/img/x.svg';
 import plus from './img/plus.svg';
 import { useAuth } from 'utils/hooks/useAuth';
-// import useavatar from './img/Ellipse 3.png'
+
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
 
   //   const [newUserName, setNewUserName] = useState('');
-  const [newUserAvatar, setNewUserAvatar] = useState('');
+//   const [newUserAvatar, setNewUserAvatar] = useState('');
 
   const [selectedImage, setSelectedImage] = useState(null);
-  const { userName } = useAuth();
+  const { userName, userAvatar } = useAuth();
 
   const dispatch = useDispatch();
   const popupRef = useRef(null);
@@ -125,7 +125,7 @@ const AvatarButtonComponent = () => {
   return (
     <AvatarButton>
       <ButtonRadius onClick={() => setShowPopup(!showPopup)}>
-        <img src={newUserAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
+        <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (
         <Popup ref={popupRef}>
@@ -175,7 +175,7 @@ const AvatarButtonComponent = () => {
             <img src={close} alt="" width={20} height={20} />
           </CloseButton>
           <NameInputDiv>
-            <AvatarSvg src={avatarIcon} alt="" width={20} />
+            <AvatarSvg src={userAvatar} alt="" width={20} />
             <EditButton onClick={handleClickOutside}>
               <img src={edit} alt="" width={17} height={17} />
             </EditButton>
@@ -185,7 +185,7 @@ const AvatarButtonComponent = () => {
           <EditConfirmButton onClick={saveChanges}>Save changes</EditConfirmButton>
         </PopupEdit>
       )}
-      <AvatarText>Olena</AvatarText>
+      <AvatarText>{userName}</AvatarText>
     </AvatarButton>
   );
 };
