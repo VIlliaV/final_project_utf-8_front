@@ -17,7 +17,7 @@ export const Container = styled.div`
   padding-top: 87px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: ${props => (props.path === '/register' ? '118px' : '153px')};
+  padding-bottom: ${props => (props.$path === '/register' ? '118px' : '153px')};
 
   background-color: #fafafa;
   background-image: url(${authContainerBckgrnd});
@@ -31,7 +31,7 @@ export const Container = styled.div`
   @media ${media.tablet} {
     background-image: url(${authContainerBckgrndTablet});
     padding-top: 96px;
-    padding-bottom: ${props => (props.path === '/register' ? '59px' : '120px')};
+    padding-bottom: ${props => (props.$path === '/register' ? '59px' : '120px')};
     background-position-y: 330px;
   }
 
