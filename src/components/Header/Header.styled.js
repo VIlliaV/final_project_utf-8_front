@@ -126,3 +126,4 @@ export const UserDiv = styled.div`
         width: 100px;
     }
 `;
+
