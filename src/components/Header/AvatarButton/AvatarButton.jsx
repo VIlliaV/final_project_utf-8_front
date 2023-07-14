@@ -1,24 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { AvatarButton, AvatarText, ButtonDiv, ButtonIconEdit, ButtonNo, ButtonRadius, ButtonYes, CloseButton, ConfirmTitle, EditDiv, EditText, LogoutButton, Popup, PopupConfirm, PopupEdit } from './AvatarButton.styled';
+import { logoutUser } from 'redux/auth/authOperations';
 import avatar from './img/Ellipse 3.png';
 import edit from './img/edit.svg';
-import { logoutUser } from 'redux/auth/authOperations';
-import {
-  AvatarButton,
-  AvatarText,
-  ButtonDiv,
-  ButtonIconEdit,
-  ButtonNo,
-  ButtonRadius,
-  ButtonYes,
-  ConfirmTitle,
-  EditDiv,
-  EditText,
-  LogoutButton,
-  Popup,
-  PopupConfirm,
-  PopupEdit,
-} from './AvatarButton.styled';
+import arrow from './img/arrow-right.svg'
+import close from '../BurgerMenu/img/x.svg';
 
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -79,26 +66,29 @@ const AvatarButtonComponent = () => {
             </ButtonIconEdit>
           </EditDiv>
 
-          <LogoutButton onClick={handleLogoutButton}>Log out</LogoutButton>
-        </Popup>
-      )}
-      {showPopupConfirm && (
-        <PopupConfirm ref={popupRef}>
-          <ConfirmTitle>Are you sure you want to log out?</ConfirmTitle>
-          <ButtonDiv>
-            <ButtonYes onClick={handleConfirmLogout}>Yes</ButtonYes>
-            <ButtonNo onClick={handleConfirmLogoutNo}>Now</ButtonNo>
-          </ButtonDiv>
-        </PopupConfirm>
-      )}
-      {showPopupEdit && (
-        <PopupEdit ref={popupRef}>
-          <ButtonYes onClick={handleConfirmEdit}>Yes</ButtonYes>
-        </PopupEdit>
-      )}
-      <AvatarText>Olena</AvatarText>
-    </AvatarButton>
-  );
+                    <LogoutButton onClick={handleLogoutButton}>Log out<img src={arrow} alt="arrow" /></LogoutButton>
+                </Popup>
+            )}
+            {showPopupConfirm && (
+                <PopupConfirm ref={popupRef}>
+				<CloseButton onClick={handleConfirmLogoutNo}>
+                    <img src={close} alt="" />
+                </CloseButton>
+                    <ConfirmTitle>Are you sure you want to log out?</ConfirmTitle>
+                    <ButtonDiv>
+                        <ButtonYes onClick={handleConfirmLogout}>Yes</ButtonYes>
+                        <ButtonNo onClick={handleConfirmLogoutNo}>Now</ButtonNo>
+                    </ButtonDiv>
+                </PopupConfirm>
+            )}
+            {showPopupEdit && (
+                <PopupEdit ref={popupRef}>
+                    <ButtonYes onClick={handleConfirmEdit}>Yes</ButtonYes>
+                </PopupEdit>
+            )}
+            <AvatarText>Olena</AvatarText>
+        </AvatarButton>
+    );
 };
 
 export default AvatarButtonComponent;
