@@ -10,6 +10,7 @@ export const AvatarButton = styled.div`
   border-radius: 20px;
 `;
 
+
 export const Popup = styled.div`
   z-index: 10;
   display: flex;
