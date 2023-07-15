@@ -1,18 +1,70 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { shoppingListGet, shoppingListAdd, shoppingListRemove } from './shoppingListOperations';
+
+// & Fulfilled
+const getFulfilled = (state, action) => {
+  handleFulfilled(state);
+  state.shoppingListSliceState = action.payload;
+};
+
+const addFulfilled = (state, action) => {
+  handleFulfilled(state);
+  state.shoppingListSliceState.push(action.payload);
+};
+
+const removeFulfilled = (state, action) => {
+  handleFulfilled(state);
+  const index = state.shoppingListSliceState.findIndex(ingredient => ingredient.id === action.payload.id);
+  state.shoppingListSliceState.splice(index, 1);
+};
+
+// & identic in all "fulFilled" states:
+const handleFulfilled = state => {
+  state.isLoading = false;
+  state.error = null;
+};
+
+// & identic in all "pending"
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+// & identic in all "rejected"
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
 
 const shoppingListSlice = createSlice({
   name: 'shoppingList',
 
   initialState: {
-    shoppingListIngredients: [],
+    shoppingListSliceState: [],
+    isLoading: false,
+    error: null,
   },
 
   reducers: {
-    shoppingListGet(state, action) {
-      state.shoppingListState = action.payload.value;
+    shoppingListGetLocal(state, action) {
+      state.shoppingListSliceState = action.payload.value;
     },
+  },
+
+  extraReducers: builder => {
+    builder
+      .addCase(shoppingListGet.pending, handlePending)
+      .addCase(shoppingListGet.fulfilled, getFulfilled)
+      .addCase(shoppingListGet.rejected, handleRejected)
+
+      .addCase(shoppingListAdd.pending, handlePending)
+      .addCase(shoppingListAdd.fulfilled, addFulfilled)
+      .addCase(shoppingListAdd.rejected, handleRejected)
+
+      .addCase(shoppingListRemove.pending, handlePending)
+      .addCase(shoppingListRemove.fulfilled, removeFulfilled)
+      .addCase(shoppingListRemove.rejected, handleRejected);
   },
 });
 
-export const { shoppingListGet } = shoppingListSlice.actions;
+export const { shoppingListGetLocal } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;
