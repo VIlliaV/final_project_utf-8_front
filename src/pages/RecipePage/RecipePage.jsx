@@ -5,7 +5,9 @@ import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
 import RecipeInngredientsList from '../../components/RecipeInngredientsList/RecipeInngredientsList';
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
-import { store } from 'redux/store';
+import { store } from '../../redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { addIngredient, removeIngredient } from '../../redux/shoppingList/shoppingListSlice';
 
 const token = store.getState().auth.token;
 
@@ -18,16 +20,20 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
-  const [ingredientsMeasure, setIngredientsMeasure] = useState([]);
- 
+  const [ingredients, setIngredients] = useState([]);
+  console.log(ingredients);
+  const dispatch = useDispatch();
+
   const { recipeId } = useParams();
- 
+  const shoppingList = useSelector(state => state.shoppingList.shoppingListIngredients);
+  console.log(shoppingList);
+
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
         const response = await axios.get(`/recipes/${recipeId}`);
         setRecipe(response.data);
-        setIngredientsMeasure(response.data.ingredients);
+        setIngredients(response.data.ingredients);
       } catch (error) {
         console.error(error);
       }
@@ -38,14 +44,29 @@ function RecipePage() {
     }
   }, [recipeId]);
 
+  const handleCheckboxChange = (ingredientId, isChecked) => {
+    // console.log(ingredientId);
+    // console.log(isChecked);
+    if (isChecked) {
+      const ingredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
+      if (ingredient) {
+        // console.log(ingredient);
+        // console.log(ingredient.id);
+        dispatch(addIngredient(ingredient.id));
+      }
+    } else {
+      dispatch(removeIngredient(ingredientId));
+    }
+  };
+
   return (
     <div>
       {recipe && (
-           <>
-          <RecipePageHero title={recipe.title} description={recipe.description} time={recipe.time}  />
+        <>
+          <RecipePageHero title={recipe.title} description={recipe.description} time={recipe.time} />
           <Wrapper>
-            <RecipeInngredientsList ingredientsMeasure={ingredientsMeasure} />
-            <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title}/>
+            <RecipeInngredientsList ingredients={ingredients} handleCheckboxChange={handleCheckboxChange} />
+            <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
           </Wrapper>
         </>
       )}

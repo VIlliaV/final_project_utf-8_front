@@ -1,25 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// {
+//   _id: { $oid: '' },
+//   name: '',
+//   desc: '',
+//   img: '',
+// },
+
 const shoppingListSlice = createSlice({
   name: 'shoppingList',
-
   initialState: {
-    shoppingListIngredients: [
-      // {
-      //   _id: { $oid: '' },
-      //   name: '',
-      //   desc: '',
-      //   img: '',
-      // },
-    ],
+    shoppingListIngredients: [],
   },
-
   reducers: {
-    shoppingListGet(state, action) {
-      state.shoppingListState = action.payload.value;
+    addIngredient(state, action) {
+      const ingredient = action.payload;
+      state.shoppingListIngredients.push(ingredient);
+    },
+    removeIngredient(state, action) {
+      const ingredientId = action.payload;
+      state.shoppingListIngredients = state.shoppingListIngredients.filter(
+        ingredient => ingredient._id !== ingredientId
+      );
     },
   },
 });
 
-export const { shoppingListGet } = shoppingListSlice.actions;
+export const { getShoppingList, addIngredient, removeIngredient } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;
