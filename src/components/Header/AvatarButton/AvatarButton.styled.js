@@ -2,7 +2,6 @@ import { keyframes, styled } from 'styled-components';
 import { media } from 'utils/media';
 import defaultIcon from './img/userSvgDefault.svg';
 
-
 const fadeIn = keyframes`
   from {
     opacity: 0;
