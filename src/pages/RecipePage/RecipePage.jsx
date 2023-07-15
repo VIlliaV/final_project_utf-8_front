@@ -51,7 +51,7 @@ function RecipePage() {
       const ingredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
       if (ingredient) {
         // console.log(ingredient);
-        // console.log(ingredient.id);
+        console.log(ingredient);
         dispatch(addIngredient(ingredient.id));
       }
     } else {

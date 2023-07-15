@@ -32,7 +32,8 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
                 <Measure>{ingredient.measure} </Measure>
               </MeasureWrapper>
 
-              <CheckboxInput onChange={event => handleCheckboxChange(ingredient.id._id, event.target.checked)}
+              <CheckboxInput
+                onChange={event => handleCheckboxChange(ingredient.id._id, event.target.checked)}
                 icon={
                   <SvgIcon>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
