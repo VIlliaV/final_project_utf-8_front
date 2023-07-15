@@ -10,7 +10,6 @@ export const AvatarButton = styled.div`
   border-radius: 20px;
 `;
 
-
 export const Popup = styled.div`
   z-index: 10;
   display: flex;
@@ -224,12 +223,6 @@ export const EditConfirmButton = styled.button`
   }
 `;
 
-export const AvatarSvg = styled.img`
-  position: absolute;
-  left: 15px;
-  top: 13px;
-`;
-
 export const EditButton = styled.button`
   position: absolute;
   right: 15px;
@@ -316,7 +309,7 @@ export const ImgPlusButton = styled.button`
 
 export const AddNewImgButton = styled.button`
   cursor: pointer;
-  background-image: url(${defaultIcon});
+  background-image: ${defaultIcon};
   background-repeat: no-repeat;
   background-position: center;
   border: 0;
@@ -330,4 +323,8 @@ export const AddNewImgButton = styled.button`
   }
 `;
 
-export const ImageButtonEdit = styled.button;
+export const AvatarSvg = styled.img`
+  position: absolute;
+  left: 15px;
+  top: 13px;
+`;
