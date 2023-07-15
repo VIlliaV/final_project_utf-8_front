@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
+import { shoppingList, shoppingListError, shoppingListLoading } from 'redux/shoppingList/shoppingListSelectors';
 import {
   SLItem,
   SlItemAmount,
@@ -9,11 +9,13 @@ import {
   SLList,
 } from './IngredientsShoppingList.styled';
 
+import Loader from 'components/Loader/Loader';
 import { GrClose } from 'react-icons/gr';
 // import testShoppingList from 'back/testShoppingList.json';
 import { useEffect } from 'react';
-import { shoppingListGet, shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
+import { shoppingListAdd, shoppingListGet, shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
 import { nanoid } from 'nanoid';
+import { shoppingListGetLocal } from 'redux/shoppingList/shoppingListSlice';
 
 // перемикання тем - посилання на кнопку перемикання за допомогою useRef():
 // const buttonRef = useRef(null)
@@ -53,23 +55,23 @@ function IngredientsShoppingList() {
   //   dispatch(shoppingListGet());
   // };
 
+  const dispatch = useDispatch();
+
   // first render
   const shoppingListSliceState = useSelector(shoppingList);
-  console.log('IngredientsShoppingList >> shoppingListSliceState:', shoppingListSliceState);
+  const loading = useSelector(shoppingListLoading);
+  const error = useSelector(shoppingListError);
+  // shoppingListGetLocal();
+  // console.log('IngredientsShoppingList >> shoppingListGetLocal();:', shoppingListGetLocal(shoppingListSliceState));
 
-  //   if (state.shoppingList.shoppingListSliceState) {
-  //     shoppingListGetLocal();
-  //   }
-  // console.log('shoppingListGet >> state:', state.shoppingList.shoppingListSliceState);
-
-  const dispatch = useDispatch();
   useEffect(() => {
-    // if (shoppingListSliceState.length > 0) {
-    //   return true;
-    // }
-
     dispatch(shoppingListGet());
-  }, [dispatch]);
+  }, [dispatch, shoppingListSliceState]);
+
+  // const handleAddData = () => {
+  //   const newData = {};
+  //   dispatch(shoppingListAdd(newData));
+  // };
 
   // const handleRemoveItem = id => {
   //   console.log('click ID :>> ', id);
@@ -78,6 +80,19 @@ function IngredientsShoppingList() {
   // };
 
   // markup shopping list
+
+  if (loading) {
+    return (
+      <div>
+        <Loader>Loading... </Loader>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <SLList>
       {shoppingListSliceState.length > 0 &&
