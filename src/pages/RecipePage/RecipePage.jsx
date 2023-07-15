@@ -7,7 +7,7 @@ import RecipePreparation from '../../components/RecipePreparation/RecipePreparat
 import { Wrapper } from './RecipePage.styled';
 import { store } from '../../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { addIngredient, removeIngredient } from '../../redux/shoppingList/shoppingListSlice';
+// import { addIngredient, removeIngredient } from '../../redux/shoppingList/shoppingListSlice';
 
 const token = store.getState().auth.token;
 
@@ -52,10 +52,10 @@ function RecipePage() {
       if (ingredient) {
         // console.log(ingredient);
         console.log(ingredient);
-        dispatch(addIngredient(ingredient.id));
+        // dispatch(addIngredient(ingredient.id));
       }
     } else {
-      dispatch(removeIngredient(ingredientId));
+      // dispatch(removeIngredient(ingredientId));
     }
   };
 
