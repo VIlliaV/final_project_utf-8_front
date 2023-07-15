@@ -4,6 +4,7 @@ import { shoppingListGet, shoppingListAdd, shoppingListRemove } from './shopping
 // & Fulfilled
 const getFulfilled = (state, action) => {
   handleFulfilled(state);
+  console.log('getFulfilled >> action.payload:', action.payload);
   state.shoppingListSliceState = action.payload;
 };
 
@@ -33,6 +34,7 @@ const handlePending = state => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  // state.error = action.error.message;
 };
 
 const shoppingListSlice = createSlice({
@@ -44,13 +46,7 @@ const shoppingListSlice = createSlice({
     error: null,
   },
 
-  reducers: {
-    // shoppingListGetLocal(state, action) {
-    //   console.log('shoppingListGetLocal >> action:', action);
-    //   console.log('shoppingListGetLocal >> state:', state);
-    //   state.shoppingListSliceState = action.payload.value;
-    // },
-  },
+  reducers: {},
 
   extraReducers: builder => {
     builder
@@ -68,5 +64,4 @@ const shoppingListSlice = createSlice({
   },
 });
 
-export const { shoppingListGetLocal } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;
