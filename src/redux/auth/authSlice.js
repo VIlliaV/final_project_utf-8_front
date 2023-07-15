@@ -66,7 +66,11 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(fetchCurrentUser.rejected, state => {
+        state.user = initialState.user;
+        state.token = null;
+        state.isLoggedIn = false;
         state.isRefreshing = false;
+        state.isLoginFailed = false;
       })
       .addDefaultCase(state => state);
   },

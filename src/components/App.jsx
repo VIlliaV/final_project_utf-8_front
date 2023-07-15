@@ -6,7 +6,9 @@ import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { SharedLayout } from './SharedLayout/SharedLayout';
+import Loader from './Loader/Loader';
 import { useAuth } from 'utils/hooks/useAuth';
+import { Toaster } from 'react-hot-toast';
 
 const WellcomPage = lazy(() => import('pages/WellcomPage/WellcomPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -19,6 +21,7 @@ const RecipePage = lazy(() => import('pages/RecipePage/RecipePage'));
 const MyRecipesPage = lazy(() => import('pages/MyRecipesPage/MyRecipesPage'));
 const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
 const ShoppingListPage = lazy(() => import('pages/ShoppingListPage/ShoppingListPage'));
+const Page404 = lazy(() => import('pages/404Page/404Page'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -29,13 +32,16 @@ export const App = () => {
 
   const { isRefreshing } = useAuth();
 
-  return (
-    !isRefreshing && (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+    <>
+      <Toaster />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<RestrictedRoute component={<WellcomPage />} redirectTo="/" />} />
-          <Route path="register" element={<RestrictedRoute component={<RegisterPage />} redirectTo="/" />} />
-          <Route path="signin" element={<RestrictedRoute component={<SigninPage />} redirectTo="/" />} />
+          <Route index element={<RestrictedRoute component={<WellcomPage />} redirectTo="/main" />} />
+          <Route path="register" element={<RestrictedRoute component={<RegisterPage />} redirectTo="/main" />} />
+          <Route path="signin" element={<RestrictedRoute component={<SigninPage />} redirectTo="/main" />} />
 
           <Route path="main" element={<PrivateRoute component={<MainPage />} redirectTo="/" />} />
           <Route
@@ -48,8 +54,9 @@ export const App = () => {
           <Route path="/my" element={<PrivateRoute component={<MyRecipesPage />} redirectTo="/" />} />
           <Route path="search" element={<PrivateRoute component={<SearchPage />} redirectTo="/" />} />
           <Route path="shopping-list" element={<PrivateRoute component={<ShoppingListPage />} redirectTo="/" />} />
+          <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
-    )
+    </>
   );
 };

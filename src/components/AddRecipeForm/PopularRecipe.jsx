@@ -1,44 +1,70 @@
-import React from 'react';
-import { StyledH3, StyledPopularRecipe } from './AddRecipeForm.styled';
-import Banana_pancakes from '../../img/Banana_pancakes.jpg';
-import Backed_salmon from '../../img/Baked_salmon.jpg';
-import Sugar_pie from '../../img/Sugar_pie.jpg';
-import Squash_linguine from '../../img/Squash_linguine.jpg';
+import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
+import { StyledH3, StyledPopularRecipe, StyledList } from './AddRecipeForm.styled';
+import axios from 'axios';
+const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
 export default function Popular() {
-    return (
-        <StyledPopularRecipe>
-            <StyledH3>Popular recipe</StyledH3>
-            <ul>
-                <li>
-                    <img src={Banana_pancakes} alt="banana pincakes" />
-                    <div>
-                        <h3>Banana Pincakes</h3>
-                        <p>In a bowl, mash the banana with a fork until it resembles a thick purée...</p>
-                    </div>
-                </li>
-                <li>
-                    <img src={Sugar_pie} alt="squash" />
-                    <div>
-                        <h3>Squash linguine</h3>
-                        <p>Pasta is a type of food typically made from an unleavened dough of wheat flour...</p>
-                    </div>
-                </li>
-                <li>
-                    <img src={Backed_salmon} alt="Baked" />
-                    <div>
-                        <h3>Baked salmon</h3>
-                        <p>Cook in boiling salted water for 10 mins...</p>
-                    </div>
-                </li>
-                <li>
-                    <img src={Squash_linguine} alt="Sugar" />
-                    <div>
-                        <h3>Sugar Pie</h3>
-                        <p>Sugar pie is a dessert in northern French and Belgiancuisine, where it is called tarte...</p>
-                    </div>
-                </li>
-            </ul>
-        </StyledPopularRecipe>
-    );
+  const [popular, setPopular] = useState([]);
+
+  useEffect(() => {
+    let i = 0;
+    const getPopular = async () => {
+      try {
+        const config = {
+          method: 'GET',
+          url: BASE_URL + '/popular-recipe',
+        };
+
+        const res = await axios(config);
+        return res.data;
+      } catch (error) {
+        throw handleError(error);
+      }
+    };
+
+    getPopular()
+      .then(res => {
+        res.map(el => {
+          if (i === 4) {
+            return i;
+          }
+          i++;
+          return setPopular(prevState => [...prevState, el]);
+        });
+      })
+      // getPopular()
+      //   .then(res => {
+      //     setPopular(res);
+      //   })
+      .catch(error => {
+        handleError(error);
+      });
+  }, []);
+
+  function handleError(error) {
+    console.error(error);
+    alert(`${error.message}`);
+  }
+
+  return (
+    <StyledPopularRecipe>
+      <StyledH3>Popular recipe</StyledH3>
+      <ul>
+        {popular.map(el => {
+          return (
+            <StyledList key={nanoid()} id={el._id}>
+              <a href={el.youtube} alt={el.title}>
+                <img src={el.thumb} alt={el.title} />
+                <div>
+                  <h4>{el.title}</h4>
+                  <p>{el.description}</p>
+                </div>
+              </a>
+            </StyledList>
+          );
+        })}
+      </ul>
+    </StyledPopularRecipe>
+  );
 }

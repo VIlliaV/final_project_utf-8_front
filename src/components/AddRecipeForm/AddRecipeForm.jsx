@@ -1,52 +1,32 @@
 import { useState, useEffect } from 'react';
-import { StyledButton, ImageSrc } from './AddRecipeForm.styled';
+import backgroundUploadImg from '../../img/image.jpg';
+import { ImageSrc, StyledInpytImg } from './AddRecipeForm.styled';
 
-const FileInput = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [imageUrl, setImageUrl] = useState(null);
+export const FileInput = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
 
-    useEffect(() => {
-        if (selectedImage) {
-            setImageUrl(URL.createObjectURL(selectedImage));
-        }
-    }, [selectedImage]);
+  useEffect(() => {
+    if (selectedImage) {
+      setImageUrl(URL.createObjectURL(selectedImage));
+    } else setImageUrl(backgroundUploadImg);
+  }, [selectedImage]);
 
-    return (
-        <>
-            {!selectedImage ? (
-                <div>
-                    <input
-                        accept="image/*"
-                        type="file"
-                        id="select-image"
-                        style={{ display: 'none' }}
-                        onChange={e => setSelectedImage(e.target.files[0])}
-                    />
-                    <label htmlFor="select-image">
-                        <StyledButton
-                            background={imageUrl}
-                            variant="contained"
-                            color="primary"
-                            component="span"
-                        ></StyledButton>
-                    </label>
-                </div>
-            ) : (
-                <ImageSrc style={{ backgroundImage: `url(${imageUrl})` }} />
-                // <label htmlFor="select-image">
-                //     <StyledButton
-                //         background = `url(${imageUrl.url})`
-                //         color="primary"
-                //         component="span"
-                //     ></StyledButton>
-
-                /* <Box mt={2} textAlign="center">
-                        <img src={imageUrl} alt={selectedImage.name} height="100px" />
-                    </Box> */
-                // </label>
-            )}
-        </>
-    );
+  return (
+    <StyledInpytImg>
+      <input
+        accept="image/*"
+        type="file"
+        id="select-image"
+        background={imageUrl}
+        style={{ display: 'none' }}
+        onChange={e => setSelectedImage(e.target.files[0])}
+      />
+      <label htmlFor="select-image">
+        <ImageSrc style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'contain' }} />
+      </label>
+    </StyledInpytImg>
+  );
 };
 
 export default FileInput;

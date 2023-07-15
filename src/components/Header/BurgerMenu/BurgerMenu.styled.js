@@ -37,6 +37,11 @@ export const CloseButton = styled.div`
     right: 10px;
     font-size: 18px;
     cursor: pointer;
+
+	@media ${media.tablet} {
+		top: 32px;
+    right: 32px;
+    }
 `;
 
 export const StyledNavLink = styled(NavLink)`
@@ -46,8 +51,6 @@ export const StyledNavLink = styled(NavLink)`
     text-decoration: none;
     transition: background-color 0.3s;
     margin-bottom: 32px;
-
-    font-family: Poppins;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -65,7 +68,6 @@ export const StyledNavLink = styled(NavLink)`
 
     @media ${media.tablet} {
         margin-bottom: 32px;
-        font-family: Poppins;
         font-size: 24px;
         font-style: normal;
         font-weight: 500;
@@ -80,4 +82,8 @@ export const Switcher = styled.div`
     left: 10px;
     font-size: 18px;
     cursor: pointer;
+	@media ${media.tablet} {
+		bottom: 32px;
+    left: 32px;
+    }
 `;

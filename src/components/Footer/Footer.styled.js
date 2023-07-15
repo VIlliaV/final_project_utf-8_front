@@ -206,7 +206,6 @@ export const EmailInput = styled.input`
         font-weight: 400;
         letter-spacing: -0.36px;
     }
-    /* margin-right: 8px; */
 `;
 
 export const EmailSvg = styled.img`
@@ -292,7 +291,7 @@ export const Copyright = styled.div`
     justify-content: center;
     background-color: #fafafa;
     height: 65px;
-    min-width: 100vw;
+    min-width: 100%;
     font-size: 14px;
     color: #22252a;
     margin: 0;
