@@ -1,1 +1,1 @@
-export const shoppingList = store => store.shoppingList.shoppingListIngredients;
+export const shoppingList = store => store.shoppingList.shoppingListSliceState;
