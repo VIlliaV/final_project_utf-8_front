@@ -45,9 +45,11 @@ const shoppingListSlice = createSlice({
   },
 
   reducers: {
-    shoppingListGetLocal(state, action) {
-      state.shoppingListSliceState = action.payload.value;
-    },
+    // shoppingListGetLocal(state, action) {
+    //   console.log('shoppingListGetLocal >> action:', action);
+    //   console.log('shoppingListGetLocal >> state:', state);
+    //   state.shoppingListSliceState = action.payload.value;
+    // },
   },
 
   extraReducers: builder => {
