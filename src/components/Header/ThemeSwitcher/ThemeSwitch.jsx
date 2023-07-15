@@ -79,10 +79,15 @@ export default function ThemeSwitcher() {
       document.documentElement.style.setProperty('--text_theme_1', textTheme1Color);
       document.documentElement.style.setProperty('--head_theme_1', headTheme2Color);
       document.documentElement.style.setProperty('--text_second_theme_1', textSecondTheme1Color);
+      document.documentElement.style.setProperty('--back_theme_2', backTheme2Color);
+      document.documentElement.style.setProperty('--text_theme_2', textTheme2Color);
+      document.documentElement.style.setProperty('--text_second_theme_1', textSecondTheme1Color);
     } else {
       document.documentElement.style.setProperty('--back_theme_1', backTheme2Color);
       document.documentElement.style.setProperty('--text_theme_1', textTheme2Color);
       document.documentElement.style.setProperty('--head_theme_1', backTheme1Color);
+      document.documentElement.style.setProperty('--back_theme_2', backTheme1Color);
+      document.documentElement.style.setProperty('--text_theme_2', textTheme1Color);
       document.documentElement.style.setProperty('--text_second_theme_1', backTheme1Color);
     }
 

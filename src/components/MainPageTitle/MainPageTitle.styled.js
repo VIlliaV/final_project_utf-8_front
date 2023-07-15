@@ -67,7 +67,7 @@ export const HeadText = styled.h1`
     transform: rotate(-25deg);
     flex-shrink: 0;
     border-radius: 3px;
-    background: rgb(34, 37, 42);
+    background: var(--back_theme_2);
     @media ${media.tablet} {
       bottom: -3px;
       left: 405px;
