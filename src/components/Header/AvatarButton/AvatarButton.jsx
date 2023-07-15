@@ -46,6 +46,7 @@ const AvatarButtonComponent = () => {
 
   const dispatch = useDispatch();
   const popupRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const handleLogoutButton = () => {
     setShowPopup(false);
@@ -68,11 +69,14 @@ const AvatarButtonComponent = () => {
   };
 
   const handleClickOutside = event => {
-    if (popupRef.current && !popupRef.current.contains(event.target)) {
-      setShowPopup(false);
-      setShowPopupConfirm(false);
-      setShowPopupEdit(false);
-    }
+	if (
+	  popupRef.current &&
+	  !popupRef.current.contains(event.target) &&
+	  event.target !== buttonRef.current &&
+	  !buttonRef.current.contains(event.target)
+	) {
+	  setShowPopup(false);
+	}
   };
 
   const handleAddImageClick = () => {
@@ -135,11 +139,9 @@ const AvatarButtonComponent = () => {
     };
   }, []);
 
-  
-
   return (
-    <AvatarButton>
-      <ButtonRadius onClick={() => setShowPopup(!showPopup)}>
+    <AvatarButton >
+<ButtonRadius onClick={() => setShowPopup(!showPopup)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (

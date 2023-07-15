@@ -1,6 +1,18 @@
-import { styled } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 import { media } from 'utils/media';
 import defaultIcon from './img/userSvgDefault.svg';
+
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 export const AvatarButton = styled.div`
   position: relative;
@@ -17,7 +29,7 @@ export const Popup = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50px;
+  top: 70px;
   right: 0;
   width: 160px;
   height: 130px;
@@ -25,6 +37,7 @@ export const Popup = styled.div`
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: ${fadeIn} 0.3s;
 
   @media ${media.tablet} {
     width: 180px;
@@ -39,14 +52,15 @@ export const PopupConfirm = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50px;
-  right: 0;
+  top: 70px;
+  right: -30%;
   width: 330px;
   height: 180px;
   background-color: #fff;
   padding: 10px;
   border-radius: 30px;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
+  animation: ${fadeIn} 0.3s;
 
   @media ${media.tablet} {
     width: 480px;
@@ -65,18 +79,20 @@ export const PopupEdit = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50px;
-  right: 0;
+  top: 70px;
+  left: -180%;
   width: 330px;
   height: 330px;
   background-color: #fff;
   padding: 10px;
   border-radius: 30px;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
+  animation: ${fadeIn} 0.3s;
 
   @media ${media.tablet} {
     width: 480px;
     height: 400px;
+	left: -400%;
   }
 
   @media ${media.desktop} {
