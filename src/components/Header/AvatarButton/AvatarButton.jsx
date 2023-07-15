@@ -183,7 +183,7 @@ const AvatarButtonComponent = () => {
               onClick={handleAddImageClick}
               style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'contain' }}
             ></AddNewImgButton>
-            <ImgPlusButton>
+            <ImgPlusButton onClick={handleAddImageClick}>
               <img src={plus} alt="" width={20} height={20} />
             </ImgPlusButton>
           </AvatarDiv>

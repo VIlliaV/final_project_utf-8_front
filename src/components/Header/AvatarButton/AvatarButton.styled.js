@@ -224,6 +224,7 @@ export const EditConfirmButton = styled.button`
 `;
 
 export const EditButton = styled.button`
+cursor: pointer;
   position: absolute;
   right: 15px;
   top: 15px;
@@ -231,6 +232,16 @@ export const EditButton = styled.button`
   background-color: transparent;
   width: 17px;
   height: 17px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+  }
 `;
 
 export const NameInputDiv = styled.div`
@@ -268,12 +279,15 @@ export const NameInput = styled.input`
 
 export const AvatarDiv = styled.div`
   position: relative;
-  width: 90px;
-  height: 90px;
+  min-width: 90px;
+  min-height: 90px;
   margin-bottom: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
+   margin: 30px;
+  cursor: pointer;
+  
   @media ${media.tablet} {
     width: 105px;
     height: 105px;
@@ -294,6 +308,7 @@ export const AvatarDefaultImg = styled.button`
 `;
 
 export const ImgPlusButton = styled.button`
+cursor: pointer;
   display: flex;
   position: absolute;
   bottom: 0px;
@@ -308,7 +323,7 @@ export const ImgPlusButton = styled.button`
 `;
 
 export const AddNewImgButton = styled.button`
-  cursor: pointer;
+cursor: pointer;
   background-image: ${defaultIcon};
   background-repeat: no-repeat;
   background-position: center;
@@ -320,6 +335,16 @@ export const AddNewImgButton = styled.button`
   @media ${media.tablet} {
     width: 105px;
     height: 105px;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
   }
 `;
 
