@@ -4,12 +4,16 @@ import { media } from 'utils/media';
 export const HeadText = styled.h1`
   position: relative;
   margin-top: 50px;
-  color: var(--head_theme_1);
+
   font-style: normal;
   font-weight: 600;
   font-size: 28px;
   line-height: 1;
   letter-spacing: -0.56px;
+  color: var(--head_theme_1);
+  color &[datatype='true'] {
+    color: rgb(250, 250, 250);
+  }
   @media ${media.tablet} {
     margin-top: 72px;
     font-size: 32px;
