@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { shoppingListGetLocal } from './shoppingListSlice';
-import { useSelector } from 'react-redux';
-import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
+// import { shoppingListGetLocal } from './shoppingListSlice';
+// import { useSelector } from 'react-redux';
+// import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 
 axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com/';
 
@@ -37,8 +37,32 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (newIngred
   setAuthHeader(token);
 
   try {
-    const response = await axios.post(`/shopping-list`, newIngredient);
-    return response.data;
+    const {
+      measure,
+      id,
+      _id: { _id, desc, img, name },
+    } = newIngredient;
+
+    const ingredientToAdd = {
+      measure,
+      id,
+      _id: {
+        _id,
+        desc,
+        img,
+        name,
+      },
+    };
+
+    const requestBody = {
+      ingredientId: _id,
+      measure,
+      identId: id,
+    };
+
+    console.log(requestBody);
+    await axios.post(`/shopping-list`, requestBody);
+    return ingredientToAdd;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

@@ -45,9 +45,7 @@ const shoppingListSlice = createSlice({
     isLoading: false,
     error: null,
   },
-
   reducers: {},
-
   extraReducers: builder => {
     builder
       .addCase(shoppingListGet.pending, handlePending)
