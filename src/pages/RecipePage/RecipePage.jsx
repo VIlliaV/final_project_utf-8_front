@@ -6,7 +6,7 @@ import RecipeInngredientsList from '../../components/RecipeInngredientsList/Reci
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 import { store } from '../../redux/store';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { addIngredient, removeIngredient } from '../../redux/shoppingList/shoppingListSlice';
 
 const token = store.getState().auth.token;
@@ -22,7 +22,7 @@ function RecipePage() {
   const [recipe, setRecipe] = useState(null);
   const [ingredients, setIngredients] = useState([]);
   console.log(ingredients);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const { recipeId } = useParams();
   const shoppingList = useSelector(state => state.shoppingList.shoppingListIngredients);
