@@ -6,6 +6,7 @@ import {
   getIsLoginFailed,
   getUserAvatar,
   getThemeToggle,
+  getErorrMessage,
 } from 'redux/auth/authSelectors';
 
 export const useAuth = () => {
@@ -15,6 +16,7 @@ export const useAuth = () => {
   const isLoginFailed = useSelector(getIsLoginFailed);
   const userAvatar = useSelector(getUserAvatar);
   const isThemeToggle = useSelector(getThemeToggle);
+  const errorMessage = useSelector(getErorrMessage);
 
   return {
     isLoggedIn,
@@ -23,5 +25,6 @@ export const useAuth = () => {
     isLoginFailed,
     userAvatar,
     isThemeToggle,
+    errorMessage,
   };
 };
