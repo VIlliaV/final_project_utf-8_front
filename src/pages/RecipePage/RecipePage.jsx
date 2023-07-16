@@ -6,9 +6,11 @@ import RecipeInngredientsList from '../../components/RecipeInngredientsList/Reci
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 import { store } from '../../redux/store';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { shoppingListAdd, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 import { nanoid } from 'nanoid';
+
 
 const token = store.getState().auth.token;
 
@@ -18,8 +20,10 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
   const [ingredients, setIngredients] = useState([]);
+
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
+
 
   const { recipeId } = useParams();
   const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
