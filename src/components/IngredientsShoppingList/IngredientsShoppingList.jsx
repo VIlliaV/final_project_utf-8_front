@@ -10,12 +10,18 @@ import {
 } from './IngredientsShoppingList.styled';
 
 import Loader from 'components/Loader/Loader';
-import { GrClose } from 'react-icons/gr';
+
+import { VscClose } from 'react-icons/vsc';
+
 // import testShoppingList from 'back/testShoppingList.json';
 import { useEffect } from 'react';
-import { shoppingListAdd, shoppingListGet, shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
-import { nanoid } from 'nanoid';
-import { shoppingListGetLocal } from 'redux/shoppingList/shoppingListSlice';
+import { shoppingListGet, shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
+
+import styled from 'styled-components';
+
+const StyledVscClose = styled(VscClose)`
+  fill: #333333;
+`;
 
 // перемикання тем - посилання на кнопку перемикання за допомогою useRef():
 // const buttonRef = useRef(null)
@@ -59,7 +65,7 @@ function IngredientsShoppingList() {
 
   // first render
   const shoppingListSliceState = useSelector(shoppingList);
-  console.log('IngredientsShoppingList >> shoppingListSliceState:', shoppingListSliceState);
+  // console.log('IngredientsShoppingList >> shoppingListSliceState:', shoppingListSliceState);
   const loading = useSelector(shoppingListLoading);
   const error = useSelector(shoppingListError);
   // shoppingListGetLocal();
@@ -99,7 +105,7 @@ function IngredientsShoppingList() {
       {shoppingListSliceState.length > 0 &&
         shoppingListSliceState.map(({ id, measure, _id }) => {
           return (
-            <SLItem key={`${id}_${nanoid()}`}>
+            <SLItem key={id}>
               <SLItemImage>
                 <picture>
                   {/* <source srcset={img} media="(min-width: 1200px)" />
@@ -121,7 +127,7 @@ function IngredientsShoppingList() {
                   dispatch(shoppingListRemove(id)); // remove from DB and repeat get from DB
                 }}
               >
-                <GrClose />
+                <StyledVscClose />
               </SLItemRemove>
             </SLItem>
           );
