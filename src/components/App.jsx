@@ -9,7 +9,8 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import Loader from './Loader/Loader';
 import { useAuth } from 'utils/hooks/useAuth';
 import { Toaster } from 'react-hot-toast';
-import { toggleTheme_1, toggleTheme_2 } from 'styles/themeColor';
+import { toggleTheme } from 'utils/toggleThemeColor';
+// import { toggleTheme } from 'styles/themeColor';
 
 const WellcomPage = lazy(() => import('pages/WellcomPage/WellcomPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -34,11 +35,7 @@ export const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (isThemeToggle) {
-      toggleTheme_1();
-    } else {
-      toggleTheme_2();
-    }
+    toggleTheme(isThemeToggle);
   }, [isThemeToggle]);
 
   return isRefreshing ? (
