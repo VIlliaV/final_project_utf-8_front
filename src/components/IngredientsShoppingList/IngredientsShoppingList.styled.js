@@ -102,7 +102,7 @@ const SlItemAmount = styled.p`
   padding: 4px;
 
   border-radius: 4px;
-  background: var(--active);
+  background: var(--fix_back);
   word-break: break-word;
 
   color: var(--back_theme_1);
@@ -135,6 +135,7 @@ const SLItemRemove = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: white;
 
   @media screen and (min-width: ${tablet}) {
     width: 20px;
@@ -146,5 +147,9 @@ const SLItemRemove = styled.button`
     margin-right: 28px;
   }
 `;
+
+// const StyledGrClose = styled.GrClose`
+//   stroke: blue;
+// `;
 
 export { SLList, SLItem, SLItemRemove, SlItemAmount, SLItemImageName, SLItemImage };
