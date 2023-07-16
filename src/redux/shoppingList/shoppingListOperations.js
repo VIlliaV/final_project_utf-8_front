@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { shoppingListGetLocal } from './shoppingListSlice';
+// import { useSelector } from 'react-redux';
+// import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 
 axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com/';
 
