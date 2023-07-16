@@ -2,8 +2,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import { useAuth } from 'utils/hooks/useAuth';
 // import * as Yup from 'yup';
-
 
 
 import {
@@ -44,8 +44,10 @@ export const AuthForm = () => {
   const [initialValues, setInitialValues] = useState(registerInitialValues);
   const [isRegisterPage, setIsRegisterPage] = useState(true);
   const { pathname } = useLocation();
+  const { errorMessage } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     if (pathname === '/signin') {
@@ -180,6 +182,7 @@ export const AuthForm = () => {
             {formik.touched.password && !formik.errors.password && <SuccessStatusIcon src={inputIconSuccess} />}
           </PasswordInputContainer>
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
+          {errorMessage && <div>{ errorMessage}</div>}
         </Form>
       </Container>
       <Link onClick={handleNavigate}>{isRegisterPage ? 'Sign In' : 'Registration'}</Link>

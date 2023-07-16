@@ -10,6 +10,7 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
   isLoginFailed: false,
+  errorMessage: null,
 };
 
 const authSlice = createSlice({
@@ -28,8 +29,9 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isLoginFailed = false;
+        state.errorMessage = action.payload;
       })
-      .addCase(signupUser.rejected, state => {
+      .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.isLoginFailed = true;
       })
@@ -46,6 +48,8 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.isLoginFailed = true;
+        console.log(action.payload.response.data.message);
+         state.errorMessage = action.payload.response.data.message;
       })
       .addCase(logoutUser.pending, state => {
         state.isRefreshing = true;
@@ -70,7 +74,8 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn= false;
         state.isRefreshing= false;
-        state.isLoginFailed= false;
+        state.isLoginFailed = false;
+        state.errorMessage = null;
       })
       .addDefaultCase(state => state);
   },
