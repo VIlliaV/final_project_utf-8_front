@@ -10,4 +10,7 @@ export const themeRootColors = {
   activeTheme2: 'rgba(34, 37, 42, 1)',
   selectTextTheme1: 'rgba(0, 0, 0, 1)',
   categoryTheme1: 'rgba(189, 189, 189, 1)',
+  backSecond1: 'rgb(42, 44, 54)',
+  backSecond2: 'rgb(235, 243, 212)',
+  backThird: 'rgb(255, 255, 255)',
 };

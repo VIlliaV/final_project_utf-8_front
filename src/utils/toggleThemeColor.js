@@ -13,6 +13,9 @@ const toggleTheme = toggle => {
     activeTheme2,
     selectTextTheme1,
     categoryTheme1,
+    backSecond1,
+    backSecond2,
+    backThird,
   } = themeRootColors;
 
   if (toggle) {
@@ -28,6 +31,10 @@ const toggleTheme = toggle => {
     document.documentElement.style.setProperty('--active_select_1', backTheme1Color);
     document.documentElement.style.setProperty('--select_text_1', selectTextTheme1);
     document.documentElement.style.setProperty('--category_theme_1', categoryTheme1);
+    document.documentElement.style.setProperty('--text_third', activeTheme2);
+    document.documentElement.style.setProperty('--back_second_1', backSecond1);
+    document.documentElement.style.setProperty('--back_second_2', backSecond2);
+    document.documentElement.style.setProperty('--back_third', backThird);
   } else {
     document.documentElement.style.setProperty('--back_theme_1', backTheme2Color);
     document.documentElement.style.setProperty('--text_theme_1', textTheme2Color);
@@ -41,6 +48,10 @@ const toggleTheme = toggle => {
     document.documentElement.style.setProperty('--active_theme_2', activeTheme1);
     document.documentElement.style.setProperty('--select_text_1', backTheme1Color);
     document.documentElement.style.setProperty('--category_theme_1', textTheme2Color);
+    document.documentElement.style.setProperty('--text_third', backTheme1Color);
+    document.documentElement.style.setProperty('--back_second_1', backSecond2);
+    document.documentElement.style.setProperty('--back_second_2', backTheme2Color);
+    document.documentElement.style.setProperty('--back_third', backSecond1);
   }
 };
 
