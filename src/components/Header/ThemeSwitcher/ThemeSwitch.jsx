@@ -4,6 +4,46 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
 
+import { useDispatch } from 'react-redux';
+import { themeToggle } from 'redux/auth/authOperations';
+import { useAuth } from 'utils/hooks/useAuth';
+import { useState } from 'react';
+// import { useStyleSheetContext } from 'styled-components/dist/models/StyleSheetManager';
+
+export default function ThemeSwitcher() {
+  const { isThemeToggle } = useAuth();
+
+  const [checked, setChecked] = useState(isThemeToggle);
+
+  const dispatch = useDispatch();
+
+  const getValue = () => {
+    setChecked(checked);
+    dispatch(themeToggle());
+  };
+
+  return (
+    <FormGroup>
+      <FormControlLabel control={<IOSSwitch innerShadow onChange={getValue} checked={!checked} />} label="" />
+      <svg width="0" height="0">
+        <defs>
+          <linearGradient
+            id="paint0_linear_18976_752"
+            x1="14.725"
+            y1="5.5"
+            x2="14.725"
+            y2="26.5"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#FFFFFF" />
+            <stop offset="100%" stopColor="#FFFFFF" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </FormGroup>
+  );
+}
+
 const IOSSwitch = styled(({ innerShadow, ...props }) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme, innerShadow }) => ({
@@ -60,33 +100,3 @@ const IOSSwitch = styled(({ innerShadow, ...props }) => (
     }),
   },
 }));
-
-export default function ThemeSwitcher() {
-  const getValue = (e, value) => {
-    console.log(value);
-  };
-
-  return (
-    <FormGroup>
-      <FormControlLabel
-        control={<IOSSwitch innerShadow onChange={getValue} />}
-        label=""
-      />
-      <svg width="0" height="0">
-        <defs>
-          <linearGradient
-            id="paint0_linear_18976_752"
-            x1="14.725"
-            y1="5.5"
-            x2="14.725"
-            y2="26.5"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0%" stopColor="#FFFFFF" />
-            <stop offset="100%" stopColor="#FFFFFF" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </FormGroup>
-  );
-}
