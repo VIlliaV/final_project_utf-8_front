@@ -59,6 +59,7 @@ function IngredientsShoppingList() {
 
   // first render
   const shoppingListSliceState = useSelector(shoppingList);
+  console.log('IngredientsShoppingList >> shoppingListSliceState:', shoppingListSliceState);
   const loading = useSelector(shoppingListLoading);
   const error = useSelector(shoppingListError);
   // shoppingListGetLocal();
@@ -96,19 +97,19 @@ function IngredientsShoppingList() {
   return (
     <SLList>
       {shoppingListSliceState.length > 0 &&
-        shoppingListSliceState.map(({ _id, name, img, measure }) => {
+        shoppingListSliceState.map(({ id, measure, _id }) => {
           return (
-            <SLItem key={`${_id}_${nanoid()}`}>
+            <SLItem key={`${id}_${nanoid()}`}>
               <SLItemImage>
                 <picture>
                   {/* <source srcset={img} media="(min-width: 1200px)" />
                     <source srcset={img} media="(min-width: 768px)" />
                     <source srcset={img} media="(max-width: 767px)" /> */}
-                  <img src={img} alt={name} />
+                  <img src={_id.img} alt={_id.name} />
                 </picture>
               </SLItemImage>
 
-              <SLItemImageName>{name}</SLItemImageName>
+              <SLItemImageName>{_id.name}</SLItemImageName>
 
               <SlItemAmount>{measure}</SlItemAmount>
 
@@ -117,7 +118,7 @@ function IngredientsShoppingList() {
                 data-menu-close=""
                 onClick={() => {
                   // handleRemoveItem(id); // remove from store
-                  dispatch(shoppingListRemove(_id)); // remove from DB and repeat get from DB
+                  dispatch(shoppingListRemove(id)); // remove from DB and repeat get from DB
                 }}
               >
                 <GrClose />
