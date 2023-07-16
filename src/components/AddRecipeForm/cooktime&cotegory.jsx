@@ -80,7 +80,7 @@ export default function CookCategoryGroup() {
           id="coocking_time"
           onChange={handleChangeCookTime}
           ListboxProps={{ style: { maxHeight: 220 } }}
-          options={categories}
+          options={cooking_time}
           renderInput={params => <TextField {...params} label="Coocking time" />}
         />
       </StyledLabelCategory>

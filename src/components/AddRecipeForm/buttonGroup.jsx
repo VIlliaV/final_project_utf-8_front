@@ -30,6 +30,7 @@ export default function BasicButtonGroup() {
       return;
     }
     // console.log(decrementBtn);
+    ingredients.pop();
     setCounter(counter - 1);
   };
 
