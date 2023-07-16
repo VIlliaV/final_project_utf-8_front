@@ -67,40 +67,22 @@ export default function CookCategoryGroup() {
         <StyledAutoCategory
           disablePortal
           id="category"
+          onChange={handleChangeCategory}
           ListboxProps={{ style: { maxHeight: 220 } }}
           options={categories}
           renderInput={params => <TextField {...params} label="Category" />}
         />
-        {/* <StyledSelect labelid="Category" id="CAtegoryId" value={category} onChange={handleChangeCategory}>
-          {categories.map(el => (
-            <StyledMenuItem key={nanoid()} value={el}>
-              {el}
-            </StyledMenuItem>
-          ))}
-        </StyledSelect> */}
       </StyledLabelCategory>
       <StyledLabelCategory htmlFor="cooking_time">
         Cooking time
         <StyledAutoCategory
           disablePortal
           id="coocking_time"
+          onChange={handleChangeCookTime}
           ListboxProps={{ style: { maxHeight: 220 } }}
           options={categories}
           renderInput={params => <TextField {...params} label="Coocking time" />}
         />
-        {/* <StyledSelect
-          sx={{ maxHeight: 190 }}
-          labelId="cooking_time"
-          id="cooking-timeId"
-          value={cookTime}
-          onChange={handleChangeCookTime}
-        >
-          {cooking_time.map(el => (
-            <StyledMenuItem key={el} value={el}>
-              {el}
-            </StyledMenuItem>
-          ))}
-        </StyledSelect> */}
       </StyledLabelCategory>
     </>
   );
