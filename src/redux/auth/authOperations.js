@@ -53,6 +53,7 @@ export const fetchCurrentUser = createAsyncThunk('users/current', async (_, thun
   setAuthHeader(token);
   try {
     const response = await axios.get('/users/current');
+
     return response.data;
   } catch (error) {
     if (error.response.status === 401) {
@@ -60,4 +61,13 @@ export const fetchCurrentUser = createAsyncThunk('users/current', async (_, thun
     }
     return thunkAPI.rejectWithValue(error.message);
   }
+});
+
+export const themeToggle = createAsyncThunk('users/theme', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const { isThemeToggle } = state.auth;
+  if (isThemeToggle === false) {
+    return { isThemeToggle: true };
+  }
+  return { isThemeToggle: false };
 });

@@ -2,13 +2,14 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { signupUser, loginUser, logoutUser, fetchCurrentUser } from './authOperations';
+import { signupUser, loginUser, logoutUser, fetchCurrentUser, themeToggle } from './authOperations';
 
 const initialState = {
   user: { name: null, email: null, avatarURL: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  isThemeToggle: false,
   errorMessage: null,
 };
 
@@ -73,6 +74,17 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.errorMessage = null;
       })
+      .addCase(themeToggle.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(themeToggle.fulfilled, (state, action) => {
+        state.isRefreshing = false;
+
+        state.isThemeToggle = action.payload.isThemeToggle;
+      })
+      .addCase(themeToggle.rejected, (state, action) => {
+        state.isRefreshing = false;
+      })
       .addDefaultCase(state => state);
   },
 });
@@ -81,7 +93,7 @@ const persistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['token', 'isLoggedIn'],
+  whitelist: ['token', 'isLoggedIn', 'isThemeToggle'],
 };
 
 export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);
