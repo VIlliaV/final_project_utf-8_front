@@ -43,9 +43,32 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (newIngred
   setAuthHeader(token);
 
   try {
-    const response = await axios.post(`/shopping-list`, newIngredient);
+    const {
+      measure,
+      id,
+      _id: { _id, desc, img, name },
+    } = newIngredient;
 
-    return response.data;
+    const ingredientToAdd = {
+      measure,
+      id,
+      _id: {
+        _id,
+        desc,
+        img,
+        name,
+      },
+    };
+
+    const requestBody = {
+      ingredientId: _id,
+      measure,
+      identId: id,
+    };
+
+    console.log(requestBody);
+    await axios.post(`/shopping-list`, requestBody);
+    return ingredientToAdd;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
