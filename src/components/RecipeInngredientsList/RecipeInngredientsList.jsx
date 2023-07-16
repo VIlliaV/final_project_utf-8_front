@@ -23,9 +23,8 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
       </ListBox>
       <ListContainer>
         {ingredients.map(ingredient => {
-          // console.log(ingredient.id._id);
           return (
-            <ListItem key={ingredient._id.id}>
+            <ListItem key={ingredient._id}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
               <Name>{ingredient.id.name}</Name>
               <MeasureWrapper>

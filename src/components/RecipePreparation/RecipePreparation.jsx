@@ -1,4 +1,5 @@
 import { WrapperForDesktop, Wrapper, Title, List, Item, Image } from './RecipePreparation.styled';
+import { nanoid } from 'nanoid';
 
 const RecipePreparation = ({ instructions, preview, title }) => {
   const instructionsList = instructions.split('\r\n');
@@ -9,8 +10,8 @@ const RecipePreparation = ({ instructions, preview, title }) => {
         <WrapperForDesktop>
           <Title>Recipe Preparation</Title>
           <List>
-            {instructionsList.map((instruction,index) => {
-              return <Item key={index}>{instruction}</Item>;
+            {instructionsList.map(instruction => {
+              return <Item key={nanoid()}>{instruction}</Item>;
             })}
           </List>
         </WrapperForDesktop>
