@@ -29,7 +29,6 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isLoginFailed = false;
-        state.errorMessage = action.payload;
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
@@ -74,8 +73,7 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn= false;
         state.isRefreshing= false;
-        state.isLoginFailed = false;
-        state.errorMessage = null;
+        state.isLoginFailed= false;
       })
       .addDefaultCase(state => state);
   },
@@ -85,7 +83,7 @@ const persistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'isLoggedIn'],
 };
 
 export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);

@@ -1,6 +1,18 @@
-import { styled } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 import { media } from 'utils/media';
 import defaultIcon from './img/userSvgDefault.svg';
+
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 export const AvatarButton = styled.div`
   position: relative;
@@ -10,7 +22,6 @@ export const AvatarButton = styled.div`
   border-radius: 20px;
 `;
 
-
 export const Popup = styled.div`
   z-index: 10;
   display: flex;
@@ -18,7 +29,7 @@ export const Popup = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50px;
+  top: 70px;
   right: 0;
   width: 160px;
   height: 130px;
@@ -26,6 +37,7 @@ export const Popup = styled.div`
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: ${fadeIn} 0.3s;
 
   @media ${media.tablet} {
     width: 180px;
@@ -40,14 +52,15 @@ export const PopupConfirm = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50px;
-  right: 0;
+  top: 70px;
+  right: -30%;
   width: 330px;
   height: 180px;
   background-color: #fff;
   padding: 10px;
   border-radius: 30px;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
+  animation: ${fadeIn} 0.3s;
 
   @media ${media.tablet} {
     width: 480px;
@@ -66,18 +79,20 @@ export const PopupEdit = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50px;
-  right: 0;
+  top: 70px;
+  left: -180%;
   width: 330px;
   height: 330px;
   background-color: #fff;
   padding: 10px;
   border-radius: 30px;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
+  animation: ${fadeIn} 0.3s;
 
   @media ${media.tablet} {
     width: 480px;
     height: 400px;
+	left: -400%;
   }
 
   @media ${media.desktop} {
@@ -111,7 +126,8 @@ export const ButtonRadius = styled.button`
   border: 0;
   width: 34px;
   border-radius: 50px;
-
+  cursor: pointer;
+  
   @media ${media.tablet} {
     width: 44px;
   }
@@ -223,13 +239,8 @@ export const EditConfirmButton = styled.button`
   }
 `;
 
-export const AvatarSvg = styled.img`
-  position: absolute;
-  left: 15px;
-  top: 13px;
-`;
-
 export const EditButton = styled.button`
+cursor: pointer;
   position: absolute;
   right: 15px;
   top: 15px;
@@ -237,6 +248,16 @@ export const EditButton = styled.button`
   background-color: transparent;
   width: 17px;
   height: 17px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+  }
 `;
 
 export const NameInputDiv = styled.div`
@@ -274,12 +295,15 @@ export const NameInput = styled.input`
 
 export const AvatarDiv = styled.div`
   position: relative;
-  width: 90px;
-  height: 90px;
+  min-width: 90px;
+  min-height: 90px;
   margin-bottom: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
+   margin: 30px;
+  cursor: pointer;
+  
   @media ${media.tablet} {
     width: 105px;
     height: 105px;
@@ -300,6 +324,7 @@ export const AvatarDefaultImg = styled.button`
 `;
 
 export const ImgPlusButton = styled.button`
+cursor: pointer;
   display: flex;
   position: absolute;
   bottom: 0px;
@@ -314,8 +339,8 @@ export const ImgPlusButton = styled.button`
 `;
 
 export const AddNewImgButton = styled.button`
-  cursor: pointer;
-  background-image: url(${defaultIcon});
+cursor: pointer;
+  background-image: ${defaultIcon};
   background-repeat: no-repeat;
   background-position: center;
   border: 0;
@@ -327,6 +352,20 @@ export const AddNewImgButton = styled.button`
     width: 105px;
     height: 105px;
   }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+  }
 `;
 
-export const ImageButtonEdit = styled.button;
+export const AvatarSvg = styled.img`
+  position: absolute;
+  left: 15px;
+  top: 13px;
+`;

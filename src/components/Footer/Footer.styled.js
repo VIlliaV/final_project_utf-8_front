@@ -291,7 +291,7 @@ export const Copyright = styled.div`
     justify-content: center;
     background-color: #fafafa;
     height: 65px;
-    min-width: 100vw;
+    min-width: 100%;
     font-size: 14px;
     color: #22252a;
     margin: 0;

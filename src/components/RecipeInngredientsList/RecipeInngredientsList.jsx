@@ -13,11 +13,7 @@ import {
 } from './RecipeInngredientsList.styled';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import dataIngredients from '../../back/ingredients.json';
-
-const RecipeInngredientsList = ({ ingredients, ingredientsMeasure }) => {
-  const ingredientsToShow = dataIngredients.slice(0, 8);
-
+const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
   return (
     <>
       <ListBox>
@@ -26,18 +22,18 @@ const RecipeInngredientsList = ({ ingredients, ingredientsMeasure }) => {
         <LastListTitle>Add to list</LastListTitle>
       </ListBox>
       <ListContainer>
-        {ingredientsToShow.map((ingredient, index) => {
-          const ingredientMeasure = ingredientsMeasure[index];
-
+        {ingredients.map(ingredient => {
+          // console.log(ingredient.id._id);
           return (
-            <ListItem key={ingredient._id.$oid}>
-              <Image src={ingredient.img} alt={ingredient.name} />
-              <Name>{ingredient.name}</Name>
+            <ListItem key={ingredient._id.id}>
+              <Image src={ingredient.id.img} alt={ingredient.id.name} />
+              <Name>{ingredient.id.name}</Name>
               <MeasureWrapper>
-                <Measure>{ingredientMeasure.measure} </Measure>
+                <Measure>{ingredient.measure} </Measure>
               </MeasureWrapper>
 
               <CheckboxInput
+                onChange={event => handleCheckboxChange(ingredient.id._id, event.target.checked)}
                 icon={
                   <SvgIcon>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
