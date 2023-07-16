@@ -72,30 +72,34 @@ const Description = styled.p`
     }
 `;
 const Button = styled.button`
-    width: 150px;
-    margin-bottom: 42px;
-    display: block;
-    box-sizing: border-box;
-    cursor: pointer;
-    text-align: center;
-    background-color: transparent;
-    padding: 10px 18px;
-    border: 1px solid #8baa36;
-    color: #22252a;
-    font-size: 10px;
-    font-weight: 400;
-    border-radius: 24px 44px;
-    @media ${media.tablet} {
-        width: 278px;
-        padding: 18px 44px;
-        font-size: 16px;
-        border: 2px solid var(--active);
-        margin-bottom: 60px;
-    }
-    @media ${media.desktop} {
-        width: 270px;
-        margin-bottom: 48px;
-    }
+  width: 150px;
+  margin-bottom: 42px;
+  display: block;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: center;
+  background-color: transparent;
+  padding: 10px 18px;
+  border: 1px solid #8baa36;
+  color: #22252a;
+  font-size: 10px;
+  font-weight: 400;
+  border-radius: 24px 44px;
+  &:hover {
+    background-color: rgba(139, 170, 54, 1);
+    color: var(--back_theme_1);
+  }
+  @media ${media.tablet} {
+    width: 278px;
+    padding: 18px 44px;
+    font-size: 16px;
+    border: 2px solid var(--active);
+    margin-bottom: 60px;
+  }
+  @media ${media.desktop} {
+    width: 270px;
+    margin-bottom: 48px;
+  }
 `;
 
 const ClockWrapper = styled.div`
