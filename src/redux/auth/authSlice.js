@@ -28,6 +28,7 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isLoginFailed = false;
+        
       })
       .addCase(signupUser.rejected, state => {
         state.isRefreshing = false;

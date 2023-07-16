@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import { FileInput } from '../../AddRecipeForm/AddRecipeForm';
+
 import {
   AvatarButton,
   AvatarSvg,
@@ -32,21 +32,21 @@ import edit from './img/edit.svg';
 import arrow from './img/arrow-right.svg';
 import close from '../BurgerMenu/img/x.svg';
 import plus from './img/plus.svg';
+import userSvgDefault from './img/userSvgDefault.svg'
 import { useAuth } from 'utils/hooks/useAuth';
 
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
-
-  //   const [newUserName, setNewUserName] = useState('');
-//   const [newUserAvatar, setNewUserAvatar] = useState('');
-
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [newUserName, setNewUserName] = useState('');
+  const [newUserAvatar, setNewUserAvatar] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   const { userName, userAvatar } = useAuth();
 
   const dispatch = useDispatch();
   const popupRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const handleLogoutButton = () => {
     setShowPopup(false);
@@ -68,17 +68,15 @@ const AvatarButtonComponent = () => {
     setShowPopup(false);
   };
 
-  const handleImageChange = event => {
-    const file = event.target.files[0];
-    setSelectedImage(file);
-  };
-
   const handleClickOutside = event => {
-    if (popupRef.current && !popupRef.current.contains(event.target)) {
-      setShowPopup(false);
-      setShowPopupConfirm(false);
-      setShowPopupEdit(false);
-    }
+	if (
+	  popupRef.current &&
+	  !popupRef.current.contains(event.target) &&
+	  event.target !== buttonRef.current &&
+	  !buttonRef.current.contains(event.target)
+	) {
+	  setShowPopup(false);
+	}
   };
 
   const handleAddImageClick = () => {
@@ -87,14 +85,14 @@ const AvatarButtonComponent = () => {
   };
 
   const handleNameChange = event => {
-    // setUserName(event.target.value);
+    setNewUserName(event.target.value);
   };
 
   const saveChanges = () => {
     // Отправка картинки на сервер
-    if (selectedImage) {
+    if (newUserAvatar) {
       const formData = new FormData();
-      formData.append('image', selectedImage);
+      formData.append('image', newUserAvatar);
       formData.append('name', userName);
 
       // Добавьте код для отправки formData на сервер
@@ -115,6 +113,25 @@ const AvatarButtonComponent = () => {
     setShowPopupEdit(false);
   };
 
+  const handleImageChange = event => {
+    const file = event.target.files[0];
+    setNewUserAvatar(file);
+  };
+
+  useEffect(() => {
+    if (newUserAvatar) {
+      	setImageUrl(URL.createObjectURL(newUserAvatar));
+        } else if(userAvatar){
+		setImageUrl(userAvatar)
+		} else setImageUrl(userSvgDefault);
+  }, [newUserAvatar, userAvatar]);
+
+  useEffect(() => {
+    if (!newUserName) {
+		setNewUserName(userName)
+	  }
+  }, [newUserName, userName]);
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
@@ -123,8 +140,8 @@ const AvatarButtonComponent = () => {
   }, []);
 
   return (
-    <AvatarButton>
-      <ButtonRadius onClick={() => setShowPopup(!showPopup)}>
+    <AvatarButton >
+<ButtonRadius onClick={() => setShowPopup(!showPopup)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (
@@ -164,9 +181,11 @@ const AvatarButtonComponent = () => {
             style={{ display: 'none' }}
           />
           <AvatarDiv>
-            {/* <FileInput /> */}
-            <AddNewImgButton onClick={handleAddImageClick}></AddNewImgButton>
-            <ImgPlusButton>
+            <AddNewImgButton
+              onClick={handleAddImageClick}
+              style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'contain' }}
+            ></AddNewImgButton>
+            <ImgPlusButton onClick={handleAddImageClick}>
               <img src={plus} alt="" width={20} height={20} />
             </ImgPlusButton>
           </AvatarDiv>
@@ -175,7 +194,7 @@ const AvatarButtonComponent = () => {
             <img src={close} alt="" width={20} height={20} />
           </CloseButton>
           <NameInputDiv>
-            <AvatarSvg src={userAvatar} alt="" width={20} />
+            <AvatarSvg src={avatarIcon} alt="" width={20} />
             <EditButton onClick={handleClickOutside}>
               <img src={edit} alt="" width={17} height={17} />
             </EditButton>
@@ -185,7 +204,7 @@ const AvatarButtonComponent = () => {
           <EditConfirmButton onClick={saveChanges}>Save changes</EditConfirmButton>
         </PopupEdit>
       )}
-      <AvatarText>{userName}</AvatarText>
+      <AvatarText>{newUserName}</AvatarText>
     </AvatarButton>
   );
 };

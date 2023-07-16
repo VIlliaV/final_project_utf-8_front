@@ -9,8 +9,8 @@ const RecipePreparation = ({ instructions, preview, title }) => {
         <WrapperForDesktop>
           <Title>Recipe Preparation</Title>
           <List>
-            {instructionsList.map(instruction => {
-              return <Item>{instruction}</Item>;
+            {instructionsList.map((instruction,index) => {
+              return <Item key={index}>{instruction}</Item>;
             })}
           </List>
         </WrapperForDesktop>

@@ -3,6 +3,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
+// import { useStyleSheetContext } from 'styled-components/dist/models/StyleSheetManager';
 
 const IOSSwitch = styled(({ innerShadow, ...props }) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -62,16 +63,40 @@ const IOSSwitch = styled(({ innerShadow, ...props }) => (
 }));
 
 export default function ThemeSwitcher() {
+  const rootStyles = getComputedStyle(document.documentElement);
+
+  // const primaryColor = rootStyles.getPropertyValue('--primary');
+  const backTheme1Color = rootStyles.getPropertyValue('--back_theme_1');
+  const backTheme2Color = rootStyles.getPropertyValue('--back_theme_2');
+  const headTheme2Color = rootStyles.getPropertyValue('--head_theme_2');
+  const textTheme1Color = rootStyles.getPropertyValue('--text_theme_1');
+  const textTheme2Color = rootStyles.getPropertyValue('--text_theme_2');
+  const textSecondTheme1Color = rootStyles.getPropertyValue('--text_second_theme_1');
+
   const getValue = (e, value) => {
+    if (value) {
+      document.documentElement.style.setProperty('--back_theme_1', backTheme1Color);
+      document.documentElement.style.setProperty('--text_theme_1', textTheme1Color);
+      document.documentElement.style.setProperty('--head_theme_1', headTheme2Color);
+      document.documentElement.style.setProperty('--text_second_theme_1', textSecondTheme1Color);
+      document.documentElement.style.setProperty('--back_theme_2', backTheme2Color);
+      document.documentElement.style.setProperty('--text_theme_2', textTheme2Color);
+      document.documentElement.style.setProperty('--text_second_theme_1', textSecondTheme1Color);
+    } else {
+      document.documentElement.style.setProperty('--back_theme_1', backTheme2Color);
+      document.documentElement.style.setProperty('--text_theme_1', textTheme2Color);
+      document.documentElement.style.setProperty('--head_theme_1', backTheme1Color);
+      document.documentElement.style.setProperty('--back_theme_2', backTheme1Color);
+      document.documentElement.style.setProperty('--text_theme_2', textTheme1Color);
+      document.documentElement.style.setProperty('--text_second_theme_1', backTheme1Color);
+    }
+
     console.log(value);
   };
 
   return (
     <FormGroup>
-      <FormControlLabel
-        control={<IOSSwitch innerShadow onChange={getValue} />}
-        label=""
-      />
+      <FormControlLabel control={<IOSSwitch innerShadow onChange={getValue} />} label="" />
       <svg width="0" height="0">
         <defs>
           <linearGradient
