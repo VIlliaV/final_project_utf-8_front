@@ -8,7 +8,7 @@ import { Wrapper } from './RecipePage.styled';
 import { store } from '../../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { shoppingListAdd, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 const token = store.getState().auth.token;
 
@@ -52,8 +52,7 @@ function RecipePage() {
     setIsFavorite(false);
   };
 
-  const handleCheckboxChange = (ingredientId, isChecked) => {
-    console.log(ingredientId);
+  const handleCheckboxChange = (ingredientId, isChecked, unicId) => {
     const ingredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
     if (isChecked) {
       if (ingredient) {
@@ -65,14 +64,16 @@ function RecipePage() {
             name: ingredient.id.name,
           },
           measure: ingredient.measure,
-          id: nanoid(),
+          id: unicId,
         };
         dispatch(shoppingListAdd(ingredientIsChecked));
       }
     } else {
-      const ingredientToRemove = shoppingList.find(item => item._id._id === ingredientId);
+      const ingredientToRemove = shoppingList.find(item => item.id === unicId);
+
+      console.log(ingredientToRemove);
       if (ingredientToRemove) {
-        dispatch(shoppingListRemove(ingredientToRemove._id._id));
+        dispatch(shoppingListRemove(ingredientToRemove.id));
       }
     }
   };
