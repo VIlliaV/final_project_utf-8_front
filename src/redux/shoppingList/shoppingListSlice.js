@@ -45,7 +45,13 @@ const shoppingListSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  reducers: {},
+
+  reducers: {
+    // shoppingListAddToStore(newIngredient) {
+    //   this.shoppingListSliceState.push(newIngredient);
+    // },
+  },
+
   extraReducers: builder => {
     builder
       .addCase(shoppingListGet.pending, handlePending)
