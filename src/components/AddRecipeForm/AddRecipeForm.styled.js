@@ -145,6 +145,7 @@ export const StyledInputIngredient = style.input`
 `;
 
 export const StyledIngredientList = style.div`
+
 width:345px;
 display: flex;
 flex-direction: row;
@@ -410,30 +411,28 @@ export const ImageSrc = style.span`
     height: 345px;
   },
 `;
+export const StyledAutoCategory = styled(Autocomplete)({
+  width: '160px',
+});
 
 export const StyledAutoComplete = styled(Autocomplete)({
   padding: theme.spacing(1),
   [theme.breakpoints.up('start')]: {
     width: '195px',
-    // cursor: 'pointer',
-    '& div button': {
-      marginLeft: '180px',
-    },
+    cursor: 'pointer',
   },
   [theme.breakpoints.up('tablet')]: {
     width: '400px',
-    '& div button': {
-      marginLeft: '410px',
-    },
   },
   [theme.breakpoints.up('desktop')]: {},
 });
 
-export const StyledMenuItem = styled(MenuItem)({});
+export const StyledMenuItem = styled(MenuItem)({
+  maxHeight: '30px',
+});
 
 export const StyledSelect = styled(Select)({
   width: '150px',
-  height: '30px',
   display: 'flex',
   justifyContent: 'space-around',
   fontSize: '16px',

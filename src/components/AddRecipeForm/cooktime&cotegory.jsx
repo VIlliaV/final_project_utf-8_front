@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import { nanoid } from 'nanoid';
-import { StyledSelect, StyledMenuItem, StyledLabelCategory } from './AddRecipeForm.styled';
+import { Autocomplete, TextField } from '@mui/material';
+import { StyledSelect, StyledAutoCategory, StyledMenuItem, StyledLabelCategory } from './AddRecipeForm.styled';
 import axios from 'axios';
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
@@ -63,23 +64,43 @@ export default function CookCategoryGroup() {
     <>
       <StyledLabelCategory htmlFor="category">
         Category
-        <StyledSelect labelid="Category" id="CAtegoryId" value={category} onChange={handleChangeCategory}>
+        <StyledAutoCategory
+          disablePortal
+          id="category"
+          ListboxProps={{ style: { maxHeight: 220 } }}
+          options={categories}
+          renderInput={params => <TextField {...params} label="Category" />}
+        />
+        {/* <StyledSelect labelid="Category" id="CAtegoryId" value={category} onChange={handleChangeCategory}>
           {categories.map(el => (
             <StyledMenuItem key={nanoid()} value={el}>
               {el}
             </StyledMenuItem>
           ))}
-        </StyledSelect>
+        </StyledSelect> */}
       </StyledLabelCategory>
       <StyledLabelCategory htmlFor="cooking_time">
         Cooking time
-        <StyledSelect labelId="cooking_time" id="cooking-timeId" value={cookTime} onChange={handleChangeCookTime}>
+        <StyledAutoCategory
+          disablePortal
+          id="coocking_time"
+          ListboxProps={{ style: { maxHeight: 220 } }}
+          options={categories}
+          renderInput={params => <TextField {...params} label="Coocking time" />}
+        />
+        {/* <StyledSelect
+          sx={{ maxHeight: 190 }}
+          labelId="cooking_time"
+          id="cooking-timeId"
+          value={cookTime}
+          onChange={handleChangeCookTime}
+        >
           {cooking_time.map(el => (
             <StyledMenuItem key={el} value={el}>
               {el}
             </StyledMenuItem>
           ))}
-        </StyledSelect>
+        </StyledSelect> */}
       </StyledLabelCategory>
     </>
   );

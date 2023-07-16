@@ -27,7 +27,7 @@ import {
   AddNewImgButton,
 } from './AvatarButton.styled';
 import { logoutUser } from 'redux/auth/authOperations';
-import avatarIcon from './img/userIcon.svg';
+// import avatarIcon from './img/userIcon.svg';
 import edit from './img/edit.svg';
 import arrow from './img/arrow-right.svg';
 import close from '../BurgerMenu/img/x.svg';
@@ -40,7 +40,7 @@ const AvatarButtonComponent = () => {
   const [showPopupEdit, setShowPopupEdit] = useState(false);
 
   //   const [newUserName, setNewUserName] = useState('');
-//   const [newUserAvatar, setNewUserAvatar] = useState('');
+  //   const [newUserAvatar, setNewUserAvatar] = useState('');
 
   const [selectedImage, setSelectedImage] = useState(null);
   const { userName, userAvatar } = useAuth();

@@ -49,6 +49,7 @@ export default function IngredientsList() {
         <StyledAutoComplete
           disablePortal
           id="combo-box-demo"
+          ListboxProps={{ style: { maxHeight: 220 } }}
           isOptionEqualToValue={(option, value) => option === value}
           getOptionLabel={option => option}
           options={ingredients.map(el => el.name)}
