@@ -4,7 +4,7 @@ import { shoppingListGet, shoppingListAdd, shoppingListRemove } from './shopping
 // & Fulfilled
 const getFulfilled = (state, action) => {
   handleFulfilled(state);
-  console.log('getFulfilled >> action.payload:', action.payload);
+  // console.log('getFulfilled >> action.payload:', action.payload);
   state.shoppingListSliceState = action.payload;
 };
 
@@ -46,7 +46,11 @@ const shoppingListSlice = createSlice({
     error: null,
   },
 
-  reducers: {},
+  reducers: {
+    // shoppingListAddToStore(newIngredient) {
+    //   this.shoppingListSliceState.push(newIngredient);
+    // },
+  },
 
   extraReducers: builder => {
     builder

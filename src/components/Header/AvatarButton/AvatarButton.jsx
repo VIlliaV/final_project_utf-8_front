@@ -27,12 +27,12 @@ import {
   AddNewImgButton,
 } from './AvatarButton.styled';
 import { logoutUser } from 'redux/auth/authOperations';
-//import avatarIcon from './img/userIcon.svg';
+import avatarIcon from './img/userIcon.svg';
 import edit from './img/edit.svg';
 import arrow from './img/arrow-right.svg';
 import close from '../BurgerMenu/img/x.svg';
 import plus from './img/plus.svg';
-import userSvgDefault from './img/userSvgDefault.svg'
+import userSvgDefault from './img/userSvgDefault.svg';
 import { useAuth } from 'utils/hooks/useAuth';
 
 const AvatarButtonComponent = () => {
@@ -69,14 +69,14 @@ const AvatarButtonComponent = () => {
   };
 
   const handleClickOutside = event => {
-	if (
-	  popupRef.current &&
-	  !popupRef.current.contains(event.target) &&
-	  event.target !== buttonRef.current &&
-	  !buttonRef.current.contains(event.target)
-	) {
-	  setShowPopup(false);
-	}
+    if (
+      popupRef.current &&
+      !popupRef.current.contains(event.target) &&
+      event.target !== buttonRef.current &&
+      !buttonRef.current.contains(event.target)
+    ) {
+      setShowPopup(false);
+    }
   };
 
   const handleAddImageClick = () => {
@@ -120,16 +120,16 @@ const AvatarButtonComponent = () => {
 
   useEffect(() => {
     if (newUserAvatar) {
-      	setImageUrl(URL.createObjectURL(newUserAvatar));
-        } else if(userAvatar){
-		setImageUrl(userAvatar)
-		} else setImageUrl(userSvgDefault);
+      setImageUrl(URL.createObjectURL(newUserAvatar));
+    } else if (userAvatar) {
+      setImageUrl(userAvatar);
+    } else setImageUrl(userSvgDefault);
   }, [newUserAvatar, userAvatar]);
 
   useEffect(() => {
     if (!newUserName) {
-		setNewUserName(userName)
-	  }
+      setNewUserName(userName);
+    }
   }, [newUserName, userName]);
 
   useEffect(() => {
@@ -140,8 +140,8 @@ const AvatarButtonComponent = () => {
   }, []);
 
   return (
-    <AvatarButton >
-<ButtonRadius onClick={() => setShowPopup(!showPopup)} ref={buttonRef}>
+    <AvatarButton>
+      <ButtonRadius onClick={() => setShowPopup(!showPopup)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (

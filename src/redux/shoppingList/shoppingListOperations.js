@@ -10,25 +10,24 @@ const setAuthHeader = token => {
 // FETCH: get current shopping list
 export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
-
   const { token } = state.auth;
   if (token === null) {
     return thunkAPI.rejectWithValue();
   }
   setAuthHeader(token);
 
-  if (state.shoppingList.shoppingListSliceState.length <= 0) {
-    console.log('shoppingListSliceState.length <= 0');
-    try {
-      const response = await axios.get('/shopping-list');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  } else {
-    console.log('shoppingListSliceState.length > 0!!!');
-    return state.shoppingList.shoppingListSliceState;
+  // if (state.shoppingList.shoppingListSliceState.length <= 0) {
+  // console.log('shoppingListSliceState.length <= 0');
+  try {
+    const response = await axios.get('/shopping-list');
+    return response.data; // [] - масив з бекенду (він не пустий)
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
+  // } else {
+  // console.log('shoppingListSliceState.length > 0!!!');
+  // return state.shoppingList.shoppingListSliceState; // масив з редакс-стор
+  // }
 });
 
 // FETCH: add to shopping list
@@ -42,6 +41,7 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (newIngred
 
   try {
     const response = await axios.post(`/shopping-list`, newIngredient);
+
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

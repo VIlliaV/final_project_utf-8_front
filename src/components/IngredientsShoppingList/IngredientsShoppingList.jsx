@@ -66,7 +66,7 @@ function IngredientsShoppingList() {
 
   useEffect(() => {
     dispatch(shoppingListGet());
-  }, [dispatch, shoppingListSliceState]);
+  }, [dispatch]);
 
   // const handleAddData = () => {
   //   const newData = {};
