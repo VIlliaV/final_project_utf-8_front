@@ -38,7 +38,7 @@ export const HeadText = styled.h1`
     transform: rotate(-25deg);
     flex-shrink: 0;
     border-radius: 3px;
-    background: var(--active);
+    background: var(--fix_back);
     @media ${media.tablet} {
       top: -32.4px;
       left: 187px;
@@ -95,7 +95,7 @@ export const HeadText = styled.h1`
     transform: rotate(-25deg);
     flex-shrink: 0;
     border-radius: 3px;
-    background: var(--active);
+    background: var(--fix_back);
     @media ${media.tablet} {
       bottom: 51.4px;
       left: 694px;

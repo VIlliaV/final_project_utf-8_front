@@ -9,8 +9,9 @@
   --text_second_theme_1: rgb(62, 68, 98); /* #3e4462 */
   /* --text_third_theme_1:  */
   --head_theme_1: rgb(0, 24, 51); /* #001833 */
+  --select_text_1: rgba(0, 0, 0, 1);
   --selectBack_theme_1: rgb(217, 217, 217); /* #d9d9d9 */
-
+  --active_select_1: rgb(250, 250, 250);
   --active: rgb(139, 170, 54); /* #8baa36 */
   --active_theme_2: rgba(34, 37, 42, 1); /* #22252A */
   --fix_back: rgb(139, 170, 54); /* #8baa36 */
