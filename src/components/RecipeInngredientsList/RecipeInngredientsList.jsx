@@ -12,8 +12,13 @@ import {
   CheckboxInput,
 } from './RecipeInngredientsList.styled';
 import SvgIcon from '@mui/material/SvgIcon';
+import { useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 
 const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
+  const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
+  console.log(shoppingList);
+
   return (
     <>
       <ListBox>
@@ -23,6 +28,7 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
       </ListBox>
       <ListContainer>
         {ingredients.map(ingredient => {
+          const unicId = nanoid();
           return (
             <ListItem key={ingredient._id}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
@@ -32,7 +38,7 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
               </MeasureWrapper>
 
               <CheckboxInput
-                onChange={event => handleCheckboxChange(ingredient.id._id, event.target.checked)}
+                onChange={event => handleCheckboxChange(ingredient.id._id, event.target.checked, unicId)}
                 icon={
                   <SvgIcon>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
