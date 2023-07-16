@@ -8,4 +8,5 @@ export const themeRootColors = {
   selectBackTheme1: 'rgb(217, 217, 217);',
   activeTheme1: 'rgb(139, 170, 54)',
   activeTheme2: 'rgba(34, 37, 42, 1)',
+  selectTextTheme1: 'rgba(0, 0, 0, 1)',
 };
