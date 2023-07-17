@@ -12,37 +12,12 @@ import {
   CheckboxInput,
 } from './RecipeInngredientsList.styled';
 import SvgIcon from '@mui/material/SvgIcon';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 import { useAuth } from 'utils/hooks/useAuth';
-// import { useEffect, useState } from 'react';
 
-const RecipeInngredientsList = ({ recipe, ingredients, handleCheckboxChange, recipeId }) => {
-  const { isThemeToggle } = useAuth(); //?
-
-  // // Функція для перевірки, чи є id в масиві shoppingList
-  // const isIdInShoppingList = id => shoppingList.includes(id);
-
-  // // Модифікація масиву ingredients для додавання властивості checked
-  // const updatedIngredients = ingredients.map(ingredient => ({
-  //   ...ingredient,
-  //   checked: isIdInShoppingList(ingredient.id),
-  // }));
-
-  // const [shoppingList, setShoppingList] = useState(savedShoppingList);
-  // savedShoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
-
-  // // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
-  // const isInRecipe = ingredientId => {
-  //   return recipe.ingredients.some(ingredient => ingredient.id === ingredientId);
-  // };
-
-  // // Функція для додавання або видалення інгредієнта з шопінг-листу
-  // const handleCheckboxChange = ingredientId => {
-  //   const updatedList = shoppingList.includes(ingredientId)
-  //     ? shoppingList.filter(id => id !== ingredientId)
-  //     : [...shoppingList, ingredientId];
-  //   setShoppingList(updatedList);
-  // };
+const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
+  const { isThemeToggle } = useAuth();
 
   return (
     <>
@@ -53,8 +28,9 @@ const RecipeInngredientsList = ({ recipe, ingredients, handleCheckboxChange, rec
       </ListBox>
       <ListContainer>
         {ingredients.map(ingredient => {
+          const uniqId = nanoid();
           return (
-            <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
+            <ListItem key={ingredient._id} datatype={isThemeToggle.toString()}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
               <Name>{ingredient.id.name}</Name>
               <MeasureWrapper>
@@ -62,16 +38,7 @@ const RecipeInngredientsList = ({ recipe, ingredients, handleCheckboxChange, rec
               </MeasureWrapper>
 
               <CheckboxInput
-                // checked={isInRecipe(recipe.id, ingredient.id) && shoppingList.includes(ingredient.id)}
-                // checked={shoppingList.includes(ingredient.id)}
-                onChange={event =>
-                  handleCheckboxChange(
-                    ingredient.id._id,
-                    event.target.checked,
-                    `${recipeId}_${ingredient.id._id}`,
-                    recipeId
-                  )
-                }
+                onChange={event => handleCheckboxChange(ingredient.id._id, event.target.checked, uniqId)}
                 icon={
                   <SvgIcon>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">

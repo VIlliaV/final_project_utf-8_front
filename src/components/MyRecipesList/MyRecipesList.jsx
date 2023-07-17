@@ -58,7 +58,7 @@ export const MyRecipesList = ({ page }) => {
                 <TimeBtnWrapper>
                   <MyRecipeTime>{time} min</MyRecipeTime>
                   <MyRecipeBtn to={`/recipe/${_id}`} style={{ backgroundColor: buttonsColor }}>
-                    See reecipe
+                    See recipe
                   </MyRecipeBtn>
                 </TimeBtnWrapper>
               </MyRecipeInfo>
