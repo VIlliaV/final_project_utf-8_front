@@ -10,6 +10,7 @@ const getShoppingListFulfilled = (state, action) => {
 
 const addFulfilled = (state, action) => {
   handleFulfilled(state);
+  // console.log('addFulfilled >> action.payload:', action.payload);
   state.shoppingListSliceState.push(action.payload);
 };
 

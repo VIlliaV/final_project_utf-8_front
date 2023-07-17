@@ -13,8 +13,8 @@ import { shoppingListAdd, shoppingListRemove } from '../../redux/shoppingList/sh
 
 const token = store.getState().auth.token;
 
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+// axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
+// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);

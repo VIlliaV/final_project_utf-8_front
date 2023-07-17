@@ -14,8 +14,8 @@ import Paginator from 'components/Paginator/Paginator';
 const token = store.getState().auth.token;
 let value;
 
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+// axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
+// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 // const theme = createTheme({
 //   palette: {

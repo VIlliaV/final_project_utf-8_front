@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com/';
+// axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com/';
 
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
+// const setAuthHeader = token => {
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
 
 // FETCH: get current shopping list
 export const currentRecipeGet = createAsyncThunk('shopping/get', async (_, thunkAPI) => {
@@ -14,7 +14,7 @@ export const currentRecipeGet = createAsyncThunk('shopping/get', async (_, thunk
   if (token === null) {
     return thunkAPI.rejectWithValue();
   }
-  setAuthHeader(token);
+  // setAuthHeader(token);
 
   // if (state.shoppingList.shoppingListSliceState.length <= 0) {
   // console.log('shoppingListSliceState.length <= 0');
