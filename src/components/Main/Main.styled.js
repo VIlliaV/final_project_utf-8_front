@@ -66,7 +66,7 @@ export const HeroSection = styled.div`
 
   h1 {
     margin-bottom: 14px;
-    color: #22252a;
+    color: var(--text_third);
     text-align: center;
     font-size: 60px;
     font-weight: 400;
@@ -74,7 +74,7 @@ export const HeroSection = styled.div`
   }
 
   span {
-    color: #8baa36;
+    color: var(--fix_back);
   }
 
   @media ${media.tablet} {
@@ -107,7 +107,7 @@ export const HeroSectionText = styled.p`
   margin-right: auto;
   margin-bottom: 364px;
   width: 248px;
-  color: #23262a;
+  color: var(--text_theme_1);
   text-align: center;
   font-size: 14px;
   line-height: 1.29;
