@@ -12,12 +12,56 @@ import {
   CheckboxInput,
 } from './RecipeInngredientsList.styled';
 import SvgIcon from '@mui/material/SvgIcon';
-// import { useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+import { useSelector } from 'react-redux';
 import { useAuth } from 'utils/hooks/useAuth';
+import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
+// import { useEffect, useState } from 'react';
 
-const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
-  const { isThemeToggle } = useAuth();
+const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
+  const { isThemeToggle } = useAuth(); //?
+
+  // // Функція для перевірки, чи є id в масиві shoppingList
+  // const isIdInShoppingList = id => shoppingList.includes(id);
+
+  // // Модифікація масиву ingredients для додавання властивості checked
+  // const updatedIngredients = ingredients.map(ingredient => ({
+  //   ...ingredient,
+  //   checked: isIdInShoppingList(ingredient.id),
+  // }));
+
+  // const [shoppingList, setShoppingList] = useState(savedShoppingList);
+  // savedShoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
+
+  // // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
+  // const isInRecipe = ingredientId => {
+  //   return recipe.ingredients.some(ingredient => ingredient.id === ingredientId);
+  // };
+
+  // // Функція для додавання або видалення інгредієнта з шопінг-листу
+  // const handleCheckboxChange = ingredientId => {
+  //   const updatedList = shoppingList.includes(ingredientId)
+  //     ? shoppingList.filter(id => id !== ingredientId)
+  //     : [...shoppingList, ingredientId];
+  //   setShoppingList(updatedList);
+  // };
+
+  //^ отримали рецепт з бекенду як проп recipe
+  const { _id: recipeId, ingredients: recipeIngredients } = recipe;
+  console.log('recipeIngredients:', recipeIngredients);
+
+  const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
+  console.log('savedShoppingList:', savedShoppingList);
+
+  // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
+  const isInRecipe = ingredientId => {
+    return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
+  };
+
+  const isInShoppingList = ingredientId => {
+    return savedShoppingList.some(item => {
+      return item._id._id === ingredientId;
+    });
+  };
 
   return (
     <>
@@ -27,10 +71,9 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
         <LastListTitle>Add to list</LastListTitle>
       </ListBox>
       <ListContainer>
-        {ingredients.map(ingredient => {
-          const unicId = nanoid();
+        {recipeIngredients.map(ingredient => {
           return (
-            <ListItem key={ingredient._id} datatype={isThemeToggle.toString()}>
+            <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
               <Name>{ingredient.id.name}</Name>
               <MeasureWrapper>
@@ -38,7 +81,16 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
               </MeasureWrapper>
 
               <CheckboxInput
-                onChange={event => handleCheckboxChange(ingredient.id._id, event.target.checked, unicId)}
+                // checked={isInRecipe(ingredient.id._id) && savedShoppingList.includes(ingredient.id._id)}
+                checked={isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id)}
+                onChange={event =>
+                  handleCheckboxChange(
+                    ingredient.id._id,
+                    event.target.checked,
+                    `${recipeId}_${ingredient.id._id}`,
+                    recipeId
+                  )
+                }
                 icon={
                   <SvgIcon>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">

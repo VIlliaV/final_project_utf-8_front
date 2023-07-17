@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
-import axios from 'axios';
+import { useAuth } from 'utils/hooks/useAuth';
+import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
 import { CategoriesWrapper, CategoriesContainer, CategoryLink, CategoriesItem } from './CategoriesList.styled';
@@ -14,13 +15,15 @@ export const CategoriesList = () => {
   const [categories, setCategories] = useState([]);
   const [dataError, setDataError] = useState(false);
 
+  const { isThemeToggle } = useAuth();
+
   const getCategories = async () => {
     try {
       const config = {
         method: 'GET',
         url: BASE_URL + '/recipes/category-list',
       };
-      const res = await axios(config);
+      const res = await axiosInstance(config);
       return res.data;
     } catch (error) {
       toast.error(`${error.message}`, {
@@ -107,7 +110,9 @@ export const CategoriesList = () => {
             const linkName = el.toLowerCase();
             return (
               <CategoriesItem key={el}>
-                <CategoryLink to={`/categories/${linkName}`}>{el}</CategoryLink>
+                <CategoryLink datatype={isThemeToggle.toString()} to={`/categories/${linkName}`}>
+                  {el}
+                </CategoryLink>
               </CategoriesItem>
             );
           })}

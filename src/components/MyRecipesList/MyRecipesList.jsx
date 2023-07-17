@@ -17,9 +17,20 @@ import {
   PageTitle,
   List,
 } from './MyRecipesList.styled';
+import MainPageTitle from 'components/MainPageTitle/MainPageTitle';
 import HeadContainer from 'components/HeadContainer/HeadContainer';
+import { useEffect } from 'react';
+import { deleteFavorite, fetchFavorites } from 'redux/favorites/favoritesOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { favoritesSelector } from 'redux/favorites/favoritesSelector';
 
 export const MyRecipesList = ({ page }) => {
+  const state = useSelector(favoritesSelector);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
+
   let backgroundColor = '';
   let buttonsColor = '';
 
@@ -31,13 +42,16 @@ export const MyRecipesList = ({ page }) => {
     buttonsColor = '#8BAA36';
   }
 
+  const onDeleteBtnClick = id => {
+    dispatch(deleteFavorite(id));
+  };
   const newArr = [];
   for (let i = 0; i < 4; i += 1) {
     newArr.push(recipes[i]);
   }
   return (
     <HeadContainer>
-      <PageTitle>{page}</PageTitle>
+      <MainPageTitle title={page} />
       <List>
         {newArr.map(({ preview, title, description, time, _id }) => {
           return (
@@ -49,7 +63,7 @@ export const MyRecipesList = ({ page }) => {
                 <div>
                   <TitleIconWrapper>
                     <MyRecipesItemTitle>{title}</MyRecipesItemTitle>
-                    <SvgWrapper style={{ backgroundColor: backgroundColor }}>
+                    <SvgWrapper style={{ backgroundColor: backgroundColor }} onClick={onDeleteBtnClick}>
                       <TrashIcon src={page === 'Favorites' ? trashIconBlack : trashIconWhite} />
                     </SvgWrapper>
                   </TitleIconWrapper>
@@ -58,7 +72,7 @@ export const MyRecipesList = ({ page }) => {
                 <TimeBtnWrapper>
                   <MyRecipeTime>{time} min</MyRecipeTime>
                   <MyRecipeBtn to={`/recipe/${_id}`} style={{ backgroundColor: buttonsColor }}>
-                    See reecipe
+                    See recipe
                   </MyRecipeBtn>
                 </TimeBtnWrapper>
               </MyRecipeInfo>

@@ -383,6 +383,7 @@ export const AddNewImgButton = styled.button`
   }
 `;
 
+
 export const AvatarSvg = styled.div`
   position: absolute;
   left: 15px;
@@ -409,7 +410,7 @@ export const StyledEditIconSVG = styled(EditIconSVG)`
   height: 17px;
 
   &:hover, &:focus {
-	stroke: var(--active);
+	stroke: var(--fix_back);
   }
 
   @media ${media.tablet} {
@@ -427,7 +428,7 @@ export const StyledCloseIconSVG = styled(CloseIconSVG)`
   }
 
   &:hover, &:focus {
-	stroke: var(--active);
+	stroke: var(--fix_back);
   }
 `;
 
