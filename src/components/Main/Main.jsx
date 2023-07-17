@@ -1,4 +1,4 @@
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Search from '../../components/Search/Search';
 import СhooseYourBreakfast from '../../components/СhooseYourBreakfast/СhooseYourBreakfast';
@@ -32,9 +32,6 @@ const Main = () => {
   return (
     <>
       <HeroSection>
-        <div>
-          <Toaster />
-        </div>
         <h1>
           <span>So</span>Yummy
         </h1>

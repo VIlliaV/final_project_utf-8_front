@@ -11,10 +11,10 @@ export const СhooseBreakfastContainer = styled.div`
   width: 225px;
   height: 92px;
   border-radius: 8px;
-  background: #fafafa;
+  background: var(--back_third);
 
   span {
-    color: #8baa36;
+    color: var(--fix_back);
   }
 
   @media ${media.tablet} {
@@ -37,7 +37,7 @@ export const СhooseBreakfastContainer = styled.div`
 export const СhooseBreakfastText = styled.p`
   width: 100%;
   margin-bottom: 7px;
-  color: #3e4462;
+  color: var(--text_second_theme_1);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
@@ -58,9 +58,9 @@ export const СhooseBreakfastButton = styled.button`
   right: 8px;
   width: 82px;
   height: 18px;
-  background-color: transparent;
+  background-color: var(--fix-transparent);
   border: none;
-  color: #3e4462;
+  color: var(--text_second_theme_1);
   text-align: left;
   font-size: 10px;
   line-height: 1.2;
@@ -69,7 +69,7 @@ export const СhooseBreakfastButton = styled.button`
 
   &:hover,
   &:focus {
-    color: #8baa36;
+    color: var(--fix_back);
   }
 
   &::after {

@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
+import { axiosInstance } from '../../redux/auth/authOperations';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
-import { store } from 'redux/store';
 import {
   ListRecipesContainer,
   ListRecipesItem,
@@ -12,12 +11,8 @@ import {
   CategoryListHeader,
   SeeAllButton,
   OtherCategoriesButton,
+  PreviewCategoriesContainer,
 } from './PreviewCategories.styled';
-
-const token = store.getState().auth.token;
-
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 const PreviewCategories = () => {
   const [previewCategoriesList, setPreviewCategoriesList] = useState([]);
@@ -32,7 +27,7 @@ const PreviewCategories = () => {
   const fetchPreviewCategoriesList = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`/recipes/main-page`);
+      const response = await axiosInstance.get(`/recipes/main-page`);
       setIsLoading(false);
       return response.data;
     } catch (error) {
@@ -53,7 +48,7 @@ const PreviewCategories = () => {
     <>
       {isLoading && <Loader />}
       {!isLoading && previewCategoriesList?.length > 0 && (
-        <div>
+        <PreviewCategoriesContainer>
           <ul>
             {previewCategoriesList.map(item => {
               const categoryName = Object.keys(item)[0];
@@ -84,9 +79,8 @@ const PreviewCategories = () => {
           <OtherCategoriesButton type="button" onClick={event => handleClick('beef', event)}>
             Other categories
           </OtherCategoriesButton>
-        </div>
+        </PreviewCategoriesContainer>
       )}
-      <Toaster />
     </>
   );
 };
