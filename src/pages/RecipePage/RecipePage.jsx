@@ -81,6 +81,7 @@ function RecipePage() {
           _id: ingredientId,
           desc: currentIngredient.id.desc,
           img: currentIngredient.id.img,
+
           name: currentIngredient.id.name,
         },
         measure: currentIngredient.measure,
