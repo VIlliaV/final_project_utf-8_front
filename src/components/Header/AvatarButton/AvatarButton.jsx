@@ -1,7 +1,37 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import svgDefault from './img/userSvgDefault.svg';
-import { AvatarButton, AvatarSvg, AvatarText, ButtonDiv, ButtonIconEdit, ButtonNo, ButtonRadius, ButtonYes, CloseButton, ConfirmTitle, AvatarDiv, EditButton, EditConfirmButton, EditDiv, EditText, LogoutButton, NameInput, NameInputDiv, Popup, PopupConfirm, PopupEdit, ImgPlusButton, AddNewImgButton, StyledUserIcon, StyledCloseIconSVG, StyledArrowIconSVG, StyledEditIconSVG, StyledUserSvgDefault, StyledPlusIconSVG } from './AvatarButton.styled';
+import {
+  AvatarButton,
+  AvatarSvg,
+  AvatarText,
+  ButtonDiv,
+  ButtonIconEdit,
+  ButtonNo,
+  ButtonRadius,
+  ButtonYes,
+  CloseButton,
+  ConfirmTitle,
+  AvatarDiv,
+  EditButton,
+  EditConfirmButton,
+  EditDiv,
+  EditText,
+  LogoutButton,
+  NameInput,
+  NameInputDiv,
+  Popup,
+  PopupConfirm,
+  PopupEdit,
+  ImgPlusButton,
+  AddNewImgButton,
+  StyledUserIcon,
+  StyledCloseIconSVG,
+  StyledArrowIconSVG,
+  StyledEditIconSVG,
+  StyledUserSvgDefault,
+  StyledPlusIconSVG,
+} from './AvatarButton.styled';
 import { logoutUser } from 'redux/auth/authOperations';
 import { useAuth } from 'utils/hooks/useAuth';
 import { useFormik } from 'formik';
@@ -20,18 +50,12 @@ const AvatarButtonComponent = () => {
   const popupRef = useRef(null);
   const buttonRef = useRef(null);
 
-  const [isEditing, setIsEditing] = useState(false);
-
   const nameInputRef = useRef(null);
+  const [isInputActive, setIsInputActive] = useState(false);
 
   const handleEditButtonClick = e => {
     e.preventDefault();
-    setIsEditing(true);
     nameInputRef.current.focus();
-  };
-
-  const handleNameInputBlur = () => {
-    setIsEditing(false);
   };
 
   const handleLogoutButton = () => {
@@ -60,30 +84,46 @@ const AvatarButtonComponent = () => {
   };
 
   const handleClickOutside = event => {
-    if (popupRef.current && !popupRef.current.contains(event.target) && event.target !== buttonRef.current && !buttonRef.current.contains(event.target)) {
+    if (
+		popupRef.current &&
+		!popupRef.current.contains(event.target) &&
+		event.target !== buttonRef.current &&
+		!buttonRef.current.contains(event.target)
+    ) {
       setShowPopup(false);
+	  setShowPopupEdit(false);
+	  setShowPopupConfirm(false);
     }
   };
 
-  const handleAddImageClick = () => {
-    console.log(userAvatar);
-    const imageInput = document.getElementById('imageInput');
-    imageInput.click();
+  const handleKeyDown = event => {
+    if (event.key === 'Escape') {
+      setShowPopup(false);
+      setShowPopupEdit(false);
+      setShowPopupConfirm(false);
+    }
   };
 
-  const handleNameChange = event => {
-    event.preventDefault();
-    setNewUserName(event.target.value);
-  };
+
+
+//   const handleNameChange = event => {
+//     event.preventDefault();
+//     setNewUserName(event.target.value);
+//   };
 
   const handleImageChange = event => {
     const file = event.target.files[0];
     setNewUserAvatar(file);
   };
 
+
+
+
+
+
   const formik = useFormik({
     initialValues: {
-	  imageUrl: null,
+      useravatar: null,
       username: userName,
     },
     onSubmit: values => {
@@ -93,15 +133,20 @@ const AvatarButtonComponent = () => {
     },
     validate: values => {
       const errors = {};
-    //   if (!values.useravatar) {
-    //     errors.useravatar = 'Please select an image';
-    //   }
       if (!values.username) {
         errors.username = 'Please enter your name';
       }
       return errors;
     },
   });
+
+
+
+
+  const handleAddImageClick = () => {
+    const imageInput = document.getElementById('imageInput');
+    imageInput.click();
+  };
 
   useEffect(() => {
     if (newUserAvatar) {
@@ -119,8 +164,10 @@ const AvatarButtonComponent = () => {
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
+	document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+	  document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -129,6 +176,7 @@ const AvatarButtonComponent = () => {
       <ButtonRadius onClick={() => setShowPopup(prevState => !prevState)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
+
       {showPopup && (
         <Popup ref={popupRef}>
           <EditDiv>
@@ -144,6 +192,8 @@ const AvatarButtonComponent = () => {
           </LogoutButton>
         </Popup>
       )}
+
+
       {showPopupConfirm && (
         <PopupConfirm ref={popupRef}>
           <CloseButton onClick={handleConfirmLogoutNo}>
@@ -151,16 +201,29 @@ const AvatarButtonComponent = () => {
           </CloseButton>
           <ConfirmTitle>Are you sure you want to log out?</ConfirmTitle>
           <ButtonDiv>
-            <ButtonYes onClick={handleConfirmLogout}>Yes</ButtonYes>
-            <ButtonNo onClick={handleConfirmLogoutNo}>No</ButtonNo>
+            <ButtonYes onClick={handleConfirmLogout}>Log out</ButtonYes>
+            <ButtonNo onClick={handleConfirmLogoutNo}>Cancel</ButtonNo>
           </ButtonDiv>
         </PopupConfirm>
       )}
+
+
       {showPopupEdit && (
         <PopupEdit onSubmit={formik.handleSubmit} ref={popupRef}>
-          <input type="file" name="useravatar" accept="image/*" id="imageInput" onChange={handleImageChange} style={{ display: 'none' }} />
+          <input
+            type="file"
+            name="useravatar"
+            accept="image/*"
+            id="imageInput"
+            onChange={handleImageChange}
+            style={{ display: 'none' }}
+          />
           <AvatarDiv>
-            <AddNewImgButton onClick={handleAddImageClick} type='button' style={{ backgroundImage: `url(${imageUrl})` }}></AddNewImgButton>
+            <AddNewImgButton
+              onClick={handleAddImageClick}
+              type="button"
+              style={{ backgroundImage: `url(${imageUrl})` }}
+            ></AddNewImgButton>
             <ImgPlusButton onClick={handleAddImageClick}>
               <StyledPlusIconSVG />
             </ImgPlusButton>
@@ -183,10 +246,10 @@ const AvatarButtonComponent = () => {
               name="username"
               onChange={formik.handleChange}
               value={formik.values.username}
-              onFocus={handleNameChange}
-              onBlur={handleNameInputBlur}
-              disabled={!isEditing}
+              onFocus={() => setIsInputActive(true)}
+              onBlur={() => setIsInputActive(false)}
               ref={nameInputRef}
+              autoFocus={isInputActive}
             />
             {formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}
           </NameInputDiv>

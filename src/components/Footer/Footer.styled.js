@@ -166,7 +166,7 @@ export const SubscribeContainer = styled.div`
         margin-top: 65px;
     }
 `;
-export const SubscribeForm = styled.div`
+export const SubscribeForm = styled.form`
     display: flex;
     position: relative;
 
