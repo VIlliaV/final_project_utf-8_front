@@ -93,6 +93,7 @@ function RecipePage() {
         dispatch(shoppingListAdd(addIngredient)); // сервер
       } else {
         const ingredientToRemove = shoppingList.find(item => item._id === uniqId);
+
         dispatch(shoppingListRemove(ingredientToRemove.id));
         if (ingredientToRemove) {
           dispatch(shoppingListRemove(ingredientToRemove.id));
