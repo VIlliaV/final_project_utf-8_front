@@ -62,6 +62,9 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isRefreshing = false;
         state.errorMessage = null;
+      }).addCase(logoutUser.rejected, (state,action) => {
+        state.isRefreshing = false;
+        console.log(action.payload)
       })
       .addCase(fetchCurrentUser.pending, state => {
         state.isRefreshing = true;
@@ -84,6 +87,8 @@ const authSlice = createSlice({
         console.log('pending', action.payload);
       })
       .addCase(updateUser.fulfilled, (state, action) => {
+        state.user.name = action.payload.name;
+        // state.user.avatarURL = action.payload.avatarURL;
         console.log('fulfilled', action.payload);
       })
       .addCase(updateUser.rejected, (state, action) => {

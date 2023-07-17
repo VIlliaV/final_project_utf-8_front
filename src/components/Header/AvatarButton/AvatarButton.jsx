@@ -1,10 +1,42 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import svgDefault from './img/userSvgDefault.svg';
-import { AvatarButton, AvatarSvg, AvatarText, ButtonDiv, ButtonIconEdit, ButtonNo, ButtonRadius, ButtonYes, CloseButton, ConfirmTitle, AvatarDiv, EditButton, EditConfirmButton, EditDiv, EditText, LogoutButton, NameInput, NameInputDiv, Popup, PopupConfirm, PopupEdit, ImgPlusButton, AddNewImgButton, StyledUserIcon, StyledCloseIconSVG, StyledArrowIconSVG, StyledEditIconSVG, StyledUserSvgDefault, StyledPlusIconSVG } from './AvatarButton.styled';
+import {
+  AvatarButton,
+  PhotoInput,
+  AvatarSvg,
+  AvatarText,
+  ButtonDiv,
+  ButtonIconEdit,
+  ButtonNo,
+  ButtonRadius,
+  ButtonYes,
+  CloseButton,
+  ConfirmTitle,
+  AvatarDiv,
+  EditButton,
+  EditConfirmButton,
+  EditDiv,
+  EditText,
+  LogoutButton,
+  NameInput,
+  NameInputDiv,
+  Popup,
+  PopupConfirm,
+  PopupEdit,
+  ImgPlusButton,
+  AddNewImgButton,
+  StyledUserIcon,
+  StyledCloseIconSVG,
+  StyledArrowIconSVG,
+  StyledEditIconSVG,
+  StyledUserSvgDefault,
+  StyledPlusIconSVG,
+} from './AvatarButton.styled';
 import { logoutUser } from 'redux/auth/authOperations';
 import { useAuth } from 'utils/hooks/useAuth';
 import { useFormik } from 'formik';
+import { updateUser } from 'redux/auth/authOperations';
 
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -60,7 +92,12 @@ const AvatarButtonComponent = () => {
   };
 
   const handleClickOutside = event => {
-    if (popupRef.current && !popupRef.current.contains(event.target) && event.target !== buttonRef.current && !buttonRef.current.contains(event.target)) {
+    if (
+      popupRef.current &&
+      !popupRef.current.contains(event.target) &&
+      event.target !== buttonRef.current &&
+      !buttonRef.current.contains(event.target)
+    ) {
       setShowPopup(false);
     }
   };
@@ -83,7 +120,7 @@ const AvatarButtonComponent = () => {
 
   const formik = useFormik({
     initialValues: {
-	  imageUrl: null,
+      imageUrl: null,
       username: userName,
     },
     onSubmit: values => {
@@ -93,15 +130,25 @@ const AvatarButtonComponent = () => {
     },
     validate: values => {
       const errors = {};
-    //   if (!values.useravatar) {
-    //     errors.useravatar = 'Please select an image';
-    //   }
+      //   if (!values.useravatar) {
+      //     errors.useravatar = 'Please select an image';
+      //   }
       if (!values.username) {
         errors.username = 'Please enter your name';
       }
       return errors;
     },
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', e.target[0].value);
+    formData.append('name', e.target[4].value);
+    // const name = e.target[4].value;
+    dispatch(updateUser(formData));
+    // console.log(formData.get('file'));
+  }
 
   useEffect(() => {
     if (newUserAvatar) {
@@ -157,10 +204,21 @@ const AvatarButtonComponent = () => {
         </PopupConfirm>
       )}
       {showPopupEdit && (
-        <PopupEdit onSubmit={formik.handleSubmit} ref={popupRef}>
-          <input type="file" name="useravatar" accept="image/*" id="imageInput" onChange={handleImageChange} style={{ display: 'none' }} />
+        <PopupEdit onSubmit={handleSubmit} ref={popupRef}>
+          <input
+            type="file"
+            name="useravatar"
+            accept="image/*"
+            id="imageInput"
+            onChange={handleImageChange}
+            style={{ visibility: 'hidden' }}
+          />
           <AvatarDiv>
-            <AddNewImgButton onClick={handleAddImageClick} type='button' style={{ backgroundImage: `url(${imageUrl})` }}></AddNewImgButton>
+            <AddNewImgButton
+              onClick={handleAddImageClick}
+              type="button"
+              style={{ backgroundImage: `url(${imageUrl})` }}
+            ></AddNewImgButton>
             <ImgPlusButton onClick={handleAddImageClick}>
               <StyledPlusIconSVG />
             </ImgPlusButton>

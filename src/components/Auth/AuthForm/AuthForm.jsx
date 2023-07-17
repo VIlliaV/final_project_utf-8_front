@@ -26,6 +26,7 @@ import {
   EmailInputContainer,
   PasswordInputContainer,
   ErrorMessage,
+  InputWarningContainer,
 } from './AuthForm.styled';
 import { loginUser, signupUser } from 'redux/auth/authOperations';
 import inputIconSuccess from 'img/inputIconSuccess.svg';
@@ -49,7 +50,6 @@ export const AuthForm = () => {
   const { errorMessage } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     if (pathname === '/signin') {
@@ -88,7 +88,7 @@ export const AuthForm = () => {
     if (!values.email) {
       errors.email = 'Required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
+      errors.email = 'Invalid email format. Example username@domain.tld';
     }
 
     if (!values.password) {
@@ -191,6 +191,9 @@ export const AuthForm = () => {
                 <InputErrorContainer>{formik.errors.password}</InputErrorContainer>
               </>
             ) : null}
+            {formik.values.password.length > 0 && formik.values.password.length < 6 && isRegisterPage && (
+              <InputWarningContainer>Your password is little secure</InputWarningContainer>
+            )}
             {formik.touched.password && !formik.errors.password && <SuccessStatusIcon src={inputIconSuccess} />}
           </PasswordInputContainer>
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}

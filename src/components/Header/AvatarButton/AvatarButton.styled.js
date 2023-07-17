@@ -383,6 +383,7 @@ export const AddNewImgButton = styled.button`
   }
 `;
 
+
 export const AvatarSvg = styled.div`
   position: absolute;
   left: 15px;
