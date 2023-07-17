@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import close from './img/x.svg';
-import menu from './img/menu.svg';
-import { BurgerIcon, BurgerMenuContainer, CloseButton, Menu, StyledNavLink, Switcher } from './BurgerMenu.styled';
+import { BurgerIcon, BurgerMenuContainer, CloseButton, Menu, StyledCloseIconSVG, StyledMenuIconSvg, StyledNavLink, Switcher } from './BurgerMenu.styled';
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitch';
+import { useAuth } from 'utils/hooks/useAuth';
 
 const BurgerMenu = () => {
     const [menuVisible, setMenuVisible] = useState(false);
@@ -15,14 +14,16 @@ const BurgerMenu = () => {
         setMenuVisible(false);
     };
 
+	const { isThemeToggle } = useAuth();
+
     return (
-        <BurgerMenuContainer>
+        <BurgerMenuContainer datatype={isThemeToggle.toString()}>
             <BurgerIcon onClick={handleToggleMenu}>
-                <img src={menu} alt="" />
+				<StyledMenuIconSvg/>
             </BurgerIcon>
             <Menu className={menuVisible ? 'visible' : ''}>
                 <CloseButton onClick={handleToggleMenu}>
-                    <img src={close} alt="" />
+                    <StyledCloseIconSVG/>
                 </CloseButton>
 
                 <StyledNavLink

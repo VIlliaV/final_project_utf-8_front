@@ -2,14 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import { shoppingListGet, shoppingListAdd, shoppingListRemove } from './shoppingListOperations';
 
 // & Fulfilled
-const getFulfilled = (state, action) => {
+const getShoppingListFulfilled = (state, action) => {
   handleFulfilled(state);
-  console.log('getFulfilled >> action.payload:', action.payload);
+  // console.log('getFulfilled >> action.payload:', action.payload);
   state.shoppingListSliceState = action.payload;
 };
 
 const addFulfilled = (state, action) => {
   handleFulfilled(state);
+  // console.log('addFulfilled >> action.payload:', action.payload);
   state.shoppingListSliceState.push(action.payload);
 };
 
@@ -46,12 +47,22 @@ const shoppingListSlice = createSlice({
     error: null,
   },
 
-  reducers: {},
+  reducers: {
+    toggleIngredient: (state, action) => {
+      const ingredientId = action.payload.id._id;
+      const index = state.shoppingListSliceState.indexOf(ingredientId);
+      if (index !== -1) {
+        state.shoppingListSliceState.splice(index, 1); // Видаляємо інгредієнт зі списку, якщо він вже присутній
+      } else {
+        state.shoppingListSliceState.push(ingredientId); // Додаємо інгредієнт до списку, якщо його немає
+      }
+    },
+  },
 
   extraReducers: builder => {
     builder
       .addCase(shoppingListGet.pending, handlePending)
-      .addCase(shoppingListGet.fulfilled, getFulfilled)
+      .addCase(shoppingListGet.fulfilled, getShoppingListFulfilled)
       .addCase(shoppingListGet.rejected, handleRejected)
 
       .addCase(shoppingListAdd.pending, handlePending)
@@ -64,4 +75,5 @@ const shoppingListSlice = createSlice({
   },
 });
 
+export const { toggleIngredient } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;

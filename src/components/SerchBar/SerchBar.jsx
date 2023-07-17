@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import SearchTypeSelector from 'components/SearchTypeSelector/SearchTypeSelector';
 import Search from 'components/Search/Search';
 import { SearchBarWrapper } from './SerchBar.styled';
@@ -28,15 +28,6 @@ const SearchBar = () => {
     <SearchBarWrapper>
       <Search buttonStyle="inversion-button" handleSubmit={handleSubmit} />
       <SearchTypeSelector setValue={handleQueryType} />
-      <div>
-        <Toaster
-          toastOptions={{
-            style: {
-              backgroundColor: 'orange',
-            },
-          }}
-        />
-      </div>
     </SearchBarWrapper>
   );
 };

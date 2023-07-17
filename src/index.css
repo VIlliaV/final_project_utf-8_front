@@ -2,14 +2,32 @@
 
 :root {
   --primary: rgb(55, 55, 55); /* #373737 */
-  --back_theme_1: rgb(250, 250, 250); /* #fafafa */
-  --back_theme_2: rgb(30, 31, 40); /* #1e1f28 */
-  --text_theme_1: rgb(35, 38, 42); /* #23262a */
-  --text_theme_2: rgba(250, 250, 250, 0.6); /* #fafafa99 */
-  --text_second_theme_1: rgb(62, 68, 98); /* #3e4462 */
-  --head_theme_1: rgb(0, 24, 51); /* #001833 */
+  --back_fix: rgb(250, 250, 250); /* #fafafa */
+  --fix_back: rgb(139, 170, 54); /* #8baa36 */
+  --fix-transparent: transparent;
+  --fix_back_2: rgba(34, 37, 42, 1); /* #22252A  */
 
-  --active: rgb(139, 170, 54); /* #8baa36 */
+  --back_theme_1: rgb(250, 250, 250); /* #fafafa  ->  #1e1f28  */
+  --back_theme_2: rgb(30, 31, 40); /* #1e1f28 -> #fafafa */
+  --back_second_1: rgb(42, 44, 54); /* #2a2c36 -> #EBF3D4  */
+  --back_second_2: rgb(235, 243, 212); /* #EBF3D4  -> #1E1F28 */
+  --back_third: rgb(255, 255, 255); /*  #fff -> #2A2C36 */
+
+  --text_theme_1: rgb(35, 38, 42); /* #23262a  -> #fafafa99 */
+  --text_theme_2: rgba(250, 250, 250, 0.6); /* #fafafa99 -> #23262a  */
+  --text_second_theme_1: rgb(62, 68, 98); /* #3e4462 -> #fafafa  */
+  --text_third: rgba(34, 37, 42, 1); /* #22252A -> #fafafa  */
+
+  --category_theme_1: rgb(189, 189, 189); /* #bdbdbd  -> #fafafa99 */
+  --head_theme_1: rgb(0, 24, 51); /* #001833  -> #fafafa */
+  --select_text_1: rgb(0, 0, 0); /* #000000 -> #fafafa */
+  --selectBack_theme_1: rgb(217, 217, 217); /* #d9d9d9-> #fafafa */
+
+  --active_select_1: rgb(250, 250, 250); /*  #fafafa -> #8baa36 */
+  --active_select_2: rgb(139, 170, 54); /*  #8baa36 -> #fafafa */
+  --active: rgb(139, 170, 54); /* #8baa36  -> #22252A */
+  --active_theme_2: rgba(34, 37, 42, 1); /* #22252A -> #8baa36  */
+  --test: rgba(235, 243, 212, 1); /* #2A2C36  #1E1F28 */
 }
 
 @font-face {
@@ -78,8 +96,4 @@ img {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-#asynchronous-demo-listbox {
-  width: 100%;
-  max-height: 210px;
 }

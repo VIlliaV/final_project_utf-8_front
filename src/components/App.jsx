@@ -9,6 +9,8 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import Loader from './Loader/Loader';
 import { useAuth } from 'utils/hooks/useAuth';
 import { Toaster } from 'react-hot-toast';
+import { toggleTheme } from 'utils/toggleThemeColor';
+// import { toggleTheme } from 'styles/themeColor';
 
 const WellcomPage = lazy(() => import('pages/WellcomPage/WellcomPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -24,19 +26,36 @@ const ShoppingListPage = lazy(() => import('pages/ShoppingListPage/ShoppingListP
 const Page404 = lazy(() => import('pages/404Page/404Page'));
 
 export const App = () => {
+  const { isRefreshing, isThemeToggle } = useAuth();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-  const { isRefreshing } = useAuth();
+  useEffect(() => {
+    toggleTheme(isThemeToggle);
+  }, [isThemeToggle]);
 
   return isRefreshing ? (
     <Loader />
   ) : (
     <>
-      <Toaster />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          duration: 2000,
+          style: {
+            background: isThemeToggle ? 'rgb(30, 31, 40)' : 'rgb(250, 250, 250)',
+            color: isThemeToggle ? 'rgb(250, 250, 250)' : 'gb(30, 31, 40)',
+          },
+        }}
+      />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<RestrictedRoute component={<WellcomPage />} redirectTo="/main" />} />

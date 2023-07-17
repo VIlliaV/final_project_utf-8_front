@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
+import svgDefault from './img/userSvgDefault.svg';
 import {
   AvatarButton,
   AvatarSvg,
@@ -25,20 +25,22 @@ import {
   PopupEdit,
   ImgPlusButton,
   AddNewImgButton,
+  StyledUserIcon,
+  StyledCloseIconSVG,
+  StyledArrowIconSVG,
+  StyledEditIconSVG,
+  StyledUserSvgDefault,
+  StyledPlusIconSVG,
 } from './AvatarButton.styled';
 import { logoutUser } from 'redux/auth/authOperations';
-import avatarIcon from './img/userIcon.svg';
-import edit from './img/edit.svg';
-import arrow from './img/arrow-right.svg';
-import close from '../BurgerMenu/img/x.svg';
-import plus from './img/plus.svg';
-import userSvgDefault from './img/userSvgDefault.svg';
 import { useAuth } from 'utils/hooks/useAuth';
+import { useFormik } from 'formik';
 
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [newUserName, setNewUserName] = useState('');
   const [newUserAvatar, setNewUserAvatar] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -47,6 +49,20 @@ const AvatarButtonComponent = () => {
   const dispatch = useDispatch();
   const popupRef = useRef(null);
   const buttonRef = useRef(null);
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const nameInputRef = useRef(null);
+
+  const handleEditButtonClick = e => {
+    e.preventDefault();
+    setIsEditing(true);
+    nameInputRef.current.focus();
+  };
+
+  const handleNameInputBlur = () => {
+    setIsEditing(false);
+  };
 
   const handleLogoutButton = () => {
     setShowPopup(false);
@@ -60,7 +76,12 @@ const AvatarButtonComponent = () => {
 
   const handleConfirmLogoutNo = () => {
     setShowPopupConfirm(false);
+  };
+
+  const handleCancelUserChanges = () => {
     setShowPopupEdit(false);
+    setImageUrl(svgDefault);
+    setNewUserName(userName);
   };
 
   const handlePopupEdit = () => {
@@ -80,37 +101,14 @@ const AvatarButtonComponent = () => {
   };
 
   const handleAddImageClick = () => {
+    console.log(userAvatar);
     const imageInput = document.getElementById('imageInput');
     imageInput.click();
   };
 
   const handleNameChange = event => {
+    event.preventDefault();
     setNewUserName(event.target.value);
-  };
-
-  const saveChanges = () => {
-    // Отправка картинки на сервер
-    if (newUserAvatar) {
-      const formData = new FormData();
-      formData.append('image', newUserAvatar);
-      formData.append('name', userName);
-
-      // Добавьте код для отправки formData на сервер
-      // Используйте fetch или axios для отправки запроса
-      // Например:
-      // fetch('/upload', {
-      //   method: 'POST',
-      //   body: formData,
-      // })
-      //   .then(response => {
-      //     // Обработка успешного ответа
-      //   })
-      //   .catch(error => {
-      //     // Обработка ошибки
-      //   });
-    }
-
-    setShowPopupEdit(false);
   };
 
   const handleImageChange = event => {
@@ -118,12 +116,34 @@ const AvatarButtonComponent = () => {
     setNewUserAvatar(file);
   };
 
+  const formik = useFormik({
+    initialValues: {
+      imageUrl: null,
+      username: userName,
+    },
+    onSubmit: values => {
+      console.log('Form submitted:', values);
+      handleCancelUserChanges();
+      setShowPopupEdit(false);
+    },
+    validate: values => {
+      const errors = {};
+      //   if (!values.useravatar) {
+      //     errors.useravatar = 'Please select an image';
+      //   }
+      if (!values.username) {
+        errors.username = 'Please enter your name';
+      }
+      return errors;
+    },
+  });
+
   useEffect(() => {
     if (newUserAvatar) {
       setImageUrl(URL.createObjectURL(newUserAvatar));
-    } else if (userAvatar) {
-      setImageUrl(userAvatar);
-    } else setImageUrl(userSvgDefault);
+    } else {
+      setImageUrl(svgDefault);
+    }
   }, [newUserAvatar, userAvatar]);
 
   useEffect(() => {
@@ -141,7 +161,7 @@ const AvatarButtonComponent = () => {
 
   return (
     <AvatarButton>
-      <ButtonRadius onClick={() => setShowPopup(!showPopup)} ref={buttonRef}>
+      <ButtonRadius onClick={() => setShowPopup(prevState => !prevState)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (
@@ -149,32 +169,33 @@ const AvatarButtonComponent = () => {
           <EditDiv>
             <EditText>Edit profile</EditText>
             <ButtonIconEdit onClick={handlePopupEdit}>
-              <img src={edit} alt="edit" />
+              <StyledEditIconSVG />
             </ButtonIconEdit>
           </EditDiv>
 
           <LogoutButton onClick={handleLogoutButton}>
             Log out
-            <img src={arrow} alt="arrow" />
+            <StyledArrowIconSVG />
           </LogoutButton>
         </Popup>
       )}
       {showPopupConfirm && (
         <PopupConfirm ref={popupRef}>
           <CloseButton onClick={handleConfirmLogoutNo}>
-            <img src={close} alt="" />
+            <StyledCloseIconSVG />
           </CloseButton>
           <ConfirmTitle>Are you sure you want to log out?</ConfirmTitle>
           <ButtonDiv>
             <ButtonYes onClick={handleConfirmLogout}>Yes</ButtonYes>
-            <ButtonNo onClick={handleConfirmLogoutNo}>Now</ButtonNo>
+            <ButtonNo onClick={handleConfirmLogoutNo}>No</ButtonNo>
           </ButtonDiv>
         </PopupConfirm>
       )}
       {showPopupEdit && (
-        <PopupEdit ref={popupRef}>
+        <PopupEdit onSubmit={formik.handleSubmit} ref={popupRef}>
           <input
             type="file"
+            name="useravatar"
             accept="image/*"
             id="imageInput"
             onChange={handleImageChange}
@@ -183,28 +204,42 @@ const AvatarButtonComponent = () => {
           <AvatarDiv>
             <AddNewImgButton
               onClick={handleAddImageClick}
-              style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'contain' }}
+              type="button"
+              style={{ backgroundImage: `url(${imageUrl})` }}
             ></AddNewImgButton>
             <ImgPlusButton onClick={handleAddImageClick}>
-              <img src={plus} alt="" width={20} height={20} />
+              <StyledPlusIconSVG />
             </ImgPlusButton>
           </AvatarDiv>
 
-          <CloseButton onClick={handleConfirmLogoutNo}>
-            <img src={close} alt="" width={20} height={20} />
+          <CloseButton onClick={handleCancelUserChanges}>
+            <StyledCloseIconSVG />
           </CloseButton>
           <NameInputDiv>
-            <AvatarSvg src={avatarIcon} alt="" width={20} />
-            <EditButton onClick={handleClickOutside}>
-              <img src={edit} alt="" width={17} height={17} />
-            </EditButton>
-            <NameInput type="email" placeholder={userName} onChange={handleNameChange} />
-          </NameInputDiv>
+            <AvatarSvg>
+              <StyledUserIcon stroke={`var(--text_theme_1)`} width={18} />
+            </AvatarSvg>
 
-          <EditConfirmButton onClick={saveChanges}>Save changes</EditConfirmButton>
+            <EditButton onClick={handleEditButtonClick}>
+              <StyledEditIconSVG />
+            </EditButton>
+            <NameInput
+              type="text"
+              placeholder={userName}
+              name="username"
+              onChange={formik.handleChange}
+              value={formik.values.username}
+              onFocus={handleNameChange}
+              onBlur={handleNameInputBlur}
+              disabled={!isEditing}
+              ref={nameInputRef}
+            />
+            {formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}
+          </NameInputDiv>
+          <EditConfirmButton type="submit">Save changes</EditConfirmButton>
         </PopupEdit>
       )}
-      <AvatarText>{newUserName}</AvatarText>
+      <AvatarText>{userName}</AvatarText>
     </AvatarButton>
   );
 };
