@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
+import svgDefault from './img/userSvgDefault.svg';
 import {
   AvatarButton,
   AvatarSvg,
@@ -39,14 +39,28 @@ const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
-  const [newUserName, setNewUserName] = useState('');
-  const [newUserAvatar, setNewUserAvatar] = useState(null);
+  const [newUserName, setNewUserName] = useState(StyledUserSvgDefault);
+  const [newUserAvatar, setNewUserAvatar] = useState();
   const [imageUrl, setImageUrl] = useState(null);
   const { userName, userAvatar } = useAuth();
 
   const dispatch = useDispatch();
   const popupRef = useRef(null);
   const buttonRef = useRef(null);
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const nameInputRef = useRef(null);
+
+  const handleEditButtonClick = e => {
+    e.preventDefault();
+    setIsEditing(true);
+    nameInputRef.current.focus();
+  };
+
+  const handleNameInputBlur = () => {
+    setIsEditing(false);
+  };
 
   const handleLogoutButton = () => {
     setShowPopup(false);
@@ -70,34 +84,41 @@ const AvatarButtonComponent = () => {
 
   const handleClickOutside = event => {
     if (
-		popupRef.current &&
-		!popupRef.current.contains(event.target) &&
-		event.target !== buttonRef.current &&
-		!buttonRef.current.contains(event.target)
+      popupRef.current &&
+      !popupRef.current.contains(event.target) &&
+      event.target !== buttonRef.current &&
+      !buttonRef.current.contains(event.target)
     ) {
       setShowPopup(false);
     }
   };
 
   const handleAddImageClick = () => {
+	console.log(userAvatar);
     const imageInput = document.getElementById('imageInput');
     imageInput.click();
   };
 
   const handleNameChange = event => {
+    event.preventDefault();
     setNewUserName(event.target.value);
   };
 
-  const submitChanges = (e) => {
-	e.preventDefault();
-	console.log('Selected file:', e.target[0].value);
-	console.log('Text value:', e.target[4].value);
+  const submitChanges = e => {
+    e.preventDefault();
+    console.log('Selected file:', e.target[0].value);
 
-	setShowPopupEdit(false);
+    if (!e.target[4].value) {
+    } else {
+      console.log('Text value:', e.target[4].value);
+    }
+    setShowPopupEdit(false);
   };
 
   const handleImageChange = event => {
+
     const file = event.target.files[0];
+	console.log(file);
     setNewUserAvatar(file);
   };
 
@@ -138,20 +159,20 @@ const AvatarButtonComponent = () => {
           <EditDiv>
             <EditText>Edit profile</EditText>
             <ButtonIconEdit onClick={handlePopupEdit}>
-              <StyledEditIconSVG/>
+              <StyledEditIconSVG />
             </ButtonIconEdit>
           </EditDiv>
 
           <LogoutButton onClick={handleLogoutButton}>
             Log out
-            <StyledArrowIconSVG/>
+            <StyledArrowIconSVG />
           </LogoutButton>
         </Popup>
       )}
       {showPopupConfirm && (
         <PopupConfirm ref={popupRef}>
           <CloseButton onClick={handleConfirmLogoutNo}>
-            <StyledCloseIconSVG/>
+            <StyledCloseIconSVG />
           </CloseButton>
           <ConfirmTitle>Are you sure you want to log out?</ConfirmTitle>
           <ButtonDiv>
@@ -162,8 +183,11 @@ const AvatarButtonComponent = () => {
       )}
       {showPopupEdit && (
         <PopupEdit onSubmit={submitChanges} ref={popupRef}>
+
           <input
+            required
             type="file"
+			name="useravatar"
             accept="image/*"
             id="imageInput"
             onChange={handleImageChange}
@@ -172,32 +196,39 @@ const AvatarButtonComponent = () => {
           <AvatarDiv>
             <AddNewImgButton
               onClick={handleAddImageClick}
-              style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'contain' }}
-            ></AddNewImgButton>
+              style={{ backgroundImage: `url(${newUserAvatar})`}}
+            >			
+			</AddNewImgButton>
             <ImgPlusButton onClick={handleAddImageClick}>
-              <StyledPlusIconSVG/>
+              <StyledPlusIconSVG />
             </ImgPlusButton>
           </AvatarDiv>
 
           <CloseButton onClick={handleConfirmLogoutNo}>
-		  <StyledCloseIconSVG/>
+            <StyledCloseIconSVG />
           </CloseButton>
           <NameInputDiv>
             <AvatarSvg>
               <StyledUserIcon stroke={`var(--text_theme_1)`} width={18} />
             </AvatarSvg>
 
-            <EditButton onClick={handleClickOutside}>
-              <StyledEditIconSVG  />
+            <EditButton onClick={handleEditButtonClick}>
+              <StyledEditIconSVG />
             </EditButton>
-            <NameInput type="text" placeholder={userName} onChange={handleNameChange} />
+            <NameInput
+              required
+              type="text"
+			  name="username"
+              onFocus={handleNameChange}
+              onBlur={handleNameInputBlur}
+              disabled={!isEditing}
+              ref={nameInputRef}
+            />
           </NameInputDiv>
-
-		  <EditConfirmButton type="submit">Save changes</EditConfirmButton>
-
+          <EditConfirmButton type="submit">Save changes</EditConfirmButton>
         </PopupEdit>
       )}
-      <AvatarText>{newUserName}</AvatarText>
+      <AvatarText>{userName}</AvatarText>
     </AvatarButton>
   );
 };
