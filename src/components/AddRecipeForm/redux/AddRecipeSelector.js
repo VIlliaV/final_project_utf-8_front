@@ -5,4 +5,4 @@ export const Category = state => state.addRecipePage.category;
 export const getTime = state => state.addRecipePage.time;
 export const Ingredients = state => state.addRecipePage.ingredients;
 export const getInstructions = state => state.addRecipePage.instructions;
-export const AllIngredients = state => state.addRecipePage.allingredients;
+export const AllIngredients = state => state.addRecipePage.allIngredients;

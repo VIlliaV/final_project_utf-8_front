@@ -52,7 +52,7 @@ export const StyledSvg = style.svg`
 display: flex;
     width: 28px;
     height: 28px;
-    fill: rgb(139, 170, 54);
+    fill: var(--fix_back);
     -webkit-transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -103,7 +103,8 @@ export const StyledNativeSelect = styled(NativeSelect)(({ theme }) => ({
 }));
 
 export const StyledButtonGroup = styled(ButtonGroup)({
-  border: '1px solid npm ',
+  border: '1px solid var(--select_text_1)',
+
   borderRadius: '18px',
 });
 export const StyledFormControl = styled(FormControl)(({ theme }) => ({
@@ -205,18 +206,18 @@ export const StyledSection3 = style.div`
           margin-top:20px;
           width:160px;
           height: 45px;
-          background-color:#22252A;
+          background-color:var(--active_theme_2);
           color: white;
           border-radius: 24px 44px;
-          border: 1px solid #22252A;;
+          border: 1px solid var(--active_theme_2);
         }
                  & span {
-                    color: #FAFAFA; 
+                    color: var(--back_fix) 
                     font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
-                    color: #FAFAFA;
+                    
                 }
     @media ${media.tablet}{
       & button{
@@ -238,7 +239,7 @@ margin-top: 25px;
 `;
 
 export const StyledH3 = style.h3`
-color: #3e4462;
+color: var( --text_second_theme_1);
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
@@ -264,7 +265,7 @@ margin-bottom: 25px;
     margin-left: 15px;
     margin-bottom: 0;
       & h4 {
-        color:rgba(62, 68, 98, 1);
+        color:var(--text_second_theme_1);
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -273,7 +274,11 @@ margin-bottom: 25px;
         }
        & p {
         margin-top:5px;
-        color:rgba(126, 126, 126, 1);
+         color: rgba(126, 126, 126, 1);
+          color &[datatype='true'] {
+          color: rgba(250, 250, 250, 1);
+        }
+
         width: 210px;
         height: 55px;
         text-overflow: ellipsis;
@@ -289,9 +294,9 @@ margin-bottom: 25px;
 export const StyledInputBtn = styled(Button)({
   cursor: 'default',
   '&:first-of-type,&:last-of-type': {
-    color: 'rgba(139, 170, 54, 1)',
-    fontSize: '16px',
     cursor: 'pointer',
+    stroke: 'black',
+    fontSize: '16px',
   },
   color: 'black',
   border: 'none',

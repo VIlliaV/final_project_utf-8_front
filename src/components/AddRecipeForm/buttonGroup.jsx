@@ -34,7 +34,7 @@ export default function BasicButtonGroup() {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
                 d="M2.50024 8H13.5003"
-                stroke="#333333"
+                stroke="#8BAA36"
                 strokeOpacity="0.3"
                 strokeWidth="1.5"
                 strokeLinecap="round"

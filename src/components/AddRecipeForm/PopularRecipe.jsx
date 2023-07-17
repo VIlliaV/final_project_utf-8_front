@@ -45,7 +45,7 @@ export default function Popular() {
   }, []);
 
   function handleError(error) {
-    toast(`${error.message}`);
+    toast.error(`${error.message}`);
   }
 
   return (

@@ -12,7 +12,7 @@ const initialState = {
   time: null,
   ingredients: { id: null, name: null, measure: null },
   instructions: null,
-  allingredients: { _id: null, name: null, desc: null, img: null },
+  allIngredients: { _id: null, name: null, desc: null, img: null },
 };
 
 const recipeSlice = createSlice({
@@ -26,7 +26,7 @@ const recipeSlice = createSlice({
         state.category = action.payload;
       })
       .addCase(getIngredients.fulfilled, (state, action) => {
-        state.allingredients = action.payload;
+        state.allIngredients = action.payload;
       })
       // .addCase(addСategory.fulfilled, (state, action) => {
       //   state.category = action.payload;

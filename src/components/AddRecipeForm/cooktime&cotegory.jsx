@@ -31,7 +31,7 @@ export default function CookCategoryGroup() {
   }, [dispatch]);
 
   function handleError(error) {
-    toast(`${error.message}`);
+    toast.error(`${error.message}`);
   }
 
   const handleChangeCategory = event => {
