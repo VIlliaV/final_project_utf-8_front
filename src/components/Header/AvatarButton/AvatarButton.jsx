@@ -10,8 +10,8 @@ const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
-  const [newUserName, setNewUserName] = useState(StyledUserSvgDefault);
-  const [newUserAvatar, setNewUserAvatar] = useState();
+  const [newUserName, setNewUserName] = useState('');
+  const [newUserAvatar, setNewUserAvatar] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const { userName, userAvatar } = useAuth();
 
