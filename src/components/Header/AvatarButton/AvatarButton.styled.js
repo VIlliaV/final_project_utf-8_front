@@ -79,7 +79,7 @@ export const PopupConfirm = styled.div`
   }
 `;
 
-export const PopupEdit = styled.div`
+export const PopupEdit = styled.form`
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -87,7 +87,7 @@ export const PopupEdit = styled.div`
   justify-content: center;
   position: absolute;
   top: 70px;
-  left: -180%;
+  left: -180px;
   width: 330px;
   height: 330px;
   background-color: var(--back_theme_1);
@@ -100,7 +100,7 @@ export const PopupEdit = styled.div`
   @media ${media.tablet} {
     width: 480px;
     height: 400px;
-    left: -400%;
+    left: -400px;
   }
 
   @media ${media.desktop} {

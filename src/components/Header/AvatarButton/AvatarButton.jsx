@@ -88,29 +88,12 @@ const AvatarButtonComponent = () => {
     setNewUserName(event.target.value);
   };
 
-  const saveChanges = () => {
-    // Отправка картинки на сервер
-    if (newUserAvatar) {
-      const formData = new FormData();
-      formData.append('image', newUserAvatar);
-      formData.append('name', userName);
+  const submitChanges = (e) => {
+	e.preventDefault();
+	console.log('Selected file:', e.target[0].value);
+	console.log('Text value:', e.target[4].value);
 
-      // Добавьте код для отправки formData на сервер
-      // Используйте fetch или axios для отправки запроса
-      // Например:
-      // fetch('/upload', {
-      //   method: 'POST',
-      //   body: formData,
-      // })
-      //   .then(response => {
-      //     // Обработка успешного ответа
-      //   })
-      //   .catch(error => {
-      //     // Обработка ошибки
-      //   });
-    }
-
-    setShowPopupEdit(false);
+	setShowPopupEdit(false);
   };
 
   const handleImageChange = event => {
@@ -178,7 +161,7 @@ const AvatarButtonComponent = () => {
         </PopupConfirm>
       )}
       {showPopupEdit && (
-        <PopupEdit ref={popupRef}>
+        <PopupEdit onSubmit={submitChanges} ref={popupRef}>
           <input
             type="file"
             accept="image/*"
@@ -207,10 +190,11 @@ const AvatarButtonComponent = () => {
             <EditButton onClick={handleClickOutside}>
               <StyledEditIconSVG  />
             </EditButton>
-            <NameInput type="email" placeholder={userName} onChange={handleNameChange} />
+            <NameInput type="text" placeholder={userName} onChange={handleNameChange} />
           </NameInputDiv>
 
-          <EditConfirmButton onClick={saveChanges}>Save changes</EditConfirmButton>
+		  <EditConfirmButton type="submit">Save changes</EditConfirmButton>
+
         </PopupEdit>
       )}
       <AvatarText>{newUserName}</AvatarText>
