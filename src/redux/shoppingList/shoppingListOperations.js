@@ -19,12 +19,18 @@ export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkA
   }
   setAuthHeader(token);
 
+  // if (state.shoppingList.shoppingListSliceState.length <= 0) {
+  // console.log('shoppingListSliceState.length <= 0');
   try {
     const response = await axios.get('/shopping-list');
-    return response.data;
+    return response.data; // [] - масив з бекенду (він не пустий)
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
+  // } else {
+  // console.log('shoppingListSliceState.length > 0!!!');
+  // return state.shoppingList.shoppingListSliceState; // масив з редакс-стор
+  // }
 });
 
 // FETCH: add to shopping list
@@ -37,8 +43,35 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (newIngred
   setAuthHeader(token);
 
   try {
-    const response = await axios.post(`/shopping-list`, newIngredient);
-    return response.data;
+    const {
+      measure,
+      id,
+      _id: { _id, desc, img, name },
+    } = newIngredient;
+
+    const ingredientToAdd = {
+      measure,
+      id,
+      _id: {
+        _id,
+        desc,
+        img,
+        name,
+      },
+    };
+
+    const requestBody = {
+      ingredientId: _id,
+      measure,
+      identId: id,
+    };
+
+    console.log(requestBody);
+    await axios.post(`/shopping-list`, requestBody);
+    return ingredientToAdd;
+
+    // const response = await axios.post(`/shopping-list`, newIngredient);
+    // return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -55,6 +88,7 @@ export const shoppingListRemove = createAsyncThunk('shopping/remove', async (idI
 
   try {
     const response = await axios.patch(`/shopping-list`, { id: idIngredient });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

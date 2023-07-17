@@ -6,26 +6,26 @@ import RecipeInngredientsList from '../../components/RecipeInngredientsList/Reci
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 import { store } from '../../redux/store';
-import { useSelector } from 'react-redux';
-// import { addIngredient, removeIngredient } from '../../redux/shoppingList/shoppingListSlice';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { shoppingListAdd, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
+// import { nanoid } from 'nanoid';
 
 const token = store.getState().auth.token;
 
 axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-// axois.get(`/recipes/${id}`); --отримання одного рецепта по id
-// axois.get('/ingredients/list'); --отримання списку інгрієнтів
-// axios.post("/ingredients/list",{recipeId:'id-рецепта'})
-
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
   const [ingredients, setIngredients] = useState([]);
-  console.log(ingredients);
-  // const dispatch = useDispatch();
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const dispatch = useDispatch();
 
   const { recipeId } = useParams();
-  const shoppingList = useSelector(state => state.shoppingList.shoppingListIngredients);
+
+  const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
   console.log(shoppingList);
 
   useEffect(() => {
@@ -34,6 +34,9 @@ function RecipePage() {
         const response = await axios.get(`/recipes/${recipeId}`);
         setRecipe(response.data);
         setIngredients(response.data.ingredients);
+        if (response.data.isFavorite) {
+          setIsFavorite(true);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -44,18 +47,52 @@ function RecipePage() {
     }
   }, [recipeId]);
 
-  const handleCheckboxChange = (ingredientId, isChecked) => {
-    // console.log(ingredientId);
-    // console.log(isChecked);
+  // axois.post('/favorite', {id:'id рецепту'} ); --ендпоінт для додавання рецептів до обраних
+  // axois.patch('/favorite', {id:'id рецепту'}); --ендпоінт для видалення рецептів з обраних
+
+  const addToFavorite = async () => {
+    try {
+      const response = await axios.post(`/favorite/{id:${recipeId}}`);
+      console.log(response.data);
+      setIsFavorite(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const removeFromFavorite = async () => {
+    try {
+      const response = await axios.patch(`/favorite/${recipeId}`);
+      console.log(response.data);
+      setIsFavorite(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCheckboxChange = (ingredientId, isChecked, unicId) => {
+    const ingredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
     if (isChecked) {
-      const ingredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
       if (ingredient) {
-        // console.log(ingredient);
-        console.log(ingredient);
-        // dispatch(addIngredient(ingredient.id));
+        const ingredientIsChecked = {
+          _id: {
+            _id: ingredient.id._id,
+            desc: ingredient.id.desc,
+            img: ingredient.id.img,
+            name: ingredient.id.name,
+          },
+          measure: ingredient.measure,
+          id: unicId,
+        };
+        dispatch(shoppingListAdd(ingredientIsChecked));
       }
     } else {
-      // dispatch(removeIngredient(ingredientId));
+      const ingredientToRemove = shoppingList.find(item => item.id === unicId);
+
+      console.log(ingredientToRemove);
+      if (ingredientToRemove) {
+        dispatch(shoppingListRemove(ingredientToRemove.id));
+      }
     }
   };
 
@@ -63,7 +100,14 @@ function RecipePage() {
     <div>
       {recipe && (
         <>
-          <RecipePageHero title={recipe.title} description={recipe.description} time={recipe.time} />
+          <RecipePageHero
+            title={recipe.title}
+            description={recipe.description}
+            time={recipe.time}
+            isFavorite={isFavorite}
+            addToFavorite={addToFavorite}
+            removeFromFavorite={removeFromFavorite}
+          />
           <Wrapper>
             <RecipeInngredientsList ingredients={ingredients} handleCheckboxChange={handleCheckboxChange} />
             <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />

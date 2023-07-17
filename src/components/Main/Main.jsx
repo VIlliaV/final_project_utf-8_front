@@ -2,8 +2,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Search from '../../components/Search/Search';
 import СhooseYourBreakfast from '../../components/СhooseYourBreakfast/СhooseYourBreakfast';
-import { HeroSection, HeroSectionText } from './Main.styled';
 import HeadContainer from '../../components/HeadContainer/HeadContainer';
+import PreviewCategories from '../../components/PreviewCategories/PreviewCategories';
+import { HeroSection, HeroSectionText } from './Main.styled';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Main = () => {
   const handleClick = event => {
     event.preventDefault();
     navigate({
-      pathname: '/categories//breakfast',
+      pathname: '/categories/breakfast',
     });
   };
 
@@ -44,7 +45,9 @@ const Main = () => {
         <СhooseYourBreakfast handleClick={handleClick} />
         <Search handleSubmit={handleSubmit} />
       </HeroSection>
-      <HeadContainer></HeadContainer>
+      <HeadContainer>
+        <PreviewCategories />
+      </HeadContainer>
     </>
   );
 };

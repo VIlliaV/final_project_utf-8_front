@@ -12,7 +12,7 @@ const ListBox = styles.ul`
     justify-content: space-between;
     align-items: center;
     border-radius: 8px;
-    background: var(--active);
+    background: var(--fix_back);
     @media ${media.tablet} {
         width: 704px;
         padding: 21px 32px;
@@ -94,6 +94,9 @@ const ListItem = styles.li`
     justify-content: space-between;
     border-radius: 8px;
     background: #ebf3d4;
+  &[datatype='true'] {
+        background: #2A2C36;
+    }
     &:last-child {
         margin-bottom: 0px;
     }
@@ -148,7 +151,7 @@ const MeasureWrapper = styles.div`
     display: flex;
     align-items: center;
     border-radius: 4px;
-    background: var(--active);
+    background: var(--fix_back);
 `;
 
 const Measure = styles.p`
@@ -161,34 +164,34 @@ const Measure = styles.p`
 `;
 
 const CheckboxInput = styled(Checkbox)`
-    width: 18px;
-    height: 18px;
-    margin-right: 19px;
-    margin-left: 28px;
-    color: rgba(126, 126, 126, 0.5);
-    @media ${media.tablet} {
-        width: 35px;
-        height: 35px;
-        margin-right: 58px;
-        margin-left: 78px;
-    }
-    @media ${media.desktop} {
-        margin-right: 70px;
-        margin-left: 151px;
-    }
+  width: 18px;
+  height: 18px;
+  margin-right: 19px;
+  margin-left: 28px;
+  color: rgba(126, 126, 126, 0.5);
+  @media ${media.tablet} {
+    width: 35px;
+    height: 35px;
+    margin-right: 58px;
+    margin-left: 78px;
+  }
+  @media ${media.desktop} {
+    margin-right: 70px;
+    margin-left: 151px;
+  }
 `;
 
 export {
-    ListBox,
-    ListTitle,
-    FirstListTitle,
-    SecondListTitle,
-    LastListTitle,
-    ListContainer,
-    ListItem,
-    Image,
-    Name,
-    MeasureWrapper,
-    Measure,
-    CheckboxInput,
+  ListBox,
+  ListTitle,
+  FirstListTitle,
+  SecondListTitle,
+  LastListTitle,
+  ListContainer,
+  ListItem,
+  Image,
+  Name,
+  MeasureWrapper,
+  Measure,
+  CheckboxInput,
 };
