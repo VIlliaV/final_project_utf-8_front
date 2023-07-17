@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-
+import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { Autocomplete, TextField } from '@mui/material';
 import { StyledSelect, StyledAutoCategory, StyledMenuItem, StyledLabelCategory } from './AddRecipeForm.styled';
-import axios from 'axios';
-const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
+import { getCategories } from './redux/AddRecipreOperation';
 
 export default function CookCategoryGroup() {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState('');
   const [cookTime, setCookTime] = useState('');
   const [cooking_time, setCook_time] = useState([]);
+  const dispatch = useDispatch();
 
   const addCookTime = () => {
     for (let i = 5; i <= 180; i = i + 5) {
@@ -25,21 +25,20 @@ export default function CookCategoryGroup() {
   }, []);
 
   useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const config = {
-          method: 'GET',
-          url: BASE_URL + '/recipes/category-list',
-        };
+    dispatch(getCategories)
+      // const getCategories = async () => {
+      //   try {
+      //     const config = {
+      //       method: 'GET',
+      //       url: BASE_URL + '/recipes/category-list',
+      //     };
 
-        const res = await axios(config);
-        return res.data;
-      } catch (error) {
-        throw handleError(error);
-      }
-    };
+      //     const res = await axios(config);
+      //     return res.data;
+      //   } catch (error) {
+      //     throw handleError(error);
+      //   }
 
-    getCategories()
       .then(res => {
         setCategories(res);
       })
