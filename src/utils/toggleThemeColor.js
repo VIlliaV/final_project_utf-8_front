@@ -29,6 +29,7 @@ const toggleTheme = toggle => {
     document.documentElement.style.setProperty('--active', activeTheme1);
     document.documentElement.style.setProperty('--active_theme_2', activeTheme2);
     document.documentElement.style.setProperty('--active_select_1', backTheme1Color);
+    document.documentElement.style.setProperty('--active_select_2', activeTheme1);
     document.documentElement.style.setProperty('--select_text_1', selectTextTheme1);
     document.documentElement.style.setProperty('--category_theme_1', categoryTheme1);
     document.documentElement.style.setProperty('--text_third', activeTheme2);
@@ -45,6 +46,7 @@ const toggleTheme = toggle => {
     document.documentElement.style.setProperty('--selectBack_theme_1', backTheme1Color);
     document.documentElement.style.setProperty('--active', activeTheme2);
     document.documentElement.style.setProperty('--active_select_1', activeTheme1);
+    document.documentElement.style.setProperty('--active_select_2', backTheme1Color);
     document.documentElement.style.setProperty('--active_theme_2', activeTheme1);
     document.documentElement.style.setProperty('--select_text_1', backTheme1Color);
     document.documentElement.style.setProperty('--category_theme_1', textTheme2Color);
