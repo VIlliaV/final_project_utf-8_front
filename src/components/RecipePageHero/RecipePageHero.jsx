@@ -9,8 +9,10 @@ import {
   TimeWrapper,
 } from './RecipePageHero.styled';
 import SvgIcon from '@mui/material/SvgIcon';
+import { useAuth } from 'utils/hooks/useAuth';
 
 const RecipePageHero = ({ title, description, time, isFavorite, addToFavorite, removeFromFavorite }) => {
+  const { isThemeToggle } = useAuth();
   return (
     <>
       <BackgroundWrapper>
@@ -40,7 +42,7 @@ const RecipePageHero = ({ title, description, time, isFavorite, addToFavorite, r
               </svg>
             </SvgIcon>
           </ClockWrapper>
-          <Time> {time} min</Time>
+          <Time datatype={isThemeToggle.toString()}> {time} min</Time>
         </TimeWrapper>
       </BackgroundWrapper>
     </>

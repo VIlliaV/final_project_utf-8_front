@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-// import axios from 'axios';
-import {axiosInstance} from 'redux/auth/authOperations'
+import HeadContainer from 'components/HeadContainer/HeadContainer';
+import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
 import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
@@ -10,9 +9,7 @@ import RecipeInngredientsList from '../../components/RecipeInngredientsList/Reci
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 
-
 import { useSelector, useDispatch } from 'react-redux';
-
 
 // const token = store.getState().auth.token;
 
@@ -20,9 +17,6 @@ import { useSelector, useDispatch } from 'react-redux';
 // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
-
-
-
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
@@ -34,7 +28,6 @@ function RecipePage() {
   const { recipeId } = useParams();
 
   console.log(recipeId);
-
 
   const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
   // console.log('RecipePage >> shoppingList:', shoppingList);
@@ -53,7 +46,7 @@ function RecipePage() {
           setIsFavorite(true);
         }
       } catch (error) {
-         toast.error(`${error.message}`);
+        toast.error(`${error.message}`);
       }
     };
 
@@ -64,25 +57,23 @@ function RecipePage() {
 
   const addToFavorite = async () => {
     try {
-
       const response = await axiosInstance.post(`/favorite`, { id: recipeId });
 
       console.log(response.data);
       setIsFavorite(true);
     } catch (error) {
-          toast.error(`${error.message}`);
+      toast.error(`${error.message}`);
     }
   };
 
   const removeFromFavorite = async () => {
     try {
-
       const response = await axiosInstance.patch(`/favorite`, { id: recipeId });
 
       console.log(response.data);
       setIsFavorite(false);
     } catch (error) {
-     toast.error(`${error.message}`);
+      toast.error(`${error.message}`);
     }
   };
 
@@ -121,23 +112,26 @@ function RecipePage() {
     <div>
       {recipe && (
         <>
-          <RecipePageHero
-            title={recipe.title}
-            description={recipe.description}
-            time={recipe.time}
-            isFavorite={isFavorite}
-            addToFavorite={addToFavorite}
-            removeFromFavorite={removeFromFavorite}
-          />
-          <Wrapper>
-            <RecipeInngredientsList
-              recipe={recipe}
-              ingredients={ingredients}
-              handleCheckboxChange={handleCheckboxChange}
-              recipeId={recipeId}
+          <HeadContainer>
+            <RecipePageHero
+              title={recipe.title}
+              description={recipe.description}
+              time={recipe.time}
+              isFavorite={isFavorite}
+              addToFavorite={addToFavorite}
+              removeFromFavorite={removeFromFavorite}
             />
-            <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
-          </Wrapper>
+
+            <Wrapper>
+              <RecipeInngredientsList
+                recipe={recipe}
+                ingredients={ingredients}
+                handleCheckboxChange={handleCheckboxChange}
+                recipeId={recipeId}
+              />
+              <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
+            </Wrapper>
+          </HeadContainer>
         </>
       )}
     </div>

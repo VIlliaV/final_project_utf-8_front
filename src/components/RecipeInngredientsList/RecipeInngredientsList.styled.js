@@ -26,7 +26,7 @@ const ListBox = styles.ul`
 `;
 
 const ListTitle = styles.li`
-    color: var(--back_theme_1);
+    color: var(--back_fix);
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.3px;
@@ -93,9 +93,9 @@ const ListItem = styles.li`
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
-    background: #ebf3d4;
+    background: #2A2C36;
   &[datatype='true'] {
-        background: #2A2C36;
+         background: #ebf3d4;
     }
     &:last-child {
         margin-bottom: 0px;
@@ -134,12 +134,15 @@ const Image = styles.img`
 `;
 
 const Name = styles.p`
-    color: var(--text_second_theme_1);
+    color: #FAFAFA; 
     font-size: 12px;
     font-weight: 500;
     line-height: 1.16;
     letter-spacing: -0.24px;
     margin-right: auto;
+    &[datatype='true'] {
+    color: #3E4462;
+    }
     @media ${media.tablet} {
         font-size: 24px;
     }

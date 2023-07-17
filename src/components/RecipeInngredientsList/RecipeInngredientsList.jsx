@@ -56,7 +56,7 @@ const RecipeInngredientsList = ({ recipe, ingredients, handleCheckboxChange, rec
           return (
             <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
-              <Name>{ingredient.id.name}</Name>
+              <Name datatype={isThemeToggle.toString()}>{ingredient.id.name}</Name>
               <MeasureWrapper>
                 <Measure>{ingredient.measure} </Measure>
               </MeasureWrapper>
