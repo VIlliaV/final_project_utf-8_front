@@ -18,8 +18,18 @@ import {
   List,
 } from './MyRecipesList.styled';
 import HeadContainer from 'components/HeadContainer/HeadContainer';
+import { useEffect } from 'react';
+import { deleteFavorite, fetchFavorites } from 'redux/favorites/favoritesOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { favoritesSelector } from 'redux/favorites/favoritesSelector';
 
 export const MyRecipesList = ({ page }) => {
+  const state = useSelector(favoritesSelector);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
+
   let backgroundColor = '';
   let buttonsColor = '';
 
@@ -31,6 +41,9 @@ export const MyRecipesList = ({ page }) => {
     buttonsColor = '#8BAA36';
   }
 
+  const onDeleteBtnClick = id => {
+    dispatch(deleteFavorite(id));
+  };
   const newArr = [];
   for (let i = 0; i < 4; i += 1) {
     newArr.push(recipes[i]);
@@ -49,7 +62,7 @@ export const MyRecipesList = ({ page }) => {
                 <div>
                   <TitleIconWrapper>
                     <MyRecipesItemTitle>{title}</MyRecipesItemTitle>
-                    <SvgWrapper style={{ backgroundColor: backgroundColor }}>
+                    <SvgWrapper style={{ backgroundColor: backgroundColor }} onClick={onDeleteBtnClick}>
                       <TrashIcon src={page === 'Favorites' ? trashIconBlack : trashIconWhite} />
                     </SvgWrapper>
                   </TitleIconWrapper>
