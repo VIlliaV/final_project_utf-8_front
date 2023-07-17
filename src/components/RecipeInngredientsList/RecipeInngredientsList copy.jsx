@@ -16,8 +16,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import { nanoid } from 'nanoid';
 import { useAuth } from 'utils/hooks/useAuth';
 
-const RecipeInngredientsList = ({ ingredients, handleCheckboxChange, recipeId }) => {
-  // console.log('RecipeInngredientsList >> ingredients:', ingredients);
+const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
   const { isThemeToggle } = useAuth();
 
   return (
@@ -29,8 +28,9 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange, recipeId })
       </ListBox>
       <ListContainer>
         {ingredients.map(ingredient => {
+          const uniqId = nanoid();
           return (
-            <ListItem key={`${recipeId}_${ingredient._id}`} datatype={isThemeToggle.toString()}>
+            <ListItem key={ingredient._id} datatype={isThemeToggle.toString()}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
               <Name>{ingredient.id.name}</Name>
               <MeasureWrapper>
@@ -38,9 +38,7 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange, recipeId })
               </MeasureWrapper>
 
               <CheckboxInput
-                onChange={event =>
-                  handleCheckboxChange(ingredient.id._id, event.target.checked, `${recipeId}_${ingredient._id}`)
-                }
+                onChange={event => handleCheckboxChange(ingredient.id._id, event.target.checked, uniqId)}
                 icon={
                   <SvgIcon>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">

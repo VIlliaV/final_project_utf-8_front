@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { shoppingListGet, shoppingListAdd, shoppingListRemove } from './shoppingListOperations';
 
 // & Fulfilled
-const getFulfilled = (state, action) => {
+const getShoppingListFulfilled = (state, action) => {
   handleFulfilled(state);
   // console.log('getFulfilled >> action.payload:', action.payload);
   state.shoppingListSliceState = action.payload;
@@ -55,7 +55,7 @@ const shoppingListSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(shoppingListGet.pending, handlePending)
-      .addCase(shoppingListGet.fulfilled, getFulfilled)
+      .addCase(shoppingListGet.fulfilled, getShoppingListFulfilled)
       .addCase(shoppingListGet.rejected, handleRejected)
 
       .addCase(shoppingListAdd.pending, handlePending)

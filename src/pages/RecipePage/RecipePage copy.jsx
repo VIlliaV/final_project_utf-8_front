@@ -9,7 +9,7 @@ import { store } from '../../redux/store';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { shoppingListAdd, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 const token = store.getState().auth.token;
 
@@ -18,7 +18,6 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
-  console.log('RecipePage >> recipe:', recipe);
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -27,7 +26,7 @@ function RecipePage() {
   const { recipeId } = useParams();
 
   const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
-  // console.log(shoppingList);
+  console.log(shoppingList);
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -90,7 +89,7 @@ function RecipePage() {
     } else {
       const ingredientToRemove = shoppingList.find(item => item.id === uniqId);
 
-      // console.log(ingredientToRemove);
+      console.log(ingredientToRemove);
       if (ingredientToRemove) {
         dispatch(shoppingListRemove(ingredientToRemove.id));
       }
@@ -110,11 +109,7 @@ function RecipePage() {
             removeFromFavorite={removeFromFavorite}
           />
           <Wrapper>
-            <RecipeInngredientsList
-              ingredients={ingredients}
-              handleCheckboxChange={handleCheckboxChange}
-              recipeId={recipeId}
-            />
+            <RecipeInngredientsList ingredients={ingredients} handleCheckboxChange={handleCheckboxChange} />
             <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
           </Wrapper>
         </>
