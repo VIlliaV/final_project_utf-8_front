@@ -1,7 +1,6 @@
 import React from 'react';
 
 import logo from 'img/icon.svg';
-
 import ThemeSwitcher from './ThemeSwitcher/ThemeSwitch';
 
 import {
@@ -13,6 +12,7 @@ import {
   ResponsiveHeaderContainer,
   ShowContentTablet,
   StyledNavLink,
+  StyledUserSvgDefault,
   UserDiv,
 } from './Header.styled';
 
@@ -44,7 +44,7 @@ const Header = () => {
               Shopping list
             </StyledNavLink>
             <StyledNavLink to="/search" className={navData => (navData.isActive ? 'active-style' : 'none')}>
-              Search
+              <StyledUserSvgDefault/>
             </StyledNavLink>
           </Nav>
         </HideContentDesktop>

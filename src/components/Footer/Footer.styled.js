@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { media } from '../../utils/media';
 
+
 export const HideContentMobile = styled.div`
     @media (max-width: 767px) {
         display: none;
@@ -38,7 +39,7 @@ export const Navigation = styled.nav`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-    color: var(--back_theme_1);
+    color: #fff;
     text-decoration: none;
     padding-bottom: 15px;
     display: flex;
@@ -55,13 +56,12 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const FooterContainer = styled.footer`
-    background-color: var(--back_theme_2);
     text-align: center;
 `;
 
 export const ResponsiveFooterContainer = styled.footer`
     display: flex;
-	background-color: var(--back_theme_2);
+	background-color: var(--active_theme_2);
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -81,7 +81,7 @@ export const TextLi = styled.li`
     list-style-type: disc;
     text-align: start;
     flex-direction: row;
-    color: var(--back_theme_1);
+    color: #FAFAFA;
     padding-bottom: 10px;
     font-size: 14px;
     font-weight: 400;
@@ -92,7 +92,7 @@ export const TextLi = styled.li`
 
 export const TextP = styled.p`
     text-align: left;
-    color: var(--back_theme_1);
+    color: #FAFAFA;
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -103,7 +103,7 @@ export const TextP = styled.p`
 export const TextH3 = styled.h3`
     display: flex;
     margin-bottom: 15px;
-    color: var(--back_theme_1);
+    color: #FAFAFA;
     font-size: 18px;
     font-weight: 700;
     line-height: normal;
@@ -183,9 +183,9 @@ export const EmailInput = styled.input`
     padding: 0 0 0 42px;
     width: 205px;
     height: 40px;
-    color: var(--back_theme_1);
-    background-color: var(--back_theme_2);
-    border-color: white;
+    color: #fff;
+    background-color: var(--active_theme_2);
+    border-color: var(--back_theme_1);
     border-radius: 4px;
     border: 1px solid rgba(250, 250, 250, 0.15);
 
@@ -209,7 +209,15 @@ export const EmailInput = styled.input`
 `;
 
 export const EmailSvg = styled.img`
+
     position: absolute;
+    left: 15px;
+    top: 13px;
+`;
+
+export const EmailSvgDiv = styled.div`
+  stroke: var(--back_theme_1);
+  position: absolute;
     left: 15px;
     top: 13px;
 `;
@@ -221,12 +229,11 @@ export const SubscribeButton = styled.button`
     border: none;
     border-radius: 4px;
     background-color: var(--active);
-    color: var(--back_theme_1);
+    color: #fff;
     width: 205px;
     height: 40px;
-    &:hover &:focus {
-        color: white;
-        border: 0;
+    &:hover, &:focus {
+		color: green;
     }
 
     @media ${media.tablet} {
@@ -254,7 +261,7 @@ export const LogoImg = styled.img`
 `;
 
 export const LogoNav = styled(NavLink)`
-    color: var(--back_theme_1);
+    color: #FAFAFA;
     text-decoration: none;
     width: 145px;
     height: 35px;
@@ -289,7 +296,7 @@ export const Copyright = styled.div`
     justify-content: space-between;
     align-items: center;
     justify-content: center;
-    background-color: #fafafa;
+    background-color: var(--back_theme_1);
     height: 65px;
     min-width: 100%;
     font-size: 14px;
