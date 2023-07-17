@@ -2,37 +2,29 @@ import { axiosInstance } from 'redux/auth/authOperations';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const addTitle = createAsyncThunk('/addRecipes/addTitle', async (text, thunkAPI) => {
-  const state = thunkAPI.getState().addRecipePage;
-  return (state.title = text);
+  return text;
 });
 
 export const addPreparation = createAsyncThunk('/addRecipes/addInstructions', async (text, thunkAPI) => {
-  const state = thunkAPI.getState().addRecipePage;
-  return (state.instructions = text);
+  return text;
 });
 
 export const addAbout = createAsyncThunk('/addRecipes/addAbout', async (text, thunkAPI) => {
-  const state = thunkAPI.getState().addRecipePage;
-  return (state.description = text);
+  return text;
 });
 
 export const addСategory = createAsyncThunk('/addRecipes/addCategory', async (text, thunkAPI) => {
-  const state = thunkAPI.getState().addRecipePage;
-  return (state.category = text);
+  return text;
 });
 
 export const addTime = createAsyncThunk('/addRecipes/addTime', async (text, thunkAPI) => {
-  const state = thunkAPI.getState().addRecipePage;
-  return (state.time = text);
+  return text;
+});
+export const addIngredientRecipe = createAsyncThunk('/addRecipes/addIngredient', async (text, thunkAPI) => {
+  return text;
 });
 
-export const getCategories = createAsyncThunk('/addRecipes', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const { token } = state.auth;
-  if (token === null) {
-    return thunkAPI.rejectWithValue();
-  }
-
+export const getCategories = createAsyncThunk('/addRecipes/getCategories', async (_, thunkAPI) => {
   try {
     const response = await axiosInstance.get('/recipes/category-list');
     return response.data;
@@ -43,11 +35,6 @@ export const getCategories = createAsyncThunk('/addRecipes', async (_, thunkAPI)
 
 export const getIngredients = createAsyncThunk('/addRecipes/getIngredients', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
-  const { token } = state.auth;
-  if (token === null) {
-    return thunkAPI.rejectWithValue();
-  }
-
   try {
     const response = await axiosInstance.get('/ingredients/list');
     return response.data;
@@ -57,12 +44,6 @@ export const getIngredients = createAsyncThunk('/addRecipes/getIngredients', asy
 });
 
 export const getPopular = createAsyncThunk('/addRecipes/getPopular', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const { token } = state.auth;
-  if (token === null) {
-    return thunkAPI.rejectWithValue();
-  }
-
   try {
     const response = await axiosInstance.get('/popular-recipe');
     return response.data;

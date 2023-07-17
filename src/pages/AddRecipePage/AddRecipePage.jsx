@@ -8,11 +8,12 @@ import Popular from '../../components/AddRecipeForm/PopularRecipe';
 import ImageRecipe from '../../components/AddRecipeForm/ImageRecipe';
 import RecipePreparation from '../../components/AddRecipeForm/RecipePreparation';
 import BasicButtonGroup from '../../components/AddRecipeForm/buttonGroup';
-import { getIngredients } from '../../components/AddRecipeForm/redux/AddRecipreOperation';
+import { getIngredients, getCategories } from '../../components/AddRecipeForm/redux/AddRecipreOperation';
 
 export default function AddRecipePage() {
   const dispatch = useDispatch();
   dispatch(getIngredients());
+  dispatch(getCategories());
   return (
     <HeadContainer>
       <MainPageTitle title="Add recipe" />

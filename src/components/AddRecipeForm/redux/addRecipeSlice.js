@@ -2,7 +2,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getCategories, getIngredients, addСategory, addTime } from './AddRecipreOperation';
+import { getCategories, getIngredients, addIngredientRecipe, addСategory, addTime } from './AddRecipreOperation';
 
 const initialState = {
   // documents: URL
@@ -10,9 +10,10 @@ const initialState = {
   description: null,
   category: null,
   time: null,
-  ingredients: { id: null, name: null, measure: null },
+  ingredients: [{ id: null, measure: null }],
   instructions: null,
   allIngredients: { _id: null, name: null, desc: null, img: null },
+  allCategories: null,
 };
 
 const recipeSlice = createSlice({
@@ -23,10 +24,16 @@ const recipeSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getCategories.fulfilled, (state, action) => {
-        state.category = action.payload;
+        state.allCategories = action.payload;
       })
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.allIngredients = action.payload;
+      })
+      .addCase(addСategory.fulfilled, (state, action) => {
+        state.category = action.payload;
+      })
+      .addCase(addIngredientRecipe.fulfilled, (state, action) => {
+        state.ingredients.push(action.payload);
       })
       // .addCase(addСategory.fulfilled, (state, action) => {
       //   state.category = action.payload;
@@ -52,9 +59,10 @@ const recipeSlice = createSlice({
 
 const persistConfig = {
   key: 'add',
+
   version: 1,
   storage,
-  whitelist: ['token', 'isLoggedIn', 'isThemeToggle'],
+  whitelist: ['title', 'description', 'ingredients'],
 };
 
 export const AddrecipeReducer = persistReducer(persistConfig, recipeSlice.reducer);

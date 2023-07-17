@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 // import ingredients from '../../back/ingredients.json';
@@ -17,6 +17,14 @@ export default function IngredientsList() {
   const ingredients = useSelector(AllIngredients);
   const loading = ingredients.length === 0;
 
+  const handleChangeIngredient = event => {
+    console.log(event.target.textContent);
+  };
+
+  const handleChangeMeaure = event => {
+    console.log(event.target.value);
+  };
+
   return (
     <li key={nanoid()} name="ingredient">
       <StyledIngredientList>
@@ -28,6 +36,7 @@ export default function IngredientsList() {
               ListboxProps={{ style: { maxHeight: 220 } }}
               isOptionEqualToValue={(option, value) => option === value}
               getOptionLabel={option => option}
+              onChange={handleChangeIngredient}
               options={ingredients.map(el => el.name)}
               loading={loading}
               renderInput={params => (
@@ -46,7 +55,13 @@ export default function IngredientsList() {
                 />
               )}
             />
-            <StyledInputIngredient name="measure" type="text" placeholder="count tbs,tps,kg,g" sx={{ padding: 5 }} />
+            <StyledInputIngredient
+              name="measure"
+              onChange={handleChangeMeaure}
+              type="text"
+              placeholder="count tbs,tps,kg,g"
+              sx={{ padding: 5 }}
+            />
             <StyledIngredientBtn>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
                 <path
