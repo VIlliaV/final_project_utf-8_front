@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { useAuth } from 'utils/hooks/useAuth';
+import { clearErrorMessage } from 'redux/auth/authSlice';
 // import * as Yup from 'yup';
 
 
@@ -22,8 +23,9 @@ import {
   PasswordIcon,
   SuccessStatusIcon,
   NameInputContainer,
-EmailInputContainer,
-PasswordInputContainer,
+  EmailInputContainer,
+  PasswordInputContainer,
+  ErrorMessage,
 } from './AuthForm.styled';
 import { loginUser, signupUser } from 'redux/auth/authOperations';
 import inputIconSuccess from 'img/inputIconSuccess.svg';
@@ -54,7 +56,15 @@ export const AuthForm = () => {
       setIsRegisterPage(false);
       setInitialValues(signInInitialValues);
     }
-  }, [pathname]);
+
+    if (pathname === '/signin' && errorMessage === 'Email in use') {
+      dispatch(clearErrorMessage());
+    }
+    if (pathname === '/register' && errorMessage === 'Email or password is wrong') {
+      dispatch(clearErrorMessage());
+    }
+  }, [pathname, dispatch, errorMessage]);
+
 
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
@@ -181,8 +191,8 @@ export const AuthForm = () => {
             ) : null}
             {formik.touched.password && !formik.errors.password && <SuccessStatusIcon src={inputIconSuccess} />}
           </PasswordInputContainer>
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
-          {errorMessage && <div>{ errorMessage}</div>}
         </Form>
       </Container>
       <Link onClick={handleNavigate}>{isRegisterPage ? 'Sign In' : 'Registration'}</Link>

@@ -2,7 +2,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { signupUser, loginUser, logoutUser, fetchCurrentUser, themeToggle } from './authOperations';
+import { signupUser, loginUser, logoutUser, fetchCurrentUser, themeToggle, updateUser } from './authOperations';
 
 const initialState = {
   user: { name: null, email: null, avatarURL: null },
@@ -16,7 +16,11 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    clearErrorMessage: state => {
+      state.errorMessage = null;
+    },
+  },
 
   extraReducers: builder => {
     builder
@@ -32,7 +36,7 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        state.errorMessage = action.payload.response.data.message;
+        state.errorMessage = action.payload;
       })
       .addCase(loginUser.pending, state => {
         state.isRefreshing = true;
@@ -46,7 +50,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        state.errorMessage = action.payload.response.data.message;
+        state.errorMessage = action.payload;
       })
       .addCase(logoutUser.pending, state => {
         state.isRefreshing = true;
@@ -74,6 +78,15 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.errorMessage = null;
       })
+      .addCase(updateUser.pending, (state, action) => {
+        console.log('pending', action.payload);
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        console.log('fulfilled', action.payload);
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        console.log('rejected', action.payload);
+      })
       .addCase(themeToggle.pending, state => {
         state.isRefreshing = true;
       })
@@ -97,3 +110,5 @@ const persistConfig = {
 };
 
 export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);
+
+export const { clearErrorMessage } = authSlice.actions;
