@@ -1,51 +1,33 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
-import { Autocomplete, TextField } from '@mui/material';
-import { StyledSelect, StyledAutoCategory, StyledMenuItem, StyledLabelCategory } from './AddRecipeForm.styled';
+import { TextField } from '@mui/material';
+import { StyledAutoCategory, StyledLabelCategory } from './AddRecipeForm.styled';
 import { getCategories } from './redux/AddRecipreOperation';
+import { addСategory, addTime } from './redux/AddRecipreOperation';
 
 export default function CookCategoryGroup() {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState('');
   const [cookTime, setCookTime] = useState('');
-  const [cooking_time, setCook_time] = useState([]);
   const dispatch = useDispatch();
+
+  const coocking_time = [];
 
   const addCookTime = () => {
     for (let i = 5; i <= 180; i = i + 5) {
-      setCook_time(prevState => {
-        return [...prevState, i];
-      });
+      coocking_time.push(i.toString());
     }
   };
 
   useEffect(() => {
-    addCookTime();
-  }, []);
-
-  useEffect(() => {
-    dispatch(getCategories)
-      // const getCategories = async () => {
-      //   try {
-      //     const config = {
-      //       method: 'GET',
-      //       url: BASE_URL + '/recipes/category-list',
-      //     };
-
-      //     const res = await axios(config);
-      //     return res.data;
-      //   } catch (error) {
-      //     throw handleError(error);
-      //   }
-
+    dispatch(getCategories())
       .then(res => {
-        setCategories(res);
+        setCategories(res.payload);
       })
       .catch(error => {
         handleError(error);
       });
-  }, []);
+  }, [dispatch]);
 
   function handleError(error) {
     console.error(error);
@@ -53,11 +35,15 @@ export default function CookCategoryGroup() {
   }
 
   const handleChangeCategory = event => {
-    setCategory(event.target.value);
+    setCategory(event.target.textContent);
   };
   const handleChangeCookTime = event => {
-    setCookTime(event.target.value);
+    setCookTime(event.target.textContent);
   };
+
+  dispatch(addСategory(category));
+  dispatch(addTime(cookTime));
+  addCookTime();
 
   return (
     <>
@@ -66,6 +52,7 @@ export default function CookCategoryGroup() {
         <StyledAutoCategory
           disablePortal
           id="category"
+          // value={category}
           onChange={handleChangeCategory}
           ListboxProps={{ style: { maxHeight: 220 } }}
           options={categories}
@@ -78,8 +65,9 @@ export default function CookCategoryGroup() {
           disablePortal
           id="coocking_time"
           onChange={handleChangeCookTime}
+          // value={cookTime}
           ListboxProps={{ style: { maxHeight: 220 } }}
-          options={cooking_time}
+          options={coocking_time}
           renderInput={params => <TextField {...params} label="Coocking time" />}
         />
       </StyledLabelCategory>

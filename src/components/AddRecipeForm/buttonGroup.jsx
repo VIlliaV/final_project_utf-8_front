@@ -8,17 +8,9 @@ import IngredientList from '../../components/AddRecipeForm/Ingradients_list';
 export default function BasicButtonGroup() {
   const [counter, setCounter] = useState(1);
   const [ingredients, setIngredients] = useState([{ id: nanoid(), name: '' }]);
-  // const detailIngrediantList = document.querySelector("[name='detailIngrediantList']");
-
-  // const elements = ``;
 
   const handleIncrement = e => {
-    // console.log(detailIngrediantList);
-
-    // console.log(incrementBtn);
     setCounter(counter + 1);
-    // detailIngrediantList.insertAdjacentHTML('beforeend', elements);
-
     setIngredients(prevState => {
       return [...prevState, { id: nanoid(), name: '' }];
     });
@@ -29,7 +21,6 @@ export default function BasicButtonGroup() {
       e.currentTarget.disabled = true;
       return;
     }
-    // console.log(decrementBtn);
     ingredients.pop();
     setCounter(counter - 1);
   };

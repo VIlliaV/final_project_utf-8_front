@@ -1,7 +1,8 @@
-export const getIsLoggedIn = state => state.auth.isLoggedIn;
-export const getTitle = state => state.title;
-export const getDescription = state => state.description;
-export const getCategory = state => state.category;
-export const getTime = state => state.time;
-export const getIngredients = state => state.ingredients;
-export const getInstructions = state => state.instructions;
+export const getRecipe = state => state.addRecipePage;
+export const getTitle = state => state.addRecipePage.title;
+export const getDescription = state => state.addRecipePage.description;
+export const Category = state => state.addRecipePage.category;
+export const getTime = state => state.addRecipePage.time;
+export const Ingredients = state => state.addRecipePage.ingredients;
+export const getInstructions = state => state.addRecipePage.instructions;
+export const AllIngredients = state => state.addRecipePage.allingredients;

@@ -201,6 +201,7 @@ export const StyledSection3 = style.div`
     flex-direction: column;
     justify-content: space-between;
         & button {
+          cursor: pointer;
           margin-top:20px;
           width:160px;
           height: 45px;
@@ -228,6 +229,7 @@ export const StyledInputRecipe = style.textarea`
 margin-top: 25px;
     width: 345px;
     height: 270px;
+    padding: 20px;
   @media ${media.tablet}{
     margin-top: 35px;
       width: 505px;
