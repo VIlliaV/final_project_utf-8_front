@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import svgDefault from './img/userSvgDefault.svg';
 import {
   AvatarButton,
+
+  PhotoInput,
+
   AvatarSvg,
   AvatarText,
   ButtonDiv,
@@ -35,6 +38,7 @@ import {
 import { logoutUser } from 'redux/auth/authOperations';
 import { useAuth } from 'utils/hooks/useAuth';
 import { useFormik } from 'formik';
+import { updateUser } from 'redux/auth/authOperations';
 
 const AvatarButtonComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -138,6 +142,16 @@ const AvatarButtonComponent = () => {
     },
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', e.target[0].value);
+    formData.append('name', e.target[4].value);
+    // const name = e.target[4].value;
+    dispatch(updateUser(formData));
+    // console.log(formData.get('file'));
+  }
+
   useEffect(() => {
     if (newUserAvatar) {
       setImageUrl(URL.createObjectURL(newUserAvatar));
@@ -192,14 +206,22 @@ const AvatarButtonComponent = () => {
         </PopupConfirm>
       )}
       {showPopupEdit && (
-        <PopupEdit onSubmit={formik.handleSubmit} ref={popupRef}>
+
+//         <PopupEdit onSubmit={formik.handleSubmit} ref={popupRef}>
+
+        <PopupEdit onSubmit={handleSubmit} ref={popupRef}>
+
           <input
             type="file"
             name="useravatar"
             accept="image/*"
             id="imageInput"
             onChange={handleImageChange}
-            style={{ display: 'none' }}
+
+//             style={{ display: 'none' }}
+
+            style={{ visibility: 'hidden' }}
+
           />
           <AvatarDiv>
             <AddNewImgButton
