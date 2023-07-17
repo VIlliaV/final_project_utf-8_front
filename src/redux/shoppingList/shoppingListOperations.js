@@ -1,14 +1,8 @@
-import axios from 'axios';
+import { axiosInstance } from 'redux/auth/authOperations';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { shoppingListGetLocal } from './shoppingListSlice';
 // import { useSelector } from 'react-redux';
 // import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
-
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com/';
-
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
 
 // FETCH: get current shopping list
 export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkAPI) => {
@@ -17,12 +11,11 @@ export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkA
   if (token === null) {
     return thunkAPI.rejectWithValue();
   }
-  setAuthHeader(token);
 
   // if (state.shoppingList.shoppingListSliceState.length <= 0) {
   // console.log('shoppingListSliceState.length <= 0');
   try {
-    const response = await axios.get('/shopping-list');
+    const response = await axiosInstance.get('/shopping-list');
     return response.data; // [] - масив з бекенду (він не пустий)
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -40,7 +33,6 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (newIngred
   if (token === null) {
     return thunkAPI.rejectWithValue();
   }
-  setAuthHeader(token);
 
   try {
     const {
@@ -67,10 +59,10 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (newIngred
     };
 
     console.log(requestBody);
-    await axios.post(`/shopping-list`, requestBody);
+    await axiosInstance.post(`/shopping-list`, requestBody);
     return ingredientToAdd;
 
-    // const response = await axios.post(`/shopping-list`, newIngredient);
+    // const response = await axiosInstance.post(`/shopping-list`, newIngredient);
     // return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -84,10 +76,9 @@ export const shoppingListRemove = createAsyncThunk('shopping/remove', async (idI
   if (token === null) {
     return thunkAPI.rejectWithValue();
   }
-  setAuthHeader(token);
 
   try {
-    const response = await axios.patch(`/shopping-list`, { id: idIngredient });
+    const response = await axiosInstance.patch(`/shopping-list`, { id: idIngredient });
     console.log(response.data);
     return response.data;
   } catch (error) {

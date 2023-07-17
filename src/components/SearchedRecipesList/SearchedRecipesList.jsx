@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
+import { axiosInstance } from 'redux/auth/authOperations';
 // import { Pagination } from '@mui/material';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 import toast from 'react-hot-toast';
@@ -13,9 +13,6 @@ import Paginator from 'components/Paginator/Paginator';
 
 const token = store.getState().auth.token;
 let value;
-
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 // const theme = createTheme({
 //   palette: {
@@ -55,7 +52,7 @@ const SearchedRecipesList = () => {
   const fetchData = async (query, value) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(`/${query}`, { search: value });
+      const response = await axiosInstance.post(`/${query}`, { search: value });
       setIsLoading(false);
       return response.data;
     } catch (error) {
