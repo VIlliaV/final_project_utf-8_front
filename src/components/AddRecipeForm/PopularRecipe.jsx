@@ -1,31 +1,21 @@
 import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
+import Loader from '../Loader/Loader';
 import { StyledH3, StyledPopularRecipe, StyledList } from './AddRecipeForm.styled';
-import axios from 'axios';
-const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
+import { getPopular } from './redux/AddRecipreOperation';
 
 export default function Popular() {
   const [popular, setPopular] = useState([]);
+  let i = 0;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    let i = 0;
-    const getPopular = async () => {
-      try {
-        const config = {
-          method: 'GET',
-          url: BASE_URL + '/popular-recipe',
-        };
-
-        const res = await axios(config);
-        return res.data;
-      } catch (error) {
-        throw handleError(error);
-      }
-    };
-
-    getPopular()
+    dispatch(getPopular())
       .then(res => {
-        res.map(el => {
+        res.payload.map(el => {
           if (i === 4) {
             return i;
           }
@@ -43,27 +33,30 @@ export default function Popular() {
   }, []);
 
   function handleError(error) {
-    console.error(error);
-    alert(`${error.message}`);
+    toast.error(`${error.message}`);
   }
 
   return (
     <StyledPopularRecipe>
       <StyledH3>Popular recipe</StyledH3>
       <ul>
-        {popular.map(el => {
-          return (
-            <StyledList key={nanoid()} id={el._id}>
-              <a href={el.youtube} alt={el.title}>
-                <img src={el.thumb} alt={el.title} />
-                <div>
-                  <h4>{el.title}</h4>
-                  <p>{el.description}</p>
-                </div>
-              </a>
-            </StyledList>
-          );
-        })}
+        {popular.length > 0 ? (
+          popular.map(el => {
+            return (
+              <StyledList key={nanoid()} id={el._id}>
+                <a href={el.youtube} alt={el.title}>
+                  <img src={el.thumb} alt={el.title} />
+                  <div>
+                    <h4>{el.title}</h4>
+                    <p>{el.description}</p>
+                  </div>
+                </a>
+              </StyledList>
+            );
+          })
+        ) : (
+          <Loader />
+        )}
       </ul>
     </StyledPopularRecipe>
   );

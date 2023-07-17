@@ -3,10 +3,12 @@ import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 
 
 import { authPersistedReducer } from './auth/authSlice';
 import shoppingListSlice from './shoppingList/shoppingListSlice';
+import { AddrecipeReducer } from '../components/AddRecipeForm/redux/addRecipeSlice';
 
 const rootReducer = combineReducers({
   auth: authPersistedReducer,
   shoppingList: shoppingListSlice,
+  addRecipePage: AddrecipeReducer,
 });
 
 export const store = configureStore({
