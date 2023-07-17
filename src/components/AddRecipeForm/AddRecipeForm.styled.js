@@ -52,7 +52,7 @@ export const StyledSvg = style.svg`
 display: flex;
     width: 28px;
     height: 28px;
-    fill: rgb(139, 170, 54);
+    fill: var(--active_select_2);
     -webkit-transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -103,7 +103,8 @@ export const StyledNativeSelect = styled(NativeSelect)(({ theme }) => ({
 }));
 
 export const StyledButtonGroup = styled(ButtonGroup)({
-  border: '1px solid rgba(51, 51, 51, 0.30)',
+  border: '1px solid var(--select_text_1)',
+
   borderRadius: '18px',
 });
 export const StyledFormControl = styled(FormControl)(({ theme }) => ({
@@ -145,6 +146,7 @@ export const StyledInputIngredient = style.input`
 `;
 
 export const StyledIngredientList = style.div`
+
 width:345px;
 display: flex;
 flex-direction: row;
@@ -200,21 +202,22 @@ export const StyledSection3 = style.div`
     flex-direction: column;
     justify-content: space-between;
         & button {
+          cursor: pointer;
           margin-top:20px;
           width:160px;
           height: 45px;
-          background-color:#22252A;
+          background-color:var(--active_theme_2);
           color: white;
           border-radius: 24px 44px;
-          border: 1px solid #22252A;;
+          border: 1px solid var(--active_theme_2);
         }
                  & span {
-                    color: #FAFAFA; 
+                    color: var(--back_fix) 
                     font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
-                    color: #FAFAFA;
+                    
                 }
     @media ${media.tablet}{
       & button{
@@ -225,8 +228,10 @@ export const StyledSection3 = style.div`
 
 export const StyledInputRecipe = style.textarea`
 margin-top: 25px;
+background-color: transparent;
     width: 345px;
     height: 270px;
+    padding: 20px;
   @media ${media.tablet}{
     margin-top: 35px;
       width: 505px;
@@ -235,7 +240,7 @@ margin-top: 25px;
 `;
 
 export const StyledH3 = style.h3`
-color: #3e4462;
+color: var( --text_second_theme_1);
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
@@ -261,7 +266,7 @@ margin-bottom: 25px;
     margin-left: 15px;
     margin-bottom: 0;
       & h4 {
-        color:rgba(62, 68, 98, 1);
+        color:var(--text_second_theme_1);
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -270,7 +275,11 @@ margin-bottom: 25px;
         }
        & p {
         margin-top:5px;
-        color:rgba(126, 126, 126, 1);
+         color: rgba(126, 126, 126, 1);
+          color &[datatype='true'] {
+          color: rgba(250, 250, 250, 1);
+        }
+
         width: 210px;
         height: 55px;
         text-overflow: ellipsis;
@@ -286,9 +295,9 @@ margin-bottom: 25px;
 export const StyledInputBtn = styled(Button)({
   cursor: 'default',
   '&:first-of-type,&:last-of-type': {
-    color: 'rgba(139, 170, 54, 1)',
-    fontSize: '16px',
     cursor: 'pointer',
+    stroke: 'black',
+    fontSize: '16px',
   },
   color: 'black',
   border: 'none',
@@ -355,7 +364,11 @@ export const StyledInputGroup = style.div`
             display: flex;
             flex-direction: column;
             width: 100%;
-            height:270px;
+            height:auto;
+            color: var(--select_text_1);
+            &  div label {
+              position:absolute;
+            }
 
         
             
@@ -410,30 +423,28 @@ export const ImageSrc = style.span`
     height: 345px;
   },
 `;
+export const StyledAutoCategory = styled(Autocomplete)({
+  width: '160px',
+});
 
 export const StyledAutoComplete = styled(Autocomplete)({
   padding: theme.spacing(1),
   [theme.breakpoints.up('start')]: {
     width: '195px',
-    // cursor: 'pointer',
-    '& div button': {
-      marginLeft: '180px',
-    },
+    cursor: 'pointer',
   },
   [theme.breakpoints.up('tablet')]: {
     width: '400px',
-    '& div button': {
-      marginLeft: '410px',
-    },
   },
   [theme.breakpoints.up('desktop')]: {},
 });
 
-export const StyledMenuItem = styled(MenuItem)({});
+export const StyledMenuItem = styled(MenuItem)({
+  maxHeight: '30px',
+});
 
 export const StyledSelect = styled(Select)({
   width: '150px',
-  height: '30px',
   display: 'flex',
   justifyContent: 'space-around',
   fontSize: '16px',
@@ -443,18 +454,24 @@ export const StyledSelect = styled(Select)({
   color: 'black',
 });
 
-export const StyledTextField = styled(TextField)(({ theme }) => ({
-  width: '100%',
+export const StyledInput = style.input`
 
-  alignContent: 'end',
-  [theme.breakpoints.down(`${media.desktop}`)]: {
-    width: '395px',
-    alignContent: 'end',
-    textAlign: 'right',
-    borderBottom: '1px solid #6a6c6e',
-    '&::after': { borderBottom: '1px solid #6a6c6e' },
+  border: transparent;
+color:var(--select_text_1);
+background-color:transparent;
+position: relative;
+  width: ;
+  height: 50px;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  align-content: end;
+  & hover {
+    border:none;
+  }
+ @media ${media.desktop}{
+    width: 100%;
+    text-align: right;
   },
-}));
+`;
 
 export const IngredianceList = style.div`
 @media ${media.desktop} {

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { axiosInstance } from '../../redux/auth/authOperations';
 import toast from 'react-hot-toast';
+
 import { useNavigate } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
@@ -13,6 +15,7 @@ import {
   OtherCategoriesButton,
   PreviewCategoriesContainer,
 } from './PreviewCategories.styled';
+
 
 const PreviewCategories = () => {
   const [previewCategoriesList, setPreviewCategoriesList] = useState([]);

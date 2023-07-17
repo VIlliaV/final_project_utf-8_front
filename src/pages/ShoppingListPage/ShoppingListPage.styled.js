@@ -26,7 +26,7 @@ const SLHeader = styled.div`
   margin-top: 50px;
 
   border-radius: 8px;
-  background-color: var(--active);
+  background-color: var(--fix_back);
 
   *:nth-last-child(2) {
     margin-left: auto;

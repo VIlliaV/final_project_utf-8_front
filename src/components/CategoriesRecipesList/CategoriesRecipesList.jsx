@@ -1,8 +1,10 @@
 import { CategoryRecipeCard } from '../CategoryRecipeCard/CategoryRecipeCard';
+import Loader from '../Loader/Loader';
 import { CategoriesRecipesContainer, CategoryRecipeCardWrapper } from './CategoriesRecipesList.styled';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosInstance } from 'redux/auth/authOperations';
+import { toast } from 'react-hot-toast';
 
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
@@ -18,10 +20,13 @@ export const CategoriesRecipesList = () => {
         method: 'GET',
         url: BASE_URL + `/recipes/category/${category}`,
       };
-      const res = await axios(config);
+      const res = await axiosInstance(config);
       return res.data;
     } catch (error) {
-      console.log(error.response.status);
+      toast.error(`${error.message}`, {
+        position: 'top-right',
+        duration: 5000,
+      });
     }
   };
 
@@ -31,13 +36,19 @@ export const CategoriesRecipesList = () => {
       .then(res => {
         if (res.length === 0) {
           setDataError(true);
-          alert('Ooops, there are no items');
+          // alert('Ooops, there are no items');
+          toast.error('We are sorry, there is not such category, chose one from the listed.', {
+            position: 'top-right',
+            duration: 5000,
+          });
+          return;
         }
         setRecipes(res);
         setIsLoading(false);
         setDataError(false);
       })
       .catch(error => {
+        setIsLoading(false);
         setDataError(true);
         console.log(error);
       });
@@ -48,7 +59,7 @@ export const CategoriesRecipesList = () => {
   return (
     <CategoriesRecipesContainer>
       {dataError && <div>Error!!!</div>}
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Loader />}
       {shouldRender &&
         !isLoading &&
         recipes.map(({ _id: id, title, thumb }) => {

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
+import { shoppingList, shoppingListError, shoppingListLoading } from 'redux/shoppingList/shoppingListSelectors';
 import {
   SLItem,
   SlItemAmount,
@@ -9,11 +9,19 @@ import {
   SLList,
 } from './IngredientsShoppingList.styled';
 
-import { GrClose } from 'react-icons/gr';
+import Loader from 'components/Loader/Loader';
+
+import { VscClose } from 'react-icons/vsc';
+
 // import testShoppingList from 'back/testShoppingList.json';
 import { useEffect } from 'react';
 import { shoppingListGet, shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
-import { nanoid } from 'nanoid';
+
+import styled from 'styled-components';
+
+const StyledVscClose = styled(VscClose)`
+  fill: #333333;
+`;
 
 // перемикання тем - посилання на кнопку перемикання за допомогою useRef():
 // const buttonRef = useRef(null)
@@ -53,23 +61,24 @@ function IngredientsShoppingList() {
   //   dispatch(shoppingListGet());
   // };
 
+  const dispatch = useDispatch();
+
   // first render
   const shoppingListSliceState = useSelector(shoppingList);
-  console.log('IngredientsShoppingList >> shoppingListSliceState:', shoppingListSliceState);
+  // console.log('IngredientsShoppingList >> shoppingListSliceState:', shoppingListSliceState);
+  const loading = useSelector(shoppingListLoading);
+  const error = useSelector(shoppingListError);
+  // shoppingListGetLocal();
+  // console.log('IngredientsShoppingList >> shoppingListGetLocal();:', shoppingListGetLocal(shoppingListSliceState));
 
-  //   if (state.shoppingList.shoppingListSliceState) {
-  //     shoppingListGetLocal();
-  //   }
-  // console.log('shoppingListGet >> state:', state.shoppingList.shoppingListSliceState);
-
-  const dispatch = useDispatch();
   useEffect(() => {
-    // if (shoppingListSliceState.length > 0) {
-    //   return true;
-    // }
-
     dispatch(shoppingListGet());
   }, [dispatch]);
+
+  // const handleAddData = () => {
+  //   const newData = {};
+  //   dispatch(shoppingListAdd(newData));
+  // };
 
   // const handleRemoveItem = id => {
   //   console.log('click ID :>> ', id);
@@ -78,22 +87,35 @@ function IngredientsShoppingList() {
   // };
 
   // markup shopping list
+
+  if (loading) {
+    return (
+      <div>
+        <Loader>Loading... </Loader>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <SLList>
       {shoppingListSliceState.length > 0 &&
-        shoppingListSliceState.map(({ _id, name, img, measure }) => {
+        shoppingListSliceState.map(({ id, measure, _id }) => {
           return (
-            <SLItem key={`${_id}_${nanoid()}`}>
+            <SLItem key={id}>
               <SLItemImage>
                 <picture>
                   {/* <source srcset={img} media="(min-width: 1200px)" />
                     <source srcset={img} media="(min-width: 768px)" />
                     <source srcset={img} media="(max-width: 767px)" /> */}
-                  <img src={img} alt={name} />
+                  <img src={_id.img} alt={_id.name} />
                 </picture>
               </SLItemImage>
 
-              <SLItemImageName>{name}</SLItemImageName>
+              <SLItemImageName>{_id.name}</SLItemImageName>
 
               <SlItemAmount>{measure}</SlItemAmount>
 
@@ -102,10 +124,10 @@ function IngredientsShoppingList() {
                 data-menu-close=""
                 onClick={() => {
                   // handleRemoveItem(id); // remove from store
-                  dispatch(shoppingListRemove(_id)); // remove from DB and repeat get from DB
+                  dispatch(shoppingListRemove(id)); // remove from DB and repeat get from DB
                 }}
               >
-                <GrClose />
+                <StyledVscClose />
               </SLItemRemove>
             </SLItem>
           );

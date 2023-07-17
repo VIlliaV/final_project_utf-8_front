@@ -242,6 +242,15 @@ export const PasswordInput = styled(Input)`
       return 'green';
     }
   }};
+
+  &:focus {
+    outline: none !important;
+    border-color: ${prop => {
+      if (prop.$tooshort.length > 0 && prop.$tooshort.length < 6 && prop.$path === '/register') {
+        return 'yellow';
+      }
+    }};
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -327,3 +336,14 @@ export const InputErrorContainer = styled.div`
   color: red; 
 `;
 
+export const InputWarningContainer = styled.div`
+  margin-top: 8px;
+  color: yellow;
+`;
+
+export const ErrorMessage = styled.div`
+color: red;
+/* margin-top: 8px; */
+margin-left: auto;
+margin-right: auto;
+`

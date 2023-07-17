@@ -1,76 +1,98 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
-import { NoResultWrapper, ListContainer } from './SearchedRecipesList.styled';
-import Loader from 'components/Loader/Loader';
-import noResultsImg from '../../img/no-results-img.webp';
-import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
-import { store } from 'redux/store';
+import { axiosInstance } from 'redux/auth/authOperations';
 
-const token = store.getState().auth.token;
+import toast from 'react-hot-toast';
+import { NoResultWrapper, ListContainer, NoResultImg } from './SearchedRecipesList.styled';
+import Loader from 'components/Loader/Loader';
+import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
+import Paginator from 'components/Paginator/Paginator';
+
 let value;
 
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 const SearchedRecipesList = () => {
   const [searchParams] = useSearchParams();
   const [recipeList, setRecipeList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [totalPage, setTotalPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const [currentParams] = Object.keys(Object.fromEntries([...searchParams]));
     value = searchParams.get(currentParams);
+
     if (!value) {
       return;
     }
 
     if (currentParams === 'query') {
-      fetchData('search', value).then(data => setRecipeList(data));
+      fetchData('search', value).then(data => {
+        setTotalPage(data.totalPages);
+        setRecipeList(data.recipes);
+      });
       return;
     }
-    fetchData('ingredients', value).then(data => setRecipeList(data));
-  }, [searchParams]);
+    fetchData('ingredients', value).then(data => {
+      setTotalPage(data.totalPages);
+      setRecipeList(data.recipes);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, currentPage]);
 
   const fetchData = async (query, value) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(`/${query}`, { search: value });
+
+      const response = await axiosInstance.get(`/${query}`, {
+        params: {
+          search: value,
+          page: currentPage,
+          limit: 8,
+        },
+      });
+
       setIsLoading(false);
       return response.data;
     } catch (error) {
-      toast.error('Ups...Something went wrong. Try again');
+      toast.error('Oops...Something went wrong. Try again');
+      setRecipeList([]);
       setIsLoading(false);
     }
+  };
+
+  const handleCurrentPage = page => {
+    setCurrentPage(page);
   };
 
   return (
     <>
       {isLoading && <Loader />}
       {!isLoading && recipeList?.length > 0 ? (
-        <ListContainer>
-          {recipeList.map(({ _id, title, thumb }) => {
-            return (
-              <CategoryRecipeCard
-                key={_id}
-                itemId={_id}
-                imageUrl={thumb}
-                imageAlt={title}
-                title={title}
-              ></CategoryRecipeCard>
-            );
-          })}
-        </ListContainer>
+        <>
+          <ListContainer>
+            {recipeList.map(({ _id, title, thumb }) => {
+              return (
+                <CategoryRecipeCard
+                  key={_id}
+                  itemId={_id}
+                  imageUrl={thumb}
+                  imageAlt={title}
+                  title={title}
+                ></CategoryRecipeCard>
+              );
+            })}
+          </ListContainer>
+          <Paginator totalPage={totalPage} page={currentPage} setCurrentPage={handleCurrentPage} />
+        </>
       ) : (
         !isLoading && (
           <NoResultWrapper>
-            <img src={noResultsImg} alt="no results img" />
+            <NoResultImg />
             {value ? <p>Try looking for something else...</p> : <p>Find recipes by title or ingredient</p>}
           </NoResultWrapper>
         )
       )}
-      <Toaster />
     </>
   );
 };

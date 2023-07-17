@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { useAuth } from 'utils/hooks/useAuth';
+import { clearErrorMessage } from 'redux/auth/authSlice';
 // import * as Yup from 'yup';
 
 
@@ -22,8 +23,10 @@ import {
   PasswordIcon,
   SuccessStatusIcon,
   NameInputContainer,
-EmailInputContainer,
-PasswordInputContainer,
+  EmailInputContainer,
+  PasswordInputContainer,
+  ErrorMessage,
+  InputWarningContainer,
 } from './AuthForm.styled';
 import { loginUser, signupUser } from 'redux/auth/authOperations';
 import inputIconSuccess from 'img/inputIconSuccess.svg';
@@ -48,13 +51,20 @@ export const AuthForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     if (pathname === '/signin') {
       setIsRegisterPage(false);
       setInitialValues(signInInitialValues);
     }
-  }, [pathname]);
+
+    if (pathname === '/signin' && errorMessage === 'Email in use') {
+      dispatch(clearErrorMessage());
+    }
+    if (pathname === '/register' && errorMessage === 'Email or password is wrong') {
+      dispatch(clearErrorMessage());
+    }
+  }, [pathname, dispatch, errorMessage]);
+
 
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
@@ -78,7 +88,7 @@ export const AuthForm = () => {
     if (!values.email) {
       errors.email = 'Required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
+      errors.email = 'Invalid email format. Example username@domain.tld';
     }
 
     if (!values.password) {
@@ -166,6 +176,8 @@ export const AuthForm = () => {
             <PasswordInput
               $haserror={formik.touched.password && formik.errors.password}
               $correct={formik.touched.password && !formik.errors.password && formik.values.password !== ''}
+              $tooshort={formik.values.password}
+              $path={pathname}
               type="password"
               name="password"
               placeholder="Password"
@@ -179,10 +191,13 @@ export const AuthForm = () => {
                 <InputErrorContainer>{formik.errors.password}</InputErrorContainer>
               </>
             ) : null}
+            {formik.values.password.length > 0 && formik.values.password.length < 6 && isRegisterPage && (
+              <InputWarningContainer>Your password is little secure</InputWarningContainer>
+            )}
             {formik.touched.password && !formik.errors.password && <SuccessStatusIcon src={inputIconSuccess} />}
           </PasswordInputContainer>
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
-          {errorMessage && <div>{ errorMessage}</div>}
         </Form>
       </Container>
       <Link onClick={handleNavigate}>{isRegisterPage ? 'Sign In' : 'Registration'}</Link>

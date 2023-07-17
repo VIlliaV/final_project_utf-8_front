@@ -1,7 +1,11 @@
 import { keyframes, styled } from 'styled-components';
 import { media } from 'utils/media';
-import defaultIcon from './img/userSvgDefault.svg';
-
+import { ReactComponent as UserIconSVG } from './img/userIcon.svg';
+import { ReactComponent as EditIconSVG } from './img/edit.svg';
+import { ReactComponent as CloseIconSVG } from '../BurgerMenu/img/x.svg';
+import { ReactComponent as PlusIconSVG } from './img/plus.svg';
+import { ReactComponent as ArrowIconSVG } from './img/arrow-right.svg';
+import { ReactComponent as userSvgDefault } from './img/userSvgDefault.svg';
 
 const fadeIn = keyframes`
   from {
@@ -16,7 +20,6 @@ const fadeIn = keyframes`
 
 export const AvatarButton = styled.div`
   position: relative;
-  width: 100px;
   display: flex;
   align-items: center;
   border-radius: 20px;
@@ -33,8 +36,9 @@ export const Popup = styled.div`
   right: 0;
   width: 160px;
   height: 130px;
-  background-color: #fff;
-  padding: 10px;
+  background-color: var(--back_theme_1);
+  border: 1px solid var(--fix_back);
+  color: var(--text_theme_1);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   animation: ${fadeIn} 0.3s;
@@ -56,7 +60,8 @@ export const PopupConfirm = styled.div`
   right: -30%;
   width: 330px;
   height: 180px;
-  background-color: #fff;
+  background-color: var(--back_theme_1);
+  border: 1px solid var(--fix_back);
   padding: 10px;
   border-radius: 30px;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
@@ -72,7 +77,7 @@ export const PopupConfirm = styled.div`
   }
 `;
 
-export const PopupEdit = styled.div`
+export const PopupEdit = styled.form`
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -80,10 +85,11 @@ export const PopupEdit = styled.div`
   justify-content: center;
   position: absolute;
   top: 70px;
-  left: -180%;
+  left: -180px;
   width: 330px;
   height: 330px;
-  background-color: #fff;
+  background-color: var(--back_theme_1);
+  border: 1px solid var(--fix_back);
   padding: 10px;
   border-radius: 30px;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
@@ -92,7 +98,7 @@ export const PopupEdit = styled.div`
   @media ${media.tablet} {
     width: 480px;
     height: 400px;
-	left: -400%;
+    left: -400px;
   }
 
   @media ${media.desktop} {
@@ -105,6 +111,7 @@ export const LogoutButton = styled.button`
   cursor: pointer;
   background-color: #8baa36;
   color: #fafafa;
+  stroke: #fafafa;
   border-radius: 24px 44px;
   width: 125px;
   height: 45px;
@@ -120,6 +127,10 @@ export const LogoutButton = styled.button`
   img {
     margin-left: 5px;
   }
+  &:hover, &:focus {
+	color: var(--fix_back_2);
+	stroke: var(--fix_back_2);
+  }
 `;
 
 export const ButtonRadius = styled.button`
@@ -127,7 +138,7 @@ export const ButtonRadius = styled.button`
   width: 34px;
   border-radius: 50px;
   cursor: pointer;
-  
+
   @media ${media.tablet} {
     width: 44px;
   }
@@ -147,10 +158,12 @@ export const EditDiv = styled.div`
 export const CloseButton = styled.div`
   position: absolute;
   width: 20px;
-  height: 20px;
   top: 20px;
   right: 20px;
   cursor: pointer;
+  @media ${media.tablet} {
+    width: 24px;
+  }
 `;
 
 export const ButtonIconEdit = styled.button`
@@ -168,7 +181,7 @@ export const EditText = styled.p`
 
 export const AvatarText = styled.p`
   margin-left: 15px;
-  color: #22252a;
+  color: var(--text_theme_1);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -176,8 +189,10 @@ export const AvatarText = styled.p`
 `;
 
 export const ButtonYes = styled.button`
+cursor: pointer;
   width: 140px;
   height: 50px;
+  color: var(--text_theme_1);
   background-color: #8baa36;
   border: 0;
   border-radius: 6px;
@@ -187,22 +202,34 @@ export const ButtonYes = styled.button`
     width: 195px;
     height: 60px;
   }
+
+  &:hover, &:focus {
+	background-color: var(--active_theme_2);
+	color: var(--active);
+  }
 `;
 
 export const ButtonNo = styled.button`
+cursor: pointer;
   width: 140px;
   height: 50px;
   background-color: #d9d9d9;
   border: 0;
   border-radius: 6px;
 
+
   @media ${media.tablet} {
     width: 195px;
     height: 60px;
   }
+  &:hover, &:focus {
+	background-color: var(--back_fix);
+	border: 1px solid black;
+  }
 `;
 
 export const ConfirmTitle = styled.p`
+  color: var(--text_theme_1);
   text-align: center;
   font-size: 14px;
   font-style: normal;
@@ -226,6 +253,7 @@ export const ButtonDiv = styled.div`
 `;
 
 export const EditConfirmButton = styled.button`
+cursor: pointer;
   width: 285px;
   height: 50px;
   background-color: #8baa36;
@@ -237,31 +265,25 @@ export const EditConfirmButton = styled.button`
     width: 400px;
     height: 60px;
   }
+
+  &:hover, &:focus {
+	background-color: var(--active_theme_2);
+	color: var(--active);
+  }
 `;
 
 export const EditButton = styled.button`
-cursor: pointer;
+  cursor: pointer;
   position: absolute;
-  right: 15px;
-  top: 15px;
   border: 0;
   background-color: transparent;
-  width: 17px;
-  height: 17px;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    bottom: -10px;
-    left: -10px;
-  }
+  right: 15px;
+  top: 16px;
 `;
 
 export const NameInputDiv = styled.div`
   position: relative;
+
   width: 285px;
   height: 50px;
   margin-bottom: 25px;
@@ -275,20 +297,14 @@ export const NameInput = styled.input`
   width: 100%;
   height: 50px;
   border-radius: 4px;
+  background-color: var(--back_theme_1);
+  color: var(--back_theme_2);
   border: 1px solid var(--back_theme_2);
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.28px;
   @media ${media.tablet} {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: -0.28px;
-  }
-  @media ${media.desktop} {
-    margin-bottom: 15px;
     font-size: 18px;
-    font-weight: 400;
     letter-spacing: -0.36px;
   }
 `;
@@ -301,9 +317,9 @@ export const AvatarDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-   margin: 30px;
+  margin: 0 0 50px 0;
   cursor: pointer;
-  
+
   @media ${media.tablet} {
     width: 105px;
     height: 105px;
@@ -313,7 +329,7 @@ export const AvatarDiv = styled.div`
 export const AvatarDefaultImg = styled.button`
   width: 90px;
   height: 90px;
-  background-color: #d9d9d9;
+  /* background-color: #D9D9D9; */
   border: 0;
   border-radius: 100px;
 
@@ -324,7 +340,7 @@ export const AvatarDefaultImg = styled.button`
 `;
 
 export const ImgPlusButton = styled.button`
-cursor: pointer;
+  cursor: pointer;
   display: flex;
   position: absolute;
   bottom: 0px;
@@ -338,9 +354,12 @@ cursor: pointer;
   border-radius: 15px;
 `;
 
+export const StyledUserSvgDefault = styled(userSvgDefault)``;
+
 export const AddNewImgButton = styled.button`
-cursor: pointer;
-  background-image: ${defaultIcon};
+  cursor: pointer;
+  background-image: url(${StyledUserSvgDefault});
+  background-color: #D9D9D9;
   background-repeat: no-repeat;
   background-position: center;
   border: 0;
@@ -364,8 +383,70 @@ cursor: pointer;
   }
 `;
 
-export const AvatarSvg = styled.img`
+
+export const AvatarSvg = styled.div`
   position: absolute;
   left: 15px;
-  top: 13px;
+  top: 15px;
+  @media ${media.tablet} {
+    left: 15px;
+    top: 11px;
+  }
 `;
+
+export const StyledUserIcon = styled(UserIconSVG)`
+  stroke: var(--text_theme_1);
+  width: 18px;
+  height: 18px;
+  @media ${media.tablet} {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+export const StyledEditIconSVG = styled(EditIconSVG)`
+  stroke: var(--text_theme_1);
+  width: 17px;
+  height: 17px;
+
+  &:hover, &:focus {
+	stroke: var(--fix_back);
+  }
+
+  @media ${media.tablet} {
+    width: 19px;
+    height: 19px;
+  }
+
+`;
+
+export const StyledCloseIconSVG = styled(CloseIconSVG)`
+  stroke: var(--text_theme_1);
+  width: 20px;
+  @media ${media.tablet} {
+	width: 24px;
+  }
+
+  &:hover, &:focus {
+	stroke: var(--fix_back);
+  }
+`;
+
+export const StyledPlusIconSVG = styled(PlusIconSVG)`
+  width: 20;
+  height: 20;
+  @media ${media.tablet} {
+  }
+`;
+
+export const StyledArrowIconSVG = styled(ArrowIconSVG)`
+  padding-left: 4px;
+  width: 20px;
+
+  &:hover, &:focus {
+	stroke: var(--fix_back_2);
+  }
+
+`;
+
+

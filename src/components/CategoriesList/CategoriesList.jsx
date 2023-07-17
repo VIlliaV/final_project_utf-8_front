@@ -1,16 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
-import axios from 'axios';
+import { useAuth } from 'utils/hooks/useAuth';
+import { axiosInstance } from 'redux/auth/authOperations';
+import { toast } from 'react-hot-toast';
 
 import { CategoriesWrapper, CategoriesContainer, CategoryLink, CategoriesItem } from './CategoriesList.styled';
 
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
-
-// const Status = {
-//   IDLE: 'idle',
-//   PENDING: 'pending',
-//   RESOLVED: 'resolved',
-//   REJECTED: 'rejected',
-// };
 
 export const CategoriesList = () => {
   const tabListRef = useRef(null);
@@ -18,7 +13,9 @@ export const CategoriesList = () => {
   const [startX, setStartX] = useState(null);
   const [scrollLeft, setScrollLeft] = useState(null);
   const [categories, setCategories] = useState([]);
-  // const [status, setStatus] = useState(Status.IDLE);
+  const [dataError, setDataError] = useState(false);
+
+  const { isThemeToggle } = useAuth();
 
   const getCategories = async () => {
     try {
@@ -26,30 +23,32 @@ export const CategoriesList = () => {
         method: 'GET',
         url: BASE_URL + '/recipes/category-list',
       };
-      const res = await axios(config);
+      const res = await axiosInstance(config);
       return res.data;
     } catch (error) {
-      console.log(error.message);
+      toast.error(`${error.message}`, {
+        position: 'top-right',
+        duration: 5000,
+      });
+      return null;
     }
   };
 
   useEffect(() => {
-    // setStatus(Status.PENDING);
     getCategories()
       .then(res => {
+        if (res === null) {
+          setDataError(true);
+          return;
+        }
+        setDataError(false);
         setCategories(res);
-        // setStatus(Status.RESOLVED);
       })
       .catch(error => {
-        // setStatus(Status.REJECTED);
-        handleError(error);
+        setDataError(true);
+        console.log(error.message);
       });
   }, []);
-
-  function handleError(error) {
-    console.error(error);
-    alert(`${error.message}`);
-  }
 
   const handleMouseDown = event => {
     setIsScrolling(true);
@@ -105,14 +104,18 @@ export const CategoriesList = () => {
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
       >
-        {categories.map(el => {
-          const linkName = el.toLowerCase();
-          return (
-            <CategoriesItem key={el}>
-              <CategoryLink to={`/categories/${linkName}`}>{el}</CategoryLink>
-            </CategoriesItem>
-          );
-        })}
+        {dataError && <div>Load error</div>}
+        {!dataError &&
+          categories.map(el => {
+            const linkName = el.toLowerCase();
+            return (
+              <CategoriesItem key={el}>
+                <CategoryLink datatype={isThemeToggle.toString()} to={`/categories/${linkName}`}>
+                  {el}
+                </CategoryLink>
+              </CategoriesItem>
+            );
+          })}
       </CategoriesContainer>
     </CategoriesWrapper>
   );
