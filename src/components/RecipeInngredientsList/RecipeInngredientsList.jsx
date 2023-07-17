@@ -12,7 +12,7 @@ import {
   CheckboxInput,
 } from './RecipeInngredientsList.styled';
 import SvgIcon from '@mui/material/SvgIcon';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useAuth } from 'utils/hooks/useAuth';
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 // import { useEffect, useState } from 'react';
@@ -49,18 +49,12 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
   //^ отримали рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
 
-  const savedShoppingList = useSelector(shoppingList); // Отримуємо шопінг-лист з Redux Store
-  const dispatch = useDispatch();
+  const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
 
   // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
   const isInRecipe = ingredientId => {
     return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
   };
-
-  // // Функція для додавання або видалення інгредієнта зі шопінг-листа через Redux Slice
-  // const handleCheckboxChange = ingredientId => {
-  //   dispatch(toggleIngredient(ingredientId));
-  // };
 
   return (
     <>

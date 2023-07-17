@@ -12,28 +12,20 @@ import { Wrapper } from './RecipePage.styled';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-// const token = store.getState().auth.token;
-
-// axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
-// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
 import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
-  // console.log('RecipePage >> recipe:', recipe);
+
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
-  console.log(recipeId);
-
   const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
-  // console.log('RecipePage >> shoppingList:', shoppingList);
 
   useEffect(() => {
     dispatch(shoppingListGet());

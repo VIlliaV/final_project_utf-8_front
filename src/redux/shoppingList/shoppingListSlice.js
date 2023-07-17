@@ -48,10 +48,6 @@ const shoppingListSlice = createSlice({
   },
 
   reducers: {
-    // shoppingListAddToStore(newIngredient) {
-    //   this.shoppingListSliceState.push(newIngredient);
-    // },
-
     toggleIngredient: (state, action) => {
       const ingredientId = action.payload.id._id;
       const index = state.shoppingListSliceState.indexOf(ingredientId);
