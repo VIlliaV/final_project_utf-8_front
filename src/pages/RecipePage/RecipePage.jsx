@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-
+// import axios from 'axios';
+import {axiosInstance} from 'redux/auth/authOperations'
+import { toast } from 'react-hot-toast';
 
 import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
 import RecipeInngredientsList from '../../components/RecipeInngredientsList/RecipeInngredientsList';
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 
+
 import { useSelector, useDispatch } from 'react-redux';
 
+
+// const token = store.getState().auth.token;
+
+// axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
+// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
-import { axiosInstance } from 'redux/auth/authOperations';
+
+
 
 
 function RecipePage() {
@@ -22,6 +32,10 @@ function RecipePage() {
 
   const dispatch = useDispatch();
   const { recipeId } = useParams();
+
+  console.log(recipeId);
+
+
   const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
   // console.log('RecipePage >> shoppingList:', shoppingList);
 
@@ -39,7 +53,7 @@ function RecipePage() {
           setIsFavorite(true);
         }
       } catch (error) {
-        console.error(error);
+         toast.error(`${error.message}`);
       }
     };
 
@@ -50,21 +64,25 @@ function RecipePage() {
 
   const addToFavorite = async () => {
     try {
-      const response = await axiosInstance.post(`/favorite/{id:${recipeId}}`);
+
+      const response = await axiosInstance.post(`/favorite`, { id: recipeId });
+
       console.log(response.data);
       setIsFavorite(true);
     } catch (error) {
-      console.error(error);
+          toast.error(`${error.message}`);
     }
   };
 
   const removeFromFavorite = async () => {
     try {
-      const response = await axiosInstance.patch(`/favorite/${recipeId}`);
+
+      const response = await axiosInstance.patch(`/favorite`, { id: recipeId });
+
       console.log(response.data);
       setIsFavorite(false);
     } catch (error) {
-      console.error(error);
+     toast.error(`${error.message}`);
     }
   };
 
