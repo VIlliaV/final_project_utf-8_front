@@ -23,10 +23,11 @@
   --select_text_1: rgb(0, 0, 0); /* #000000 -> #fafafa */
   --selectBack_theme_1: rgb(217, 217, 217); /* #d9d9d9-> #fafafa */
 
-  --active_select_1: rgb(250, 250, 250) /*  #fafafa -> #22252A */;
+  --active_select_1: rgb(250, 250, 250); /*  #fafafa -> #8baa36 */
+  --active_select_2: rgb(250, 250, 250); /*  #8baa36 -> #fafafa */
   --active: rgb(139, 170, 54); /* #8baa36  -> #22252A */
   --active_theme_2: rgba(34, 37, 42, 1); /* #22252A -> #8baa36  */
-  --test: rgb(255, 255, 255); /* #2A2C36  #1E1F28 */
+  --test: rgba(235, 243, 212, 1); /* #2A2C36  #1E1F28 */
 }
 
 @font-face {
