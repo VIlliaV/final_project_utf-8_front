@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import svgDefault from './img/userSvgDefault.svg';
 import {
   AvatarButton,
+
   PhotoInput,
+
   AvatarSvg,
   AvatarText,
   ButtonDiv,
@@ -204,14 +206,22 @@ const AvatarButtonComponent = () => {
         </PopupConfirm>
       )}
       {showPopupEdit && (
+
+//         <PopupEdit onSubmit={formik.handleSubmit} ref={popupRef}>
+
         <PopupEdit onSubmit={handleSubmit} ref={popupRef}>
+
           <input
             type="file"
             name="useravatar"
             accept="image/*"
             id="imageInput"
             onChange={handleImageChange}
+
+//             style={{ display: 'none' }}
+
             style={{ visibility: 'hidden' }}
+
           />
           <AvatarDiv>
             <AddNewImgButton
