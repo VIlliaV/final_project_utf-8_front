@@ -17,6 +17,7 @@ import {
   PageTitle,
   List,
 } from './MyRecipesList.styled';
+import MainPageTitle from 'components/MainPageTitle/MainPageTitle';
 import HeadContainer from 'components/HeadContainer/HeadContainer';
 import { useEffect } from 'react';
 import { deleteFavorite, fetchFavorites } from 'redux/favorites/favoritesOperations';
@@ -50,7 +51,7 @@ export const MyRecipesList = ({ page }) => {
   }
   return (
     <HeadContainer>
-      <PageTitle>{page}</PageTitle>
+      <MainPageTitle title={page} />
       <List>
         {newArr.map(({ preview, title, description, time, _id }) => {
           return (

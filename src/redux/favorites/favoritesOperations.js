@@ -1,11 +1,9 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com/';
+import { axiosInstance } from 'redux/auth/authOperations';
 
 export const fetchFavorites = createAsyncThunk('favorite/get', async (_, thunkAPI) => {
   try {
-    const response = await axios.get('/favorite');
+    const response = await axiosInstance.get('/favorite');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -14,7 +12,7 @@ export const fetchFavorites = createAsyncThunk('favorite/get', async (_, thunkAP
 
 export const deleteFavorite = createAsyncThunk('favorite/delete', async (idRecipe, thunkAPI) => {
   try {
-    const response = await axios.patch('/favorite', { id: idRecipe });
+    const response = await axiosInstance.patch('/favorite', { id: idRecipe });
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
