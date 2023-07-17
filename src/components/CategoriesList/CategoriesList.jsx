@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { useAuth } from 'utils/hooks/useAuth';
 import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
@@ -13,6 +14,8 @@ export const CategoriesList = () => {
   const [scrollLeft, setScrollLeft] = useState(null);
   const [categories, setCategories] = useState([]);
   const [dataError, setDataError] = useState(false);
+
+  const { isThemeToggle } = useAuth();
 
   const getCategories = async () => {
     try {
@@ -107,7 +110,9 @@ export const CategoriesList = () => {
             const linkName = el.toLowerCase();
             return (
               <CategoriesItem key={el}>
-                <CategoryLink to={`/categories/${linkName}`}>{el}</CategoryLink>
+                <CategoryLink datatype={isThemeToggle.toString()} to={`/categories/${linkName}`}>
+                  {el}
+                </CategoryLink>
               </CategoriesItem>
             );
           })}
