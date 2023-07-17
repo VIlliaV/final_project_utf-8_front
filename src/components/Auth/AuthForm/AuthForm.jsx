@@ -176,6 +176,8 @@ export const AuthForm = () => {
             <PasswordInput
               $haserror={formik.touched.password && formik.errors.password}
               $correct={formik.touched.password && !formik.errors.password && formik.values.password !== ''}
+              $tooshort={formik.values.password}
+              $path={pathname}
               type="password"
               name="password"
               placeholder="Password"

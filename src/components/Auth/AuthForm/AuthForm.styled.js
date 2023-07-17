@@ -242,6 +242,15 @@ export const PasswordInput = styled(Input)`
       return 'green';
     }
   }};
+
+  &:focus {
+    outline: none !important;
+    border-color: ${prop => {
+      if (prop.$tooshort.length > 0 && prop.$tooshort.length < 6 && prop.$path === '/register') {
+        return 'yellow';
+      }
+    }};
+  }
 `;
 
 export const SubmitButton = styled.button`
