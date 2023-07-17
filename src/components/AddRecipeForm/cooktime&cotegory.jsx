@@ -21,15 +21,15 @@ export default function CookCategoryGroup() {
     }
   };
 
-  // useEffect(() => {
-  //   dispatch(getCategories())
-  //     .then(res => {
-  //       setCategories(res.payload);
-  //     })
-  //     .catch(error => {
-  //       handleError(error);
-  //     });
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getCategories())
+      .then(res => {
+        setCategories(res.payload);
+      })
+      .catch(error => {
+        handleError(error);
+      });
+  }, [dispatch]);
 
   function handleError(error) {
     toast.error(`${error.message}`);

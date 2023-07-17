@@ -13,11 +13,20 @@ export default function RecipePreparation() {
   const allIngredients = useSelector(AllIngredients);
 
   const aproove = () => {
-    const btnApprove = document.querySelectorAll('#ingredientsName');
-    const searchIngredient = btnApprove.forEach(el => {
+    const ListSendIngredient = document.querySelector('[name="detailIngrediantList"]');
+    const ingredientName = ListSendIngredient.querySelectorAll('[name="ingredient"]');
+    const measureIngredient = ingredientName.querySelector['[name="measure"]'];
+    // const measureIngr = document.querySelector('#measure');
+    ingredientName.forEach(el => {
+      console.log(el.value);
       ingredientToSend.push(allIngredients.find(option => option.name === el.value));
     });
-    console.log('ing', searchIngredient);
+    // console.log(ListSendIngredient);
+    console.log(ingredientName);
+    console.log(measureIngredient);
+    // console.log(ingredientToSend);
+    // console.log('ingredientToSend', ingredientToSend);
+    // console.log('measureIngr', measureIngr);
   };
 
   return (

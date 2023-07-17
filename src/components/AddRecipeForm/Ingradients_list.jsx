@@ -46,7 +46,7 @@ export default function IngredientsList() {
                 />
               )}
             />
-            <StyledInputIngredient type="text" placeholder="count tbs,tps,kg,g" />
+            <StyledInputIngredient name="measure" type="text" placeholder="count tbs,tps,kg,g" sx={{ padding: 5 }} />
             <StyledIngredientBtn>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
                 <path
