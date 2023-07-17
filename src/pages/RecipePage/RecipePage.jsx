@@ -97,6 +97,7 @@ function RecipePage() {
       } else {
         const ingredientToRemove = savedShoppingList.find(item => {
           console.log('ingredientToRemove >> savedShoppingList:', savedShoppingList);
+
           return item._id === uniqId;
         });
 
