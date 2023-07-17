@@ -1,12 +1,15 @@
 import { RecipeLink, RecipeName, RecipeCardWrapper, RecipeImg } from './CategoryRecipeCard.styled';
+import { useAuth } from 'utils/hooks/useAuth';
 
 export const CategoryRecipeCard = ({ itemId, imageUrl, imageAlt, title }) => {
-    return (
-        <RecipeCardWrapper>
-            <RecipeLink to={`/recipe/${itemId}`}>
-                <RecipeImg src={imageUrl} alt={imageAlt} loading="lazy"></RecipeImg>
-                <RecipeName>{title}</RecipeName>
-            </RecipeLink>
-        </RecipeCardWrapper>
-    );
+  const { isThemeToggle } = useAuth();
+  console.log(isThemeToggle);
+  return (
+    <RecipeCardWrapper>
+      <RecipeLink to={`/recipe/${itemId}`}>
+        <RecipeImg src={imageUrl} alt={imageAlt} loading="lazy"></RecipeImg>
+        <RecipeName datatype={isThemeToggle.toString()}>{title}</RecipeName>
+      </RecipeLink>
+    </RecipeCardWrapper>
+  );
 };

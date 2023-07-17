@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
 import { CategoriesWrapper, CategoriesContainer, CategoryLink, CategoriesItem } from './CategoriesList.styled';
@@ -20,7 +20,7 @@ export const CategoriesList = () => {
         method: 'GET',
         url: BASE_URL + '/recipes/category-list',
       };
-      const res = await axios(config);
+      const res = await axiosInstance(config);
       return res.data;
     } catch (error) {
       toast.error(`${error.message}`, {
