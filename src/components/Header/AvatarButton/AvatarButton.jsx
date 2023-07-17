@@ -25,15 +25,14 @@ import {
   PopupEdit,
   ImgPlusButton,
   AddNewImgButton,
+  StyledUserIcon,
+  StyledCloseIconSVG,
+  StyledArrowIconSVG,
+  StyledEditIconSVG,
+  StyledUserSvgDefault,
+  StyledPlusIconSVG,
 } from './AvatarButton.styled';
-
 import { logoutUser } from 'redux/auth/authOperations';
-import avatarIcon from './img/userIcon.svg';
-import edit from './img/edit.svg';
-import arrow from './img/arrow-right.svg';
-import close from '../BurgerMenu/img/x.svg';
-import plus from './img/plus.svg';
-import userSvgDefault from './img/userSvgDefault.svg';
 import { useAuth } from 'utils/hooks/useAuth';
 
 const AvatarButtonComponent = () => {
@@ -70,7 +69,12 @@ const AvatarButtonComponent = () => {
   };
 
   const handleClickOutside = event => {
-    if (popupRef.current && !popupRef.current.contains(event.target) && !buttonRef.current.contains(event.target)) {
+    if (
+		popupRef.current &&
+		!popupRef.current.contains(event.target) &&
+		event.target !== buttonRef.current &&
+		!buttonRef.current.contains(event.target)
+    ) {
       setShowPopup(false);
     }
   };
@@ -84,29 +88,12 @@ const AvatarButtonComponent = () => {
     setNewUserName(event.target.value);
   };
 
-  const saveChanges = () => {
-    // Отправка картинки на сервер
-    if (newUserAvatar) {
-      const formData = new FormData();
-      formData.append('image', newUserAvatar);
-      formData.append('name', userName);
+  const submitChanges = (e) => {
+	e.preventDefault();
+	console.log('Selected file:', e.target[0].value);
+	console.log('Text value:', e.target[4].value);
 
-      // Добавьте код для отправки formData на сервер
-      // Используйте fetch или axios для отправки запроса
-      // Например:
-      // fetch('/upload', {
-      //   method: 'POST',
-      //   body: formData,
-      // })
-      //   .then(response => {
-      //     // Обработка успешного ответа
-      //   })
-      //   .catch(error => {
-      //     // Обработка ошибки
-      //   });
-    }
-
-    setShowPopupEdit(false);
+	setShowPopupEdit(false);
   };
 
   const handleImageChange = event => {
@@ -114,12 +101,18 @@ const AvatarButtonComponent = () => {
     setNewUserAvatar(file);
   };
 
+  const handleButtonRadiusClick = () => {
+    if (!showPopupEdit && !showPopupConfirm) {
+      setShowPopup(prevState => !prevState);
+    }
+  };
+
   useEffect(() => {
     if (newUserAvatar) {
       setImageUrl(URL.createObjectURL(newUserAvatar));
     } else if (userAvatar) {
       setImageUrl(userAvatar);
-    } else setImageUrl(userSvgDefault);
+    } else setImageUrl(StyledUserSvgDefault);
   }, [newUserAvatar, userAvatar]);
 
   useEffect(() => {
@@ -137,7 +130,7 @@ const AvatarButtonComponent = () => {
 
   return (
     <AvatarButton>
-      <ButtonRadius onClick={() => setShowPopup(!showPopup)} ref={buttonRef}>
+      <ButtonRadius onClick={handleButtonRadiusClick} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (
@@ -145,20 +138,20 @@ const AvatarButtonComponent = () => {
           <EditDiv>
             <EditText>Edit profile</EditText>
             <ButtonIconEdit onClick={handlePopupEdit}>
-              <img src={edit} alt="edit" />
+              <StyledEditIconSVG/>
             </ButtonIconEdit>
           </EditDiv>
 
           <LogoutButton onClick={handleLogoutButton}>
             Log out
-            <img src={arrow} alt="arrow" />
+            <StyledArrowIconSVG/>
           </LogoutButton>
         </Popup>
       )}
       {showPopupConfirm && (
         <PopupConfirm ref={popupRef}>
           <CloseButton onClick={handleConfirmLogoutNo}>
-            <img src={close} alt="" />
+            <StyledCloseIconSVG/>
           </CloseButton>
           <ConfirmTitle>Are you sure you want to log out?</ConfirmTitle>
           <ButtonDiv>
@@ -168,7 +161,7 @@ const AvatarButtonComponent = () => {
         </PopupConfirm>
       )}
       {showPopupEdit && (
-        <PopupEdit ref={popupRef}>
+        <PopupEdit onSubmit={submitChanges} ref={popupRef}>
           <input
             type="file"
             accept="image/*"
@@ -182,22 +175,26 @@ const AvatarButtonComponent = () => {
               style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'contain' }}
             ></AddNewImgButton>
             <ImgPlusButton onClick={handleAddImageClick}>
-              <img src={plus} alt="" width={20} height={20} />
+              <StyledPlusIconSVG/>
             </ImgPlusButton>
           </AvatarDiv>
 
           <CloseButton onClick={handleConfirmLogoutNo}>
-            <img src={close} alt="" width={20} height={20} />
+		  <StyledCloseIconSVG/>
           </CloseButton>
           <NameInputDiv>
-            <AvatarSvg src={avatarIcon} alt="" width={20} />
+            <AvatarSvg>
+              <StyledUserIcon stroke={`var(--text_theme_1)`} width={18} />
+            </AvatarSvg>
+
             <EditButton onClick={handleClickOutside}>
-              <img src={edit} alt="" width={17} height={17} />
+              <StyledEditIconSVG  />
             </EditButton>
-            <NameInput type="email" placeholder={userName} onChange={handleNameChange} />
+            <NameInput type="text" placeholder={userName} onChange={handleNameChange} />
           </NameInputDiv>
 
-          <EditConfirmButton onClick={saveChanges}>Save changes</EditConfirmButton>
+		  <EditConfirmButton type="submit">Save changes</EditConfirmButton>
+
         </PopupEdit>
       )}
       <AvatarText>{newUserName}</AvatarText>
