@@ -2,7 +2,9 @@ import { axiosInstance } from 'redux/auth/authOperations';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { shoppingListGetLocal } from './shoppingListSlice';
 
+
 //* FETCH: get current shopping list
+
 export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const { token } = state.auth;
@@ -47,8 +49,10 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (newIngred
       recipeId, //?
     };
 
+
     await axiosInstance.post(`/shopping-list`, requestBody);
     return newIngredient;
+
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -63,9 +67,11 @@ export const shoppingListRemove = createAsyncThunk('shopping/remove', async (ing
   }
 
   try {
+
     const response = await axiosInstance.patch(`/shopping-list`, { id: ingredientId });
 
     console.log('shoppingListRemove >> response.data;:', response.data);
+
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
