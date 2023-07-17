@@ -31,10 +31,7 @@ export const Menu = styled.div`
     align-items: center;
   }
 
-  background-color: #fff;
-  background-color &[datatype='true'] {
-    background-color: #aaa;
-  }
+  background-color: var(--back_second_2);
 `;
 
 export const CloseButton = styled.div`
@@ -53,7 +50,7 @@ export const CloseButton = styled.div`
 export const StyledNavLink = styled(NavLink)`
   display: block;
   padding: 10px;
-  color: #333;
+  color: var(--text_third);
   text-decoration: none;
   transition: background-color 0.3s;
   margin-bottom: 32px;
@@ -62,10 +59,6 @@ export const StyledNavLink = styled(NavLink)`
   font-weight: 500;
   line-height: 18px;
   letter-spacing: -0.36px;
-
-  &:hover {
-    background-color: #ddd;
-  }
 
   &.active {
     color: #8baa36;

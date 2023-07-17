@@ -62,16 +62,3 @@ export const NoResultImg = styled.div`
     margin-bottom: 32px;
   }
 `;
-
-// export const PaginationWrapper = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   height: 51px;
-//   width: 275px;
-//   margin: 0 auto;
-//   /* padding: 16px 28px; */
-//   border-radius: 26px;
-//   background-color: var(--back_theme_1);
-//   box-shadow: 0px 4px 4px 0px rgba(135, 135, 135, 0.2);
-// `;

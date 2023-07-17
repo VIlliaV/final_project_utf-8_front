@@ -44,10 +44,8 @@ export const selectStyles = {
     letterSpacing: '-0.24px',
     border: 'none',
 
-    backgroundColor: state.isFocused ? 'var(--back_theme_1)' : 'var(--back_theme_1)',
-    '&:hover': {
-      backgroundColor: 'var(--back_theme_1)',
-    },
+    backgroundColor: state.isFocused ? 'var(--active_select_1)' : 'var(--active_select_1)',
+
     '@media screen and (min-width: 768px)': {
       ...styles['@media screen and (min-width: 768px)'],
       fontSize: '14px',
@@ -57,6 +55,7 @@ export const selectStyles = {
   menu: styles => ({
     ...styles,
     border: 'none',
+    marginTop: 0,
     boxShadow: 'none',
     '@media screen and (min-width: 768px)': {
       ...styles['@media screen and (min-width: 768px)'],
@@ -76,7 +75,7 @@ export const selectStyles = {
     ...styles,
     backgroundColor: 'var(--selectBack_theme_1)',
     color: 'var(--select_text_1)',
-    // opacity: '0.5',
+    opacity: '0.5',
     outline: 'none',
     border: 'none',
     boxShadow: 'none',

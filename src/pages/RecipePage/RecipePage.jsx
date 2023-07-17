@@ -88,6 +88,7 @@ function RecipePage() {
         _id: uniqId,
         recipeId,
       };
+
       dispatch(toggleIngredient(addIngredient)); // стор
 
       if (isChecked) {

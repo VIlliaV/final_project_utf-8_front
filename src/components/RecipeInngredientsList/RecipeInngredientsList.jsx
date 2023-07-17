@@ -18,7 +18,6 @@ import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 // import { useEffect, useState } from 'react';
 
 const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
-  console.log('RecipeInngredientsList >> recipe:', recipe);
   const { isThemeToggle } = useAuth(); //?
 
   // // Функція для перевірки, чи є id в масиві shoppingList
@@ -48,12 +47,20 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
 
   //^ отримали рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
+  console.log('recipeIngredients:', recipeIngredients);
 
   const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
+  console.log('savedShoppingList:', savedShoppingList);
 
   // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
   const isInRecipe = ingredientId => {
     return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
+  };
+
+  const isInShoppingList = ingredientId => {
+    return savedShoppingList.some(item => {
+      return item._id._id === ingredientId;
+    });
   };
 
   return (
@@ -74,7 +81,8 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
               </MeasureWrapper>
 
               <CheckboxInput
-                checked={isInRecipe(ingredient.id._id) && savedShoppingList.includes(ingredient.id)}
+                // checked={isInRecipe(ingredient.id._id) && savedShoppingList.includes(ingredient.id._id)}
+                checked={isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id)}
                 onChange={event =>
                   handleCheckboxChange(
                     ingredient.id._id,
