@@ -166,7 +166,7 @@ export const SubscribeContainer = styled.div`
         margin-top: 65px;
     }
 `;
-export const SubscribeForm = styled.div`
+export const SubscribeForm = styled.form`
     display: flex;
     position: relative;
 
@@ -349,7 +349,7 @@ fill: var(--active);
 width: 20px;
 
 &:hover, &:focus {
-	fill: var(--active_select_1);
+	fill: var(--back_fix);
     }
 `;
 
@@ -358,7 +358,7 @@ fill: var(--active);
 width: 20px;
 
 &:hover, &:focus {
-	fill: var(--active_select_1);
+	fill: var(--back_fix);
     }
 `;
 
@@ -367,7 +367,7 @@ fill: var(--active);
 width: 20px;
 
 &:hover, &:focus {
-	fill: var(--active_select_1);
+	fill: var(--back_fix);
     }
 `;
 
@@ -376,7 +376,7 @@ export const StyledTwitter = styled(Twitter)`
 width: 20px;
 
 &:hover, &:focus {
-	fill: var(--active_select_1);
+	fill: var(--back_fix);
     }
 `;
 

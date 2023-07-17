@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from './images/logo.svg';
+import axios from 'axios';
 
 import {
   HideContentMobile,
@@ -31,19 +32,38 @@ import {
   StyledInstagram,
   StyledMail,
 } from './Footer.styled';
+import { useSelector } from 'react-redux';
+// import { createSelector } from '@reduxjs/toolkit';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
+	const [email, setEmail] = useState('');
+	const auth = useSelector(state => state.auth);
+	const token = auth.accessToken;
+  
+	const handleEmailChange = event => {
+	  setEmail(event.target.value);
+	};
+  
+	const handleSubmit = event => {
+	  event.preventDefault();
+	  const instance = axios.create({
+		baseURL: 'https://final-project-utf-8-backend.onrender.com',
+	  });
+  
+	  instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  
+	  instance
+		.post('/subscribe',{email})
+		.then(response => {
+		  console.log(response);
 
-  const handleEmailChange = event => {
-    setEmail(event.target.value);
-  };
+		})
+		.catch(error => {
+		  console.log(error);
+		});
+  
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    // Добавьте здесь код для обработки подписки на email
-    console.log('Subscribed email:', email);
-    setEmail('');
+	  setEmail('');
   };
 
   return (
@@ -79,7 +99,7 @@ const Footer = () => {
           </HideContentTablet>
           <SubscribeForm>
             <EmailSvgDiv>
-              <StyledMail className={navData => (navData.isActive ? 'active-style' : 'none')}/>
+              <StyledMail className={navData => (navData.isActive ? 'active-style' : 'none')} />
             </EmailSvgDiv>
             <EmailInput
               type="email"
@@ -87,22 +107,24 @@ const Footer = () => {
               value={email}
               onChange={handleEmailChange}
             />
-            <SubscribeButton onClick={handleSubmit}>Subscribe</SubscribeButton>
+            <SubscribeButton type="submit" onClick={handleSubmit}>
+              Subscribe
+            </SubscribeButton>
           </SubscribeForm>
         </SubscribeContainer>
       </FooterDivContainer>
       <Media>
         <NavLink to="/">
-		<StyledYoutube/>
+          <StyledYoutube />
         </NavLink>
         <NavLink to="/">
-		<StyledTwitter/>
+          <StyledTwitter />
         </NavLink>
         <NavLink to="/">
-		<StyledFacebook/>
+          <StyledFacebook />
         </NavLink>
         <NavLink to="/">
-		<StyledInstagram/>
+          <StyledInstagram />
         </NavLink>
       </Media>
       <Copyright>
