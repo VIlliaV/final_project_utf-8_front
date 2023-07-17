@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { TextField } from '@mui/material';
 import { StyledAutoCategory, StyledLabelCategory } from './AddRecipeForm.styled';
@@ -30,8 +31,7 @@ export default function CookCategoryGroup() {
   }, [dispatch]);
 
   function handleError(error) {
-    console.error(error);
-    alert(`${error.message}`);
+    toast(`${error.message}`);
   }
 
   const handleChangeCategory = event => {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { nanoid } from 'nanoid';
-import { Loader } from '../Loader/Loader';
+import Loader from '../Loader/Loader';
 import { StyledH3, StyledPopularRecipe, StyledList } from './AddRecipeForm.styled';
 import axios from 'axios';
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
@@ -44,8 +45,7 @@ export default function Popular() {
   }, []);
 
   function handleError(error) {
-    console.error(error);
-    alert(`${error.message}`);
+    toast(`${error.message}`);
   }
 
   return (

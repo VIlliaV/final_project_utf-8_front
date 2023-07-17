@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { CircularProgress, TextField } from '@mui/material';
-import { Loader } from '../Loader/Loader';
+import Loader from '../Loader/Loader';
 import {
   StyledAutoComplete,
   StyledInputIngredient,
@@ -12,18 +12,8 @@ import {
 import { AllIngredients } from './redux/AddRecipeSelector';
 
 export default function IngredientsList() {
-  // const [ingredients, setIngredients] = useState([]);
-  const [ingredient, setIngredient] = useState('');
-  const [ingredientToSend, setIngredientToSend] = useState([]);
-
   const ingredients = useSelector(AllIngredients);
-
   const loading = ingredients.length === 0;
-
-  function handleError(error) {
-    console.error(error);
-    alert(`${error.message}`);
-  }
 
   return (
     <li key={nanoid()} name="ingredient">
