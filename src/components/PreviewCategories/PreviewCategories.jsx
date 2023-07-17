@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { axiosInstance } from 'redux/auth/authOperations';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
@@ -16,9 +16,6 @@ import {
 
 const token = store.getState().auth.token;
 
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
 const PreviewCategories = () => {
   const [previewCategoriesList, setPreviewCategoriesList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +29,7 @@ const PreviewCategories = () => {
   const fetchPreviewCategoriesList = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`/recipes/main-page`);
+      const response = await axiosInstance.get(`/recipes/main-page`);
       setIsLoading(false);
       return response.data;
     } catch (error) {

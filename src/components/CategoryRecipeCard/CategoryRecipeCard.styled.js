@@ -3,60 +3,72 @@ import { media } from 'utils/media';
 import { Link } from 'react-router-dom';
 
 export const RecipeCardWrapper = styled.div`
-    /* width: 343px;
+  /* width: 343px;
     height: 323px; */
 `;
 
 export const RecipeLink = styled(Link)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 
-    text-decoration: none;
+  text-decoration: none;
 `;
 
 export const RecipeImg = styled.img`
-    width: 343px;
-    height: 323px;
-    border-radius: 8px;
+  width: 343px;
+  height: 323px;
+  border-radius: 8px;
 
-    @media ${media.tablet} {
-        width: 336px;
-    }
-    @media ${media.desktop} {
-        width: 300px;
-    }
+  @media ${media.tablet} {
+    width: 336px;
+  }
+  @media ${media.desktop} {
+    width: 300px;
+  }
 `;
 
 export const RecipeName = styled.p`
-    width: 307px;
-    padding: 16px 16px 16px 16px;
-    border-radius: 8px;
+  width: 307px;
+  padding: 16px 16px 16px 16px;
+  border-radius: 8px;
 
-    color: ${props => css`var(--text_second_theme_1)`};
-    background: rgba(255, 255, 255, 1);
+  /* color: ${props => css`var(--text_second_theme_1)`};
+  color &[datatype='true'] {
+    color: red;
+  } */
 
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: -0.24px;
+  color: red;
+  color &[datatype='true'] {
+    color: blue;
+  }
 
-    position: absolute;
-    z-index: 1;
-    bottom: 26px;
+  background: rgba(255, 255, 255, 1);
+  background &[datatype='true'] {
+    background: ${props => css`var(--back_second_1)`};
+  }
 
-    @media ${media.mini} {
-        max-width: 80%;
-    }
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.24px;
 
-    @media ${media.tablet} {
-        width: 300px;
-    }
+  position: absolute;
+  z-index: 1;
+  bottom: 26px;
 
-    @media ${media.desktop} {
-        width: 268px;
-        bottom: 24px;
-    }
+  @media ${media.mini} {
+    max-width: 80%;
+  }
+
+  @media ${media.tablet} {
+    width: 300px;
+  }
+
+  @media ${media.desktop} {
+    width: 268px;
+    bottom: 24px;
+  }
 `;
