@@ -51,7 +51,7 @@ const SearchedRecipesList = () => {
       setIsLoading(false);
       return response.data;
     } catch (error) {
-      toast.error('Ups...Something went wrong. Try again');
+      toast.error('Oops...Something went wrong. Try again');
       setRecipeList([]);
       setIsLoading(false);
     }
