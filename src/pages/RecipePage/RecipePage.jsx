@@ -9,6 +9,7 @@ import { Wrapper } from './RecipePage.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 import { axiosInstance } from 'redux/auth/authOperations';
+import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
@@ -68,26 +69,24 @@ function RecipePage() {
     const currentIngredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
 
     if (currentIngredient) {
+      const addIngredient = {
+        id: {
+          _id: ingredientId,
+          desc: currentIngredient.id.desc,
+          img: currentIngredient.id.img,
+          name: currentIngredient.id.name,
+        },
+        measure: currentIngredient.measure,
+        _id: uniqId,
+        recipeId,
+      };
+      dispatch(toggleIngredient(addIngredient)); // стор
+
       if (isChecked) {
-        const addIngredient = {
-          id: {
-            _id: ingredientId,
-            desc: currentIngredient.id.desc,
-            img: currentIngredient.id.img,
-            name: currentIngredient.id.name,
-          },
-          measure: currentIngredient.measure,
-          _id: uniqId,
-          recipeId,
-        };
-
-        dispatch(shoppingListAdd(addIngredient));
+        dispatch(shoppingListAdd(addIngredient)); // сервер
       } else {
-        // console.log('handleCheckboxChange >> shoppingList:', shoppingList);
         const ingredientToRemove = shoppingList.find(item => item._id === uniqId);
-        // console.log('handleCheckboxChange >> ingredientToRemove:', ingredientToRemove);
         dispatch(shoppingListRemove(ingredientToRemove.id));
-
         if (ingredientToRemove) {
           dispatch(shoppingListRemove(ingredientToRemove.id));
         }
@@ -110,9 +109,9 @@ function RecipePage() {
           <Wrapper>
             <RecipeInngredientsList
               recipe={recipe}
-              ingredients={ingredients}
+              // ingredients={ingredients}
               handleCheckboxChange={handleCheckboxChange}
-              recipeId={recipeId}
+              // recipeId={recipeId}
             />
             <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
           </Wrapper>
