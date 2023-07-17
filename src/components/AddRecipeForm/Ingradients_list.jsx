@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
+// import ingredients from '../../back/ingredients.json';
 
 import { CircularProgress, TextField } from '@mui/material';
 import Loader from '../Loader/Loader';

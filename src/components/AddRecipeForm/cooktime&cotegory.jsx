@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { TextField } from '@mui/material';
+// import categories from '../../back/categories.json';
 import { StyledAutoCategory, StyledLabelCategory } from './AddRecipeForm.styled';
 import { getCategories } from './redux/AddRecipreOperation';
 import { addСategory, addTime } from './redux/AddRecipreOperation';
@@ -20,15 +21,15 @@ export default function CookCategoryGroup() {
     }
   };
 
-  useEffect(() => {
-    dispatch(getCategories())
-      .then(res => {
-        setCategories(res.payload);
-      })
-      .catch(error => {
-        handleError(error);
-      });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getCategories())
+  //     .then(res => {
+  //       setCategories(res.payload);
+  //     })
+  //     .catch(error => {
+  //       handleError(error);
+  //     });
+  // }, [dispatch]);
 
   function handleError(error) {
     toast.error(`${error.message}`);

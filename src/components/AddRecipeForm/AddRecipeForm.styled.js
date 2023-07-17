@@ -364,7 +364,11 @@ export const StyledInputGroup = style.div`
             display: flex;
             flex-direction: column;
             width: 100%;
-            height:270px;
+            height:auto;
+            color: var(--select_text_1);
+            &  div label {
+              position:absolute;
+            }
 
         
             
@@ -450,18 +454,24 @@ export const StyledSelect = styled(Select)({
   color: 'black',
 });
 
-export const StyledTextField = styled(TextField)(({ theme }) => ({
-  width: '100%',
+export const StyledInput = style.input`
 
-  alignContent: 'end',
-  [theme.breakpoints.down(`${media.desktop}`)]: {
-    width: '395px',
-    alignContent: 'end',
-    textAlign: 'right',
-    borderBottom: '1px solid #6a6c6e',
-    '&::after': { borderBottom: '1px solid #6a6c6e' },
+  border: transparent;
+color:var(--select_text_1);
+background-color:transparent;
+position: relative;
+  width: ;
+  height: 50px;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  align-content: end;
+  & hover {
+    border:none;
+  }
+ @media ${media.desktop}{
+    width: 100%;
+    text-align: right;
   },
-}));
+`;
 
 export const IngredianceList = style.div`
 @media ${media.desktop} {

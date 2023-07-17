@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addTitle, addAbout } from './redux/AddRecipreOperation';
 import FileInput from '..//../components/AddRecipeForm/AddRecipeForm';
 import CookCategoryGroup from '../../components/AddRecipeForm/cooktime&cotegory';
-import { StyledTextField, StyledLabel, StyledInputGroup } from './AddRecipeForm.styled';
+import { StyledInput, StyledLabel, StyledInputGroup } from './AddRecipeForm.styled';
 
 export default function ImageRecipe() {
   const dispatch = useDispatch();
@@ -22,8 +22,29 @@ export default function ImageRecipe() {
     <StyledLabel htmlFor="img_recipe">
       <FileInput />
       <StyledInputGroup>
-        <StyledTextField id="item_title" onChange={handleChangeTitle} label="Enter item title" variant="filled" />
-        <StyledTextField id="item_title" onChange={handleChangeAbout} label="Enter about recipe" variant="filled" />
+        <div>
+          <label>Enter item title</label>
+          <StyledInput
+            id="item_title"
+            onChange={handleChangeTitle}
+            // label="Enter item title"
+            variant="filled"
+            placeholder="Enter item title"
+            autocomplete="off"
+            label="1234"
+          />
+        </div>
+        <div>
+          <label>Enter item title</label>
+          <StyledInput
+            id="item_title"
+            onChange={handleChangeAbout}
+            label="Enter about recipe"
+            variant="filled"
+            placeholder="Enter about recipe"
+            autocomplete="off"
+          />
+        </div>
         <CookCategoryGroup />
       </StyledInputGroup>
     </StyledLabel>
