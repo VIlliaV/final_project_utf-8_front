@@ -11,7 +11,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { shoppingListAdd, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 // import { nanoid } from 'nanoid';
 
-
 const token = store.getState().auth.token;
 
 axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
@@ -20,12 +19,12 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
   const [ingredients, setIngredients] = useState([]);
-
   const [isFavorite, setIsFavorite] = useState(false);
+
   const dispatch = useDispatch();
 
-
   const { recipeId } = useParams();
+
   const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
   console.log(shoppingList);
 
@@ -48,12 +47,27 @@ function RecipePage() {
     }
   }, [recipeId]);
 
-  const addToFavorite = () => {
-    setIsFavorite(true);
+  // axois.post('/favorite', {id:'id рецепту'} ); --ендпоінт для додавання рецептів до обраних
+  // axois.patch('/favorite', {id:'id рецепту'}); --ендпоінт для видалення рецептів з обраних
+
+  const addToFavorite = async () => {
+    try {
+      const response = await axios.post(`/favorite/{id:${recipeId}}`);
+      console.log(response.data);
+      setIsFavorite(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const removeFromFavorite = () => {
-    setIsFavorite(false);
+  const removeFromFavorite = async () => {
+    try {
+      const response = await axios.patch(`/favorite/${recipeId}`);
+      console.log(response.data);
+      setIsFavorite(false);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleCheckboxChange = (ingredientId, isChecked, unicId) => {

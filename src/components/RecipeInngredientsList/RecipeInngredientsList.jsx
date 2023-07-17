@@ -12,12 +12,12 @@ import {
   CheckboxInput,
 } from './RecipeInngredientsList.styled';
 import SvgIcon from '@mui/material/SvgIcon';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
+import { useAuth } from 'utils/hooks/useAuth';
 
 const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
-  const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
-  console.log(shoppingList);
+  const { isThemeToggle } = useAuth();
 
   return (
     <>
@@ -30,7 +30,7 @@ const RecipeInngredientsList = ({ ingredients, handleCheckboxChange }) => {
         {ingredients.map(ingredient => {
           const unicId = nanoid();
           return (
-            <ListItem key={ingredient._id}>
+            <ListItem key={ingredient._id} datatype={isThemeToggle.toString()}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
               <Name>{ingredient.id.name}</Name>
               <MeasureWrapper>
