@@ -1,6 +1,5 @@
 import { keyframes, styled } from 'styled-components';
 import { media } from 'utils/media';
-import defaultIcon from './img/userSvgDefault.svg';
 import { ReactComponent as UserIconSVG } from './img/userIcon.svg';
 import { ReactComponent as EditIconSVG } from './img/edit.svg';
 import { ReactComponent as CloseIconSVG } from '../BurgerMenu/img/x.svg';
@@ -21,7 +20,6 @@ const fadeIn = keyframes`
 
 export const AvatarButton = styled.div`
   position: relative;
-  /* width: 100px; */
   display: flex;
   align-items: center;
   border-radius: 20px;
@@ -113,6 +111,7 @@ export const LogoutButton = styled.button`
   cursor: pointer;
   background-color: #8baa36;
   color: #fafafa;
+  stroke: #fafafa;
   border-radius: 24px 44px;
   width: 125px;
   height: 45px;
@@ -127,6 +126,10 @@ export const LogoutButton = styled.button`
   }
   img {
     margin-left: 5px;
+  }
+  &:hover, &:focus {
+	color: var(--fix_back_2);
+	stroke: var(--fix_back_2);
   }
 `;
 
@@ -186,6 +189,7 @@ export const AvatarText = styled.p`
 `;
 
 export const ButtonYes = styled.button`
+cursor: pointer;
   width: 140px;
   height: 50px;
   color: var(--text_theme_1);
@@ -198,18 +202,29 @@ export const ButtonYes = styled.button`
     width: 195px;
     height: 60px;
   }
+
+  &:hover, &:focus {
+	background-color: var(--active_theme_2);
+	color: var(--active);
+  }
 `;
 
 export const ButtonNo = styled.button`
+cursor: pointer;
   width: 140px;
   height: 50px;
   background-color: #d9d9d9;
   border: 0;
   border-radius: 6px;
 
+
   @media ${media.tablet} {
     width: 195px;
     height: 60px;
+  }
+  &:hover, &:focus {
+	background-color: var(--back_fix);
+	border: 1px solid black;
   }
 `;
 
@@ -238,6 +253,7 @@ export const ButtonDiv = styled.div`
 `;
 
 export const EditConfirmButton = styled.button`
+cursor: pointer;
   width: 285px;
   height: 50px;
   background-color: #8baa36;
@@ -249,27 +265,20 @@ export const EditConfirmButton = styled.button`
     width: 400px;
     height: 60px;
   }
+
+  &:hover, &:focus {
+	background-color: var(--active_theme_2);
+	color: var(--active);
+  }
 `;
 
 export const EditButton = styled.button`
   cursor: pointer;
   position: absolute;
-  right: 15px;
-  top: 16px;
   border: 0;
   background-color: transparent;
-  width: 17px;
-  height: 15px;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    bottom: -10px;
-    left: -10px;
-  }
+  right: 15px;
+  top: 16px;
 `;
 
 export const NameInputDiv = styled.div`
@@ -320,7 +329,7 @@ export const AvatarDiv = styled.div`
 export const AvatarDefaultImg = styled.button`
   width: 90px;
   height: 90px;
-  background-color: #d9d9d9;
+  /* background-color: #D9D9D9; */
   border: 0;
   border-radius: 100px;
 
@@ -345,9 +354,12 @@ export const ImgPlusButton = styled.button`
   border-radius: 15px;
 `;
 
+export const StyledUserSvgDefault = styled(userSvgDefault)``;
+
 export const AddNewImgButton = styled.button`
   cursor: pointer;
-  background-image: ${defaultIcon};
+  background-image: url(${StyledUserSvgDefault});
+  background-color: #D9D9D9;
   background-repeat: no-repeat;
   background-position: center;
   border: 0;
@@ -395,16 +407,27 @@ export const StyledEditIconSVG = styled(EditIconSVG)`
   stroke: var(--text_theme_1);
   width: 17px;
   height: 17px;
+
+  &:hover, &:focus {
+	stroke: var(--active);
+  }
+
   @media ${media.tablet} {
     width: 19px;
     height: 19px;
   }
+
 `;
 
 export const StyledCloseIconSVG = styled(CloseIconSVG)`
   stroke: var(--text_theme_1);
   width: 20px;
   @media ${media.tablet} {
+	width: 24px;
+  }
+
+  &:hover, &:focus {
+	stroke: var(--active);
   }
 `;
 
@@ -418,6 +441,11 @@ export const StyledPlusIconSVG = styled(PlusIconSVG)`
 export const StyledArrowIconSVG = styled(ArrowIconSVG)`
   padding-left: 4px;
   width: 20px;
+
+  &:hover, &:focus {
+	stroke: var(--fix_back_2);
+  }
+
 `;
 
-export const StyledUserSvgDefault = styled(userSvgDefault)``;
+

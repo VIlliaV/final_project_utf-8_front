@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { media } from '../../utils/media';
-
+import { ReactComponent as Mail } from './images/mail.svg';
+import { ReactComponent as Facebook } from './images/facebook.svg';
+import { ReactComponent as Youtube } from './images/youtube.svg';
+import { ReactComponent as Twitter } from './images/twiter.svg';
+import { ReactComponent as Instagram } from './images/instagram.svg';
 
 export const HideContentMobile = styled.div`
     @media (max-width: 767px) {
@@ -52,6 +56,9 @@ export const StyledNavLink = styled(NavLink)`
         line-height: 18px;
         letter-spacing: -0.28px;
         padding-bottom: 20px;
+    }
+	&:hover, &:focus {
+		color: var(--active);
     }
 `;
 
@@ -176,6 +183,8 @@ export const SubscribeForm = styled.div`
         width: 340px;
         flex-direction: column;
     }
+
+
 `;
 
 export const EmailInput = styled.input`
@@ -233,7 +242,7 @@ export const SubscribeButton = styled.button`
     width: 205px;
     height: 40px;
     &:hover, &:focus {
-		color: green;
+		color: var(--active_theme_2);
     }
 
     @media ${media.tablet} {
@@ -333,4 +342,44 @@ export const Media = styled.div`
     justify-content: space-between;
     width: 120px;
     margin-bottom: 20px;
+`;
+
+export const StyledInstagram = styled(Instagram)`
+fill: var(--active);
+width: 20px;
+
+&:hover, &:focus {
+	fill: var(--active_select_1);
+    }
+`;
+
+export const StyledFacebook = styled(Facebook)`
+fill: var(--active);
+width: 20px;
+
+&:hover, &:focus {
+	fill: var(--active_select_1);
+    }
+`;
+
+export const StyledYoutube = styled(Youtube)`
+fill: var(--active);
+width: 20px;
+
+&:hover, &:focus {
+	fill: var(--active_select_1);
+    }
+`;
+
+export const StyledTwitter = styled(Twitter)`
+	fill: var(--active);
+width: 20px;
+
+&:hover, &:focus {
+	fill: var(--active_select_1);
+    }
+`;
+
+export const StyledMail = styled(Mail)`
+stroke: white;
 `;

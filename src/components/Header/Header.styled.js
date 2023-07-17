@@ -1,7 +1,19 @@
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { media } from '../../utils/media';
 import { ReactComponent as userSvgDefault } from './AvatarButton/img/search.svg';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
 
 export const HideContentTablet = styled.div`
   display: none;
@@ -62,6 +74,7 @@ export const Nav = styled.nav`
 
 export const StyledNavLink = styled(NavLink)`
   color: var(--text_theme_1);
+  stroke: var(--text_theme_1);
   text-decoration: none;
   margin-right: 30px;
   font-size: 14px;
@@ -70,8 +83,10 @@ export const StyledNavLink = styled(NavLink)`
   line-height: 22.4px;
 
   &.active {
+	stroke: #8baa36;
     color: #8baa36;
     font-weight: bold;
+	animation: ${fadeIn} 0.5s;
   }
 `;
 
@@ -127,5 +142,20 @@ export const UserDiv = styled.div`
 export const StyledUserSvgDefault = styled(userSvgDefault)`
   width: 24px;
   height: 24px;
-  stroke: var(--text_theme_1);
+
+  text-decoration: none;
+  margin-right: 30px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22.4px;
+
+  &.active {
+	text-decoration: none;
+  margin-right: 30px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22.4px;
+  }
 `;

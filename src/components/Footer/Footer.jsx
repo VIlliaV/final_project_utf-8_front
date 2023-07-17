@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Mail } from './images/mail.svg';
-import { ReactComponent as Facebook } from './images/facebook.svg';
-import { ReactComponent as Youtube } from './images/youtube.svg';
-import { ReactComponent as Twitter } from './images/twiter.svg';
-import { ReactComponent as Instagram } from './images/instagram.svg';
 import logo from './images/logo.svg';
 
 import {
@@ -30,6 +25,11 @@ import {
   TextP,
   FooterDivContainer,
   EmailSvgDiv,
+  StyledYoutube,
+  StyledTwitter,
+  StyledFacebook,
+  StyledInstagram,
+  StyledMail,
 } from './Footer.styled';
 
 const Footer = () => {
@@ -79,7 +79,7 @@ const Footer = () => {
           </HideContentTablet>
           <SubscribeForm>
             <EmailSvgDiv>
-              <Mail stroke='white'/>
+              <StyledMail className={navData => (navData.isActive ? 'active-style' : 'none')}/>
             </EmailSvgDiv>
             <EmailInput
               type="email"
@@ -93,17 +93,16 @@ const Footer = () => {
       </FooterDivContainer>
       <Media>
         <NavLink to="/">
-		<Youtube fill={`var(--active)`} width={20}/>
+		<StyledYoutube/>
         </NavLink>
         <NavLink to="/">
-
-		  <Twitter fill={`var(--active)`} width={20}/>
+		<StyledTwitter/>
         </NavLink>
         <NavLink to="/">
-		<Facebook fill={`var(--active)`} width={20}/>
+		<StyledFacebook/>
         </NavLink>
         <NavLink to="/">
-		<Instagram fill={`var(--active)`} width={20}/>
+		<StyledInstagram/>
         </NavLink>
       </Media>
       <Copyright>
