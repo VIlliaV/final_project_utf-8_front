@@ -52,7 +52,7 @@ export const StyledSvg = style.svg`
 display: flex;
     width: 28px;
     height: 28px;
-    fill: var(--fix_back);
+    fill: var(--active_select_2);
     -webkit-transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -228,6 +228,7 @@ export const StyledSection3 = style.div`
 
 export const StyledInputRecipe = style.textarea`
 margin-top: 25px;
+background-color: transparent;
     width: 345px;
     height: 270px;
     padding: 20px;
