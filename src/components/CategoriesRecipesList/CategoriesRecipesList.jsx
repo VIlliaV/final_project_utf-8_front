@@ -3,7 +3,7 @@ import Loader from '../Loader/Loader';
 import { CategoriesRecipesContainer, CategoryRecipeCardWrapper } from './CategoriesRecipesList.styled';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
@@ -20,7 +20,7 @@ export const CategoriesRecipesList = () => {
         method: 'GET',
         url: BASE_URL + `/recipes/category/${category}`,
       };
-      const res = await axios(config);
+      const res = await axiosInstance(config);
       return res.data;
     } catch (error) {
       toast.error(`${error.message}`, {
