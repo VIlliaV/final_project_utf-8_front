@@ -88,7 +88,7 @@ export const Switcher = styled.div`
 `;
 
 export const StyledMenuIconSvg = styled(MenuIconSvg)`
-  stroke: var(--text_theme_1);
+  stroke: var(--fix_back_2);
   width: 28px;
   height: 28px;
   @media ${media.tablet} {
