@@ -186,6 +186,10 @@ export const AvatarText = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: 170%;
+
+  @media ${media.desktop} {
+	color: var(--fix_back_2);
+  }
 `;
 
 export const ButtonYes = styled.button`
@@ -359,6 +363,7 @@ export const StyledUserSvgDefault = styled(userSvgDefault)``;
 export const AddNewImgButton = styled.button`
   cursor: pointer;
   background-image: url(${StyledUserSvgDefault});
+  background-size: 100%;
   background-color: #D9D9D9;
   background-repeat: no-repeat;
   background-position: center;
