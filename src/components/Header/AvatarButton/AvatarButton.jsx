@@ -124,11 +124,10 @@ const AvatarButtonComponent = () => {
     setNewUserAvatar(event.target.files[0]);
   }, []);
 
-  const handleSubmit = useCallback(
-    async (e) => {
+  const handleSubmit = useCallback((e) => {
       e.preventDefault();
       const formData = new FormData();
-      formData.append('file', newUserAvatar);
+      formData.append('avatar', newUserAvatar);
       formData.append('name', newUserName);
       dispatch(updateUser(formData));
       setShowPopupEdit(false);
