@@ -5,24 +5,31 @@ import { CategoriesRecipesList } from '../CategoriesRecipesList/CategoriesRecipe
 import NoResult from '../NoResult/NoResult';
 
 export const Categories = () => {
-  const [dataError, setDataError] = useState(false);
+  const [dataCategoriesError, setDataCategoriesError] = useState(false);
+  const [dataRecipiesError, setDataRecipiesError] = useState(false);
 
-  const updateDataErrorState = data => {
-    setDataError(data);
+  const updateDataCategoriesError = data => {
+    setDataCategoriesError(data);
   };
+
+  const updateDataRecipiesError = data => {
+    setDataRecipiesError(data);
+  };
+
+  const renderError = dataCategoriesError || dataRecipiesError;
 
   return (
     <>
-      {dataError && <NoResult></NoResult>}
-      {!dataError && (
-        <CategoriesList dataError={dataError} updateDataErrorState={updateDataErrorState}></CategoriesList>
+      {renderError && <NoResult></NoResult>}
+      {!renderError && (
+        <CategoriesList
+          dataCategoriesError={dataCategoriesError}
+          updateDataCategoriesError={updateDataCategoriesError}
+        ></CategoriesList>
       )}
-      {!dataError && (
+      {!renderError && (
         <CategoriesPageContainer>
-          <CategoriesRecipesList
-            dataError={dataError}
-            updateDataErrorState={updateDataErrorState}
-          ></CategoriesRecipesList>
+          <CategoriesRecipesList updateDataRecipiesError={updateDataRecipiesError}></CategoriesRecipesList>
         </CategoriesPageContainer>
       )}
     </>
