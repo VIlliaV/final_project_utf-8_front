@@ -1,17 +1,25 @@
 import styled from 'styled-components';
 import { media } from '../../utils/media';
-import arrow from './images/arrow-narrow-right.svg';
 
 export const СhooseBreakfastContainer = styled.div`
   box-sizing: border-box;
   position: absolute;
   top: 435px;
-  right: 34px;
   padding: 8px;
-  width: 225px;
-  height: 92px;
   border-radius: 8px;
   background: var(--back_third);
+
+  @media ${media.mini} {
+    max-width: 225px;
+    min-height: 92px;
+    right: 4px;
+  }
+
+  @media ${media.mobile} {
+    width: 225px;
+    height: 92px;
+    right: 34px;
+  }
 
   span {
     color: var(--fix_back);
@@ -54,6 +62,10 @@ export const СhooseBreakfastText = styled.p`
 `;
 
 export const СhooseBreakfastButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
   position: absolute;
   right: 8px;
   width: 82px;
@@ -67,21 +79,19 @@ export const СhooseBreakfastButton = styled.button`
   letter-spacing: 0.2px;
   cursor: pointer;
 
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  svg {
+    stroke: var(--text_second_theme_1);
+    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   &:hover,
   &:focus {
     color: var(--fix_back);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(${arrow});
-    background-position: right 0px top 0px;
-    background-repeat: no-repeat;
+    svg {
+      stroke: var(--fix_back);
+    }
   }
 
   @media ${media.tablet} {
