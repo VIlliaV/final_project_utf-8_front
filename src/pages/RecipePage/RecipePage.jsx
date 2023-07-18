@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-<
-import HeadContainer from 'components/HeadContainer/HeadContainer';
+import HeadContainer from '../../components/HeadContainer/HeadContainer';
 
 import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
@@ -13,16 +12,12 @@ import { Wrapper } from './RecipePage.styled';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-
-
-import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
-
+// import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
 import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
-
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
@@ -33,9 +28,7 @@ function RecipePage() {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
-
   const savedShoppingList = useSelector(shoppingList);
-
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -121,7 +114,6 @@ function RecipePage() {
     <div>
       {recipe && (
         <>
-
           <HeadContainer>
             <RecipePageHero
               title={recipe.title}
@@ -130,7 +122,6 @@ function RecipePage() {
               isFavorite={isFavorite}
               addToFavorite={addToFavorite}
               removeFromFavorite={removeFromFavorite}
-
             />
 
             <Wrapper>

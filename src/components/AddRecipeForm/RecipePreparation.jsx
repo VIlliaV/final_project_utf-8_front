@@ -11,24 +11,20 @@ export default function RecipePreparation() {
     const recipePreparation = event.currentTarget.value;
     dispatch(addPreparation(recipePreparation));
   };
-  const allIngredients = useSelector(AllIngredients);
+  const ingredients = useSelector(AllIngredients);
 
-  const aproove = () => {
+  const approve = searchName => {
     const ListSendIngredient = document.querySelector('[name="detailIngrediantList"]');
     const ingredient = ListSendIngredient.querySelectorAll('[name="ingredient"]');
     const ingredientName = ListSendIngredient.querySelector('#ingredientsName');
     // const measureIngr = document.querySelector('#measure');
     ingredient.forEach(el => {
-      search = allIngredients.find(option => option.name === ingredientName.value);
-      ingredientToSend.push([{ id: search.id, measure: el.childNodes[0].childNodes[1].value }]);
-      dispatch(addIngredientRecipe(ingredientToSend));
+      search = ingredients.find(option => option.name === searchName);
+
+      ingredientToSend.push([{ id: search._id, name: searchName, measure: el.childNodes[0].childNodes[1].value }]);
+      // dispatch(addIngredientRecipe(ingredientToSend));
+      console.log(ingredientToSend);
     });
-    // console.log(ListSendIngredient);
-    console.log('ingredient', ingredient);
-    console.log(ingredientName.value);
-    console.log(search);
-    // console.log('ingredientToSend', ingredientToSend);
-    // console.log('measureIngr', measureIngr);
   };
 
   return (
@@ -41,7 +37,7 @@ export default function RecipePreparation() {
         </button>
       </div>
 
-      <button type="submit" onClick={aproove}>
+      <button type="submit" onClick={approve}>
         <span>Proverka</span>
       </button>
     </StyledSection3>
