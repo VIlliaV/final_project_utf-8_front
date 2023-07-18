@@ -6,8 +6,8 @@ const Search = ({ handleSubmit, buttonStyle = 'origin-button' }) => {
 
   return (
     <SearchForm onSubmit={handleSubmit} datatype={isThemeToggle.toString()}>
-      <input type="text" name="query" placeholder="Enter the text"></input>
-      <button type="submit" className={buttonStyle}>
+      <input type="text" name="query" placeholder="Enter the text" datatype={isThemeToggle.toString()}></input>
+      <button type="submit" className={buttonStyle} datatype={isThemeToggle.toString()}>
         Search
       </button>
     </SearchForm>
