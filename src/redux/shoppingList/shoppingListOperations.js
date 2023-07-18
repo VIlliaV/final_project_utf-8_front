@@ -49,7 +49,7 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (addIngred
     };
 
     await axiosInstance.post(`/shopping-list`, requestBody);
-    console.log('shoppingListAdd >> addIngredient:', addIngredient);
+    // console.log('shoppingListAdd >> addIngredient:', addIngredient);
     return addIngredient; // повертається у action.payload на addFulfilled у slice
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

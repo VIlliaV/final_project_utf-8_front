@@ -21,7 +21,9 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
 
   // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
   const isInRecipe = ingredientId => {
-    return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
+    const isIngredientIdInRecipe = savedShoppingList.some(ingredient => ingredient.id._id === ingredientId);
+    console.log('isInRecipe >> isIngredientIdInRecipe:', isIngredientIdInRecipe);
+    return isIngredientIdInRecipe;
   };
 
   const isInShoppingList = ingredientId => {
