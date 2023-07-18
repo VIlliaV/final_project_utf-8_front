@@ -1,4 +1,5 @@
 import style from 'styled-components';
+
 import { media } from '../../utils/media';
 import {
   Button,
@@ -126,6 +127,7 @@ export const StyledFormControl = styled(FormControl)(({ theme }) => ({
 }));
 
 export const StyledInputIngredient = style.input`
+    padding: 10px;
     width:85px;
     height: 50px;
     border:none;
@@ -136,10 +138,12 @@ export const StyledInputIngredient = style.input`
     display:flex;
     justify-content: center;
     @media ${media.tablet}{
+      padding: 10px;
       width:100px;
       margin-right: 150px;
     }
       @media ${media.desktop} {
+        padding: 10px;
       
       margin-right: 60px;
     }
@@ -387,6 +391,7 @@ export const StyledLabelCategory = style.label`
 `;
 
 export const StyledInputIngredients = style.label`
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -493,12 +498,14 @@ export const IngrediantsCountWeigth = styled(TextField)({
   marginRight: '60px',
 });
 
-export const StyledIngredientBtn = styled(Button)(({ theme }) => ({
-  padding: '0',
-  display: 'flex',
-  minWidth: '20px',
-  height: '20px',
-}));
+export const StyledIngredientBtn = style.button`
+  padding: 0;,
+  display: flex;
+  minWidth: 30px;
+  height: 30px;
+  border:none;
+  cursor: pointer;
+`;
 
 export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {

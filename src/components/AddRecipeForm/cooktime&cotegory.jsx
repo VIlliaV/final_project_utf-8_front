@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+// import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { TextField } from '@mui/material';
 // import categories from '../../back/categories.json';
 import { StyledAutoCategory, StyledLabelCategory } from './AddRecipeForm.styled';
-import { getCategories } from './redux/AddRecipreOperation';
+import { AllCategories } from './redux/AddRecipeSelector';
 import { addСategory, addTime } from './redux/AddRecipreOperation';
 
 export default function CookCategoryGroup() {
-  const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState('');
-  const [cookTime, setCookTime] = useState('');
+  const categories = useSelector(AllCategories);
+
   const dispatch = useDispatch();
 
   const coocking_time = [];
@@ -21,29 +20,15 @@ export default function CookCategoryGroup() {
     }
   };
 
-  useEffect(() => {
-    dispatch(getCategories())
-      .then(res => {
-        setCategories(res.payload);
-      })
-      .catch(error => {
-        handleError(error);
-      });
-  }, [dispatch]);
-
-  function handleError(error) {
-    toast.error(`${error.message}`);
-  }
-
   const handleChangeCategory = event => {
-    setCategory(event.target.textContent);
+    const category = event.target.textContent;
+    dispatch(addСategory(category));
   };
   const handleChangeCookTime = event => {
-    setCookTime(event.target.textContent);
+    const cookTime = event.target.textContent;
+    dispatch(addTime(cookTime));
   };
 
-  dispatch(addСategory(category));
-  dispatch(addTime(cookTime));
   addCookTime();
 
   return (

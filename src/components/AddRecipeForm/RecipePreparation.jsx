@@ -1,33 +1,30 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addPreparation } from './redux/AddRecipreOperation';
 import { StyledH3, StyledSection3, StyledInputRecipe } from './AddRecipeForm.styled';
-import { AllIngredients } from './redux/AddRecipeSelector';
 
-export default function RecipePreparation() {
-  const ingredientToSend = [];
+export default function RecipePreparation(ingredientList) {
+  // let search = [];
+  // const ingredientToSend = [];
   const dispatch = useDispatch();
   const handleChangePreparation = event => {
     const recipePreparation = event.currentTarget.value;
     dispatch(addPreparation(recipePreparation));
   };
-  const allIngredients = useSelector(AllIngredients);
+  // const ingredients = useSelector(AllIngredients);
 
-  const aproove = () => {
-    const ListSendIngredient = document.querySelector('[name="detailIngrediantList"]');
-    const ingredientName = ListSendIngredient.querySelectorAll('[name="ingredient"]');
-    const measureIngredient = ingredientName.querySelector['[name="measure"]'];
-    // const measureIngr = document.querySelector('#measure');
-    ingredientName.forEach(el => {
-      console.log(el.value);
-      ingredientToSend.push(allIngredients.find(option => option.name === el.value));
-    });
-    // console.log(ListSendIngredient);
-    console.log(ingredientName);
-    console.log(measureIngredient);
-    // console.log(ingredientToSend);
-    // console.log('ingredientToSend', ingredientToSend);
-    // console.log('measureIngr', measureIngr);
-  };
+  // const approve = searchName => {
+  //   const ListSendIngredient = document.querySelector('[name="detailIngrediantList"]');
+  //   const ingredient = ListSendIngredient.querySelectorAll('[name="ingredient"]');
+  //   const ingredientName = ListSendIngredient.querySelector('#ingredientsName');
+  //   // const measureIngr = document.querySelector('#measure');
+  //   ingredient.forEach(el => {
+  //     search = ingredients.find(option => option.name === searchName);
+
+  //     ingredientToSend.push([{ id: search._id, name: searchName, measure: el.childNodes[0].childNodes[1].value }]);
+  //     // dispatch(addIngredientRecipe(ingredientToSend));
+  //     console.log(ingredientToSend);
+  //   });
+  // };
 
   return (
     <StyledSection3>
@@ -39,7 +36,7 @@ export default function RecipePreparation() {
         </button>
       </div>
 
-      <button type="submit" onClick={aproove}>
+      <button type="submit">
         <span>Proverka</span>
       </button>
     </StyledSection3>

@@ -30,7 +30,7 @@ export default function ImageRecipe() {
             // label="Enter item title"
             variant="filled"
             placeholder="Enter item title"
-            autocomplete="off"
+            autoComplete="off"
             label="1234"
           />
         </div>
@@ -42,7 +42,7 @@ export default function ImageRecipe() {
             label="Enter about recipe"
             variant="filled"
             placeholder="Enter about recipe"
-            autocomplete="off"
+            autoComplete="off"
           />
         </div>
         <CookCategoryGroup />

@@ -1,27 +1,27 @@
-// import * as React from 'react';
 import React, { useState } from 'react';
-
+import toast from 'react-hot-toast';
 import { nanoid } from 'nanoid';
 import { StyledInputBtn, StyledButtonGroup, StyledSection2, StyledH3 } from './AddRecipeForm.styled';
 import IngredientList from '../../components/AddRecipeForm/Ingradients_list';
 
 export default function BasicButtonGroup() {
   const [counter, setCounter] = useState(1);
-  const [ingredients, setIngredients] = useState([{ id: nanoid(), name: '' }]);
+  const [ingredientList, setIngredientsList] = useState([{ id: nanoid(), name: '', measure: '' }]);
 
   const handleIncrement = e => {
     setCounter(counter + 1);
-    setIngredients(prevState => {
-      return [...prevState, { id: nanoid(), name: '' }];
+    setIngredientsList(prevState => {
+      return [...prevState, { id: nanoid(), name: '', measure: '' }];
     });
   };
 
   const handleDecrement = e => {
     if (counter === 1) {
       e.currentTarget.disabled = true;
-      return;
+      throw toast.error('dont remove');
     }
-    ingredients.pop();
+    // if()
+    ingredientList.pop();
     setCounter(counter - 1);
   };
 
@@ -64,11 +64,16 @@ export default function BasicButtonGroup() {
         </StyledButtonGroup>
 
         <ul name="detailIngrediantList">
-          {counter > 1 ? (
-            ingredients.map(() => <IngredientList id={nanoid()} key={nanoid()} />)
-          ) : (
-            <IngredientList id={nanoid()} key={nanoid()} />
-          )}
+          {counter >= 1 &&
+            ingredientList.map(el => (
+              <IngredientList
+                id={el.id}
+                key={nanoid()}
+                ingredientList={ingredientList}
+                counter={handleDecrement}
+                counterItem={counter}
+              />
+            ))}
         </ul>
       </StyledSection2>
     </>
