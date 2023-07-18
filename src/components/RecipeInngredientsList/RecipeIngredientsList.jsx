@@ -12,24 +12,16 @@ import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 import { RecipeCheckbox } from './RecipeCheckbox';
 
 const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
-  //^ отримали рецепт з бекенду як проп recipe
+  //^ отримав рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
-  // console.log('recipeIngredients:', recipeIngredients);
-
   const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
-  // console.log('RecipeInngredientsList >> savedShoppingList:', savedShoppingList);
-
-  // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
+  // Функція для перевірки, чи належить інгредієнт у шопінг-листі до конкретного рецепту
   const isInRecipe = ingredientId => {
-    const isIngredientIdInRecipe = savedShoppingList.some(ingredient => ingredient.id._id === ingredientId);
-    console.log('isInRecipe >> isIngredientIdInRecipe:', isIngredientIdInRecipe);
-    return isIngredientIdInRecipe;
+    return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
   };
-
+  // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
   const isInShoppingList = ingredientId => {
-    // console.log('isInShoppingList >> ingredientId:', ingredientId);
     return savedShoppingList.some(item => {
-      // console.log('isInShoppingList >> item:', item);
       return item.id?._id === ingredientId;
     });
   };
