@@ -5,7 +5,7 @@ import Loader from 'components/Loader/Loader';
 import { shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
 import { useEffect } from 'react';
 import { shoppingListGet } from 'redux/shoppingList/shoppingListOperations';
-import { IngredientRender } from './RenderItem';
+import { IngredientRender } from './IngredientRender';
 
 function IngredientsShoppingList() {
   const dispatch = useDispatch();

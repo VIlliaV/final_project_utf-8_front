@@ -1,4 +1,4 @@
-import { ListItem, Image, Name, MeasureWrapper, Measure, CheckboxInput } from './RecipeInngredientsList.styled';
+import { ListItem, Image, Name, MeasureWrapper, Measure, CheckboxInput } from './RecipeIngredientsList.styled';
 import { useAuth } from 'utils/hooks/useAuth';
 import SvgIcon from '@mui/material/SvgIcon';
 
@@ -20,7 +20,6 @@ export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, isC
 
       <CheckboxInput
         checked={isChecked}
-        // checked={check}
         onChange={event => {
           handle(event);
         }}

@@ -7,24 +7,16 @@ import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
 import RecipeIngredientsList from '../../components/RecipeInngredientsList/RecipeIngredientsList';
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
-// import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
-import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
-
 function RecipePage() {
+  const { recipeId } = useParams();
+  const dispatch = useDispatch();
   const [recipe, setRecipe] = useState(null);
-  // console.log('RecipePage >> recipe:', recipe);
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-
-  const dispatch = useDispatch();
-  const { recipeId } = useParams();
-
-  const savedShoppingList = useSelector(shoppingList);
-  console.log('RecipePage >> savedShoppingList:', savedShoppingList);
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -51,9 +43,7 @@ function RecipePage() {
 
   const addToFavorite = async () => {
     try {
-      const response = await axiosInstance.post(`/favorite`, { id: recipeId });
-
-      console.log(response.data);
+      await axiosInstance.post(`/favorite`, { id: recipeId });
       setIsFavorite(true);
     } catch (error) {
       toast.error(`${error.message}`);
@@ -62,9 +52,7 @@ function RecipePage() {
 
   const removeFromFavorite = async () => {
     try {
-      const response = await axiosInstance.patch(`/favorite`, { id: recipeId });
-
-      console.log(response.data);
+      await axiosInstance.patch(`/favorite`, { id: recipeId });
       setIsFavorite(false);
     } catch (error) {
       toast.error(`${error.message}`);
@@ -72,11 +60,8 @@ function RecipePage() {
   };
 
   const handleCheckboxChange = (ingredientId, isChecked, uniqId, recipeId) => {
-    // console.log('handleCheckboxChange >> isChecked:', isChecked);
     const currentIngredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
-    // console.log('handleCheckboxChange >> currentIngredient:', currentIngredient);
 
-    // для рендеру у shoppingList page треба мати всі поля:
     if (currentIngredient) {
       const addIngredient = {
         id: {
@@ -90,20 +75,10 @@ function RecipePage() {
         recipeId,
       };
 
-      // dispatch(toggleIngredient(addIngredient)); // стор
-
       if (isChecked) {
-        dispatch(shoppingListAdd(addIngredient)); // сервер
+        dispatch(shoppingListAdd(addIngredient));
       } else {
-        // const ingredientToRemove = savedShoppingList.find(item => {
-        //   console.log('ingredientToRemove >> savedShoppingList:', savedShoppingList);
-
-        //   return item._id === uniqId;
-        // });
-
-        // if (ingredientToRemove) {
         dispatch(shoppingListRemove(uniqId));
-        // }
       }
     }
   };
