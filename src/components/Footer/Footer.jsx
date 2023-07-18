@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from './images/logo.svg';
 import axios from 'axios';
+import { axiosInstance } from 'redux/auth/authOperations';
 
 import {
   HideContentMobile,
@@ -46,13 +47,9 @@ const Footer = () => {
   
 	const handleSubmit = event => {
 	  event.preventDefault();
-	  const instance = axios.create({
-		baseURL: 'https://final-project-utf-8-backend.onrender.com',
-	  });
-  
-	  instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  
-	  instance
+
+
+	  axiosInstance
 		.post('/subscribe',{email})
 		.then(response => {
 		  console.log(response);
@@ -61,8 +58,6 @@ const Footer = () => {
 		.catch(error => {
 		  console.log(error);
 		});
-  
-
 	  setEmail('');
   };
 
