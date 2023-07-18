@@ -1,21 +1,15 @@
-import {
-  ListBox,
-  FirstListTitle,
-  SecondListTitle,
-  LastListTitle,
-  ListContainer,
-  ListItem,
-  Image,
-  Name,
-  MeasureWrapper,
-  Measure,
-  CheckboxInput,
-} from './RecipeInngredientsList.styled';
+import { ListItem, Image, Name, MeasureWrapper, Measure, CheckboxInput } from './RecipeInngredientsList.styled';
 import { useAuth } from 'utils/hooks/useAuth';
 import SvgIcon from '@mui/material/SvgIcon';
 import { useState } from 'react';
 
-export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, savedShoppingList, isChecked }) => {
+export const RecipeCheckbox = ({
+  handleCheckboxChange,
+  recipeId,
+  ingredient,
+  // savedShoppingList,
+  isChecked,
+}) => {
   const { isThemeToggle } = useAuth(); //?
   const [check, setCheck] = useState(isChecked);
 

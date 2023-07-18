@@ -4,16 +4,10 @@ import {
   SecondListTitle,
   LastListTitle,
   ListContainer,
-  ListItem,
-  Image,
-  Name,
-  MeasureWrapper,
-  Measure,
-  CheckboxInput,
 } from './RecipeInngredientsList.styled';
-import SvgIcon from '@mui/material/SvgIcon';
+// import SvgIcon from '@mui/material/SvgIcon';
 import { useSelector } from 'react-redux';
-import { useAuth } from 'utils/hooks/useAuth';
+// import { useAuth } from 'utils/hooks/useAuth';
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 import { RecipeCheckbox } from './RecipeCheckbox';
 // import { useEffect, useState } from 'react';
