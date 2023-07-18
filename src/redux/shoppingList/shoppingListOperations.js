@@ -1,6 +1,5 @@
 import { axiosInstance } from 'redux/auth/authOperations';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { shoppingListGetLocal } from './shoppingListSlice';
 
 //* FETCH: get current shopping list
 export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkAPI) => {
@@ -10,18 +9,12 @@ export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkA
     return thunkAPI.rejectWithValue();
   }
 
-  // if (state.shoppingList.shoppingListSliceState.length <= 0) {
-  // console.log('shoppingListSliceState.length <= 0');
   try {
     const response = await axiosInstance.get('/shopping-list');
-    return response.data; // [] - масив з бекенду (він не пустий)
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
-  // } else {
-  // console.log('shoppingListSliceState.length > 0!!!');
-  // return state.shoppingList.shoppingListSliceState; // масив з редакс-стор
-  // }
 });
 
 //* FETCH: add to shopping list
@@ -49,8 +42,7 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (addIngred
     };
 
     await axiosInstance.post(`/shopping-list`, requestBody);
-    // console.log('shoppingListAdd >> addIngredient:', addIngredient);
-    return addIngredient; // повертається у action.payload на addFulfilled у slice
+    return addIngredient; // повертаю у action.payload на addFulfilled у slice
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

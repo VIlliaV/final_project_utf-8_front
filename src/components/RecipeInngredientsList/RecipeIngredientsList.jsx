@@ -1,10 +1,4 @@
-import {
-  ListBox,
-  FirstListTitle,
-  SecondListTitle,
-  LastListTitle,
-  ListContainer,
-} from './RecipeInngredientsList.styled';
+import { ListBox, FirstListTitle, SecondListTitle, LastListTitle, ListContainer } from './RecipeIngredientsList.styled';
 
 import { useSelector } from 'react-redux';
 
@@ -57,7 +51,7 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
       <ListContainer>
         {recipeIngredients.map((ingredient, index) => {
           const isChecked = checkedIngredients[index] !== undefined ? checkedIngredients[index] : false;
-          // console.log('{recipeIngredients.map >> isChecked:', isChecked);
+
           return (
             <RecipeCheckbox
               key={`${recipeId}_${ingredient.id._id}`}
@@ -65,7 +59,7 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
               recipeId={recipeId}
               ingredient={ingredient}
               savedShoppingList={savedShoppingList}
-              isChecked={isChecked} // Оновлений стейт зі значеннями isChecked
+              isChecked={isChecked}
             />
           );
         })}
