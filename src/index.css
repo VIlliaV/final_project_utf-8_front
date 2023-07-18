@@ -34,7 +34,7 @@
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
-  src: url('styles/Poppins/Poppins-Regular.ttf') format('ttf');
+  src: url('styles/Poppins/Poppins-Regular.ttf') format('truetype');
   /* url('https://fonts.gstatic.com/s/poppins/v15/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff') format('woff'); */
 }
 
@@ -42,7 +42,7 @@
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
-  src: url('styles/Poppins/Poppins-Medium.ttf') format('ttf');
+  src: url('styles/Poppins/Poppins-Medium.ttf') format('truetype');
   /* url('https://fonts.gstatic.com/s/poppins/v15/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff') format('woff'); */
 }
 
@@ -50,7 +50,7 @@
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
-  src: url('styles/Poppins/Poppins-SemiBold.ttf') format('ttf');
+  src: url('styles/Poppins/Poppins-SemiBold.ttf') format('truetype');
   /* url('https://fonts.gstatic.com/s/poppins/v15/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff') format('woff'); */
 }
 
@@ -58,7 +58,7 @@
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
-  src: url('styles/Poppins/Poppins-Bold.ttf') format('ttf');
+  src: url('styles/Poppins/Poppins-Bold.ttf') format('truetype');
   /* url('https://fonts.gstatic.com/s/poppins/v15/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff') format('woff'); */
 }
 
