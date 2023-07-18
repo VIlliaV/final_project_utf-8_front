@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { shoppingList, shoppingListError, shoppingListLoading } from 'redux/shoppingList/shoppingListSelectors';
+import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 import { SLList } from './IngredientsShoppingList.styled';
-import Loader from 'components/Loader/Loader';
 import { shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
 import { useEffect } from 'react';
 import { shoppingListGet } from 'redux/shoppingList/shoppingListOperations';
@@ -10,8 +9,6 @@ import { IngredientRender } from './IngredientRender';
 function IngredientsShoppingList() {
   const dispatch = useDispatch();
   const saveShoppingList = useSelector(shoppingList);
-  const loading = useSelector(shoppingListLoading);
-  const error = useSelector(shoppingListError);
 
   useEffect(() => {
     if (saveShoppingList.length === 0) {
@@ -22,18 +19,6 @@ function IngredientsShoppingList() {
   const handleRemoveIngredient = uniqId => {
     dispatch(shoppingListRemove(uniqId));
   };
-
-  if (loading) {
-    return (
-      <div>
-        <Loader>Loading... </Loader>
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
 
   return (
     <SLList>
