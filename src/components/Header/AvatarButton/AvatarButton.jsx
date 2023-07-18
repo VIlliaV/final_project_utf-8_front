@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import svgDefault from './img/userSvgDefault.svg';
 import {
@@ -47,107 +47,95 @@ const AvatarButtonComponent = () => {
   const dispatch = useDispatch();
   const popupRef = useRef(null);
   const buttonRef = useRef(null);
-
   const nameInputRef = useRef(null);
 
-  const handleEditButtonClick = e => {
-    e.preventDefault();
-
-    nameInputRef.current.focus();
-  };
-
-  const handleLogoutButton = () => {
-    setShowPopup(false);
-    setShowPopupConfirm(true);
-  };
-
-  const handleConfirmLogout = () => {
-    dispatch(logoutUser());
-    setShowPopupConfirm(false);
-  };
-
-  const handleConfirmLogoutNo = () => {
-    setShowPopupConfirm(false);
-  };
-
-  const handleCancelUserChanges = () => {
+  const handleCancelUserChanges = useCallback(() => {
     setShowPopupEdit(false);
     setImageUrl(svgDefault);
     setNewUserName(userName);
-  };
+  }, [userName]);
 
-  const handlePopupEdit = () => {
+    const handleKeyDown = useCallback(
+    (event) => {
+      if (event.keyCode === 27) {
+        setShowPopup(false);
+        setShowPopupConfirm(false);
+        setShowPopupEdit(false);
+      }
+    },
+    []
+  );
+
+  const handleClickOutside = useCallback(
+    (event) => {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target) &&
+        event.target !== buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        handleCancelUserChanges();
+        setShowPopup(false);
+        setShowPopupEdit(false);
+        setShowPopupConfirm(false);
+      }
+    },
+    [handleCancelUserChanges]
+  );
+
+  const handleEditButtonClick = useCallback((e) => {
+    e.preventDefault();
+    nameInputRef.current.focus();
+  }, []);
+
+  const handleLogoutButton = useCallback(() => {
+    setShowPopup(false);
+    setShowPopupConfirm(true);
+  }, []);
+
+  const handleConfirmLogout = useCallback(() => {
+    dispatch(logoutUser());
+    setShowPopupConfirm(false);
+  }, [dispatch]);
+
+  const handleConfirmLogoutNo = useCallback(() => {
+    setShowPopupConfirm(false);
+  }, []);
+
+  const handlePopupEdit = useCallback(() => {
     setShowPopupEdit(true);
     setShowPopup(false);
-  };
+  }, []);
 
-  const handleKeyDown = event => {
-    if (event.keyCode === 27) {
-      setShowPopup(false);
-      setShowPopupConfirm(false);
-      setShowPopupEdit(false);
-    }
-  };
 
-  const handleClickOutside = event => {
-    if (
-      popupRef.current &&
-      !popupRef.current.contains(event.target) &&
-      event.target !== buttonRef.current &&
-      !buttonRef.current.contains(event.target)
-    ) {
-      setShowPopup(false);
-      setShowPopupEdit(false);
-      setShowPopupConfirm(false);
-    }
-  };
 
-  const handleNameChange = event => {
+  const handleNameChange = useCallback((event) => {
+	console.log(event.target.value);
     event.preventDefault();
     setNewUserName(event.target.value);
-  };
+  }, []);
 
-  const handleAddNewImgButtonClick = () => {
+  const handleAddNewImgButtonClick = useCallback(() => {
     const inputElement = document.getElementById('imageInput');
     inputElement.click();
-  };
+  }, []);
 
-  const handleImageChange = event => {
+  const handleImageChange = useCallback((event) => {
     setNewUserAvatar(event.target.files[0]);
-  };
+  }, []);
 
-  //   const formik = useFormik({
-  //     initialValues: {
-  //       username: userName,
-  //     },
-  //     onSubmit: values => {
-  //       console.log('Form submitted:', values);
-  //       handleCancelUserChanges();
-  //       setShowPopupEdit(false);
-  //     },
-  //     validate: values => {
-  //       const errors = {};
-  //       if (!values.username) {
-  //         errors.username = 'Please enter your name';
-  //       }
-  //       return errors;
-  //     },
-  //   });
+  const handleSubmit = useCallback((e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('avatar', newUserAvatar);
+      formData.append('name', newUserName);
+      dispatch(updateUser(formData));
+      setShowPopupEdit(false);
+    },
+    [dispatch, newUserAvatar, newUserName]
+  );
 
-  const handleSubmit = async e => {
-    e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('file', newUserAvatar);
-    formData.append('name', newUserName);
-    // console.log(newUserAvatar,newUserName);
-	for (var pair of formData.entries()) {
-		console.log(pair[0]+ ', ' + pair[1]); 
-	}
-    dispatch(updateUser(formData));
-
-    // setShowPopupEdit(false);
-  };
 
   useEffect(() => {
     if (newUserAvatar) {
@@ -155,7 +143,7 @@ const AvatarButtonComponent = () => {
     } else {
       setImageUrl(svgDefault);
     }
-  }, [newUserAvatar, userAvatar]);
+  }, [newUserAvatar]);
 
   useEffect(() => {
     if (!newUserName) {
@@ -170,11 +158,11 @@ const AvatarButtonComponent = () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [handleClickOutside, handleKeyDown]);
 
   return (
     <AvatarButton>
-      <ButtonRadius onClick={() => setShowPopup(prevState => !prevState)} ref={buttonRef}>
+      <ButtonRadius onClick={() => setShowPopup((prevState) => !prevState)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (
@@ -205,8 +193,6 @@ const AvatarButtonComponent = () => {
         </PopupConfirm>
       )}
       {showPopupEdit && (
-        //         <PopupEdit onSubmit={formik.handleSubmit} ref={popupRef}>
-
         <PopupEdit onSubmit={handleSubmit} ref={popupRef}>
           <input
             type="file"
@@ -243,13 +229,9 @@ const AvatarButtonComponent = () => {
               type="text"
               placeholder={userName}
               name="username"
-              //   onChange={}
-              //   onChange={formik.handleChange}
-              //   value={formik.values.username}
-              onFocus={handleNameChange}
+              onChange={handleNameChange}
               ref={nameInputRef}
             />
-            {/* {formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>} */}
           </NameInputDiv>
           <EditConfirmButton type="submit">Save changes</EditConfirmButton>
         </PopupEdit>
@@ -260,27 +242,3 @@ const AvatarButtonComponent = () => {
 };
 
 export default AvatarButtonComponent;
-
-//
-// {/* <input
-// type="file"
-// name="useravatar"
-// accept="image/*"
-// id="imageInput"
-// onChange={handleImageChange}
-
-// //             style={{ display: 'none' }}
-
-// style={{ visibility: 'hidden' }}
-
-// />
-// <AvatarDiv>
-// <AddNewImgButton
-//   onClick={handleAddImageClick}
-//   type="button"
-//   style={{ backgroundImage: `url(${imageUrl})` }}
-// ></AddNewImgButton>
-// <ImgPlusButton onClick={handleAddImageClick}>
-//   <StyledPlusIconSVG />
-// </ImgPlusButton>
-// </AvatarDiv> */}

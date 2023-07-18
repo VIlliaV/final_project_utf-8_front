@@ -1,24 +1,15 @@
 import { ListItem, Image, Name, MeasureWrapper, Measure, CheckboxInput } from './RecipeInngredientsList.styled';
 import { useAuth } from 'utils/hooks/useAuth';
 import SvgIcon from '@mui/material/SvgIcon';
-import { useState } from 'react';
 
-export const RecipeCheckbox = ({
-  handleCheckboxChange,
-  recipeId,
-  ingredient,
-  // savedShoppingList,
-  isChecked,
-}) => {
+export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, isChecked }) => {
   const { isThemeToggle } = useAuth(); //?
-  const [check, setCheck] = useState(isChecked);
 
   const handle = event => {
-    setCheck(!check);
-
     handleCheckboxChange(ingredient.id._id, event.target.checked, `${recipeId}_${ingredient.id._id}`, recipeId);
   };
 
+  // todo Зробити первірку - якщо інгр з таким unicId вже є, то не додавати його
   return (
     <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
       <Image src={ingredient.id.img} alt={ingredient.id.name} />
@@ -28,8 +19,8 @@ export const RecipeCheckbox = ({
       </MeasureWrapper>
 
       <CheckboxInput
-        // checked={isInRecipe(ingredient.id._id) && savedShoppingList.includes(ingredient.id._id)}
-        checked={check}
+        checked={isChecked}
+        // checked={check}
         onChange={event => {
           handle(event);
         }}
