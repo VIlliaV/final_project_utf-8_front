@@ -127,10 +127,14 @@ const Footer = () => {
           <StyledInstagram />
         </NavLink>
       </Media>
+
       <Copyright>
+
         <TermsLink>© 2023 All Rights Reserved.</TermsLink>
         <TermsLink to="/">Terms of Service</TermsLink>
+
       </Copyright>
+
     </ResponsiveFooterContainer>
   );
 };
