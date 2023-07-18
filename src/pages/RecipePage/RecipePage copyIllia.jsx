@@ -6,7 +6,7 @@ import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
 import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
-import RecipeInngredientsList from '../../components/RecipeInngredientsList/RecipeInngredientsList';
+import RecipeInngredientsList from '../../components/RecipeInngredientsList/RecipeIngredientsList';
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 

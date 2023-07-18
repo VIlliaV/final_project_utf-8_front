@@ -4,23 +4,14 @@ import {
   SecondListTitle,
   LastListTitle,
   ListContainer,
-  ListItem,
-  Image,
-  Name,
-  MeasureWrapper,
-  Measure,
-  CheckboxInput,
 } from './RecipeInngredientsList.styled';
-import SvgIcon from '@mui/material/SvgIcon';
+
 import { useSelector } from 'react-redux';
-import { useAuth } from 'utils/hooks/useAuth';
+
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 import { RecipeCheckbox } from './RecipeCheckbox';
-// import { useEffect, useState } from 'react';
 
-const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
-  // const { isThemeToggle } = useAuth(); //?
-
+const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
   //^ отримали рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
   // console.log('recipeIngredients:', recipeIngredients);
@@ -66,4 +57,4 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
   );
 };
 
-export default RecipeInngredientsList;
+export default RecipeIngredientsList;
