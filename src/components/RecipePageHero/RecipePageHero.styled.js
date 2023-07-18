@@ -60,7 +60,7 @@ const Description = styled.p`
   letter-spacing: -0.24px;
   @media ${media.tablet} {
     width: 506px;
-    color: var(--text_theme_1);
+    color: #23262a;
     font-size: 18px;
     letter-spacing: -0.36px;
   }
@@ -114,11 +114,15 @@ const ClockWrapper = styled.div`
 
 const Time = styled.p`
   /* margin-bottom: 90px; */
-  color: var(--text_theme_1);
+  /* color: var(--text_theme_1); */
   font-size: 10px;
   font-weight: 500;
   line-height: 1.42;
   letter-spacing: -0.24px;
+  color: #3e4462;
+  color &[datatype='true'] {
+    color: #fafafa;
+  }
   @media ${media.tablet} {
     font-size: 14px;
     /* margin-bottom: 32px; */

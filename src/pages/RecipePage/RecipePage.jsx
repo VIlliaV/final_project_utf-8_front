@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+<
+import HeadContainer from 'components/HeadContainer/HeadContainer';
 
-// import axios from 'axios';
 import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
@@ -12,10 +13,16 @@ import { Wrapper } from './RecipePage.styled';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+
+
+import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
+
+
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
 import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
+
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
@@ -26,7 +33,9 @@ function RecipePage() {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
+
   const savedShoppingList = useSelector(shoppingList);
+
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -112,23 +121,28 @@ function RecipePage() {
     <div>
       {recipe && (
         <>
-          <RecipePageHero
-            title={recipe.title}
-            description={recipe.description}
-            time={recipe.time}
-            isFavorite={isFavorite}
-            addToFavorite={addToFavorite}
-            removeFromFavorite={removeFromFavorite}
-          />
-          <Wrapper>
-            <RecipeInngredientsList
-              recipe={recipe}
-              // ingredients={ingredients}
-              handleCheckboxChange={handleCheckboxChange}
-              // recipeId={recipeId}
+
+          <HeadContainer>
+            <RecipePageHero
+              title={recipe.title}
+              description={recipe.description}
+              time={recipe.time}
+              isFavorite={isFavorite}
+              addToFavorite={addToFavorite}
+              removeFromFavorite={removeFromFavorite}
+
             />
-            <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
-          </Wrapper>
+
+            <Wrapper>
+              <RecipeInngredientsList
+                recipe={recipe}
+                ingredients={ingredients}
+                handleCheckboxChange={handleCheckboxChange}
+                recipeId={recipeId}
+              />
+              <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
+            </Wrapper>
+          </HeadContainer>
         </>
       )}
     </div>
