@@ -1,20 +1,15 @@
-// import * as React from 'react';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { StyledInputBtn, StyledButtonGroup, StyledSection2, StyledH3 } from './AddRecipeForm.styled';
 import IngredientList from '../../components/AddRecipeForm/Ingradients_list';
-import { AllIngredients } from './redux/AddRecipeSelector';
 
 export default function BasicButtonGroup() {
-  const ingredients = useSelector(AllIngredients);
   const [counter, setCounter] = useState(1);
   const [ingredientList, setIngredientsList] = useState([{ id: nanoid(), name: '', measure: '' }]);
 
   const handleIncrement = e => {
     setCounter(counter + 1);
-    // { id: ingredients[counter]._id, name: ingredients[counter].name, measure: counter }
     setIngredientsList(prevState => {
       return [...prevState, { id: nanoid(), name: '', measure: '' }];
     });
@@ -70,9 +65,9 @@ export default function BasicButtonGroup() {
 
         <ul name="detailIngrediantList">
           {counter >= 1 &&
-            ingredientList.map(() => (
+            ingredientList.map(el => (
               <IngredientList
-                id={nanoid()}
+                id={el.id}
                 key={nanoid()}
                 ingredientList={ingredientList}
                 counter={handleDecrement}

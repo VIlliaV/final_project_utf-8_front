@@ -34,7 +34,6 @@ export const getCategories = createAsyncThunk('/addRecipes/getCategories', async
 });
 
 export const getIngredients = createAsyncThunk('/addRecipes/getIngredients', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
   try {
     const response = await axiosInstance.get('/ingredients/list');
     return response.data;
