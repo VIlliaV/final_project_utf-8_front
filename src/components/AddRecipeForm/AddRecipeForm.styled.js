@@ -126,6 +126,7 @@ export const StyledFormControl = styled(FormControl)(({ theme }) => ({
 }));
 
 export const StyledInputIngredient = style.input`
+    padding: 10px;
     width:85px;
     height: 50px;
     border:none;
@@ -136,10 +137,12 @@ export const StyledInputIngredient = style.input`
     display:flex;
     justify-content: center;
     @media ${media.tablet}{
+      padding: 10px;
       width:100px;
       margin-right: 150px;
     }
       @media ${media.desktop} {
+        padding: 10px;
       
       margin-right: 60px;
     }
@@ -387,6 +390,7 @@ export const StyledLabelCategory = style.label`
 `;
 
 export const StyledInputIngredients = style.label`
+
     display: flex;
     align-items: center;
     justify-content: space-between;

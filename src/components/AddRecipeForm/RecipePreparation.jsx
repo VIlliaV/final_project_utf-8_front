@@ -4,6 +4,7 @@ import { StyledH3, StyledSection3, StyledInputRecipe } from './AddRecipeForm.sty
 import { AllIngredients } from './redux/AddRecipeSelector';
 
 export default function RecipePreparation() {
+  let search = [];
   const ingredientToSend = [];
   const dispatch = useDispatch();
   const handleChangePreparation = event => {
@@ -14,21 +15,18 @@ export default function RecipePreparation() {
 
   const aproove = () => {
     const ListSendIngredient = document.querySelector('[name="detailIngrediantList"]');
-
-    const ingredientName = ListSendIngredient.querySelectorAll('[name="ingredient"]');
-    // const measureIngredient = ingredientName.querySelector['[name="measure"]'];
+    const ingredient = ListSendIngredient.querySelectorAll('[name="ingredient"]');
+    const ingredientName = ListSendIngredient.querySelector('#ingredientsName');
     // const measureIngr = document.querySelector('#measure');
-    ingredientName.forEach(el => {
-      console.log('el', el.childNodes[0]);
-      console.log('el_child', el.childNodes[0].childNodes[1].value);
-      allIngredients.find(option => option.name === el.value);
-      ingredientToSend.push([el.childNodes[0].childNodes[1].value]);
+    ingredient.forEach(el => {
+      search = allIngredients.find(option => option.name === ingredientName.value);
+      ingredientToSend.push([{ id: search.id, measure: el.childNodes[0].childNodes[1].value }]);
       dispatch(addIngredientRecipe(ingredientToSend));
     });
     // console.log(ListSendIngredient);
-    console.log(ingredientName);
-    // console.log(measureIngredient);
-    console.log(ingredientToSend);
+    console.log('ingredient', ingredient);
+    console.log(ingredientName.value);
+    console.log(search);
     // console.log('ingredientToSend', ingredientToSend);
     // console.log('measureIngr', measureIngr);
   };

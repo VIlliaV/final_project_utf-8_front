@@ -2,7 +2,15 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getCategories, getIngredients, addIngredientRecipe, addСategory, addTime } from './AddRecipreOperation';
+import {
+  getCategories,
+  getIngredients,
+  addIngredientRecipe,
+  addСategory,
+  addTime,
+  addAbout,
+  addTitle,
+} from './AddRecipreOperation';
 
 const initialState = {
   // documents: URL
@@ -26,11 +34,20 @@ const recipeSlice = createSlice({
       .addCase(getCategories.fulfilled, (state, action) => {
         state.allCategories = action.payload;
       })
+      .addCase(addTitle.fulfilled, (state, action) => {
+        state.title = action.payload;
+      })
+      .addCase(addAbout.fulfilled, (state, action) => {
+        state.description = action.payload;
+      })
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.allIngredients = action.payload;
       })
       .addCase(addСategory.fulfilled, (state, action) => {
         state.category = action.payload;
+      })
+      .addCase(addTime.fulfilled, (state, action) => {
+        state.time = action.payload;
       })
       .addCase(addIngredientRecipe.fulfilled, (state, action) => {
         state.ingredients.push(action.payload);
