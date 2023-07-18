@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import HeadContainer from 'components/HeadContainer/HeadContainer';
-
+// import axios from 'axios';
 import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
@@ -16,18 +15,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
 import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
-import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
 
   const [ingredients, setIngredients] = useState([]);
+
   const [isFavorite, setIsFavorite] = useState(false);
 
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
-  const savedShoppingList = useSelector(shoppingList);
+  const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -74,65 +73,28 @@ function RecipePage() {
     }
   };
 
-  const handleCheckboxChange = (ingredientId, isChecked, uniqId, recipeId) => {
-    const currentIngredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
-
-    if (currentIngredient) {
-      const addIngredient = {
-        id: {
-          _id: ingredientId,
-          desc: currentIngredient.id.desc,
-          img: currentIngredient.id.img,
-
-          name: currentIngredient.id.name,
-        },
-        measure: currentIngredient.measure,
-        _id: uniqId,
-        recipeId,
-      };
-
-      // dispatch(toggleIngredient(addIngredient)); // стор
-
-      if (isChecked) {
-        dispatch(shoppingListAdd(addIngredient)); // сервер
-      } else {
-        const ingredientToRemove = savedShoppingList.find(item => {
-          console.log('ingredientToRemove >> savedShoppingList:', savedShoppingList);
-
-          return item._id === uniqId;
-        });
-
-        if (ingredientToRemove) {
-          dispatch(shoppingListRemove(ingredientToRemove._id));
-        }
-      }
-    }
-  };
-
   return (
     <div>
       {recipe && (
         <>
-          <HeadContainer>
-            <RecipePageHero
-              title={recipe.title}
-              description={recipe.description}
-              time={recipe.time}
-              isFavorite={isFavorite}
-              addToFavorite={addToFavorite}
-              removeFromFavorite={removeFromFavorite}
+          <RecipePageHero
+            title={recipe.title}
+            description={recipe.description}
+            time={recipe.time}
+            isFavorite={isFavorite}
+            addToFavorite={addToFavorite}
+            removeFromFavorite={removeFromFavorite}
+          />
+          <Wrapper>
+            <RecipeInngredientsList
+              recipe={recipe}
+              ingredients={ingredients}
+              // shoppingList={shoppingList}
+              // handleCheckboxChange={handleCheckboxChange}
+              // recipeId={recipeId}
             />
-
-            <Wrapper>
-              <RecipeInngredientsList
-                recipe={recipe}
-                ingredients={ingredients}
-                handleCheckboxChange={handleCheckboxChange}
-                recipeId={recipeId}
-              />
-              <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
-            </Wrapper>
-          </HeadContainer>
+            <RecipePreparation instructions={recipe.instructions} preview={recipe.preview} title={recipe.title} />
+          </Wrapper>
         </>
       )}
     </div>
