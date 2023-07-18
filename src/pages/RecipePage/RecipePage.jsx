@@ -15,6 +15,7 @@ import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
+  console.log('RecipePage >> recipe:', recipe);
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
