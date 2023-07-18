@@ -4,23 +4,14 @@ import {
   SecondListTitle,
   LastListTitle,
   ListContainer,
-  ListItem,
-  Image,
-  Name,
-  MeasureWrapper,
-  Measure,
-  CheckboxInput,
 } from './RecipeInngredientsList.styled';
-import SvgIcon from '@mui/material/SvgIcon';
+
 import { useSelector } from 'react-redux';
-import { useAuth } from 'utils/hooks/useAuth';
+
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 import { RecipeCheckbox } from './RecipeCheckbox';
-// import { useEffect, useState } from 'react';
 
-const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
-  // const { isThemeToggle } = useAuth(); //?
-
+const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
   //^ отримали рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
   // console.log('recipeIngredients:', recipeIngredients);
@@ -30,12 +21,16 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
 
   // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
   const isInRecipe = ingredientId => {
-    return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
+    const isIngredientIdInRecipe = savedShoppingList.some(ingredient => ingredient.id._id === ingredientId);
+    console.log('isInRecipe >> isIngredientIdInRecipe:', isIngredientIdInRecipe);
+    return isIngredientIdInRecipe;
   };
 
   const isInShoppingList = ingredientId => {
+    // console.log('isInShoppingList >> ingredientId:', ingredientId);
     return savedShoppingList.some(item => {
-      return item?._id?._id === ingredientId;
+      // console.log('isInShoppingList >> item:', item);
+      return item.id?._id === ingredientId;
     });
   };
 
@@ -66,4 +61,4 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
   );
 };
 
-export default RecipeInngredientsList;
+export default RecipeIngredientsList;

@@ -6,9 +6,7 @@ export const SearchForm = styled.form`
 
   input {
     box-sizing: border-box;
-    width: 295px;
     height: 52px;
-    padding: 0 145px 0 32px;
     font-size: 12px;
     outline: none;
     background-color: #fff;
@@ -22,6 +20,16 @@ export const SearchForm = styled.form`
       border-color: rgba(250, 250, 250, 0.5);
     }
     border-radius: 24px 44px;
+
+    @media ${media.mini} {
+      max-width: 90%;
+      padding: 0 70px 0 10px;
+    }
+
+    @media ${media.mobile} {
+      width: 295px;
+      padding: 0 145px 0 32px;
+    }
 
     &::placeholder {
       color: #bdbdbd;
@@ -37,34 +45,52 @@ export const SearchForm = styled.form`
   }
 
   button {
-    margin-left: -113px;
-    width: 113px;
     height: 52px;
     color: var(--back_fix);
     border-radius: 24px 44px;
     outline: none;
     font-size: 14px;
     cursor: pointer;
+
+    @media ${media.mini} {
+      width: 60px;
+      margin-left: -60px;
+    }
+
+    @media ${media.mobile} {
+      width: 113px;
+      margin-left: -113px;
+    }
   }
 
   .origin-button {
     background-color: var(--active_theme_2);
     border: 1px solid var(--active_theme_2);
 
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     &:focus,
     &:hover {
       background-color: var(--fix_back);
+      background-color &[datatype='true'] {
+        background-color: var(--fix-transparent);
+      }
       border-color: var(--fix_back);
     }
   }
 
   .inversion-button {
-    background-color: var(--active);
-    border: 1px solid var(--active);
+    background-color: var(--fix_back);
+    border: 1px solid var(--fix_back);
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:focus,
     &:hover {
-      background-color: var(--active_theme_2);
+      background-color: var(--fix_back_2);
+      background-color &[datatype='true'] {
+        background-color: var(--fix-transparent);
+      }
       border-color: var(--active_theme_2);
     }
   }

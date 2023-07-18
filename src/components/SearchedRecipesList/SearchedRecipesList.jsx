@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { axiosInstance } from 'redux/auth/authOperations';
-
 import toast from 'react-hot-toast';
-import { NoResultWrapper, ListContainer, NoResultImg } from './SearchedRecipesList.styled';
+import { ListContainer } from './SearchedRecipesList.styled';
 import Loader from 'components/Loader/Loader';
 import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
 import Paginator from 'components/Paginator/Paginator';
+import NoResult from 'components/NoResult/NoResult';
 
 let value;
-
 
 const SearchedRecipesList = () => {
   const [searchParams] = useSearchParams();
@@ -43,7 +42,6 @@ const SearchedRecipesList = () => {
   const fetchData = async (query, value) => {
     setIsLoading(true);
     try {
-
       const response = await axiosInstance.get(`/${query}`, {
         params: {
           search: value,
@@ -51,7 +49,6 @@ const SearchedRecipesList = () => {
           limit: 8,
         },
       });
-
       setIsLoading(false);
       return response.data;
     } catch (error) {
@@ -86,12 +83,7 @@ const SearchedRecipesList = () => {
           <Paginator totalPage={totalPage} page={currentPage} setCurrentPage={handleCurrentPage} />
         </>
       ) : (
-        !isLoading && (
-          <NoResultWrapper>
-            <NoResultImg />
-            {value ? <p>Try looking for something else...</p> : <p>Find recipes by title or ingredient</p>}
-          </NoResultWrapper>
-        )
+        !isLoading && <NoResult />
       )}
     </>
   );
