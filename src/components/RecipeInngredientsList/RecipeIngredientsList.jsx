@@ -20,10 +20,7 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
   // Створюю стейт для збереження актуальних даних
   const [checkedIngredients, setCheckedIngredients] = useState([]);
 
-  // // Функція для перевірки, чи належить інгредієнт у шопінг-листі до конкретного рецепту
-  // const isInRecipe = ingredientId => {
-  //   return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
-  // };
+  // Функція для перевірки, чи належить інгредієнт у шопінг-листі до конкретного рецепту
   const isInRecipe = useCallback(
     ingredientId => {
       return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
@@ -31,13 +28,7 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
     [recipeIngredients]
   );
 
-  // // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
-  // const isInShoppingList = ingredientId => {
-  //   return savedShoppingList.some(item => {
-  //     return item.id?._id === ingredientId;
-  //   });
-  // };
-
+  // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
   const isInShoppingList = useCallback(
     ingredientId => {
       return savedShoppingList.some(item => {
@@ -64,9 +55,8 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
       </ListBox>
       <ListContainer>
         {recipeIngredients.map((ingredient, index) => {
-          // const isChecked = isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id);
-
           const isChecked = checkedIngredients[index] !== undefined ? checkedIngredients[index] : false;
+          console.log('{recipeIngredients.map >> isChecked:', isChecked);
           return (
             <RecipeCheckbox
               key={`${recipeId}_${ingredient.id._id}`}
@@ -74,7 +64,6 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
               recipeId={recipeId}
               ingredient={ingredient}
               savedShoppingList={savedShoppingList}
-              // isChecked={isChecked}
               isChecked={isChecked} // Оновлений стейт зі значеннями isChecked
             />
           );
