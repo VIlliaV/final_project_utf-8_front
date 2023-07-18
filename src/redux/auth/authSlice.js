@@ -60,7 +60,7 @@ const authSlice = createSlice({
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        console.log(action.payload);
+        state.errorMessage = action.payload;
       })
       .addCase(fetchCurrentUser.pending, state => {
         state.isRefreshing = true;
@@ -78,18 +78,21 @@ const authSlice = createSlice({
         state.errorMessage = null;
       })
       .addCase(updateUser.pending, (state, action) => {
- 
+        state.isRefreshing = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
+        state.isRefreshing = false;
         state.user.name = action.payload.name;
-        state.user.avatarURL = action.payload.avatarURL;
+        if (action.payload.avatarURL) {
+          state.user.avatarURL = action.payload.avatarURL;
+        };
       })
-      // .addCase(updateUser.rejected, (state, action) => {
-
-      // })
-      // .addCase(themeToggle.pending, state => {
-      //   state.isRefreshing = true;
-      // })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.isRefreshing = false;
+      })
+      .addCase(themeToggle.pending, state => {
+        state.isRefreshing = true;
+      })
       .addCase(themeToggle.fulfilled, (state, action) => {
         state.isRefreshing = false;
 
@@ -106,7 +109,7 @@ const persistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: [ 'isLoggedIn', 'isThemeToggle'],
+  whitelist: ['isLoggedIn', 'isThemeToggle'],
 };
 
 export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);

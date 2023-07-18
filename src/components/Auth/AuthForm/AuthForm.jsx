@@ -2,11 +2,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+
+import { loginUser, signupUser } from 'redux/auth/authOperations';
+import inputIconSuccess from 'img/inputIconSuccess.svg';
+import inputIconError from 'img/inputIconError.svg';
 import { useAuth } from 'utils/hooks/useAuth';
 import { clearErrorMessage } from 'redux/auth/authSlice';
-// import * as Yup from 'yup';
-
-
 import {
   Container,
   Header,
@@ -28,9 +29,7 @@ import {
   ErrorMessage,
   InputWarningContainer,
 } from './AuthForm.styled';
-import { loginUser, signupUser } from 'redux/auth/authOperations';
-import inputIconSuccess from 'img/inputIconSuccess.svg';
-import inputIconError from 'img/inputIconError.svg';
+
 
 const registerInitialValues = {
   name: '',
@@ -70,43 +69,45 @@ export const AuthForm = () => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
   }, [navigate, isRegisterPage]);
 
-  const onSubmit = ({ name, email, password }) => {
-    if (!isRegisterPage) {
-      dispatch(loginUser({ email, password }));
-      return;
-    }
-    dispatch(signupUser({ name, email, password }));
-  };
+  const onSubmit = useCallback(
+    data => {
+      const name = data.name.trim();
+      const password = data.password.trim();
+      const email = data.email.trim();
+
+      if (!isRegisterPage) {
+        dispatch(loginUser({ email, password }));
+        return;
+      }
+      dispatch(signupUser({ name, email, password }));
+    },
+    [dispatch, isRegisterPage]
+  ); 
 
   const validate = values => {
     const errors = {};
-
+    const name = values.name.trim();
+    const password = values.password.trim();
+    const email = values.email.trim();
+    
     if (isRegisterPage) {
-      if (!values.name) errors.name = 'Required';
-    }
+      if (!name) errors.name = 'Required';
+    } 
 
-    if (!values.email) {
+    if (!email) {
       errors.email = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       errors.email = 'Invalid email format. Example username@domain.tld';
     }
 
-    if (!values.password) {
+    if (!password) {
       errors.password = 'Required';
-    } else if (values.password.length < 6) {
-      errors.password = 'The password should be at least 6 symbols';
+    } else if (password.length < 6) {
+      errors.password = 'The password should be at least 6 symbols excluding spaces';
     }
 
     return errors;
   };
-
-  // const validationSchema = Yup.object({
-  //   name: Yup.string().required('Reruired'),
-  //   email: Yup.string()
-  //     .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/, 'Invalid email address')
-  //     .required('Reruired'),
-  //   password: Yup.string().min(6, 'The password should be at least 6 symbols').required('Reruired'),
-  // });
 
   const formik = useFormik({
     initialValues,
