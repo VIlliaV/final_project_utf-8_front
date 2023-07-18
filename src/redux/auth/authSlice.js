@@ -35,7 +35,6 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        console.log(action.payload);
         state.errorMessage = action.payload;
       })
       .addCase(loginUser.pending, state => {
