@@ -58,9 +58,6 @@ export const shoppingListRemove = createAsyncThunk('shopping/remove', async (uni
 
   try {
     const response = await axiosInstance.patch(`/shopping-list`, { uniqId });
-
-    console.log('shoppingListRemove >> response.data;:', response.data);
-
     return uniqId; // повертаю у action.payload на removeFulfilled
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

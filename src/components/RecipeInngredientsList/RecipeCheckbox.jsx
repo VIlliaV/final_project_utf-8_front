@@ -9,7 +9,6 @@ export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, isC
     handleCheckboxChange(ingredient.id._id, event.target.checked, `${recipeId}_${ingredient.id._id}`, recipeId);
   };
 
-  // todo Зробити первірку - якщо інгр з таким unicId вже є, то не додавати його
   return (
     <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
       <Image src={ingredient.id.img} alt={ingredient.id.name} />
