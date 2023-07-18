@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import svgDefault from './img/userSvgDefault.svg';
 import {
@@ -47,89 +47,92 @@ const AvatarButtonComponent = () => {
   const dispatch = useDispatch();
   const popupRef = useRef(null);
   const buttonRef = useRef(null);
-
   const nameInputRef = useRef(null);
 
-  const handleEditButtonClick = e => {
+  const handleEditButtonClick = useCallback((e) => {
     e.preventDefault();
-
     nameInputRef.current.focus();
-  };
+  }, []);
 
-  const handleLogoutButton = () => {
+  const handleLogoutButton = useCallback(() => {
     setShowPopup(false);
     setShowPopupConfirm(true);
-  };
+  }, []);
 
-  const handleConfirmLogout = () => {
+  const handleConfirmLogout = useCallback(() => {
     dispatch(logoutUser());
     setShowPopupConfirm(false);
-  };
+  }, [dispatch]);
 
-  const handleConfirmLogoutNo = () => {
+  const handleConfirmLogoutNo = useCallback(() => {
     setShowPopupConfirm(false);
-  };
+  }, []);
 
-  const handleCancelUserChanges = () => {
+  const handleCancelUserChanges = useCallback(() => {
     setShowPopupEdit(false);
     setImageUrl(svgDefault);
     setNewUserName(userName);
-  };
+  }, [userName]);
 
-  const handlePopupEdit = () => {
+  const handlePopupEdit = useCallback(() => {
     setShowPopupEdit(true);
     setShowPopup(false);
-  };
+  }, []);
 
-  const handleKeyDown = event => {
-    if (event.keyCode === 27) {
-      setShowPopup(false);
-      setShowPopupConfirm(false);
-      setShowPopupEdit(false);
-    }
-  };
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.keyCode === 27) {
+        setShowPopup(false);
+        setShowPopupConfirm(false);
+        setShowPopupEdit(false);
+      }
+    },
+    []
+  );
 
-  const handleClickOutside = event => {
-    if (
-      popupRef.current &&
-      !popupRef.current.contains(event.target) &&
-      event.target !== buttonRef.current &&
-      !buttonRef.current.contains(event.target)
-    ) {
-      setShowPopup(false);
-      setShowPopupEdit(false);
-      setShowPopupConfirm(false);
-    }
-  };
-
-  const handleNameChange = event => {
+  const handleNameChange = useCallback((event) => {
+	console.log(event.target.value);
     event.preventDefault();
     setNewUserName(event.target.value);
-  };
+  }, []);
 
-  const handleAddNewImgButtonClick = () => {
+  const handleAddNewImgButtonClick = useCallback(() => {
     const inputElement = document.getElementById('imageInput');
     inputElement.click();
-  };
+  }, []);
 
-  const handleImageChange = event => {
+  const handleImageChange = useCallback((event) => {
     setNewUserAvatar(event.target.files[0]);
-  };
+  }, []);
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file', newUserAvatar);
+      formData.append('name', newUserName);
+      dispatch(updateUser(formData));
+      setShowPopupEdit(false);
+    },
+    [dispatch, newUserAvatar, newUserName]
+  );
 
-    const formData = new FormData();
-    formData.append('file', newUserAvatar);
-    formData.append('name', newUserName);
-    // console.log(newUserAvatar,newUserName);
-	// for (var pair of formData.entries()) {
-	// 	console.log(pair[0]+ ', ' + pair[1]); 
-	// }
-    dispatch(updateUser(formData));
-
-    setShowPopupEdit(false);
-  };
+  const handleClickOutside = useCallback(
+    (event) => {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target) &&
+        event.target !== buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        handleCancelUserChanges();
+        setShowPopup(false);
+        setShowPopupEdit(false);
+        setShowPopupConfirm(false);
+      }
+    },
+    [handleCancelUserChanges]
+  );
 
   useEffect(() => {
     if (newUserAvatar) {
@@ -137,7 +140,7 @@ const AvatarButtonComponent = () => {
     } else {
       setImageUrl(svgDefault);
     }
-  }, [newUserAvatar, userAvatar]);
+  }, [newUserAvatar]);
 
   useEffect(() => {
     if (!newUserName) {
@@ -152,11 +155,11 @@ const AvatarButtonComponent = () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [handleClickOutside, handleKeyDown]);
 
   return (
     <AvatarButton>
-      <ButtonRadius onClick={() => setShowPopup(prevState => !prevState)} ref={buttonRef}>
+      <ButtonRadius onClick={() => setShowPopup((prevState) => !prevState)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (
@@ -187,7 +190,6 @@ const AvatarButtonComponent = () => {
         </PopupConfirm>
       )}
       {showPopupEdit && (
-
         <PopupEdit onSubmit={handleSubmit} ref={popupRef}>
           <input
             type="file"
@@ -224,7 +226,7 @@ const AvatarButtonComponent = () => {
               type="text"
               placeholder={userName}
               name="username"
-              onFocus={handleNameChange}
+              onChange={handleNameChange}
               ref={nameInputRef}
             />
           </NameInputDiv>
