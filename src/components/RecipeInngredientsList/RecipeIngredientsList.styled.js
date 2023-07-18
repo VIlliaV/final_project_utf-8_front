@@ -158,7 +158,7 @@ const MeasureWrapper = styles.div`
 `;
 
 const Measure = styles.p`
-    color: var(--back_theme_1);
+    color: var(--back_fix);
     font-size: 10px;
     font-weight: 600;
     @media ${media.tablet} {

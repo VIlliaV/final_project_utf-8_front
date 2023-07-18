@@ -9,7 +9,7 @@ import RecipePreparation from '../../components/RecipePreparation/RecipePreparat
 import { Wrapper } from './RecipePage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
-import { shoppingList, shoppingListLoading } from 'redux/shoppingList/shoppingListSelectors';
+import { shoppingListLoading } from 'redux/shoppingList/shoppingListSelectors';
 
 function RecipePage() {
   const { recipeId } = useParams();
@@ -17,8 +17,6 @@ function RecipePage() {
   const [recipe, setRecipe] = useState(null);
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-
-  const savedShoppingList = useSelector(shoppingList);
   const loading = useSelector(shoppingListLoading);
 
   useEffect(() => {
@@ -82,14 +80,14 @@ function RecipePage() {
         recipeId,
       };
 
-      const isElementAlreadyExist = savedShoppingList.find(ingredient => {
-        return ingredient.uniqId === uniqId;
-      });
+      // const isElementAlreadyExist = savedShoppingList.find(ingredient => {
+      //   return ingredient.uniqId === uniqId;
+      // });
 
       if (isChecked) {
-        if (!isElementAlreadyExist) {
-          dispatch(shoppingListAdd(addIngredient));
-        }
+        // if (!isElementAlreadyExist) {
+        dispatch(shoppingListAdd(addIngredient));
+        // }
       } else {
         dispatch(shoppingListRemove(uniqId));
       }
