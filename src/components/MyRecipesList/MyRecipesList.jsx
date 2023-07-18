@@ -14,18 +14,15 @@ import {
   MyRecipeTime,
   MyRecipeBtn,
   TimeBtnWrapper,
-  PageTitle,
   List,
 } from './MyRecipesList.styled';
 import MainPageTitle from 'components/MainPageTitle/MainPageTitle';
 import HeadContainer from 'components/HeadContainer/HeadContainer';
 import { useEffect } from 'react';
 import { deleteFavorite, fetchFavorites } from 'redux/favorites/favoritesOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import { favoritesSelector } from 'redux/favorites/favoritesSelector';
+import { useDispatch } from 'react-redux';
 
 export const MyRecipesList = ({ page }) => {
-  const state = useSelector(favoritesSelector);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchFavorites());
