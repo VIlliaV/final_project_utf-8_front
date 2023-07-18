@@ -29,22 +29,20 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.accessToken = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.errorMessage = null;
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        console.log(action.payload)
-        // state.errorMessage = action.payload;
+        console.log(action.payload);
+        state.errorMessage = action.payload;
       })
       .addCase(loginUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.accessToken = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.errorMessage = null;
@@ -58,13 +56,13 @@ const authSlice = createSlice({
       })
       .addCase(logoutUser.fulfilled, state => {
         state.user = initialState.user;
-        state.accessToken = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
         state.errorMessage = null;
-      }).addCase(logoutUser.rejected, (state,action) => {
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        console.log(action.payload)
+        console.log(action.payload);
       })
       .addCase(fetchCurrentUser.pending, state => {
         state.isRefreshing = true;
@@ -77,18 +75,16 @@ const authSlice = createSlice({
       })
       .addCase(fetchCurrentUser.rejected, state => {
         state.user = initialState.user;
-        state.accessToken = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
         state.errorMessage = null;
-        
       })
       .addCase(updateUser.pending, (state, action) => {
         console.log('pending', action.payload);
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
-        // state.user.avatarURL = action.payload.avatarURL;
+        state.user.avatarURL = action.payload.avatarURL;
         console.log('fulfilled', action.payload);
       })
       .addCase(updateUser.rejected, (state, action) => {
@@ -113,7 +109,7 @@ const persistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['accessToken', 'isLoggedIn', 'isThemeToggle'],
+  whitelist: [ 'isLoggedIn', 'isThemeToggle'],
 };
 
 export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);
