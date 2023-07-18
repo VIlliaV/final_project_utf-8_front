@@ -61,8 +61,15 @@ export const HeroSection = styled.div`
   padding: 132px 27px 83px 28px;
   margin: 0 auto;
   position: relative;
-  width: 375px;
   height: 777px;
+
+  @media ${media.mini} {
+    max-width: 374px;
+  }
+
+  @media ${media.mobile} {
+    width: 375px;
+  }
 
   h1 {
     margin-bottom: 14px;
@@ -71,6 +78,14 @@ export const HeroSection = styled.div`
     font-size: 60px;
     font-weight: 400;
     letter-spacing: -0.3px;
+
+    @media ${media.mini} {
+      font-size: 40px;
+    }
+
+    @media ${media.mobile} {
+      font-size: 60px;
+    }
   }
 
   span {
@@ -106,12 +121,19 @@ export const HeroSectionText = styled.p`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 364px;
-  width: 248px;
   color: var(--text_theme_1);
   text-align: center;
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.28px;
+
+  @media ${media.mini} {
+    max-width: 248px;
+  }
+
+  @media ${media.mobile} {
+    width: 248px;
+  }
 
   @media ${media.tablet} {
     margin-left: 0;

@@ -122,6 +122,7 @@ export const SeeAllButton = styled.button`
   background-color: var(--fix_back);
   outline: none;
   cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:focus,
   &:hover {
@@ -142,6 +143,8 @@ export const OtherCategoriesButton = styled.button`
   outline: none;
   font-size: 14px;
   cursor: pointer;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:focus,
   &:hover {
