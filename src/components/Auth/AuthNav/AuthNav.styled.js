@@ -18,7 +18,6 @@ export const Container = styled.div`
     width: 344px;
     margin-top: 40px;
     height: 67px;
-    /* margin-bottom: 342px; */
   }
 `;
 export const RegisterButton = styled.button`
@@ -43,6 +42,7 @@ export const RegisterButton = styled.button`
 
   &:hover {
     background-color: #22252a;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
     color: #fafafa;
     cursor: pointer;
   }
@@ -72,5 +72,6 @@ export const LoginButton = styled.button`
     color: #fafafa;
     border: none;
     cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   }
 `;

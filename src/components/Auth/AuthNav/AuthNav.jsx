@@ -4,8 +4,6 @@ import { Container, RegisterButton, LoginButton } from './AuthNav.styled';
 export const AuthNav = () => {
     const navigate = useNavigate();
 
-
-
   return (
     <Container>
       <RegisterButton

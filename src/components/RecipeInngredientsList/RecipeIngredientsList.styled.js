@@ -13,12 +13,14 @@ const ListBox = styles.ul`
     align-items: center;
     border-radius: 8px;
     background: var(--fix_back);
+
     @media ${media.tablet} {
         width: 704px;
         padding: 21px 32px;
         margin-top: 50px;
         margin-bottom: 32px;
     }
+    
     @media ${media.desktop} {
         width: 1240px;
         margin-bottom: 50px;
@@ -31,6 +33,7 @@ const ListTitle = styles.li`
     font-weight: 600;
     letter-spacing: 0.3px;
     height: 18px;
+    
     @media ${media.tablet} {
         font-size: 18px;
         letter-spacing: 0.54px;
@@ -117,12 +120,19 @@ const Image = styles.img`
     width: 57px;
     height: 57px;
     padding: 4px;
+
+    background-image: url(${props => props.src || props.$defaultImgMobile});
+    background-repeat: no-repeat;
+    background-size: cover;
+
     @media ${media.tablet} {
         width: 112px;
         height: 112px;
         padding: 17px 16px;
         margin-right: 24px;
         margin-left: 24px;
+
+        background-image: url(${props => props.src || props.$defaultImgTablet});
     }
     @media ${media.desktop} {
         width: 128px;
@@ -130,6 +140,10 @@ const Image = styles.img`
         padding: 26px;
         margin-right: 40px;
         margin-left: 32px;
+
+        
+        background-image: url(${props => props.src || props.$defaultImgDesktop});
+  }
     }
 `;
 
@@ -158,7 +172,7 @@ const MeasureWrapper = styles.div`
 `;
 
 const Measure = styles.p`
-    color: var(--back_theme_1);
+    color: var(--back_fix);
     font-size: 10px;
     font-weight: 600;
     @media ${media.tablet} {

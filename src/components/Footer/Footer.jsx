@@ -34,26 +34,24 @@ import {
 } from './Footer.styled';
 
 const Footer = () => {
-	const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
 
-	const handleEmailChange = event => {
-	  setEmail(event.target.value);
-	};
-  
-	const handleSubmit = event => {
-	  event.preventDefault();
+  const handleEmailChange = event => {
+    setEmail(event.target.value);
+  };
 
+  const handleSubmit = event => {
+    event.preventDefault();
 
-	  axiosInstance
-		.post('/subscribe',{email})
-		.then(response => {
-		  console.log(response);
-
-		})
-		.catch(error => {
-		  console.log(error);
-		});
-	  setEmail('');
+    axiosInstance
+      .post('/subscribe', { email })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    setEmail('');
   };
 
   return (
@@ -104,27 +102,24 @@ const Footer = () => {
         </SubscribeContainer>
       </FooterDivContainer>
       <Media>
-        <NavLink to="/">
+        <NavLink to="https://www.youtube.com/">
           <StyledYoutube />
         </NavLink>
-        <NavLink to="/">
+        <NavLink to="https://www.twitter.com/">
           <StyledTwitter />
         </NavLink>
-        <NavLink to="/">
+        <NavLink to="https://www.facebook.com/">
           <StyledFacebook />
         </NavLink>
-        <NavLink to="/">
+        <NavLink to="https://www.instagram.com/">
           <StyledInstagram />
         </NavLink>
       </Media>
 
       <Copyright>
-
         <TermsLink>© 2023 All Rights Reserved.</TermsLink>
         <TermsLink to="/">Terms of Service</TermsLink>
-
       </Copyright>
-
     </ResponsiveFooterContainer>
   );
 };
