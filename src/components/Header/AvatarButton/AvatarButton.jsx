@@ -35,7 +35,7 @@ import { logoutUser } from 'redux/auth/authOperations';
 import { useAuth } from 'utils/hooks/useAuth';
 import { updateUser } from 'redux/auth/authOperations';
 
-const AvatarButtonComponent = () => {
+const AvatarButtonComponent = ({ shouldChangeStyle }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
@@ -50,24 +50,22 @@ const AvatarButtonComponent = () => {
   const nameInputRef = useRef(null);
 
   const handleCancelUserChanges = useCallback(() => {
+    setNewUserAvatar(null);
     setShowPopupEdit(false);
     setImageUrl(svgDefault);
     setNewUserName(userName);
   }, [userName]);
 
-    const handleKeyDown = useCallback(
-    (event) => {
-      if (event.keyCode === 27) {
-        setShowPopup(false);
-        setShowPopupConfirm(false);
-        setShowPopupEdit(false);
-      }
-    },
-    []
-  );
+  const handleKeyDown = useCallback(event => {
+    if (event.keyCode === 27) {
+      setShowPopup(false);
+      setShowPopupConfirm(false);
+      setShowPopupEdit(false);
+    }
+  }, []);
 
   const handleClickOutside = useCallback(
-    (event) => {
+    event => {
       if (
         popupRef.current &&
         !popupRef.current.contains(event.target) &&
@@ -83,7 +81,7 @@ const AvatarButtonComponent = () => {
     [handleCancelUserChanges]
   );
 
-  const handleEditButtonClick = useCallback((e) => {
+  const handleEditButtonClick = useCallback(e => {
     e.preventDefault();
     nameInputRef.current.focus();
   }, []);
@@ -107,9 +105,7 @@ const AvatarButtonComponent = () => {
     setShowPopup(false);
   }, []);
 
-
-
-  const handleNameChange = useCallback((event) => {
+  const handleNameChange = useCallback(event => {
     event.preventDefault();
     setNewUserName(event.target.value);
   }, []);
@@ -119,11 +115,12 @@ const AvatarButtonComponent = () => {
     inputElement.click();
   }, []);
 
-  const handleImageChange = useCallback((event) => {
+  const handleImageChange = useCallback(event => {
     setNewUserAvatar(event.target.files[0]);
   }, []);
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(
+    e => {
       e.preventDefault();
       const formData = new FormData();
       formData.append('avatar', newUserAvatar);
@@ -133,8 +130,6 @@ const AvatarButtonComponent = () => {
     },
     [dispatch, newUserAvatar, newUserName]
   );
-
-
 
   useEffect(() => {
     if (newUserAvatar) {
@@ -161,7 +156,7 @@ const AvatarButtonComponent = () => {
 
   return (
     <AvatarButton>
-      <ButtonRadius onClick={() => setShowPopup((prevState) => !prevState)} ref={buttonRef}>
+      <ButtonRadius onClick={() => setShowPopup(prevState => !prevState)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       {showPopup && (
@@ -205,10 +200,13 @@ const AvatarButtonComponent = () => {
             <AddNewImgButton
               htmlFor="imageInput"
               type="button"
-              style={{ backgroundImage: `url(${imageUrl})` }}
               onClick={handleAddNewImgButtonClick}
+              style={{
+                backgroundImage: `url(${imageUrl})`,
+                backgroundSize: newUserAvatar ? '100%' : '60%',
+              }}
             ></AddNewImgButton>
-            <ImgPlusButton>
+            <ImgPlusButton type="button" onClick={handleAddNewImgButtonClick}>
               <StyledPlusIconSVG />
             </ImgPlusButton>
           </AvatarDiv>
@@ -235,7 +233,13 @@ const AvatarButtonComponent = () => {
           <EditConfirmButton type="submit">Save changes</EditConfirmButton>
         </PopupEdit>
       )}
-      <AvatarText>{userName}</AvatarText>
+      <AvatarText
+        style={{
+          color: shouldChangeStyle ? `var(--fix_back_2)` : 'var(--text_third)',
+        }}
+      >
+        {userName}
+      </AvatarText>
     </AvatarButton>
   );
 };

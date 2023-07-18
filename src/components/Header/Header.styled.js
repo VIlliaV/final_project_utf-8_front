@@ -24,6 +24,11 @@ export const HideContentTablet = styled.div`
 
 export const HideContentDesktop = styled.div`
   display: block;
+
+
+  @media ${media.tablet} {
+	margin-left: 50px;
+  }
   @media (max-width: 1439px) {
     display: none;
   }
@@ -70,11 +75,12 @@ export const HeaderContainer = styled.header`
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  color: var(--text_theme_1);
-  stroke: var(--text_theme_1);
+  color: var(--text_third);
+  stroke: var(--text_third);
   text-decoration: none;
   margin-right: 30px;
   font-size: 14px;
@@ -152,7 +158,6 @@ export const StyledUserSvgDefault = styled(userSvgDefault)`
 
   &.active {
 	text-decoration: none;
-  margin-right: 30px;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
