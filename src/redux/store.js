@@ -3,12 +3,14 @@ import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 
 
 import { authPersistedReducer } from './auth/authSlice';
 import shoppingListSlice from './shoppingList/shoppingListSlice';
+import favoritesSlice from './favorites/favoritesSlice';
 import { AddrecipeReducer } from '../components/AddRecipeForm/redux/addRecipeSlice';
 // import currentRecipeSlice from './currentRecipe/currentRecipeSlice';
 
 const rootReducer = combineReducers({
   auth: authPersistedReducer,
   shoppingList: shoppingListSlice,
+  favorites: favoritesSlice,
   addRecipePage: AddrecipeReducer,
   // currentRecipe: currentRecipeSlice,
 });

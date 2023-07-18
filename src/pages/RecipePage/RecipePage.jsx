@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+<
 import HeadContainer from 'components/HeadContainer/HeadContainer';
+
 import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
@@ -11,26 +13,29 @@ import { Wrapper } from './RecipePage.styled';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-// const token = store.getState().auth.token;
 
-// axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com';
-// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
+
+import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
+
+import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
+import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
+
+
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
-  // console.log('RecipePage >> recipe:', recipe);
+
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
-  console.log(recipeId);
 
-  const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
-  // console.log('RecipePage >> shoppingList:', shoppingList);
+  const savedShoppingList = useSelector(shoppingList);
+
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -81,28 +86,32 @@ function RecipePage() {
     const currentIngredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
 
     if (currentIngredient) {
-      if (isChecked) {
-        const addIngredient = {
-          id: {
-            _id: ingredientId,
-            desc: currentIngredient.id.desc,
-            img: currentIngredient.id.img,
-            name: currentIngredient.id.name,
-          },
-          measure: currentIngredient.measure,
-          _id: uniqId,
-          recipeId,
-        };
+      const addIngredient = {
+        id: {
+          _id: ingredientId,
+          desc: currentIngredient.id.desc,
+          img: currentIngredient.id.img,
 
-        dispatch(shoppingListAdd(addIngredient));
+          name: currentIngredient.id.name,
+        },
+        measure: currentIngredient.measure,
+        _id: uniqId,
+        recipeId,
+      };
+
+      // dispatch(toggleIngredient(addIngredient)); // стор
+
+      if (isChecked) {
+        dispatch(shoppingListAdd(addIngredient)); // сервер
       } else {
-        // console.log('handleCheckboxChange >> shoppingList:', shoppingList);
-        const ingredientToRemove = shoppingList.find(item => item._id === uniqId);
-        // console.log('handleCheckboxChange >> ingredientToRemove:', ingredientToRemove);
-        dispatch(shoppingListRemove(ingredientToRemove.id));
+        const ingredientToRemove = savedShoppingList.find(item => {
+          console.log('ingredientToRemove >> savedShoppingList:', savedShoppingList);
+
+          return item._id === uniqId;
+        });
 
         if (ingredientToRemove) {
-          dispatch(shoppingListRemove(ingredientToRemove.id));
+          dispatch(shoppingListRemove(ingredientToRemove._id));
         }
       }
     }
@@ -112,6 +121,7 @@ function RecipePage() {
     <div>
       {recipe && (
         <>
+
           <HeadContainer>
             <RecipePageHero
               title={recipe.title}
@@ -120,6 +130,7 @@ function RecipePage() {
               isFavorite={isFavorite}
               addToFavorite={addToFavorite}
               removeFromFavorite={removeFromFavorite}
+
             />
 
             <Wrapper>

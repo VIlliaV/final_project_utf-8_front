@@ -121,7 +121,7 @@ export const Cooking = styled.div`
   .bubble {
     position: absolute;
     border-radius: 100%;
-    box-shadow: 0 0 0.25vh lighten(var(--primary), 10%);
+    box-shadow: 0 0 0.25vh lighten(var(--active_theme_2), 10%);
     opacity: 0;
   }
   > :nth-child(1) {
@@ -129,7 +129,7 @@ export const Cooking = styled.div`
     left: 58%;
     width: 2.5vh;
     height: 2.5vh;
-    background-color: var(--primary);
+    background-color: var(--active_theme_2);
     filter: brightness(7%);
     animation: ${bubble} 2s cubic-bezier(0.53, 0.16, 0.39, 0.96) infinite;
   }
@@ -139,7 +139,7 @@ export const Cooking = styled.div`
     left: 52%;
     width: 2vh;
     height: 2vh;
-    background-color: var(--primary);
+    background-color: var(--active_theme_2);
     filter: brightness(4%);
     animation: ${bubble} 2s ease-in-out 0.35s infinite;
   }
@@ -149,7 +149,7 @@ export const Cooking = styled.div`
     left: 50%;
     width: 1.5vh;
     height: 1.5vh;
-    background-color: var(--primary);
+    background-color: var(--active_theme_2);
     animation: ${bubble} 1.5s cubic-bezier(0.53, 0.16, 0.39, 0.96) 0.55s infinite;
   }
 
@@ -158,7 +158,7 @@ export const Cooking = styled.div`
     left: 56%;
     width: 1.2vh;
     height: 1.2vh;
-    background-color: var(--primary);
+    background-color: var(--active_theme_2);
     filter: brightness(30%);
     animation: ${bubble} 1.8s cubic-bezier(0.53, 0.16, 0.39, 0.96) 0.9s infinite;
   }
@@ -168,7 +168,7 @@ export const Cooking = styled.div`
     left: 63%;
     width: 1.1vh;
     height: 1.1vh;
-    background-color: var(--primary);
+    background-color: var(--active_theme_2);
     filter: brightness(60%);
     animation: ${bubble} 1.6s ease-in-out 1s infinite;
   }
@@ -196,7 +196,7 @@ export const Cooking = styled.div`
         width: 35%;
         height: 20%;
         background-color: transparent;
-        border-top: 1vh solid var(--primary);
+        border-top: 1vh solid var(--active_theme_2);
         border-left: 1vh solid transparent;
         border-radius: 100%;
         transform: rotate(20deg) rotateX(0deg) scale(1.3, 0.9);
@@ -208,7 +208,7 @@ export const Cooking = styled.div`
         right: 30%;
         width: 50%;
         height: 8%;
-        background-color: var(--primary);
+        background-color: var(--active_theme_2);
         border-radius: 0 0 1.4em 1.4em;
         transform-origin: -15% 0;
       }
@@ -228,8 +228,8 @@ export const Cooking = styled.div`
         right: 37%;
         width: 40%;
         height: 45%;
-        background-color: var(--primary);
-        box-shadow: 0 0 3px 0 var(--primary);
+        background-color: var(--active_theme_2);
+        box-shadow: 0 0 3px 0 var(--active_theme_2);
         border-radius: 100%;
         transform-origin: -20% 0;
         animation: ${fly} 2.1s ease-in-out infinite;

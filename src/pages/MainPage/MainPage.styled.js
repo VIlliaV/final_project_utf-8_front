@@ -26,42 +26,42 @@ export const MainPageContainer = styled.div`
   background-repeat: no-repeat;
 
   @media ${media.mobMax} {
-    background: url(${spinachMobile}), url(${mainSpinachMobile}), url(${figureMobile});
+    background: url(${spinachMobile}), url(${mainSpinachMobile}), url(${figureMobile}), var(--back_theme_1);
     background-position: left 0px top 48px, right 0px top 0px, right 0px top 150px;
     background-size: 48px auto, 375px auto, 269px auto;
     background-repeat: no-repeat;
   }
 
   @media ${media.mobMax + media.retina} {
-    background: url(${spinachMobile2x}), url(${mainSpinachMobile2x}), url(${figureMobile2x});
+    background: url(${spinachMobile2x}), url(${mainSpinachMobile2x}), url(${figureMobile2x}), var(--back_theme_1);
     background-position: left 0px top 48px, right 0px top 0px, right 0px top 150px;
     background-size: 48px auto, 375px auto, 269px auto;
     background-repeat: no-repeat;
   }
 
   @media ${media.tabDesk} {
-    background: url(${spinachTablet}), url(${mainSpinachTablet}), url(${figureTablet});
+    background: url(${spinachTablet}), url(${mainSpinachTablet}), url(${figureTablet}), var(--back_theme_1);
     background-position: left 0px top 0px, right 0px top 0px, right 0px top 0px;
     background-size: 67px auto, 583px auto, 332px auto;
     background-repeat: no-repeat;
   }
 
   @media ${media.tabDesk + media.retina} {
-    background: url(${spinachTablet2x}), url(${mainSpinachTablet2x}), url(${figureTablet2x});
+    background: url(${spinachTablet2x}), url(${mainSpinachTablet2x}), url(${figureTablet2x}), var(--back_theme_1);
     background-position: left 0px top 0px, right 0px top 0px, right 0px top 0px;
     background-size: 67px auto, 583px auto, 332px auto;
     background-repeat: no-repeat;
   }
 
   @media ${media.desktop} {
-    background: url(${spinachDesktop}), url(${mainSpinachDesktop}), url(${figureDesktop});
+    background: url(${spinachDesktop}), url(${mainSpinachDesktop}), url(${figureDesktop}), var(--back_theme_1);
     background-position: left 0px top 0px, right 0px top 0px, right 0px top 0px;
     background-size: 116px auto, 913px auto, 725px auto;
     background-repeat: no-repeat;
   }
 
   @media ${media.desktop + media.retina} {
-    background: url(${spinachDesktop2x}), url(${mainSpinachDesktop2x}), url(${figureDesktop2x});
+    background: url(${spinachDesktop2x}), url(${mainSpinachDesktop2x}), url(${figureDesktop2x}), var(--back_theme_1);
     background-position: left 0px top 0px, right 0px top 0px, right 0px top 0px;
     background-size: 116px auto, 913px auto, 725px auto;
     background-repeat: no-repeat;

@@ -336,6 +336,11 @@ export const InputErrorContainer = styled.div`
   color: red; 
 `;
 
+export const InputWarningContainer = styled.div`
+  margin-top: 8px;
+  color: yellow;
+`;
+
 export const ErrorMessage = styled.div`
 color: red;
 /* margin-top: 8px; */

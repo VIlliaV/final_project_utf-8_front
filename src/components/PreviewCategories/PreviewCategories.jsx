@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { axiosInstance } from 'redux/auth/authOperations';
-import toast, { Toaster } from 'react-hot-toast';
+
+import { axiosInstance } from '../../redux/auth/authOperations';
+import toast from 'react-hot-toast';
+
 import { useNavigate } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
-import { store } from 'redux/store';
 import {
   ListRecipesContainer,
   ListRecipesItem,
@@ -12,9 +13,9 @@ import {
   CategoryListHeader,
   SeeAllButton,
   OtherCategoriesButton,
+  PreviewCategoriesContainer,
 } from './PreviewCategories.styled';
 
-const token = store.getState().auth.token;
 
 const PreviewCategories = () => {
   const [previewCategoriesList, setPreviewCategoriesList] = useState([]);
@@ -50,7 +51,7 @@ const PreviewCategories = () => {
     <>
       {isLoading && <Loader />}
       {!isLoading && previewCategoriesList?.length > 0 && (
-        <div>
+        <PreviewCategoriesContainer>
           <ul>
             {previewCategoriesList.map(item => {
               const categoryName = Object.keys(item)[0];
@@ -81,9 +82,8 @@ const PreviewCategories = () => {
           <OtherCategoriesButton type="button" onClick={event => handleClick('beef', event)}>
             Other categories
           </OtherCategoriesButton>
-        </div>
+        </PreviewCategoriesContainer>
       )}
-      <Toaster />
     </>
   );
 };

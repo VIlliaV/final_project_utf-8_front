@@ -48,9 +48,17 @@ const shoppingListSlice = createSlice({
   },
 
   reducers: {
-    // shoppingListAddToStore(newIngredient) {
-    //   this.shoppingListSliceState.push(newIngredient);
-    // },
+    toggleIngredient: (state, action) => {
+      const ingredientUniqId = action.payload._id;
+      console.log('action.payload:', action.payload);
+      const index = state.shoppingListSliceState.indexOf(ingredientUniqId);
+      console.log('index:', index);
+      if (index !== -1) {
+        state.shoppingListSliceState.splice(index, 1); // Видаляємо інгредієнт зі списку, якщо він вже присутній
+      } else {
+        state.shoppingListSliceState.push(action.payload); // Додаємо інгредієнт до списку, якщо його немає
+      }
+    },
   },
 
   extraReducers: builder => {
@@ -69,4 +77,5 @@ const shoppingListSlice = createSlice({
   },
 });
 
+export const { toggleIngredient } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;

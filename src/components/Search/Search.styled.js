@@ -11,16 +11,28 @@ export const SearchForm = styled.form`
     padding: 0 145px 0 32px;
     font-size: 12px;
     outline: none;
-    border: 1px solid #f0f0f0;
+    background-color: #fff;
+    background-color &[datatype='true'] {
+      background-color: var(--fix-transparent);
+    }
+    border-width: 1px;
+    border-style: solid;
+    border-color: #f0f0f0;
+    border-color &[datatype='true'] {
+      border-color: rgba(250, 250, 250, 0.5);
+    }
     border-radius: 24px 44px;
 
     &::placeholder {
       color: #bdbdbd;
+      color &[datatype='true'] {
+        color: rgba(250, 250, 250, 0.5);
+      }
     }
 
     &:focus {
       border-color: rgba(35, 38, 42, 0.2);
-      color: #23262a;
+      color: var(--text_theme_1);
     }
   }
 
@@ -28,7 +40,7 @@ export const SearchForm = styled.form`
     margin-left: -113px;
     width: 113px;
     height: 52px;
-    color: #fafafa;
+    color: var(--back_fix);
     border-radius: 24px 44px;
     outline: none;
     font-size: 14px;
@@ -36,24 +48,24 @@ export const SearchForm = styled.form`
   }
 
   .origin-button {
-    background-color: #22252a;
-    border: 1px solid #22252a;
+    background-color: var(--active_theme_2);
+    border: 1px solid var(--active_theme_2);
 
     &:focus,
     &:hover {
-      background-color: #8baa36;
-      border-color: #8baa36;
+      background-color: var(--fix_back);
+      border-color: var(--fix_back);
     }
   }
 
   .inversion-button {
-    background-color: #8baa36;
-    border: 1px solid #8baa36;
+    background-color: var(--active);
+    border: 1px solid var(--active);
 
     &:focus,
     &:hover {
-      background-color: #22252a;
-      border-color: #22252a;
+      background-color: var(--active_theme_2);
+      border-color: var(--active_theme_2);
     }
   }
 

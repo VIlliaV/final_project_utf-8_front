@@ -34,19 +34,14 @@ export const RecipeName = styled.p`
   padding: 16px 16px 16px 16px;
   border-radius: 8px;
 
-  /* color: ${props => css`var(--text_second_theme_1)`};
-  color &[datatype='true'] {
-    color: red;
-  } */
-
-  color: red;
-  color &[datatype='true'] {
-    color: blue;
+  color: ${props => css`var(--text_second_theme_1)`};
+  &[datatype='false'] {
+    color: rgba(250, 250, 250, 1);
   }
 
   background: rgba(255, 255, 255, 1);
-  background &[datatype='true'] {
-    background: ${props => css`var(--back_second_1)`};
+  &[datatype='false'] {
+    background: rgba(42, 44, 54, 1);
   }
 
   font-size: 16px;

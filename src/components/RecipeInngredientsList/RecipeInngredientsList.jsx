@@ -14,9 +14,10 @@ import {
 import SvgIcon from '@mui/material/SvgIcon';
 import { useSelector } from 'react-redux';
 import { useAuth } from 'utils/hooks/useAuth';
+import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 // import { useEffect, useState } from 'react';
 
-const RecipeInngredientsList = ({ recipe, ingredients, handleCheckboxChange, recipeId }) => {
+const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
   const { isThemeToggle } = useAuth(); //?
 
   // // Функція для перевірки, чи є id в масиві shoppingList
@@ -44,6 +45,24 @@ const RecipeInngredientsList = ({ recipe, ingredients, handleCheckboxChange, rec
   //   setShoppingList(updatedList);
   // };
 
+  //^ отримали рецепт з бекенду як проп recipe
+  const { _id: recipeId, ingredients: recipeIngredients } = recipe;
+  // console.log('recipeIngredients:', recipeIngredients);
+
+  const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
+  console.log('savedShoppingList:', savedShoppingList);
+
+  // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
+  const isInRecipe = ingredientId => {
+    return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
+  };
+
+  const isInShoppingList = ingredientId => {
+    return savedShoppingList.some(item => {
+      return item._id._id === ingredientId;
+    });
+  };
+
   return (
     <>
       <ListBox>
@@ -52,7 +71,7 @@ const RecipeInngredientsList = ({ recipe, ingredients, handleCheckboxChange, rec
         <LastListTitle>Add to list</LastListTitle>
       </ListBox>
       <ListContainer>
-        {ingredients.map(ingredient => {
+        {recipeIngredients.map(ingredient => {
           return (
             <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
@@ -62,8 +81,8 @@ const RecipeInngredientsList = ({ recipe, ingredients, handleCheckboxChange, rec
               </MeasureWrapper>
 
               <CheckboxInput
-                // checked={isInRecipe(recipe.id, ingredient.id) && shoppingList.includes(ingredient.id)}
-                // checked={shoppingList.includes(ingredient.id)}
+                // checked={isInRecipe(ingredient.id._id) && savedShoppingList.includes(ingredient.id._id)}
+                checked={isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id)}
                 onChange={event =>
                   handleCheckboxChange(
                     ingredient.id._id,

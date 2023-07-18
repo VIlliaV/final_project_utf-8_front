@@ -108,12 +108,14 @@ export const themeToggle = createAsyncThunk('users/theme', async (_, thunkAPI) =
 });
 
 export const updateUser = createAsyncThunk('users/update', async (data, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const { name: currentName, avatarURL: currentAvatar } = state.auth.user;
+  // const state = thunkAPI.getState();
+  // const { name: currentName, avatarURL: currentAvatar } = state.auth.user;
 
-  const { name = currentName, avatar = currentAvatar } = data;
+  console.log(data);
+
+  // const { name = currentName, file = currentAvatar } = data;
   try {
-    const response = axios.patch('users/update', { name, avatar });
+    const response = await axiosInstance.patch('users/update', data);
     return response.data;
   } catch (error) {
     thunkAPI.rejectWithValue(error.message);
