@@ -1,4 +1,3 @@
-import recipes from '../../back/recipes.json';
 import trashIconWhite from '../../img/trashWhite.svg';
 import trashIconBlack from '../../img/trashBlack.svg';
 import {
@@ -19,7 +18,7 @@ import {
 import MainPageTitle from 'components/MainPageTitle/MainPageTitle';
 import HeadContainer from 'components/HeadContainer/HeadContainer';
 import { useEffect } from 'react';
-import { deleteFavorite, fetchFavorites } from 'redux/favorites/favoritesOperations';
+import { fetchFavorites } from 'redux/favorites/favoritesOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import Paginator from 'components/Paginator/Paginator';
 import { favoritesSelector } from 'redux/favorites/favoritesSelector';
@@ -43,14 +42,6 @@ export const MyRecipesList = ({ page }) => {
     buttonsColor = '#8BAA36';
   }
 
-  const onDeleteBtnClick = id => {
-    dispatch(deleteFavorite(id));
-  };
-
-  const newArr = [];
-  for (let i = 0; i < 4; i += 1) {
-    newArr.push(recipes[i]);
-  }
   return (
     <HeadContainer>
       <MainPageTitle title={page} />
