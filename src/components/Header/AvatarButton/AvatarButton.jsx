@@ -49,6 +49,40 @@ const AvatarButtonComponent = () => {
   const buttonRef = useRef(null);
   const nameInputRef = useRef(null);
 
+  const handleCancelUserChanges = useCallback(() => {
+    setShowPopupEdit(false);
+    setImageUrl(svgDefault);
+    setNewUserName(userName);
+  }, [userName]);
+
+    const handleKeyDown = useCallback(
+    (event) => {
+      if (event.keyCode === 27) {
+        setShowPopup(false);
+        setShowPopupConfirm(false);
+        setShowPopupEdit(false);
+      }
+    },
+    []
+  );
+
+  const handleClickOutside = useCallback(
+    (event) => {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target) &&
+        event.target !== buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        handleCancelUserChanges();
+        setShowPopup(false);
+        setShowPopupEdit(false);
+        setShowPopupConfirm(false);
+      }
+    },
+    [handleCancelUserChanges]
+  );
+
   const handleEditButtonClick = useCallback((e) => {
     e.preventDefault();
     nameInputRef.current.focus();
@@ -68,27 +102,12 @@ const AvatarButtonComponent = () => {
     setShowPopupConfirm(false);
   }, []);
 
-  const handleCancelUserChanges = useCallback(() => {
-    setShowPopupEdit(false);
-    setImageUrl(svgDefault);
-    setNewUserName(userName);
-  }, [userName]);
-
   const handlePopupEdit = useCallback(() => {
     setShowPopupEdit(true);
     setShowPopup(false);
   }, []);
 
-  const handleKeyDown = useCallback(
-    (event) => {
-      if (event.keyCode === 27) {
-        setShowPopup(false);
-        setShowPopupConfirm(false);
-        setShowPopupEdit(false);
-      }
-    },
-    []
-  );
+
 
   const handleNameChange = useCallback((event) => {
 	console.log(event.target.value);
@@ -117,22 +136,7 @@ const AvatarButtonComponent = () => {
     [dispatch, newUserAvatar, newUserName]
   );
 
-  const handleClickOutside = useCallback(
-    (event) => {
-      if (
-        popupRef.current &&
-        !popupRef.current.contains(event.target) &&
-        event.target !== buttonRef.current &&
-        !buttonRef.current.contains(event.target)
-      ) {
-        handleCancelUserChanges();
-        setShowPopup(false);
-        setShowPopupEdit(false);
-        setShowPopupConfirm(false);
-      }
-    },
-    [handleCancelUserChanges]
-  );
+
 
   useEffect(() => {
     if (newUserAvatar) {
