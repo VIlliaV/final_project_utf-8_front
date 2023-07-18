@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from './images/logo.svg';
-import axios from 'axios';
 import { axiosInstance } from 'redux/auth/authOperations';
 
 import {
@@ -33,14 +32,10 @@ import {
   StyledInstagram,
   StyledMail,
 } from './Footer.styled';
-import { useSelector } from 'react-redux';
-// import { createSelector } from '@reduxjs/toolkit';
 
 const Footer = () => {
 	const [email, setEmail] = useState('');
-	const auth = useSelector(state => state.auth);
-	const token = auth.accessToken;
-  
+
 	const handleEmailChange = event => {
 	  setEmail(event.target.value);
 	};
