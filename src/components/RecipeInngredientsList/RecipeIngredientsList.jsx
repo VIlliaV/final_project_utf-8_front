@@ -43,6 +43,7 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
     const updatedCheckedIngredients = recipeIngredients.map(
       ingredient => isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id)
     );
+
     setCheckedIngredients(updatedCheckedIngredients);
   }, [recipeIngredients, isInRecipe, isInShoppingList]);
 
