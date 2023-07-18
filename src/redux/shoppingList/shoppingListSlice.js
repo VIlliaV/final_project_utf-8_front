@@ -5,18 +5,23 @@ import { shoppingListGet, shoppingListAdd, shoppingListRemove } from './shopping
 const getShoppingListFulfilled = (state, action) => {
   handleFulfilled(state);
   // console.log('getFulfilled >> action.payload:', action.payload);
+
   state.shoppingListSliceState = action.payload;
 };
 
 const addFulfilled = (state, action) => {
   handleFulfilled(state);
-  // console.log('addFulfilled >> action.payload:', action.payload);
+  console.log('addFulfilled >> action.payload:', action.payload);
   state.shoppingListSliceState.push(action.payload);
 };
 
 const removeFulfilled = (state, action) => {
   handleFulfilled(state);
-  const index = state.shoppingListSliceState.findIndex(ingredient => ingredient.id === action.payload.id);
+  const index = state.shoppingListSliceState.findIndex(ingredient => {
+    console.log('index >> action.payload.id:', action.payload.id);
+    console.log('index >> ingredient.id:', ingredient.id);
+    return ingredient.id === action.payload.id;
+  });
   state.shoppingListSliceState.splice(index, 1);
 };
 
@@ -48,17 +53,17 @@ const shoppingListSlice = createSlice({
   },
 
   reducers: {
-    toggleIngredient: (state, action) => {
-      const ingredientUniqId = action.payload._id;
-      console.log('action.payload:', action.payload);
-      const index = state.shoppingListSliceState.indexOf(ingredientUniqId);
-      console.log('index:', index);
-      if (index !== -1) {
-        state.shoppingListSliceState.splice(index, 1); // Видаляємо інгредієнт зі списку, якщо він вже присутній
-      } else {
-        state.shoppingListSliceState.push(action.payload); // Додаємо інгредієнт до списку, якщо його немає
-      }
-    },
+    // toggleIngredient: (state, action) => {
+    //   const ingredientUniqId = action.payload._id;
+    //   console.log('action.payload:', action.payload);
+    //   const index = state.shoppingListSliceState.indexOf(ingredientUniqId);
+    //   console.log('index:', index);
+    //   if (index !== -1) {
+    //     state.shoppingListSliceState.splice(index, 1); // Видаляємо інгредієнт зі списку, якщо він вже присутній
+    //   } else {
+    //     state.shoppingListSliceState.push(action.payload); // Додаємо інгредієнт до списку, якщо його немає
+    //   }
+    // },
   },
 
   extraReducers: builder => {
@@ -77,5 +82,5 @@ const shoppingListSlice = createSlice({
   },
 });
 
-export const { toggleIngredient } = shoppingListSlice.actions;
+// export const { toggleIngredient } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;

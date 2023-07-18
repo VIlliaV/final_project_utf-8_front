@@ -15,13 +15,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
-import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
+// import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
 
   const [ingredients, setIngredients] = useState([]);
+
   const [isFavorite, setIsFavorite] = useState(false);
 
   const dispatch = useDispatch();
@@ -77,8 +78,10 @@ function RecipePage() {
   const handleCheckboxChange = (ingredientId, isChecked, uniqId, recipeId) => {
     const currentIngredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
 
+    // для рендеру у shoppingList page треба мати всі поля:
     if (currentIngredient) {
       const addIngredient = {
+        //? чи можна зробити просто id, а не _id (щоби було як у структурі інгредієнту)?
         id: {
           _id: ingredientId,
           desc: currentIngredient.id.desc,
@@ -87,7 +90,7 @@ function RecipePage() {
           name: currentIngredient.id.name,
         },
         measure: currentIngredient.measure,
-        _id: uniqId,
+        uniqId,
         recipeId,
       };
 

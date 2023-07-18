@@ -50,7 +50,7 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
   // console.log('recipeIngredients:', recipeIngredients);
 
   const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
-  console.log('savedShoppingList:', savedShoppingList);
+  console.log('RecipeInngredientsList >> savedShoppingList:', savedShoppingList);
 
   // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
   const isInRecipe = ingredientId => {
@@ -59,7 +59,7 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
 
   const isInShoppingList = ingredientId => {
     return savedShoppingList.some(item => {
-      return item._id._id === ingredientId;
+      return item?._id?._id === ingredientId;
     });
   };
 
