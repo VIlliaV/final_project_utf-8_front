@@ -60,7 +60,7 @@ const SLHeader = styled.div`
 `;
 
 const SLHeaderText = styled.p`
-  color: var(--back_theme_1);
+  color: var(--back_fix);
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-style: normal;

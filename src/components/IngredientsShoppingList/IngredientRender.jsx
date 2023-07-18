@@ -1,11 +1,10 @@
 import { SLItem, SlItemAmount, SLItemImage, SLItemImageName, SLItemRemove } from './IngredientsShoppingList.styled';
 import { VscClose } from 'react-icons/vsc';
 import styled from 'styled-components';
-
 import { nanoid } from 'nanoid';
 
 const StyledVscClose = styled(VscClose)`
-  fill: #333333;
+  fill: var(--back_theme_2);
 `;
 
 export const IngredientRender = ({ ingredient, onRemove }) => {

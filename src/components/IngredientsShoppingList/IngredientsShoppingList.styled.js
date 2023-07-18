@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-// font-family: 'Inter', sans-serif;
-// font-family: 'Montserrat', sans-serif;
-// font-family: 'Poppins', sans-serif;
-
-// const mobile = '375px';
 const tablet = '768px';
 const desktop = '1440px';
 
@@ -105,7 +100,7 @@ const SlItemAmount = styled.p`
   background: var(--fix_back);
   word-break: break-word;
 
-  color: var(--back_theme_1);
+  color: var(--back_fix);
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
