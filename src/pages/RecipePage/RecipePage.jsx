@@ -72,10 +72,9 @@ function RecipePage() {
   };
 
   const handleCheckboxChange = (ingredientId, isChecked, uniqId, recipeId) => {
-    console.log('handleCheckboxChange >> isChecked:', isChecked);
     // console.log('handleCheckboxChange >> isChecked:', isChecked);
     const currentIngredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
-    console.log('handleCheckboxChange >> currentIngredient:', currentIngredient);
+    // console.log('handleCheckboxChange >> currentIngredient:', currentIngredient);
 
     // для рендеру у shoppingList page треба мати всі поля:
     if (currentIngredient) {

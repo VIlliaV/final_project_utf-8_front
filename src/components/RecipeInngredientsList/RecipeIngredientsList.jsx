@@ -10,29 +10,42 @@ import { useSelector } from 'react-redux';
 
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 import { RecipeCheckbox } from './RecipeCheckbox';
+import { useCallback, useEffect, useState } from 'react';
 
 const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
-  //^ отримали рецепт з бекенду як проп recipe
+  //^ отримав рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
-  // console.log('recipeIngredients:', recipeIngredients);
-
   const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
-  // console.log('RecipeInngredientsList >> savedShoppingList:', savedShoppingList);
+
+  // Створюю стейт для збереження актуальних даних
+  const [checkedIngredients, setCheckedIngredients] = useState([]);
+
+  // Функція для перевірки, чи належить інгредієнт у шопінг-листі до конкретного рецепту
+  const isInRecipe = useCallback(
+    ingredientId => {
+      return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
+    },
+    [recipeIngredients]
+  );
 
   // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
-  const isInRecipe = ingredientId => {
-    const isIngredientIdInRecipe = savedShoppingList.some(ingredient => ingredient.id._id === ingredientId);
-    console.log('isInRecipe >> isIngredientIdInRecipe:', isIngredientIdInRecipe);
-    return isIngredientIdInRecipe;
-  };
+  const isInShoppingList = useCallback(
+    ingredientId => {
+      return savedShoppingList.some(item => {
+        return item.id?._id === ingredientId;
+      });
+    },
+    [savedShoppingList]
+  );
 
-  const isInShoppingList = ingredientId => {
-    // console.log('isInShoppingList >> ingredientId:', ingredientId);
-    return savedShoppingList.some(item => {
-      // console.log('isInShoppingList >> item:', item);
-      return item.id?._id === ingredientId;
-    });
-  };
+  useEffect(() => {
+    // При зміні пропсів оновлюю дані у локальному стейті
+    const updatedCheckedIngredients = recipeIngredients.map(
+      ingredient => isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id)
+    );
+
+    setCheckedIngredients(updatedCheckedIngredients);
+  }, [recipeIngredients, isInRecipe, isInShoppingList]);
 
   return (
     <>
@@ -42,9 +55,9 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
         <LastListTitle>Add to list</LastListTitle>
       </ListBox>
       <ListContainer>
-        {recipeIngredients.map(ingredient => {
-          const isChecked = isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id);
-
+        {recipeIngredients.map((ingredient, index) => {
+          const isChecked = checkedIngredients[index] !== undefined ? checkedIngredients[index] : false;
+          console.log('{recipeIngredients.map >> isChecked:', isChecked);
           return (
             <RecipeCheckbox
               key={`${recipeId}_${ingredient.id._id}`}
@@ -52,7 +65,7 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
               recipeId={recipeId}
               ingredient={ingredient}
               savedShoppingList={savedShoppingList}
-              isChecked={isChecked}
+              isChecked={isChecked} // Оновлений стейт зі значеннями isChecked
             />
           );
         })}
