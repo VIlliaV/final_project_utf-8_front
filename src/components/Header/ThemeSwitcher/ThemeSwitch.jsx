@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { themeToggle } from 'redux/auth/authOperations';
 import { useAuth } from 'utils/hooks/useAuth';
 import { useState } from 'react';
-// import { useStyleSheetContext } from 'styled-components/dist/models/StyleSheetManager';
 
 export default function ThemeSwitcher() {
   const { isThemeToggle } = useAuth();
@@ -18,8 +17,8 @@ export default function ThemeSwitcher() {
   const dispatch = useDispatch();
 
   const getValue = () => {
-    setChecked(checked);
-    dispatch(themeToggle());
+	setChecked(!checked); // изменяем значение на противоположное
+	dispatch(themeToggle());
   };
 
   return (
