@@ -8,6 +8,7 @@ import RecipeInngredientsList from '../../components/RecipeInngredientsList/Reci
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
 // import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
