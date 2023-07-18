@@ -16,7 +16,7 @@ import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
-  console.log('RecipePage >> recipe:', recipe);
+  // console.log('RecipePage >> recipe:', recipe);
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -24,7 +24,7 @@ function RecipePage() {
   const { recipeId } = useParams();
 
   const savedShoppingList = useSelector(shoppingList);
-  console.log('RecipePage >> savedShoppingList:', savedShoppingList);
+  // console.log('RecipePage >> savedShoppingList:', savedShoppingList);
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -72,6 +72,7 @@ function RecipePage() {
   };
 
   const handleCheckboxChange = (ingredientId, isChecked, uniqId, recipeId) => {
+    // console.log('handleCheckboxChange >> isChecked:', isChecked);
     const currentIngredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
 
     // для рендеру у shoppingList page треба мати всі поля:
