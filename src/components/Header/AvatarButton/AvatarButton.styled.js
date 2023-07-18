@@ -181,7 +181,7 @@ export const EditText = styled.p`
 
 export const AvatarText = styled.p`
   margin-left: 15px;
-  color: var(--text_theme_1);
+  color: var(--fix_back_2);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
