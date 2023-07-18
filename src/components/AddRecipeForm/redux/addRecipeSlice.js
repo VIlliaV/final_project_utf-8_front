@@ -50,9 +50,13 @@ const recipeSlice = createSlice({
         state.time = action.payload;
       })
       .addCase(addIngredientRecipe.fulfilled, (state, action) => {
-        console.log(state.ingredients);
-        console.log(action.payload);
-        state.ingredients = action.payload;
+        state.ingredients.push(action.payload);
+        // console.log(state.ingredients);
+        // state.ingredients.push(
+
+        // );
+
+        // state.ingredients = action;
       })
       // .addCase(addСategory.fulfilled, (state, action) => {
       //   state.category = action.payload;
@@ -81,7 +85,7 @@ const persistConfig = {
 
   version: 1,
   storage,
-  whitelist: ['title', 'description', 'ingredients'],
+  whitelist: [],
 };
 
 export const AddrecipeReducer = persistReducer(persistConfig, recipeSlice.reducer);

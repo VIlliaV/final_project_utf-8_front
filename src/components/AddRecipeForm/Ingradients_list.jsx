@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { CircularProgress, TextField } from '@mui/material';
@@ -11,26 +12,25 @@ import {
   StyledIngredientList,
 } from './AddRecipeForm.styled';
 import { AllIngredients } from './redux/AddRecipeSelector';
+import { addIngredientRecipe } from './redux/AddRecipreOperation';
 
 export default function IngredientsList({ counter, counterItem, id, ingredientList }) {
   let searchItem = [];
+
   const ingredients = useSelector(AllIngredients);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const loading = ingredients.length === 0;
 
-  // useEffect(() => {
-  //   dispatch(addIngredientRecipe(ingredientList));
-  // });
+  useEffect(() => {
+    console.log('ingredientList', ingredientList);
+  }, [ingredientList]);
 
   const handleChangeIngredient = event => {
     searchItem.name = event.currentTarget.textContent;
-    // dispatch(addIngredientRecipe(ingredientList));
-    console.log(ingredientList);
   };
 
   const handleChangeMeaure = event => {
     searchItem.measure = event.currentTarget.value;
-    console.log(ingredientList);
   };
 
   const handleChangeItem = event => {
@@ -42,6 +42,7 @@ export default function IngredientsList({ counter, counterItem, id, ingredientLi
     }
   };
 
+  console.log('ingredientList', ingredientList);
   return (
     <li key={nanoid()} id={id} name="ingredient" onClick={handleChangeItem}>
       <StyledIngredientList>
@@ -52,7 +53,7 @@ export default function IngredientsList({ counter, counterItem, id, ingredientLi
               name="ingredientsName"
               id="ingredientsName"
               ListboxProps={{ style: { maxHeight: 220 } }}
-              isOptionEqualToValue={(option, value) => option === value}
+              // isOptionEqualToValue={(option, value) => option === value}
               getOptionLabel={option => option}
               onChange={handleChangeIngredient}
               options={ingredients.map(el => el.name)}
