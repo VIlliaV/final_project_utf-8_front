@@ -1,45 +1,44 @@
+import {
+  ListBox,
+  FirstListTitle,
+  SecondListTitle,
+  LastListTitle,
+  ListContainer,
+  ListItem,
+  Image,
+  Name,
+  MeasureWrapper,
+  Measure,
+  CheckboxInput,
+} from './RecipeInngredientsList.styled';
 import { useAuth } from 'utils/hooks/useAuth';
-import { ListItem, Image, Name, MeasureWrapper, Measure, CheckboxInput } from './RecipeInngredientsList.styled';
 import SvgIcon from '@mui/material/SvgIcon';
 import { useState } from 'react';
 
-export const Chekboks = ({ handleCheckboxChange, recipeId, ingredient, savedShoppingList, check }) => {
+export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, savedShoppingList, isChecked }) => {
   const { isThemeToggle } = useAuth(); //?
-  const [chek, setChek] = useState(check);
+  const [check, setCheck] = useState(isChecked);
 
   const handle = event => {
-    setChek(!chek);
+    setCheck(!check);
+
     handleCheckboxChange(ingredient.id._id, event.target.checked, `${recipeId}_${ingredient.id._id}`, recipeId);
   };
-  // const isInShoppingList = ingredientId => {
-  //   return savedShoppingList.some(item => {
-  //     return item._id._id === ingredientId;
-  //   });
-  // };
-
-  // const foundObject = savedShoppingList.find(obj => obj._id._id === ingredient.id._id);
-
-  // // console.log('🚀 ~ foundObject:', foundObject);
-  // if (foundObject) {
-  //   console.log('object :>> ', 'object');
-  //   setChek(true);
-  // }
-
-  // console.log('🚀 ~ ingredient:', ingredient);
-  // console.log('🚀 ~ savedShoppingList:', savedShoppingList);
 
   return (
     <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
       <Image src={ingredient.id.img} alt={ingredient.id.name} />
-      <Name>{ingredient.id.name}</Name>
+      <Name datatype={isThemeToggle.toString()}>{ingredient.id.name}</Name>
       <MeasureWrapper>
         <Measure>{ingredient.measure} </Measure>
       </MeasureWrapper>
 
       <CheckboxInput
         // checked={isInRecipe(ingredient.id._id) && savedShoppingList.includes(ingredient.id._id)}
-        checked={chek}
-        onChange={event => handle(event)}
+        checked={check}
+        onChange={event => {
+          handle(event);
+        }}
         icon={
           <SvgIcon>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">

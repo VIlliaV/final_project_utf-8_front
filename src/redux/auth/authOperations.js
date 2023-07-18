@@ -5,23 +5,28 @@ export const axiosInstance = axios.create({
   baseURL: 'https://final-project-utf-8-backend.onrender.com/',
 });
 
-axios.defaults.baseURL = 'https://final-project-utf-8-backend.onrender.com/';
 
-const setAuthHeader = token => {
-  axiosInstance.defaults.headers.common.authorization = `Bearer ${token}`;
-};
 
 const clearAuthHeader = () => {
-  axiosInstance.defaults.headers.common.authorization = '';
+  axiosInstance.defaults.headers.common['Authorization'] = '';
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
 };
 
-axiosInstance.interceptors.request.use(config => {
-  const accessToken = localStorage.getItem('accessToken');
-  if (accessToken) {
-    config.headers.common.authorization = `Bearer ${accessToken}`;
+
+
+axiosInstance.interceptors.request.use(
+  config => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      config.headers = { Authorization: `Bearer ${accessToken}` };
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
   }
-  return config;
-});
+);
 
 axiosInstance.interceptors.response.use(
   response => response,
@@ -30,8 +35,9 @@ axiosInstance.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken');
       try {
         const { data } = await axiosInstance.post('/users/refresh', { refreshToken });
-        setAuthHeader(data.accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
+        axiosInstance.headers = { Authorization: `Bearer ${data.accessToken}` };
+        localStorage.setItem('refreshToken', data.refreshToken);
+        localStorage.setItem('accessToken', data.accessToken);
         return axiosInstance(error.config);
       } catch (error) {
         return Promise.reject(error);
@@ -48,9 +54,9 @@ export const signupUser = createAsyncThunk('users/register', async ({ name, emai
       email,
       password,
     });
-    setAuthHeader(response.data.accessToken);
+    axiosInstance.headers = { Authorization: `Bearer ${response.data.accessToken}` };
+    localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);
-    // setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -60,12 +66,11 @@ export const signupUser = createAsyncThunk('users/register', async ({ name, emai
 export const loginUser = createAsyncThunk('users/login', async (credentials, thunkAPI) => {
   try {
     const response = await axiosInstance.post('/users/login', credentials);
-    // setAuthHeader(response.data.token);
-    setAuthHeader(response.data.accessToken);
+    axiosInstance.headers = { Authorization: `Bearer ${response.data.accessToken}` };
+    localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);
     return response.data;
   } catch (error) {
-    // console.log(error.response.data.message)
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
@@ -80,20 +85,11 @@ export const logoutUser = createAsyncThunk('users/logout', async (_, thunkAPI) =
 });
 
 export const fetchCurrentUser = createAsyncThunk('users/current', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const { accessToken } = state.auth;
-  if (accessToken === null) {
-    return thunkAPI.rejectWithValue();
-  }
-  // setAuthHeader(accessToken);
+
   try {
     const response = await axiosInstance.get('/users/current');
-
     return response.data;
   } catch (error) {
-    if (error.response.status === 401) {
-      clearAuthHeader();
-    }
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -112,7 +108,9 @@ export const updateUser = createAsyncThunk('users/update', async (data, thunkAPI
   // const { name: currentName, avatarURL: currentAvatar } = state.auth.user;
 
   console.log(data);
-
+for (const pair of data.entries()) {
+  console.log(pair);
+}
   // const { name = currentName, file = currentAvatar } = data;
   try {
     const response = await axiosInstance.patch('users/update', data);

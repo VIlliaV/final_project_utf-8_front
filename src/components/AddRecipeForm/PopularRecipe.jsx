@@ -30,7 +30,7 @@ export default function Popular() {
       .catch(error => {
         handleError(error);
       });
-  }, []);
+  }, [dispatch, i]);
 
   function handleError(error) {
     toast.error(`${error.message}`);

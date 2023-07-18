@@ -105,7 +105,6 @@ export const StyledNativeSelect = styled(NativeSelect)(({ theme }) => ({
 
 export const StyledButtonGroup = styled(ButtonGroup)({
   border: '1px solid var(--select_text_1)',
-
   borderRadius: '18px',
 });
 export const StyledFormControl = styled(FormControl)(({ theme }) => ({

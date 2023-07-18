@@ -18,9 +18,7 @@ import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
-
   const [ingredients, setIngredients] = useState([]);
-
   const [isFavorite, setIsFavorite] = useState(false);
 
   const dispatch = useDispatch();
