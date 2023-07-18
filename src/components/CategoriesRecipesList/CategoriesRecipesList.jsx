@@ -8,11 +8,10 @@ import { toast } from 'react-hot-toast';
 
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
-export const CategoriesRecipesList = () => {
+export const CategoriesRecipesList = ({ dataError, updateDataErrorState }) => {
   const [recipes, setRecipes] = useState([]);
   const currentCategory = useParams().categoryName.charAt(0).toUpperCase() + useParams().categoryName.slice(1);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataError, setDataError] = useState(false);
 
   const getRecipesByCategory = async category => {
     try {
@@ -35,7 +34,7 @@ export const CategoriesRecipesList = () => {
     getRecipesByCategory(currentCategory)
       .then(res => {
         if (res.length === 0) {
-          setDataError(true);
+          updateDataErrorState(true);
           // alert('Ooops, there are no items');
           toast.error('We are sorry, there is not such category, chose one from the listed.', {
             position: 'top-right',
@@ -45,20 +44,18 @@ export const CategoriesRecipesList = () => {
         }
         setRecipes(res);
         setIsLoading(false);
-        setDataError(false);
+        updateDataErrorState(false);
       })
       .catch(error => {
         setIsLoading(false);
-        setDataError(true);
-        console.log(error);
+        updateDataErrorState(true);
       });
-  }, [currentCategory]);
+  }, [currentCategory, updateDataErrorState]);
 
   const shouldRender = recipes.length > 0;
 
   return (
     <CategoriesRecipesContainer>
-      {dataError && <div>Error!!!</div>}
       {isLoading && <Loader />}
       {shouldRender &&
         !isLoading &&

@@ -7,13 +7,12 @@ import { CategoriesWrapper, CategoriesContainer, CategoryLink, CategoriesItem } 
 
 const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
 
-export const CategoriesList = () => {
+export const CategoriesList = ({ dataError, updateDataErrorState }) => {
   const tabListRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [startX, setStartX] = useState(null);
   const [scrollLeft, setScrollLeft] = useState(null);
   const [categories, setCategories] = useState([]);
-  const [dataError, setDataError] = useState(false);
 
   const { isThemeToggle } = useAuth();
 
@@ -38,17 +37,17 @@ export const CategoriesList = () => {
     getCategories()
       .then(res => {
         if (res === null) {
-          setDataError(true);
+          updateDataErrorState(true);
           return;
         }
-        setDataError(false);
+        updateDataErrorState(false);
         setCategories(res);
       })
       .catch(error => {
-        setDataError(true);
+        updateDataErrorState(true);
         console.log(error.message);
       });
-  }, []);
+  }, [updateDataErrorState]);
 
   const handleMouseDown = event => {
     setIsScrolling(true);
@@ -104,7 +103,6 @@ export const CategoriesList = () => {
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
       >
-        {dataError && <div>Load error</div>}
         {!dataError &&
           categories.map(el => {
             const linkName = el.toLowerCase();
