@@ -60,7 +60,6 @@ const SLItemImage = styled.img`
   background-color: #ebf3d4;
 
   background-image: url(${props => props.src || props.$defaultImgMobile});
-
   background-repeat: no-repeat;
   background-size: cover;
 
