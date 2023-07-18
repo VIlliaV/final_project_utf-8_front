@@ -57,7 +57,7 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (addIngred
 });
 
 //* FETCH: remove from shopping list
-export const shoppingListRemove = createAsyncThunk('shopping/remove', async (ingredientId, thunkAPI) => {
+export const shoppingListRemove = createAsyncThunk('shopping/remove', async (uniqId, thunkAPI) => {
   const state = thunkAPI.getState();
   const { token } = state.auth;
   if (token === null) {
@@ -65,11 +65,11 @@ export const shoppingListRemove = createAsyncThunk('shopping/remove', async (ing
   }
 
   try {
-    const response = await axiosInstance.patch(`/shopping-list`, { id: ingredientId });
+    const response = await axiosInstance.patch(`/shopping-list`, { uniqId });
 
     console.log('shoppingListRemove >> response.data;:', response.data);
 
-    return response.data;
+    return uniqId; // повертаю у action.payload на removeFulfilled
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

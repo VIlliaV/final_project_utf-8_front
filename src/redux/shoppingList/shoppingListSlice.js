@@ -4,7 +4,7 @@ import { shoppingListGet, shoppingListAdd, shoppingListRemove } from './shopping
 // & Fulfilled
 const getShoppingListFulfilled = (state, action) => {
   handleFulfilled(state);
-  // console.log('getFulfilled >> action.payload:', action.payload);
+  console.log('getFulfilled >> action.payload:', action.payload);
 
   state.shoppingListSliceState = action.payload;
 };
@@ -18,10 +18,9 @@ const addFulfilled = (state, action) => {
 const removeFulfilled = (state, action) => {
   handleFulfilled(state);
   const index = state.shoppingListSliceState.findIndex(ingredient => {
-    console.log('index >> action.payload.id:', action.payload.id);
-    console.log('index >> ingredient.id:', ingredient.id);
-    return ingredient.id === action.payload.id;
+    return ingredient.id === action.payload;
   });
+  console.log('index >> index:', index);
   state.shoppingListSliceState.splice(index, 1);
 };
 
