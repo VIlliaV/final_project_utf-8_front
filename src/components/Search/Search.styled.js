@@ -10,16 +10,17 @@ export const SearchForm = styled.form`
     font-size: 12px;
     outline: none;
     background-color: #fff;
-    background-color &[datatype='true'] {
+    &[datatype='false'] {
       background-color: var(--fix-transparent);
     }
     border-width: 1px;
     border-style: solid;
     border-color: #f0f0f0;
-    border-color &[datatype='true'] {
+    &[datatype='false'] {
       border-color: rgba(250, 250, 250, 0.5);
     }
     border-radius: 24px 44px;
+    color: var(--text_theme_1);
 
     @media ${media.mini} {
       max-width: 90%;
@@ -33,14 +34,16 @@ export const SearchForm = styled.form`
 
     &::placeholder {
       color: #bdbdbd;
-      color &[datatype='true'] {
+      &[datatype='false'] {
         color: rgba(250, 250, 250, 0.5);
       }
     }
 
     &:focus {
       border-color: rgba(35, 38, 42, 0.2);
-      color: var(--text_theme_1);
+      &[datatype='false'] {
+        border-color: rgba(250, 250, 250, 0.5);
+      }
     }
   }
 
@@ -72,7 +75,7 @@ export const SearchForm = styled.form`
     &:focus,
     &:hover {
       background-color: var(--fix_back);
-      background-color &[datatype='true'] {
+      &[datatype='false'] {
         background-color: var(--fix-transparent);
       }
       border-color: var(--fix_back);
@@ -88,7 +91,7 @@ export const SearchForm = styled.form`
     &:focus,
     &:hover {
       background-color: var(--fix_back_2);
-      background-color &[datatype='true'] {
+      &[datatype='false'] {
         background-color: var(--fix-transparent);
       }
       border-color: var(--active_theme_2);
