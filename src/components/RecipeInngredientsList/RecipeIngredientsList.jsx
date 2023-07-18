@@ -12,7 +12,7 @@ import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 import { RecipeCheckbox } from './RecipeCheckbox';
 // import { useEffect, useState } from 'react';
 
-const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
+const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
   // const { isThemeToggle } = useAuth(); //?
 
   //^ отримали рецепт з бекенду як проп recipe
@@ -60,4 +60,4 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
   );
 };
 
-export default RecipeInngredientsList;
+export default RecipeIngredientsList;

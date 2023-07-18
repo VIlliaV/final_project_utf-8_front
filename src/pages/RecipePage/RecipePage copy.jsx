@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
-import RecipeInngredientsList from '../../components/RecipeInngredientsList/RecipeInngredientsList';
+import RecipeInngredientsList from '../../components/RecipeInngredientsList/RecipeIngredientsList';
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 import { store } from '../../redux/store';

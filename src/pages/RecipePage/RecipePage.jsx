@@ -4,7 +4,7 @@ import HeadContainer from 'components/HeadContainer/HeadContainer';
 import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
-import RecipeInngredientsList from '../../components/RecipeInngredientsList/RecipeInngredientsList';
+import RecipeIngredientsList from '../../components/RecipeInngredientsList/RecipeIngredientsList';
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 import { useSelector, useDispatch } from 'react-redux';
@@ -119,7 +119,7 @@ function RecipePage() {
             />
 
             <Wrapper>
-              <RecipeInngredientsList
+              <RecipeIngredientsList
                 recipe={recipe}
                 ingredients={ingredients}
                 handleCheckboxChange={handleCheckboxChange}
