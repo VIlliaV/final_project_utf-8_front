@@ -1,6 +1,4 @@
 import { SLItem, SlItemAmount, SLItemImage, SLItemImageName, SLItemRemove } from './IngredientsShoppingList.styled';
-import { shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
-import { useDispatch } from 'react-redux';
 import { VscClose } from 'react-icons/vsc';
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
@@ -9,13 +7,12 @@ const StyledVscClose = styled(VscClose)`
   fill: #333333;
 `;
 
-export const IngredientRender = ({ ingredient }) => {
+export const IngredientRender = ({ ingredient, onRemove }) => {
   const {
     measure,
     uniqId,
     id: { img, name },
   } = ingredient;
-  const dispatch = useDispatch();
 
   return (
     <SLItem key={nanoid()}>
@@ -25,7 +22,7 @@ export const IngredientRender = ({ ingredient }) => {
       <SLItemRemove
         type="button"
         onClick={() => {
-          dispatch(shoppingListRemove(uniqId));
+          onRemove(uniqId);
         }}
       >
         <StyledVscClose />
