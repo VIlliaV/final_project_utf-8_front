@@ -30,6 +30,7 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
   // }));
 
   // const [shoppingList, setShoppingList] = useState(savedShoppingList);
+
   // savedShoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
 
   // // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
