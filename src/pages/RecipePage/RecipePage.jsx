@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
 
 import { toggleIngredient } from 'redux/shoppingList/shoppingListSlice';
+import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 
 function RecipePage() {
   const [recipe, setRecipe] = useState(null);
@@ -25,7 +26,7 @@ function RecipePage() {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
-  const shoppingList = useSelector(state => state.shoppingList.shoppingListSliceState);
+  const savedShoppingList = useSelector(shoppingList);
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -89,16 +90,19 @@ function RecipePage() {
         recipeId,
       };
 
-      dispatch(toggleIngredient(addIngredient)); // стор
+      // dispatch(toggleIngredient(addIngredient)); // стор
 
       if (isChecked) {
         dispatch(shoppingListAdd(addIngredient)); // сервер
       } else {
-        const ingredientToRemove = shoppingList.find(item => item._id === uniqId);
+        const ingredientToRemove = savedShoppingList.find(item => {
+          console.log('ingredientToRemove >> savedShoppingList:', savedShoppingList);
 
-        dispatch(shoppingListRemove(ingredientToRemove.id));
+          return item._id === uniqId;
+        });
+
         if (ingredientToRemove) {
-          dispatch(shoppingListRemove(ingredientToRemove.id));
+          dispatch(shoppingListRemove(ingredientToRemove._id));
         }
       }
     }

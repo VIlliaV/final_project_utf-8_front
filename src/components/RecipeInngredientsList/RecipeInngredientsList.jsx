@@ -47,7 +47,7 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
 
   //^ отримали рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
-  console.log('recipeIngredients:', recipeIngredients);
+  // console.log('recipeIngredients:', recipeIngredients);
 
   const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
   console.log('savedShoppingList:', savedShoppingList);
