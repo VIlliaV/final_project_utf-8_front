@@ -47,7 +47,7 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
 
   //^ отримали рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
-  console.log('recipeIngredients:', recipeIngredients);
+  // console.log('recipeIngredients:', recipeIngredients);
 
   const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
   console.log('savedShoppingList:', savedShoppingList);
@@ -75,7 +75,7 @@ const RecipeInngredientsList = ({ recipe, handleCheckboxChange }) => {
           return (
             <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
               <Image src={ingredient.id.img} alt={ingredient.id.name} />
-              <Name>{ingredient.id.name}</Name>
+              <Name datatype={isThemeToggle.toString()}>{ingredient.id.name}</Name>
               <MeasureWrapper>
                 <Measure>{ingredient.measure} </Measure>
               </MeasureWrapper>
