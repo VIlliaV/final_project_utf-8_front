@@ -110,7 +110,6 @@ const AvatarButtonComponent = () => {
 
 
   const handleNameChange = useCallback((event) => {
-	console.log(event.target.value);
     event.preventDefault();
     setNewUserName(event.target.value);
   }, []);
