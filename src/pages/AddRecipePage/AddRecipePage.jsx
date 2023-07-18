@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import MainPageTitle from '../../components/MainPageTitle/MainPageTitle';
 import { StyledBody } from './AddRecipePage.styled';
@@ -12,8 +12,10 @@ import { getIngredients, getCategories } from '../../components/AddRecipeForm/re
 
 export default function AddRecipePage() {
   const dispatch = useDispatch();
-  dispatch(getIngredients());
-  dispatch(getCategories());
+  useEffect(() => {
+    dispatch(getIngredients());
+    dispatch(getCategories());
+  }, [dispatch]);
   return (
     <HeadContainer>
       <MainPageTitle title="Add recipe" />

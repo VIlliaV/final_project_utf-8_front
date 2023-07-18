@@ -6,12 +6,12 @@ import IngredientList from '../../components/AddRecipeForm/Ingradients_list';
 
 export default function BasicButtonGroup() {
   const [counter, setCounter] = useState(1);
-  const [ingredientList, setIngredientsList] = useState([{ id: nanoid(), name: '', measure: '' }]);
+  const [ingredientList, setIngredientsList] = useState([{ id: nanoid(), _id: '', name: '', measure: '' }]);
 
   const handleIncrement = e => {
-    setCounter(counter + 1);
+    setCounter(prevState => prevState + 1);
     setIngredientsList(prevState => {
-      return [...prevState, { id: nanoid(), name: '', measure: '' }];
+      return [...prevState, { id: nanoid(), _id: '', name: '', measure: '' }];
     });
   };
 

@@ -18,7 +18,7 @@ const initialState = {
   description: null,
   category: null,
   time: null,
-  ingredients: [{ id: null, measure: null }],
+  ingredients: [],
   instructions: null,
   allIngredients: { _id: null, name: null, desc: null, img: null },
   allCategories: null,
@@ -27,7 +27,11 @@ const initialState = {
 const recipeSlice = createSlice({
   name: 'add',
   initialState,
-  reducers: {},
+  reducers: {
+    addReciepe: (state, action) => {
+      state.ingredients = [...state.ingredients, ...action.payload];
+    },
+  },
 
   extraReducers: builder => {
     builder
@@ -50,13 +54,9 @@ const recipeSlice = createSlice({
         state.time = action.payload;
       })
       .addCase(addIngredientRecipe.fulfilled, (state, action) => {
-        state.ingredients.push(action.payload);
-        // console.log(state.ingredients);
-        // state.ingredients.push(
-
-        // );
-
-        // state.ingredients = action;
+        console.log(state.ingredients);
+        console.log(action.payload);
+        state.ingredients = action.payload;
       })
       // .addCase(addСategory.fulfilled, (state, action) => {
       //   state.category = action.payload;
@@ -89,3 +89,5 @@ const persistConfig = {
 };
 
 export const AddrecipeReducer = persistReducer(persistConfig, recipeSlice.reducer);
+
+export const { addReciepe } = recipeSlice.actions;
