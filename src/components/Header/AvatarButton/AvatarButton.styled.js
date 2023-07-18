@@ -186,10 +186,6 @@ export const AvatarText = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: 170%;
-
-  /* @media ${media.desktop} {
-	color: var(--fix_back_2);
-  } */
 `;
 
 export const ButtonYes = styled.button`
