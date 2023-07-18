@@ -18,9 +18,10 @@ const addFulfilled = (state, action) => {
 const removeFulfilled = (state, action) => {
   handleFulfilled(state);
   const index = state.shoppingListSliceState.findIndex(ingredient => {
-    return ingredient.id === action.payload;
+    return ingredient.uniqId === action.payload;
   });
-  // console.log('index >> index:', index);
+  console.log('index >> index:', index);
+
   state.shoppingListSliceState.splice(index, 1);
 };
 

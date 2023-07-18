@@ -57,7 +57,7 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
       <ListContainer>
         {recipeIngredients.map((ingredient, index) => {
           const isChecked = checkedIngredients[index] !== undefined ? checkedIngredients[index] : false;
-          console.log('{recipeIngredients.map >> isChecked:', isChecked);
+          // console.log('{recipeIngredients.map >> isChecked:', isChecked);
           return (
             <RecipeCheckbox
               key={`${recipeId}_${ingredient.id._id}`}
