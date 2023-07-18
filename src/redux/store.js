@@ -5,6 +5,7 @@ import { authPersistedReducer } from './auth/authSlice';
 import shoppingListSlice from './shoppingList/shoppingListSlice';
 import favoritesSlice from './favorites/favoritesSlice';
 import { AddrecipeReducer } from '../components/AddRecipeForm/redux/addRecipeSlice';
+import myRecipesSlice from './myRecipes/myRecipesSlice';
 // import currentRecipeSlice from './currentRecipe/currentRecipeSlice';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   shoppingList: shoppingListSlice,
   favorites: favoritesSlice,
   addRecipePage: AddrecipeReducer,
+  myRecipes: myRecipesSlice,
   // currentRecipe: currentRecipeSlice,
 });
 
