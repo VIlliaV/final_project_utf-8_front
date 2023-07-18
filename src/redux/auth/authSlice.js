@@ -6,7 +6,6 @@ import { signupUser, loginUser, logoutUser, fetchCurrentUser, themeToggle, updat
 
 const initialState = {
   user: { name: null, email: null, avatarURL: null },
-  accessToken: null,
   isLoggedIn: false,
   isRefreshing: false,
   isThemeToggle: false,
@@ -35,7 +34,6 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        console.log(action.payload);
         state.errorMessage = action.payload;
       })
       .addCase(loginUser.pending, state => {
@@ -80,19 +78,18 @@ const authSlice = createSlice({
         state.errorMessage = null;
       })
       .addCase(updateUser.pending, (state, action) => {
-        console.log('pending', action.payload);
+ 
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.avatarURL = action.payload.avatarURL;
-        console.log('fulfilled', action.payload);
       })
-      .addCase(updateUser.rejected, (state, action) => {
-        console.log('rejected', action.payload);
-      })
-      .addCase(themeToggle.pending, state => {
-        state.isRefreshing = true;
-      })
+      // .addCase(updateUser.rejected, (state, action) => {
+
+      // })
+      // .addCase(themeToggle.pending, state => {
+      //   state.isRefreshing = true;
+      // })
       .addCase(themeToggle.fulfilled, (state, action) => {
         state.isRefreshing = false;
 

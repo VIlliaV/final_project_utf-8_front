@@ -5,15 +5,11 @@ export const axiosInstance = axios.create({
   baseURL: 'https://final-project-utf-8-backend.onrender.com/',
 });
 
-
-
 const clearAuthHeader = () => {
   axiosInstance.defaults.headers.common['Authorization'] = '';
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
 };
-
-
 
 axiosInstance.interceptors.request.use(
   config => {
@@ -29,7 +25,9 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-  response => response,
+  response => {
+    return response;
+  },
   async error => {
     if (error.response.status === 401) {
       const refreshToken = localStorage.getItem('refreshToken');
@@ -42,7 +40,7 @@ axiosInstance.interceptors.response.use(
       } catch (error) {
         return Promise.reject(error);
       }
-    }
+    } 
     return Promise.reject(error);
   }
 );
@@ -59,7 +57,7 @@ export const signupUser = createAsyncThunk('users/register', async ({ name, emai
     localStorage.setItem('refreshToken', response.data.refreshToken);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+    return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
 
@@ -85,7 +83,6 @@ export const logoutUser = createAsyncThunk('users/logout', async (_, thunkAPI) =
 });
 
 export const fetchCurrentUser = createAsyncThunk('users/current', async (_, thunkAPI) => {
-
   try {
     const response = await axiosInstance.get('/users/current');
     return response.data;
@@ -104,16 +101,18 @@ export const themeToggle = createAsyncThunk('users/theme', async (_, thunkAPI) =
 });
 
 export const updateUser = createAsyncThunk('users/update', async (data, thunkAPI) => {
-  // const state = thunkAPI.getState();
-  // const { name: currentName, avatarURL: currentAvatar } = state.auth.user;
 
-  console.log(data);
-for (const pair of data.entries()) {
-  console.log(pair);
-}
-  // const { name = currentName, file = currentAvatar } = data;
+  const accessToken = localStorage.getItem('accessToken');
+
+  axiosInstance.headers = {
+    Authorization: `Bearer ${accessToken}`,
+    ContentType: 'multipart/form-data',
+  };
   try {
     const response = await axiosInstance.patch('users/update', data);
+    axiosInstance.headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
     return response.data;
   } catch (error) {
     thunkAPI.rejectWithValue(error.message);

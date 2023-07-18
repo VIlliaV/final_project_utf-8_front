@@ -1,6 +1,7 @@
 import { SLItem, SlItemAmount, SLItemImage, SLItemImageName, SLItemRemove } from './IngredientsShoppingList.styled';
 import { VscClose } from 'react-icons/vsc';
 import styled from 'styled-components';
+
 import { nanoid } from 'nanoid';
 
 const StyledVscClose = styled(VscClose)`
