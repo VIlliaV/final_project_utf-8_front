@@ -116,24 +116,6 @@ const AvatarButtonComponent = () => {
     setNewUserAvatar(event.target.files[0]);
   };
 
-  //   const formik = useFormik({
-  //     initialValues: {
-  //       username: userName,
-  //     },
-  //     onSubmit: values => {
-  //       console.log('Form submitted:', values);
-  //       handleCancelUserChanges();
-  //       setShowPopupEdit(false);
-  //     },
-  //     validate: values => {
-  //       const errors = {};
-  //       if (!values.username) {
-  //         errors.username = 'Please enter your name';
-  //       }
-  //       return errors;
-  //     },
-  //   });
-
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -141,12 +123,12 @@ const AvatarButtonComponent = () => {
     formData.append('file', newUserAvatar);
     formData.append('name', newUserName);
     // console.log(newUserAvatar,newUserName);
-	for (var pair of formData.entries()) {
-		console.log(pair[0]+ ', ' + pair[1]); 
-	}
+	// for (var pair of formData.entries()) {
+	// 	console.log(pair[0]+ ', ' + pair[1]); 
+	// }
     dispatch(updateUser(formData));
 
-    // setShowPopupEdit(false);
+    setShowPopupEdit(false);
   };
 
   useEffect(() => {
@@ -205,7 +187,6 @@ const AvatarButtonComponent = () => {
         </PopupConfirm>
       )}
       {showPopupEdit && (
-        //         <PopupEdit onSubmit={formik.handleSubmit} ref={popupRef}>
 
         <PopupEdit onSubmit={handleSubmit} ref={popupRef}>
           <input
@@ -243,13 +224,9 @@ const AvatarButtonComponent = () => {
               type="text"
               placeholder={userName}
               name="username"
-              //   onChange={}
-              //   onChange={formik.handleChange}
-              //   value={formik.values.username}
               onFocus={handleNameChange}
               ref={nameInputRef}
             />
-            {/* {formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>} */}
           </NameInputDiv>
           <EditConfirmButton type="submit">Save changes</EditConfirmButton>
         </PopupEdit>
@@ -260,27 +237,3 @@ const AvatarButtonComponent = () => {
 };
 
 export default AvatarButtonComponent;
-
-//
-// {/* <input
-// type="file"
-// name="useravatar"
-// accept="image/*"
-// id="imageInput"
-// onChange={handleImageChange}
-
-// //             style={{ display: 'none' }}
-
-// style={{ visibility: 'hidden' }}
-
-// />
-// <AvatarDiv>
-// <AddNewImgButton
-//   onClick={handleAddImageClick}
-//   type="button"
-//   style={{ backgroundImage: `url(${imageUrl})` }}
-// ></AddNewImgButton>
-// <ImgPlusButton onClick={handleAddImageClick}>
-//   <StyledPlusIconSVG />
-// </ImgPlusButton>
-// </AvatarDiv> */}
