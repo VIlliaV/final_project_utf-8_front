@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import HeadContainer from 'components/HeadContainer/HeadContainer';
 import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
-import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
-import RecipeIngredientsList from '../../components/RecipeInngredientsList/RecipeIngredientsList';
-import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
+import RecipePageHero from 'components/RecipePageHero/RecipePageHero';
+import RecipeIngredientsList from 'components/RecipeIngredientsList/RecipeIngredientsList';
+import RecipePreparation from 'components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
-import { shoppingListLoading } from 'redux/shoppingList/shoppingListSelectors';
+import { shoppingListAdd, shoppingListGet, shoppingListRemove } from 'redux/shoppingList/shoppingListOperations';
+import { shoppingList, shoppingListLoading } from 'redux/shoppingList/shoppingListSelectors';
 
 function RecipePage() {
   const { recipeId } = useParams();
@@ -18,6 +18,7 @@ function RecipePage() {
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const loading = useSelector(shoppingListLoading);
+  const savedShoppingList = useSelector(shoppingList);
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -80,8 +81,14 @@ function RecipePage() {
         recipeId,
       };
 
+      const isElementAlreadyExist = savedShoppingList.find(ingredient => {
+        return ingredient.uniqId === uniqId;
+      });
+
       if (isChecked) {
-        dispatch(shoppingListAdd(addIngredient));
+        if (!isElementAlreadyExist) {
+          dispatch(shoppingListAdd(addIngredient));
+        }
       } else {
         dispatch(shoppingListRemove(uniqId));
       }
@@ -92,15 +99,16 @@ function RecipePage() {
     <div>
       {recipe && (
         <>
-          <RecipePageHero
-            title={recipe.title}
-            description={recipe.description}
-            time={recipe.time}
-            isFavorite={isFavorite}
-            addToFavorite={addToFavorite}
-            removeFromFavorite={removeFromFavorite}
-          />
           <HeadContainer>
+            <RecipePageHero
+              title={recipe.title}
+              description={recipe.description}
+              time={recipe.time}
+              isFavorite={isFavorite}
+              addToFavorite={addToFavorite}
+              removeFromFavorite={removeFromFavorite}
+            />
+
             <Wrapper>
               <RecipeIngredientsList
                 recipe={recipe}
