@@ -61,7 +61,6 @@ export const addRecipe = createAsyncThunk('/addRecipes/getPopular', async (recip
     ContentType: 'multipart/form-data',
   };
   try {
-    // console.log('formData', recipe);
     const response = await axiosInstance.post('/ownRecipes', recipe);
     axiosInstance.headers = {
       Authorization: `Bearer ${accessToken}`,

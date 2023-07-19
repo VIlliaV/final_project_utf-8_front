@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { addImage } from './redux/AddRecipreOperation';
 import { useDispatch } from 'react-redux';
 import backgroundUploadImg from '../../img/image.jpg';
 import { ImageSrc, StyledInpytImg } from './AddRecipeForm.styled';
-import {addReciepe} from 'components/AddRecipeForm/redux/addRecipeSlice'
+import { addRecipePhoto } from 'components/AddRecipeForm/redux/addRecipeSlice';
 
 export const FileInput = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -13,10 +12,8 @@ export const FileInput = () => {
   useEffect(() => {
     if (selectedImage) {
       setImageUrl(URL.createObjectURL(selectedImage));
+      dispatch(addRecipePhoto(selectedImage));
     } else setImageUrl(backgroundUploadImg);
-    console.log('selectedImage', selectedImage);
-    // console.log('imageUrl', imageUrl);
-    dispatch(addReciepe(selectedImage));
   }, [dispatch, selectedImage]);
 
   return (

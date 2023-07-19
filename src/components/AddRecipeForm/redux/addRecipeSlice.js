@@ -10,7 +10,6 @@ import {
   addTime,
   addAbout,
   addTitle,
-  addImage,
 } from './AddRecipreOperation';
 
 const initialState = {
@@ -33,8 +32,9 @@ const recipeSlice = createSlice({
     //   state.ingredients = [...state.ingredients, ...action.payload];
     // },
     addRecipePhoto: (state, action) => {
+      // console.log(action.payload);
       state.documents = action.payload;
-    }
+    },
   },
 
   extraReducers: builder => {
@@ -60,10 +60,6 @@ const recipeSlice = createSlice({
       .addCase(addTime.fulfilled, (state, action) => {
         state.time = action.payload;
       })
-      .addCase(addImage.fulfilled, (state, action) => {
-        console.log(action);
-        state.documents = action;
-      })
       .addDefaultCase(state => state);
   },
 });
@@ -78,4 +74,4 @@ const persistConfig = {
 
 export const AddrecipeReducer = persistReducer(persistConfig, recipeSlice.reducer);
 
-export const { addReciepe } = recipeSlice.actions;
+export const { addRecipePhoto } = recipeSlice.actions;
