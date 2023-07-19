@@ -94,7 +94,13 @@ export const SvgWrapper = styled.div`
   height: 24px;
 
   border-radius: 4px;
-  background-color: #8baa36;
+  background-color: ${prop => {
+    if (prop.$backgroundColor === '#EBF3D4') {
+      return '#EBF3D4';
+    } else {
+      return '#8BAA36';
+    }
+  }};
 
   @media ${media.tablet} {
     width: 38px;
@@ -202,7 +208,13 @@ export const MyRecipeBtn = styled(NavLink)`
   display: inline-block;
   padding: 6px 14px;
 
-  background-color: #8baa36;
+  background-color: ${prop => {
+    if (prop.$buttonColor === '#EBF3D4') {
+      return '#EBF3D4';
+    } else {
+      return '#22252A';
+    }
+  }};
   color: #fafafa;
   border-radius: 24px 44px;
   border: transparent;
