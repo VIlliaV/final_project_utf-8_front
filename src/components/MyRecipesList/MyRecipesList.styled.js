@@ -6,12 +6,14 @@ export const List = styled.ul`
     display: flex;
     flex-direction: column;
     margin-top: 50px
+    margin-bottom: 40px;
 
     gap: 18px;
 
     @media ${media.tablet} {
         gap: 40px;
         margin-top: 100px;
+        margin-bottom: 50px;
     }
 
     @media ${media.desktop} {
@@ -89,6 +91,8 @@ export const SvgWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 
   width: 24px;
   height: 24px;
@@ -186,6 +190,7 @@ export const MyRecipesDescription = styled.p`
   }
 
   @media ${media.desktop} {
+    min-width: 758px;
     font-size: 18px;
     line-height: 24px;
   }
@@ -215,6 +220,16 @@ export const MyRecipeBtn = styled(NavLink)`
       return '#22252A';
     }
   }};
+
+  &:hover {
+    background-color: ${prop => {
+      if (prop.$buttonColor === '#8BAA36') {
+        return '#22252A';
+      } else {
+        return '#8BAA36';
+      }
+    }};
+  }
   color: #fafafa;
   border-radius: 24px 44px;
   border: transparent;

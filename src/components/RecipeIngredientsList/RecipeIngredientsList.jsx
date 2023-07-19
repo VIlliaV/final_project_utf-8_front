@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
-  const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
+  const savedShoppingList = useSelector(shoppingList);
 
   const [checkedIngredients, setCheckedIngredients] = useState([]);
 
