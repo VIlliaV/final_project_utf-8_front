@@ -209,8 +209,8 @@ export const MyRecipeBtn = styled(NavLink)`
   padding: 6px 14px;
 
   background-color: ${prop => {
-    if (prop.$buttonColor === '#EBF3D4') {
-      return '#EBF3D4';
+    if (prop.$buttonColor === '#8BAA36') {
+      return '#8BAA36';
     } else {
       return '#22252A';
     }
