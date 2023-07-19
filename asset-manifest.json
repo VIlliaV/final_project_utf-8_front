@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/final_project_utf-8_front/static/css/main.32109e77.css",
-    "main.js": "/final_project_utf-8_front/static/js/main.2d01b7a4.js",
+    "main.js": "/final_project_utf-8_front/static/js/main.6015c80b.js",
     "static/js/570.b87461a3.chunk.js": "/final_project_utf-8_front/static/js/570.b87461a3.chunk.js",
     "static/js/589.430b47b8.chunk.js": "/final_project_utf-8_front/static/js/589.430b47b8.chunk.js",
     "static/js/454.573214f4.chunk.js": "/final_project_utf-8_front/static/js/454.573214f4.chunk.js",
-    "static/js/362.54a6fa3a.chunk.js": "/final_project_utf-8_front/static/js/362.54a6fa3a.chunk.js",
-    "static/js/929.5138d01e.chunk.js": "/final_project_utf-8_front/static/js/929.5138d01e.chunk.js",
+    "static/js/362.4dbe2ac0.chunk.js": "/final_project_utf-8_front/static/js/362.4dbe2ac0.chunk.js",
+    "static/js/929.7b66d050.chunk.js": "/final_project_utf-8_front/static/js/929.7b66d050.chunk.js",
     "static/js/238.96a48ca1.chunk.js": "/final_project_utf-8_front/static/js/238.96a48ca1.chunk.js",
     "static/js/212.75efb14e.chunk.js": "/final_project_utf-8_front/static/js/212.75efb14e.chunk.js",
     "static/js/649.7ab2a19f.chunk.js": "/final_project_utf-8_front/static/js/649.7ab2a19f.chunk.js",
     "static/js/848.3954ac7e.chunk.js": "/final_project_utf-8_front/static/js/848.3954ac7e.chunk.js",
-    "static/js/14.d2cbdc3b.chunk.js": "/final_project_utf-8_front/static/js/14.d2cbdc3b.chunk.js",
+    "static/js/14.d915d8cc.chunk.js": "/final_project_utf-8_front/static/js/14.d915d8cc.chunk.js",
     "static/js/160.24d92e62.chunk.js": "/final_project_utf-8_front/static/js/160.24d92e62.chunk.js",
     "static/js/260.7d765693.chunk.js": "/final_project_utf-8_front/static/js/260.7d765693.chunk.js",
     "static/js/48.c2e6daa0.chunk.js": "/final_project_utf-8_front/static/js/48.c2e6daa0.chunk.js",
@@ -107,17 +107,17 @@
     "static/media/authContainerBckgrndDesktop.svg": "/final_project_utf-8_front/static/media/authContainerBckgrndDesktop.d5d5440654b186017ddacb2e9f52c512.svg",
     "static/media/chevron-up.svg": "/final_project_utf-8_front/static/media/chevron-up.6c7efe19cd047dac9e6e5a497eb427ee.svg",
     "main.32109e77.css.map": "/final_project_utf-8_front/static/css/main.32109e77.css.map",
-    "main.2d01b7a4.js.map": "/final_project_utf-8_front/static/js/main.2d01b7a4.js.map",
+    "main.6015c80b.js.map": "/final_project_utf-8_front/static/js/main.6015c80b.js.map",
     "570.b87461a3.chunk.js.map": "/final_project_utf-8_front/static/js/570.b87461a3.chunk.js.map",
     "589.430b47b8.chunk.js.map": "/final_project_utf-8_front/static/js/589.430b47b8.chunk.js.map",
     "454.573214f4.chunk.js.map": "/final_project_utf-8_front/static/js/454.573214f4.chunk.js.map",
-    "362.54a6fa3a.chunk.js.map": "/final_project_utf-8_front/static/js/362.54a6fa3a.chunk.js.map",
-    "929.5138d01e.chunk.js.map": "/final_project_utf-8_front/static/js/929.5138d01e.chunk.js.map",
+    "362.4dbe2ac0.chunk.js.map": "/final_project_utf-8_front/static/js/362.4dbe2ac0.chunk.js.map",
+    "929.7b66d050.chunk.js.map": "/final_project_utf-8_front/static/js/929.7b66d050.chunk.js.map",
     "238.96a48ca1.chunk.js.map": "/final_project_utf-8_front/static/js/238.96a48ca1.chunk.js.map",
     "212.75efb14e.chunk.js.map": "/final_project_utf-8_front/static/js/212.75efb14e.chunk.js.map",
     "649.7ab2a19f.chunk.js.map": "/final_project_utf-8_front/static/js/649.7ab2a19f.chunk.js.map",
     "848.3954ac7e.chunk.js.map": "/final_project_utf-8_front/static/js/848.3954ac7e.chunk.js.map",
-    "14.d2cbdc3b.chunk.js.map": "/final_project_utf-8_front/static/js/14.d2cbdc3b.chunk.js.map",
+    "14.d915d8cc.chunk.js.map": "/final_project_utf-8_front/static/js/14.d915d8cc.chunk.js.map",
     "160.24d92e62.chunk.js.map": "/final_project_utf-8_front/static/js/160.24d92e62.chunk.js.map",
     "260.7d765693.chunk.js.map": "/final_project_utf-8_front/static/js/260.7d765693.chunk.js.map",
     "48.c2e6daa0.chunk.js.map": "/final_project_utf-8_front/static/js/48.c2e6daa0.chunk.js.map",
@@ -131,6 +131,6 @@
   },
   "entrypoints": [
     "static/css/main.32109e77.css",
-    "static/js/main.2d01b7a4.js"
+    "static/js/main.6015c80b.js"
   ]
 }
