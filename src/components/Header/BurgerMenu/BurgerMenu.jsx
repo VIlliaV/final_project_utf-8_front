@@ -4,11 +4,16 @@ import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitch';
 import { useAuth } from 'utils/hooks/useAuth';
 
 const BurgerMenu = () => {
-    const [menuVisible, setMenuVisible] = useState(false);
+	const [menuVisible, setMenuVisible] = useState(() => {
+		const savedMenuVisible = localStorage.getItem('burgerMenuVisible');
+		return savedMenuVisible ? JSON.parse(savedMenuVisible) : false;
+	});
 
-    const handleToggleMenu = () => {
-        setMenuVisible(!menuVisible);
-    };
+	const handleToggleMenu = () => {
+		const newMenuVisible = !menuVisible;
+		setMenuVisible(newMenuVisible);
+		localStorage.setItem('burgerMenuVisible', JSON.stringify(newMenuVisible));
+	};
 
     const handleLinkClick = () => {
         setMenuVisible(false);
