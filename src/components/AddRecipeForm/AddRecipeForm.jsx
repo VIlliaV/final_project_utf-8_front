@@ -31,20 +31,8 @@ export const AddRecipeForm = () => {
     },
   ];
 
-  // const onSubmit = e => {
-  //   e.preventDefault();
-  //   toast('true');
-  //   console.log(cookTime);
-  //   console.log('category>>>', category);
-  //   console.log(about);
-  //   console.log(title);
-  //   console.log(photo);
-  //   console.log(preparation);
-  // };
-
   const onSubmit = e => {
     e.preventDefault();
-    // console.log(ingredients);
     const formData = new FormData();
     formData.append('documents', photo);
     formData.append('title', title);
@@ -52,7 +40,12 @@ export const AddRecipeForm = () => {
     formData.append('instructions', preparation);
     formData.append('description', about);
     formData.append('time', cookTime);
-    // formData.append('ingredients', JSON.stringify(ingredients));
+    formData.append('ingredients', JSON.stringify(ingredients));
+    const formDataObject = {};
+    for (const [key, value] of formData.entries()) {
+      formDataObject[key] = value;
+    }
+    console.log(formDataObject);
     dispatch(addRecipe(formData));
   };
 

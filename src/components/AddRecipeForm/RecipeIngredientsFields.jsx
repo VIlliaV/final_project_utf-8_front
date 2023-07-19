@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
+import Loader from '../Loader/Loader';
 import { nanoid } from 'nanoid';
+import { CircularProgress, TextField } from '@mui/material';
 import { StyledInputBtn, StyledButtonGroup, StyledSection2, StyledH3 } from './AddRecipeForm.styled';
-import IngredientList from './Ingradients_list';
+import {
+  StyledAutoComplete,
+  StyledInputIngredient,
+  StyledIngredientBtn,
+  StyledIngredientList,
+} from './AddRecipeForm.styled';
+import { AllIngredients } from 'components/AddRecipeForm/redux/AddRecipeSelector';
 
 export default function RecipeIngredientsFields() {
+  const ingredients = useSelector(AllIngredients);
   const [counter, setCounter] = useState(1);
-  const [loadLocale, setLoadLocale] = useState([]);
-
+  // const [loadLocale, setLoadLocale] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([{ id: nanoid(), _id: '', name: '', measure: '' }]);
-  let tmp = [];
+  let searchItem = [];
 
-  function loadFromLocale(key) {
-    try {
-      const serializedState = localStorage.getItem(key);
-      return serializedState === null ? undefined : JSON.parse(serializedState);
-    } catch (error) {
-      toast.error('Get state error: ', error.message);
-    }
-  }
+  const loading = ingredients.length === 0;
 
-  useEffect(() => {
-    tmp = loadFromLocale(IngredientList);
-    console.log(tmp);
-  }, []);
+  // function loadFromLocale(key) {
+  //   try {
+  //     const serializedState = localStorage.getItem(key);
+  //     return serializedState === null ? undefined : JSON.parse(serializedState);
+  //   } catch (error) {
+  //     toast.error('Get state error: ', error.message);
+  //   }
+  // }
 
   // useEffect(() => {
   //   setLoadLocale(loadFromLocale('ingredientsList'));
@@ -67,7 +73,26 @@ export default function RecipeIngredientsFields() {
     localStorage.setItem('ingredientCount', counter);
   };
 
-  console.log(counter);
+  const handleChangeIngredient = event => {
+    searchItem.name = event.currentTarget.textContent;
+    const currentId = ingredients.find(el => el.name === searchItem.name);
+    searchItem._id = currentId._id;
+    localStorage.setItem('IngredientList', JSON.stringify(ingredientList));
+  };
+
+  const handleChangeMeaure = event => {
+    searchItem.measure = event.currentTarget.value;
+    localStorage.setItem('IngredientList', JSON.stringify(ingredientList));
+  };
+
+  const handleChangeItem = event => {
+    searchItem = ingredientList.find(options => options.id === event.currentTarget.id);
+    if (event.target.name === 'btnDelete') {
+      if (counterItem > 1) {
+        counter();
+      } else throw toast.error("this items don't remove");
+    }
+  };
 
   return (
     <>
@@ -108,37 +133,54 @@ export default function RecipeIngredientsFields() {
         </StyledButtonGroup>
 
         <ul name="detailIngrediantList">
-          {counter === 1
-            ? ingredientsList.map(el => (
-                <IngredientList
-                  id={el.id}
-                  key={nanoid()}
-                  ingredientList={ingredientsList}
-                  counter={handleDecrement}
-                  counterItem={counter}
-                />
-              ))
-            : loadLocale > 0
-            ? ingredientsList.map(el => (
-                <IngredientList
-                  id={el.id}
-                  key={nanoid()}
-                  ingredientList={ingredientsList}
-                  counter={handleDecrement}
-                  counterItem={counter}
-                  el={el}
-                />
-              ))
-            : toast.error('nothings in localStorage')}
-          {/*      
-            // <IngredientList
-            //   id={el.id}
-            //   key={nanoid()}
-            //   ingredientList={el}
-            //   counter={handleDecrement}
-            //   counterItem={counter}
-            //   el={el}
-            // /> */}
+          {ingredientsList.map(el => (
+            <li key={nanoid()} id={id} name="ingredient" onClick={handleChangeItem}>
+              <StyledIngredientList>
+                {ingredients.length > 0 ? (
+                  <>
+                    <StyledAutoComplete
+                      // disablePortal
+                      disableClearable
+                      name="ingredientsName"
+                      id="ingredientsName"
+                      ListboxProps={{ style: { maxHeight: 220 } }}
+                      isOptionEqualToValue={(option, value) => option === value}
+                      // defaultValue={el.name}
+                      getOptionLabel={option => option}
+                      onChange={handleChangeIngredient}
+                      options={ingredients.map(el => el.name)}
+                      loading={loading}
+                      renderInput={params => (
+                        <TextField
+                          {...params}
+                          label="Ingredients"
+                          InputProps={{
+                            ...params.InputProps,
+                            endAdornment: (
+                              <React.Fragment>
+                                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                                {params.InputProps.endAdornment}
+                              </React.Fragment>
+                            ),
+                          }}
+                        />
+                      )}
+                    />
+                    <StyledInputIngredient
+                      name="measure"
+                      // defaultValue={el.measure}
+                      onChange={handleChangeMeaure}
+                      type="text"
+                      placeholder="count tbs,tps,kg,g"
+                    />
+                    <StyledIngredientBtn name="btnDelete">X</StyledIngredientBtn>
+                  </>
+                ) : (
+                  <Loader />
+                )}
+              </StyledIngredientList>
+            </li>
+          ))}
         </ul>
       </StyledSection2>
     </>
