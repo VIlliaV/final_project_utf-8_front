@@ -22,25 +22,29 @@ import { deleteFavorite, fetchFavorites } from 'redux/favorites/favoritesOperati
 import { useDispatch, useSelector } from 'react-redux';
 import Paginator from 'components/Paginator/Paginator';
 import { favoritesSelector } from 'redux/favorites/favoritesSelector';
-import { fetchMyRecipes } from 'redux/myRecipes/myRecipesOperations';
+import { deleteMyRecipes, fetchMyRecipes } from 'redux/myRecipes/myRecipesOperations';
 import { myRecipesSelector } from 'redux/myRecipes/myRecipesSelector';
 import NoResult from 'components/NoResult/NoResult';
+import { useAuth } from 'utils/hooks/useAuth';
 
 export const MyRecipesList = ({ page }) => {
+  const { isThemeToggle } = useAuth();
   const { favorites } = useSelector(favoritesSelector);
   const { myRecipes } = useSelector(myRecipesSelector);
   const [isDeleting, setIsDeleting] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (page === 'Favorites' && !isDeleting) {
-      dispatch(fetchFavorites());
-    } else if (page === 'My recipes' && !isDeleting) {
-      dispatch(fetchMyRecipes());
+    if (isDeleting && page === 'Favorites') {
+      dispatch(deleteFavorite(isDeleting));
+    } else if (isDeleting && page === 'My recipes') {
+      dispatch(deleteMyRecipes);
     }
 
-    if (isDeleting) {
-      dispatch(deleteFavorite(isDeleting));
+    if (page === 'Favorites') {
+      dispatch(fetchFavorites());
+    } else if (page === 'My recipes') {
+      dispatch(fetchMyRecipes());
     }
   }, [dispatch, page, isDeleting]);
 
@@ -50,11 +54,14 @@ export const MyRecipesList = ({ page }) => {
   let backgroundColor = '';
   let buttonsColor = '';
 
-  if (page === 'Favorites') {
+  if (page === 'Favorites' && isThemeToggle) {
     backgroundColor = '#EBF3D4';
     buttonsColor = '#22252A';
-  } else {
+  } else if (page === 'My recipes' && isThemeToggle) {
     backgroundColor = '#8BAA36';
+    buttonsColor = '#8BAA36';
+  } else {
+    backgroundColor = '#1E1F28';
     buttonsColor = '#8BAA36';
   }
 
@@ -82,7 +89,7 @@ export const MyRecipesList = ({ page }) => {
                           onDeleteBtnClick(_id);
                         }}
                       >
-                        <TrashIcon src={page === 'Favorites' ? trashIconBlack : trashIconWhite} />
+                        <TrashIcon src={page === 'Favorites' && isThemeToggle ? trashIconBlack : trashIconWhite} />
                       </SvgWrapper>
                     </TitleIconWrapper>
                     <MyRecipesDescription>{description}</MyRecipesDescription>
