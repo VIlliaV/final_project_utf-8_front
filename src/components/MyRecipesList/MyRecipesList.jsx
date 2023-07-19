@@ -28,6 +28,7 @@ import NoResult from 'components/NoResult/NoResult';
 import { useAuth } from 'utils/hooks/useAuth';
 
 export const MyRecipesList = ({ page }) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const { isThemeToggle } = useAuth();
   const { favorites } = useSelector(favoritesSelector);
   const { myRecipes } = useSelector(myRecipesSelector);
@@ -37,16 +38,18 @@ export const MyRecipesList = ({ page }) => {
   useEffect(() => {
     if (isDeleting && page === 'Favorites') {
       dispatch(deleteFavorite(isDeleting));
+      setIsDeleting('');
     } else if (isDeleting && page === 'My recipes') {
       dispatch(deleteMyRecipes);
+      setIsDeleting('');
     }
 
     if (page === 'Favorites') {
-      dispatch(fetchFavorites());
+      dispatch(fetchFavorites(currentPage));
     } else if (page === 'My recipes') {
       dispatch(fetchMyRecipes());
     }
-  }, [dispatch, page, isDeleting]);
+  }, [dispatch, page, isDeleting, currentPage]);
 
   const onDeleteBtnClick = id => {
     setIsDeleting(id);
@@ -69,7 +72,7 @@ export const MyRecipesList = ({ page }) => {
     <HeadContainer>
       <MainPageTitle title={page} />
       <List>
-        {(page === 'Favorites' && favorites?.favorites?.length === 0) ||
+        {(page === 'Favorites' && favorites.favorites?.length === 0) ||
         (page === 'My recipes' && myRecipes.length === 0) ? (
           <NoResult />
         ) : page === 'Favorites' && favorites.favorites ? (
@@ -134,7 +137,13 @@ export const MyRecipesList = ({ page }) => {
           })
         )}
       </List>
-      <Paginator totalPage={favorites.totalPages} page={1} setCurrentPage={1} />
+      {
+        <Paginator
+          totalPage={page === 'Favorites' ? favorites.totalPages : myRecipes.totalPage}
+          page={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      }
     </HeadContainer>
   );
 };
