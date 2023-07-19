@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/final_project_utf-8_front/static/css/main.32109e77.css",
-    "main.js": "/final_project_utf-8_front/static/js/main.31a815e3.js",
+    "main.js": "/final_project_utf-8_front/static/js/main.9f0a4422.js",
     "static/js/570.4a79cdcf.chunk.js": "/final_project_utf-8_front/static/js/570.4a79cdcf.chunk.js",
     "static/js/589.430b47b8.chunk.js": "/final_project_utf-8_front/static/js/589.430b47b8.chunk.js",
     "static/js/454.573214f4.chunk.js": "/final_project_utf-8_front/static/js/454.573214f4.chunk.js",
@@ -9,7 +9,7 @@
     "static/js/929.40549cb5.chunk.js": "/final_project_utf-8_front/static/js/929.40549cb5.chunk.js",
     "static/js/238.f7817287.chunk.js": "/final_project_utf-8_front/static/js/238.f7817287.chunk.js",
     "static/js/212.d48728c1.chunk.js": "/final_project_utf-8_front/static/js/212.d48728c1.chunk.js",
-    "static/js/447.ffe8b0b6.chunk.js": "/final_project_utf-8_front/static/js/447.ffe8b0b6.chunk.js",
+    "static/js/383.6ccad288.chunk.js": "/final_project_utf-8_front/static/js/383.6ccad288.chunk.js",
     "static/js/848.015e6125.chunk.js": "/final_project_utf-8_front/static/js/848.015e6125.chunk.js",
     "static/js/686.2fa718f9.chunk.js": "/final_project_utf-8_front/static/js/686.2fa718f9.chunk.js",
     "static/js/160.1c87bc7b.chunk.js": "/final_project_utf-8_front/static/js/160.1c87bc7b.chunk.js",
@@ -29,22 +29,20 @@
     "static/media/welcomePageBackground-Tablet.png": "/final_project_utf-8_front/static/media/welcomePageBackground-Tablet.21dbae2d07c0c4e14ee8.png",
     "static/media/main-spinach-desktop@2x.png": "/final_project_utf-8_front/static/media/main-spinach-desktop@2x.11e6e2ff3375e0edb774.png",
     "static/media/plate-desktop@2x.png": "/final_project_utf-8_front/static/media/plate-desktop@2x.896badeff1b7379fed02.png",
-    "static/media/assortment-vegetables-desk.png": "/final_project_utf-8_front/static/media/assortment-vegetables-desk.8f180617b24c1a6bfe27.png",
     "static/media/kisspng-pasta.desktop@2x.png": "/final_project_utf-8_front/static/media/kisspng-pasta.desktop@2x.89c4b164e55f3c85d879.png",
     "static/media/plate-tablet@2x.png": "/final_project_utf-8_front/static/media/plate-tablet@2x.740a06475c15a7421a58.png",
+    "static/media/assortment-vegetables.jpg": "/final_project_utf-8_front/static/media/assortment-vegetables.c87168b62ca4de92536b.jpg",
     "static/media/main-spinach-tablet@2x.png": "/final_project_utf-8_front/static/media/main-spinach-tablet@2x.1f3b691668bf7ade1ade.png",
     "static/media/plate-mobile@2x.png": "/final_project_utf-8_front/static/media/plate-mobile@2x.bb205abf4a797570f1ef.png",
     "static/media/welcomePageBackground-Mobile.png": "/final_project_utf-8_front/static/media/welcomePageBackground-Mobile.70fd5a8fb421e58fe1bf.png",
     "static/media/main-spinach-mobile@2x.png": "/final_project_utf-8_front/static/media/main-spinach-mobile@2x.8317127cbf5fedc12b1d.png",
     "static/media/kisspng-pasta.tablet@2x.png": "/final_project_utf-8_front/static/media/kisspng-pasta.tablet@2x.54c938985beb8b29470b.png",
     "static/media/plate-desktop.png": "/final_project_utf-8_front/static/media/plate-desktop.9d9e6d0ee8b3f0030879.png",
-    "static/media/assortment-vegetables-tab.png": "/final_project_utf-8_front/static/media/assortment-vegetables-tab.f1f4575ac83d98b09ac1.png",
     "static/media/main-spinach-desktop.png": "/final_project_utf-8_front/static/media/main-spinach-desktop.86538bcbe15b077c69b5.png",
     "static/media/kisspng-pasta-spinach-dip-english-muffin-breakfast-sandwic-desk@2x.png": "/final_project_utf-8_front/static/media/kisspng-pasta-spinach-dip-english-muffin-breakfast-sandwic-desk@2x.348e5b2db380f7121013.png",
     "static/media/kisspng-pasta.desktop.png": "/final_project_utf-8_front/static/media/kisspng-pasta.desktop.4ed776f3b00d2495d4bd.png",
     "static/media/plate-tablet.png": "/final_project_utf-8_front/static/media/plate-tablet.57329ba675e2aee976f3.png",
     "static/media/kisspng-pasta.mob@2x.png": "/final_project_utf-8_front/static/media/kisspng-pasta.mob@2x.672803031abe65ed772d.png",
-    "static/media/assortment-vegetables-mobile.png": "/final_project_utf-8_front/static/media/assortment-vegetables-mobile.1598053b7a1587fb46e7.png",
     "static/media/main-spinach-tablet.png": "/final_project_utf-8_front/static/media/main-spinach-tablet.a0e52e6b76ef1d44b22d.png",
     "static/media/plate-mobile.png": "/final_project_utf-8_front/static/media/plate-mobile.68662c8f1c68a847ec01.png",
     "static/media/spinach-desktop@2x.png": "/final_project_utf-8_front/static/media/spinach-desktop@2x.f3d3ccd491c2ffdbe064.png",
@@ -104,7 +102,7 @@
     "static/media/authContainerBckgrndDesktop.svg": "/final_project_utf-8_front/static/media/authContainerBckgrndDesktop.d5d5440654b186017ddacb2e9f52c512.svg",
     "static/media/chevron-up.svg": "/final_project_utf-8_front/static/media/chevron-up.6c7efe19cd047dac9e6e5a497eb427ee.svg",
     "main.32109e77.css.map": "/final_project_utf-8_front/static/css/main.32109e77.css.map",
-    "main.31a815e3.js.map": "/final_project_utf-8_front/static/js/main.31a815e3.js.map",
+    "main.9f0a4422.js.map": "/final_project_utf-8_front/static/js/main.9f0a4422.js.map",
     "570.4a79cdcf.chunk.js.map": "/final_project_utf-8_front/static/js/570.4a79cdcf.chunk.js.map",
     "589.430b47b8.chunk.js.map": "/final_project_utf-8_front/static/js/589.430b47b8.chunk.js.map",
     "454.573214f4.chunk.js.map": "/final_project_utf-8_front/static/js/454.573214f4.chunk.js.map",
@@ -112,7 +110,7 @@
     "929.40549cb5.chunk.js.map": "/final_project_utf-8_front/static/js/929.40549cb5.chunk.js.map",
     "238.f7817287.chunk.js.map": "/final_project_utf-8_front/static/js/238.f7817287.chunk.js.map",
     "212.d48728c1.chunk.js.map": "/final_project_utf-8_front/static/js/212.d48728c1.chunk.js.map",
-    "447.ffe8b0b6.chunk.js.map": "/final_project_utf-8_front/static/js/447.ffe8b0b6.chunk.js.map",
+    "383.6ccad288.chunk.js.map": "/final_project_utf-8_front/static/js/383.6ccad288.chunk.js.map",
     "848.015e6125.chunk.js.map": "/final_project_utf-8_front/static/js/848.015e6125.chunk.js.map",
     "686.2fa718f9.chunk.js.map": "/final_project_utf-8_front/static/js/686.2fa718f9.chunk.js.map",
     "160.1c87bc7b.chunk.js.map": "/final_project_utf-8_front/static/js/160.1c87bc7b.chunk.js.map",
@@ -128,6 +126,6 @@
   },
   "entrypoints": [
     "static/css/main.32109e77.css",
-    "static/js/main.31a815e3.js"
+    "static/js/main.9f0a4422.js"
   ]
 }
