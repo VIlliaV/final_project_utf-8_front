@@ -13,24 +13,26 @@ import {
 } from './AddRecipeForm.styled';
 import { AllIngredients } from './redux/AddRecipeSelector';
 
-export default function IngredientsList({ counter, counterItem, id, ingredientList }) {
+export default function IngredientsList({ counter, counterItem, id, ingredientList, el }) {
   let searchItem = [];
 
   const ingredients = useSelector(AllIngredients);
 
   const loading = ingredients.length === 0;
 
+  console.log('el', el);
+  console.log('counterItem', counterItem);
+
   const handleChangeIngredient = event => {
     searchItem.name = event.currentTarget.textContent;
     const currentId = ingredients.find(el => el.name === searchItem.name);
     searchItem._id = currentId._id;
+    localStorage.setItem('IngredientList', JSON.stringify(ingredientList));
   };
 
   const handleChangeMeaure = event => {
-    // console.log(event.currentTarget.value);
     searchItem.measure = event.currentTarget.value;
-    // console.log(ingredientList);
-    // dispatch(addReciepe(ingredientList));
+    localStorage.setItem('IngredientList', JSON.stringify(ingredientList));
   };
 
   const handleChangeItem = event => {
@@ -50,11 +52,13 @@ export default function IngredientsList({ counter, counterItem, id, ingredientLi
           {ingredients.length > 0 ? (
             <>
               <StyledAutoComplete
-                disablePortal
+                // disablePortal
+                disableClearable
                 name="ingredientsName"
                 id="ingredientsName"
                 ListboxProps={{ style: { maxHeight: 220 } }}
-                // isOptionEqualToValue={(option, value) => option === value}
+                isOptionEqualToValue={(option, value) => option === value}
+                // defaultValue={el.name}
                 getOptionLabel={option => option}
                 onChange={handleChangeIngredient}
                 options={ingredients.map(el => el.name)}
@@ -77,6 +81,7 @@ export default function IngredientsList({ counter, counterItem, id, ingredientLi
               />
               <StyledInputIngredient
                 name="measure"
+                // defaultValue={el.measure}
                 onChange={handleChangeMeaure}
                 type="text"
                 placeholder="count tbs,tps,kg,g"

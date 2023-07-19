@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
-
+import { addImage } from './redux/AddRecipreOperation';
+import { useDispatch } from 'react-redux';
 import backgroundUploadImg from '../../img/image.jpg';
 import { ImageSrc, StyledInpytImg } from './AddRecipeForm.styled';
 
 export const FileInput = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (selectedImage) {
       setImageUrl(URL.createObjectURL(selectedImage));
     } else setImageUrl(backgroundUploadImg);
-  }, [selectedImage]);
+    console.log('selectedImage', selectedImage);
+    // console.log('imageUrl', imageUrl);
+    dispatch(addImage(imageUrl));
+  }, [dispatch, selectedImage]);
 
   return (
     <StyledInpytImg>

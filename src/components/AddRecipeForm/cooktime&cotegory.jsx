@@ -1,24 +1,26 @@
-import { useSelector } from 'react-redux';
-// import toast from 'react-hot-toast';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+// import toast from 'react-hot-toast';
 import { TextField } from '@mui/material';
-// import categories from '../../back/categories.json';
 import { StyledAutoCategory, StyledLabelCategory } from './AddRecipeForm.styled';
-import { AllCategories } from './redux/AddRecipeSelector';
-import { addСategory, addTime } from './redux/AddRecipreOperation';
+import { addСategory, addTime, getCategories } from './redux/AddRecipreOperation';
 
 export default function CookCategoryGroup() {
-  const categories = useSelector(AllCategories);
-
+  const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
+  let cooking_time = [];
 
-  const coocking_time = [];
+  useEffect(() => {
+    dispatch(getCategories()).then(res => {
+      setCategories(res.payload);
+    });
+  }, [dispatch]);
 
-  const addCookTime = () => {
+  useEffect(() => {
     for (let i = 5; i <= 180; i = i + 5) {
-      coocking_time.push(i.toString());
+      cooking_time.push(i.toString());
     }
-  };
+  });
 
   const handleChangeCategory = event => {
     const category = event.target.textContent;
@@ -29,8 +31,6 @@ export default function CookCategoryGroup() {
     dispatch(addTime(cookTime));
   };
 
-  addCookTime();
-
   return (
     <>
       <StyledLabelCategory htmlFor="category">
@@ -38,7 +38,6 @@ export default function CookCategoryGroup() {
         <StyledAutoCategory
           disablePortal
           id="category"
-          // value={category}
           onChange={handleChangeCategory}
           ListboxProps={{ style: { maxHeight: 220 } }}
           options={categories}
@@ -51,10 +50,9 @@ export default function CookCategoryGroup() {
           disablePortal
           id="coocking_time"
           onChange={handleChangeCookTime}
-          // value={cookTime}
           ListboxProps={{ style: { maxHeight: 220 } }}
-          options={coocking_time}
-          renderInput={params => <TextField {...params} label="Coocking time" />}
+          options={cooking_time}
+          renderInput={params => <TextField {...params} label="Cooking time" />}
         />
       </StyledLabelCategory>
     </>

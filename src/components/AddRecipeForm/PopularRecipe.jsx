@@ -44,7 +44,7 @@ export default function Popular() {
           popular.map(el => {
             return (
               <StyledList key={nanoid()} id={el._id}>
-                <a href={el.youtube} alt={el.title}>
+                <a href={el.youtube} alt={el.title} rel="noopener noreferrer" target="_blank">
                   <img src={el.thumb} alt={el.title} />
                   <div>
                     <h4>{el.title}</h4>

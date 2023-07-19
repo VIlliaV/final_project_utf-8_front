@@ -5,15 +5,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   getCategories,
   getIngredients,
-  addIngredientRecipe,
+  addPreparation,
   addСategory,
   addTime,
   addAbout,
   addTitle,
+  addImage,
 } from './AddRecipreOperation';
 
 const initialState = {
-  // documents: URL
+  documents: null,
   title: null,
   description: null,
   category: null,
@@ -44,6 +45,9 @@ const recipeSlice = createSlice({
       .addCase(addAbout.fulfilled, (state, action) => {
         state.description = action.payload;
       })
+      .addCase(addPreparation.fulfilled, (state, action) => {
+        state.instructions = action.payload;
+      })
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.allIngredients = action.payload;
       })
@@ -53,29 +57,10 @@ const recipeSlice = createSlice({
       .addCase(addTime.fulfilled, (state, action) => {
         state.time = action.payload;
       })
-      .addCase(addIngredientRecipe.fulfilled, (state, action) => {
-        console.log(state.ingredients);
-        console.log(action.payload);
-        state.ingredients = action.payload;
+      .addCase(addImage.fulfilled, (state, action) => {
+        console.log(action);
+        state.documents = action;
       })
-      // .addCase(addСategory.fulfilled, (state, action) => {
-      //   state.category = action.payload;
-      // })
-      // .addCase(addTime.fulfilled, (state, action) => {
-      //   state.time = action.payload;
-      // })
-
-      // .addCase(loginUser.fulfilled, (state, action) => {
-      //   state.user = action.payload.user;
-      //   state.token = action.payload.token;
-      //   state.isLoggedIn = true;
-      //   state.isRefreshing = false;
-      //   state.errorMessage = null;
-      // })
-      // .addCase(loginUser.rejected, (state, action) => {
-      //   state.isRefreshing = false;
-      //   state.errorMessage = action.payload.response.data.message;
-      // })
       .addDefaultCase(state => state);
   },
 });
