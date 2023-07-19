@@ -1,6 +1,5 @@
 import { keyframes, styled } from 'styled-components';
 import { media } from 'utils/media';
-
 import { ReactComponent as PlusIconSVG } from './img/plus.svg';
 
 export const fadeIn = keyframes`

@@ -26,7 +26,7 @@ const AvatarButtonComponent = ({ shouldChangeStyle }) => {
     setShowPopupEdit(newState);
   };
 
-  useEffect(() => {
+  useEffect(() => {   // for checking width info and changing styles at avatar text
     function handleResize() {
       setScreenWidth(window.innerWidth);
     }
@@ -38,7 +38,7 @@ const AvatarButtonComponent = ({ shouldChangeStyle }) => {
 
   return (
     <AvatarButton>
-      <ButtonRadius onClick={() => setShowPopup(prevState => !prevState)} ref={buttonRef}>
+      <ButtonRadius onClick={() => setShowPopup(true)} ref={buttonRef}>
         <img src={userAvatar} alt="Avatar" style={{ borderRadius: '50%' }} />
       </ButtonRadius>
       <MainPopup

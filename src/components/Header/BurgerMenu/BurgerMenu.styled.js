@@ -1,8 +1,13 @@
+import { styled } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { media } from 'utils/media';
 import { ReactComponent as MenuIconSvg } from './img/menu.svg';
 import { ReactComponent as CloseIconSVG } from './img/x.svg';
-const { styled } = require('styled-components');
+
+import burgurMob from './img/kisspng-mobile.png';
+import burgurTab from './img/kisspng-tablet.png';
+import burgurMob2 from './img/kisspng@2x.png';
+import burgurTab2 from './img/kisspng-tablet@2x.png';
 
 export const BurgerMenuContainer = styled.div`
   position: relative;
@@ -13,7 +18,6 @@ export const BurgerIcon = styled.div`
   display: flex;
   font-size: 24px;
   cursor: pointer;
-
   stroke: white;
 `;
 
@@ -34,6 +38,32 @@ export const Menu = styled.div`
   }
 
   background-color: var(--back_second_2);
+
+  background-image: url(${burgurMob});
+  background-position: top 0px left 0px; 
+  background-repeat: no-repeat; 
+  background-size: 360px auto;
+
+  @media ${media.mobile + media.retina} {
+    background-image: url(${burgurMob2});
+    background-position: right 10px bottom -10px;
+    background-repeat: no-repeat;
+    background-size: 360px auto;
+  }
+
+  @media ${media.tablet} {
+    background-image: url(${burgurTab});
+    background-position: right 0px bottom 0px;
+    background-repeat: no-repeat;
+    background-size: 558px auto;
+  }
+
+  @media ${media.tablet + media.retina} {
+    background-image: url(${burgurTab2});
+    background-position: right 0px bottom 0px;
+    background-repeat: no-repeat;
+    background-size: 558px auto;
+  }
 `;
 
 export const CloseButton = styled.div`

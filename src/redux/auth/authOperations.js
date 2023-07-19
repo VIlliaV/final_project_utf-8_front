@@ -101,7 +101,6 @@ export const themeToggle = createAsyncThunk('users/theme', async (_, thunkAPI) =
 });
 
 export const updateUser = createAsyncThunk('users/update', async (data, thunkAPI) => {
-
   const accessToken = localStorage.getItem('accessToken');
 
   axiosInstance.headers = {
