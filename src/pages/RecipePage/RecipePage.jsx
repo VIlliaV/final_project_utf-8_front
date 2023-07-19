@@ -80,14 +80,8 @@ function RecipePage() {
         recipeId,
       };
 
-      // const isElementAlreadyExist = savedShoppingList.find(ingredient => {
-      //   return ingredient.uniqId === uniqId;
-      // });
-
       if (isChecked) {
-        // if (!isElementAlreadyExist) {
         dispatch(shoppingListAdd(addIngredient));
-        // }
       } else {
         dispatch(shoppingListRemove(uniqId));
       }
@@ -98,16 +92,15 @@ function RecipePage() {
     <div>
       {recipe && (
         <>
+          <RecipePageHero
+            title={recipe.title}
+            description={recipe.description}
+            time={recipe.time}
+            isFavorite={isFavorite}
+            addToFavorite={addToFavorite}
+            removeFromFavorite={removeFromFavorite}
+          />
           <HeadContainer>
-            <RecipePageHero
-              title={recipe.title}
-              description={recipe.description}
-              time={recipe.time}
-              isFavorite={isFavorite}
-              addToFavorite={addToFavorite}
-              removeFromFavorite={removeFromFavorite}
-            />
-
             <Wrapper>
               <RecipeIngredientsList
                 recipe={recipe}

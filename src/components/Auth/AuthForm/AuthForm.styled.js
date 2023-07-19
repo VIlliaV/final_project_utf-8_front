@@ -103,7 +103,6 @@ export const FormContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
-  box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
   background-color: transparent;
 
   @media ${media.mobile} {
@@ -131,6 +130,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   padding: 32px 28px 40px;
   background-color: #2a2c36;
+  box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
 
   @media ${media.tablet} {
     padding: 44px 50px;
@@ -279,6 +279,7 @@ export const Link = styled.a`
   color: #fafafa;
   cursor: pointer;
   text-decoration: underline;
+  opacity: 0.7;
 
   font-size: 14px;
   font-style: normal;
@@ -287,6 +288,11 @@ export const Link = styled.a`
 
   @media ${media.tablet} {
     font-size: 16px;
+  }
+
+  &:hover {
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   }
 `;
 

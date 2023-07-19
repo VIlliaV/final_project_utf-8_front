@@ -31,7 +31,8 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
+    const accessToken = localStorage.getItem('accessToken');
+    accessToken && dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   useEffect(() => {

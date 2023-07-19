@@ -65,5 +65,4 @@ const shoppingListSlice = createSlice({
   },
 });
 
-// export const { toggleIngredient } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;

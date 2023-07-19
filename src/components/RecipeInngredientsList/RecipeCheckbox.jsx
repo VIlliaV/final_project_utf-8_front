@@ -1,4 +1,12 @@
-import { ListItem, Image, Name, MeasureWrapper, Measure, CheckboxInput } from './RecipeIngredientsList.styled';
+import {
+  ListItem,
+  RILImageWrapper,
+  RILImage,
+  Name,
+  MeasureWrapper,
+  Measure,
+  CheckboxInput,
+} from './RecipeIngredientsList.styled';
 import { useAuth } from 'utils/hooks/useAuth';
 import SvgIcon from '@mui/material/SvgIcon';
 
@@ -8,25 +16,29 @@ import defaultImgDesktop from 'img/Stub_Recipe_Desktop.jpg';
 
 export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, isChecked }) => {
   const { isThemeToggle } = useAuth(); //?
+  const {
+    id: { _id: ingredientId, img, name },
+  } = ingredient;
 
   const handle = event => {
-    handleCheckboxChange(ingredient.id._id, event.target.checked, `${recipeId}_${ingredient.id._id}`, recipeId);
+    handleCheckboxChange(ingredientId, event.target.checked, `${recipeId}_${ingredientId}`, recipeId);
   };
 
   return (
-    <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
-      <Image
-        src={ingredient.id.img}
-        alt={ingredient.id.name}
-        $defaultImgMobile={defaultImgMobile}
-        $defaultImgTablet={defaultImgTablet}
-        $defaultImgDesktop={defaultImgDesktop}
-      />
-      <Name datatype={isThemeToggle.toString()}>{ingredient.id.name}</Name>
+    <ListItem key={`${recipeId}_${ingredientId}`} datatype={isThemeToggle.toString()}>
+      <RILImageWrapper>
+        <RILImage
+          src={img}
+          alt={name}
+          $defaultImgMobile={defaultImgMobile}
+          $defaultImgTablet={defaultImgTablet}
+          $defaultImgDesktop={defaultImgDesktop}
+        />
+      </RILImageWrapper>
+      <Name datatype={isThemeToggle.toString()}>{name}</Name>
       <MeasureWrapper>
         <Measure>{ingredient.measure} </Measure>
       </MeasureWrapper>
-
       <CheckboxInput
         checked={isChecked}
         onChange={event => {

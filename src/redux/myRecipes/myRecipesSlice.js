@@ -5,7 +5,7 @@ const myRecipesSlice = createSlice({
   name: 'myRecipes',
 
   initialState: {
-    favorites: [],
+    myRecipes: [],
     isLoading: false,
     error: null,
   },

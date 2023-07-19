@@ -1,4 +1,11 @@
-import { SLItem, SlItemAmount, SLItemImage, SLItemImageName, SLItemRemove } from './IngredientsShoppingList.styled';
+import {
+  SLItem,
+  SlItemAmount,
+  SLImageWrapper,
+  SLItemImage,
+  SLItemImageName,
+  SLItemRemove,
+} from './IngredientsShoppingList.styled';
 import { VscClose } from 'react-icons/vsc';
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
@@ -19,8 +26,10 @@ export const IngredientRender = ({ ingredient, onRemove }) => {
 
   return (
     <SLItem key={nanoid()}>
-      {/* <SLItemImage>{img ? <img src={img} alt={name} /> : undefined}</SLItemImage> */}
-      <SLItemImage src={img} alt={name} $defaultImgMobile={defaultImgMobile} $defaultImgDesktop={defaultImgDesktop} />
+      <SLImageWrapper>
+        <SLItemImage src={img} alt={name} $defaultImgMobile={defaultImgMobile} $defaultImgDesktop={defaultImgDesktop} />
+      </SLImageWrapper>
+
       <SLItemImageName>{name}</SLItemImageName>
       <SlItemAmount>{measure}</SlItemAmount>
       <SLItemRemove
