@@ -28,11 +28,7 @@ const recipeSlice = createSlice({
   name: 'add',
   initialState,
   reducers: {
-    // addReciepe: (state, action) => {
-    //   state.ingredients = [...state.ingredients, ...action.payload];
-    // },
     addRecipePhoto: (state, action) => {
-      // console.log(action.payload);
       state.documents = action.payload;
     },
   },

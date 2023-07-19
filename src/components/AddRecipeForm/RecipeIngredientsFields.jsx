@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { nanoid } from 'nanoid';
 import { StyledInputBtn, StyledButtonGroup, StyledSection2, StyledH3 } from './AddRecipeForm.styled';
-import IngredientList from '../../components/AddRecipeForm/Ingradients_list';
+import IngredientList from './Ingradients_list';
 
-export default function BasicButtonGroup() {
+export default function RecipeIngredientsFields() {
   const [counter, setCounter] = useState(1);
   const [loadLocale, setLoadLocale] = useState([]);
 
