@@ -6,21 +6,14 @@ import { useState, useEffect } from 'react';
 import { axiosInstance } from 'redux/auth/authOperations';
 import { toast } from 'react-hot-toast';
 
-const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
-
-export const CategoriesRecipesList = () => {
+export const CategoriesRecipesList = ({ updateDataRecipiesError }) => {
   const [recipes, setRecipes] = useState([]);
   const currentCategory = useParams().categoryName.charAt(0).toUpperCase() + useParams().categoryName.slice(1);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataError, setDataError] = useState(false);
 
   const getRecipesByCategory = async category => {
     try {
-      const config = {
-        method: 'GET',
-        url: BASE_URL + `/recipes/category/${category}`,
-      };
-      const res = await axiosInstance(config);
+      const res = await axiosInstance.get(`/recipes/category/${category}`);
       return res.data;
     } catch (error) {
       toast.error(`${error.message}`, {
@@ -35,8 +28,7 @@ export const CategoriesRecipesList = () => {
     getRecipesByCategory(currentCategory)
       .then(res => {
         if (res.length === 0) {
-          setDataError(true);
-          // alert('Ooops, there are no items');
+          updateDataRecipiesError(true);
           toast.error('We are sorry, there is not such category, chose one from the listed.', {
             position: 'top-right',
             duration: 5000,
@@ -45,20 +37,18 @@ export const CategoriesRecipesList = () => {
         }
         setRecipes(res);
         setIsLoading(false);
-        setDataError(false);
+        updateDataRecipiesError(false);
       })
       .catch(error => {
         setIsLoading(false);
-        setDataError(true);
-        console.log(error);
+        updateDataRecipiesError(true);
       });
-  }, [currentCategory]);
+  }, [currentCategory, updateDataRecipiesError]);
 
   const shouldRender = recipes.length > 0;
 
   return (
     <CategoriesRecipesContainer>
-      {dataError && <div>Error!!!</div>}
       {isLoading && <Loader />}
       {shouldRender &&
         !isLoading &&
