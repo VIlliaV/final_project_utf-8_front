@@ -80,14 +80,8 @@ function RecipePage() {
         recipeId,
       };
 
-      // const isElementAlreadyExist = savedShoppingList.find(ingredient => {
-      //   return ingredient.uniqId === uniqId;
-      // });
-
       if (isChecked) {
-        // if (!isElementAlreadyExist) {
         dispatch(shoppingListAdd(addIngredient));
-        // }
       } else {
         dispatch(shoppingListRemove(uniqId));
       }

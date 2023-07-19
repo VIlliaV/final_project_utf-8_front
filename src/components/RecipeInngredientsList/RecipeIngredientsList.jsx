@@ -7,14 +7,11 @@ import { RecipeCheckbox } from './RecipeCheckbox';
 import { useCallback, useEffect, useState } from 'react';
 
 const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
-  //^ отримав рецепт з бекенду як проп recipe
   const { _id: recipeId, ingredients: recipeIngredients } = recipe;
   const savedShoppingList = useSelector(shoppingList); // Отримую шопінг-лист з Redux Store
 
-  // Створюю стейт для збереження актуальних даних
   const [checkedIngredients, setCheckedIngredients] = useState([]);
 
-  // Функція для перевірки, чи належить інгредієнт у шопінг-листі до конкретного рецепту
   const isInRecipe = useCallback(
     ingredientId => {
       return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
@@ -22,7 +19,6 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
     [recipeIngredients]
   );
 
-  // Функція для перевірки, чи інгредієнт належить до конкретного рецепту
   const isInShoppingList = useCallback(
     ingredientId => {
       return savedShoppingList.some(item => {
@@ -33,7 +29,6 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
   );
 
   useEffect(() => {
-    // При зміні пропсів оновлюю дані у локальному стейті
     const updatedCheckedIngredients = recipeIngredients.map(
       ingredient => isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id)
     );

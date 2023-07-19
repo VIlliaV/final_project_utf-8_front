@@ -1,13 +1,17 @@
 import { axiosInstance } from 'redux/auth/authOperations';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-//* FETCH: get current shopping list
-export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkAPI) => {
+function checkToken(thunkAPI) {
   const state = thunkAPI.getState();
   const { token } = state.auth;
   if (token === null) {
     return thunkAPI.rejectWithValue();
   }
+}
+
+//* FETCH: get current shopping list
+export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkAPI) => {
+  checkToken(thunkAPI);
 
   try {
     const response = await axiosInstance.get('/shopping-list');
@@ -19,11 +23,7 @@ export const shoppingListGet = createAsyncThunk('shopping/get', async (_, thunkA
 
 //* FETCH: add to shopping list
 export const shoppingListAdd = createAsyncThunk('shopping/add', async (addIngredient, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const { token } = state.auth;
-  if (token === null) {
-    return thunkAPI.rejectWithValue();
-  }
+  checkToken(thunkAPI);
 
   try {
     const {
@@ -33,7 +33,6 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (addIngred
       recipeId,
     } = addIngredient;
 
-    // відправка у шопінг лист на бек:
     const requestBody = {
       ingredientId,
       measure,
@@ -42,7 +41,7 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (addIngred
     };
 
     await axiosInstance.post(`/shopping-list`, requestBody);
-    return addIngredient; // повертаю у action.payload на addFulfilled у slice
+    return addIngredient;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -50,15 +49,11 @@ export const shoppingListAdd = createAsyncThunk('shopping/add', async (addIngred
 
 //* FETCH: remove from shopping list
 export const shoppingListRemove = createAsyncThunk('shopping/remove', async (uniqId, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const { token } = state.auth;
-  if (token === null) {
-    return thunkAPI.rejectWithValue();
-  }
+  checkToken(thunkAPI);
 
   try {
     await axiosInstance.patch(`/shopping-list`, { uniqId });
-    return uniqId; // повертаю у action.payload на removeFulfilled
+    return uniqId;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
