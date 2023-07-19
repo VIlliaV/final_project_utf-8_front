@@ -44,19 +44,19 @@ const Header = () => {
             <StyledNavLink to="/categories/beef">
               Categories
             </StyledNavLink>
-            <StyledNavLink to="/add" className={navData => (navData.isActive ? 'active-style' : 'none')}>
+            <StyledNavLink to="/add">
               Add recipes
             </StyledNavLink>
-            <StyledNavLink to="/my" className={navData => (navData.isActive ? 'active-style' : 'none')}>
+            <StyledNavLink to="/my">
               My recipes
             </StyledNavLink>
-            <StyledNavLink to="/favorite" className={navData => (navData.isActive ? 'active-style' : 'none')}>
+            <StyledNavLink to="/favorite">
               Favorites
             </StyledNavLink>
-            <StyledNavLink to="/shopping-list" className={navData => (navData.isActive ? 'active-style' : 'none')}>
+            <StyledNavLink to="/shopping-list">
               Shopping list
             </StyledNavLink>
-            <StyledNavLink to="/search" className={navData => (navData.isActive ? 'active-style' : 'none')}>
+            <StyledNavLink to="/search">
               <StyledUserSvgDefault />
             </StyledNavLink>
           </Nav>
