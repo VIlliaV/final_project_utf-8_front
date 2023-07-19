@@ -17,6 +17,11 @@ const theme = createTheme({
 const Paginator = ({ totalPage, page, setCurrentPage }) => {
   const handleChange = (event, value) => {
     setCurrentPage(value);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (
