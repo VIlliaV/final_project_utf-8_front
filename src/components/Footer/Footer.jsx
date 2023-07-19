@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from './images/logo.svg';
 import { axiosInstance } from 'redux/auth/authOperations';
+
 
 import {
   HideContentMobile,
@@ -35,7 +36,7 @@ import {
 
 const Footer = () => {
   const [email, setEmail] = useState('');
-
+  const navigate = useNavigate();
   const handleEmailChange = event => {
     setEmail(event.target.value);
   };
@@ -54,28 +55,35 @@ const Footer = () => {
     setEmail('');
   };
 
+  const footerRef = useRef(null);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const footer = footerRef.current;
+      if (footer) {
+        const isFooterVisible = footer.getBoundingClientRect().top + footer.offsetHeight >= window.innerHeight;
+        footer.style.position = isFooterVisible ? 'relative' : 'fixed';
+      }
+    };
 
-	const footerRef = useRef(null);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const redirectToSearch = event => {
+    event.preventDefault();
+    navigate({
+		pathname: '/search',
+		search: `?type=ingridients`,
   
-	useEffect(() => {
-	  const handleResize = () => {
-		const footer = footerRef.current;
-		if (footer) {
-		  const isFooterVisible = footer.getBoundingClientRect().top + footer.offsetHeight >= window.innerHeight;
-		  footer.style.position = isFooterVisible ? 'relative' : 'fixed';
-		}
-	  };
-  
-	  window.addEventListener('resize', handleResize);
-	  return () => {
-		window.removeEventListener('resize', handleResize);
-	  };
-	}, []);
+    });
+  };
 
   return (
-    <ResponsiveFooterContainer >
-      <FooterDivContainer >
+    <ResponsiveFooterContainer>
+      <FooterDivContainer>
         <FooterMainContainer ref={footerRef}>
           <FooterLeftContainer>
             <LogoNav to="/">
@@ -92,7 +100,7 @@ const Footer = () => {
             </HideContentMobile>
           </FooterLeftContainer>
           <Navigation>
-            <StyledNavLink to="/">Ingredients</StyledNavLink>
+            <StyledNavLink onClick={redirectToSearch}>Ingredients</StyledNavLink>
             <StyledNavLink to="/add">Add recipes</StyledNavLink>
             <StyledNavLink to="/my">My recipes</StyledNavLink>
             <StyledNavLink to="/favorite">Favorite</StyledNavLink>

@@ -11,9 +11,8 @@ export const HeadText = styled.h1`
   line-height: 1;
   letter-spacing: -0.56px;
   color: var(--head_theme_1);
-  color &[datatype='true'] {
-    color: rgb(250, 250, 250);
-  }
+  transition: color 3.5s cubic-bezier(0.4, 0, 0.2, 1);
+
   @media ${media.tablet} {
     margin-top: 72px;
     font-size: 32px;
