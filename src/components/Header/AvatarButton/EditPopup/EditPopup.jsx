@@ -41,10 +41,19 @@ const EditPopup = ({ showPopupEdit, onPopupEditChange }) => {
     nameInputRef.current.focus();
   }, []);
 
-  const handleNameChange = useCallback(event => {
-    event.preventDefault();
-    setNewUserName(event.target.value);
-  }, []);
+  const handleNameChange = useCallback(
+    event => {
+      event.preventDefault();
+      const { value } = event.target;
+      const newName = value.trim();
+      if (newName === '') {
+        setNewUserName(userName);
+      } else {
+        setNewUserName(newName);
+      }
+    },
+    [userName]
+  );
 
   const handleAddNewImgButtonClick = useCallback(() => {
     const inputElement = document.getElementById('imageInput');
@@ -66,7 +75,6 @@ const EditPopup = ({ showPopupEdit, onPopupEditChange }) => {
 
   const handleSubmit = useCallback(
     e => {
-
       e.preventDefault();
       const formData = new FormData();
       formData.append('avatar', newUserAvatar);
