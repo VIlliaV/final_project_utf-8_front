@@ -23,8 +23,8 @@ const CheckboxInput = muiStyled(Checkbox)`
 
 const ListBox = styled.ul`
   width: 343px;
+  height: 42px;
   padding: 12px 14px;
-  margin-top: 32px;
   margin-bottom: 24px;
   display: inline-flex;
   justify-content: space-between;
@@ -34,8 +34,8 @@ const ListBox = styled.ul`
 
   @media ${media.tablet} {
     width: 704px;
+    height: 60px;
     padding: 21px 32px;
-    margin-top: 50px;
     margin-bottom: 32px;
   }
 
@@ -50,9 +50,10 @@ const ListTitle = styled.li`
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  height: 18px;
+  height: 10px;
 
   @media ${media.tablet} {
+    height: 18px;
     font-size: 18px;
     letter-spacing: 0.54px;
   }
@@ -78,7 +79,7 @@ const SecondListTitle = styled(ListTitle)`
     width: 78px;
     margin-right: 38px;
   }
-  @media${media.desktop} {
+  @media ${media.desktop} {
     width: 78px;
     margin-right: 109px;
   }
@@ -87,10 +88,10 @@ const SecondListTitle = styled(ListTitle)`
 const LastListTitle = styled(ListTitle)`
   width: 54px;
   @media ${media.tablet} {
-    width: 97px;
+    width: 100px;
   }
   @media ${media.desktop} {
-    width: 97px;
+    width: 100px;
   }
 `;
 
