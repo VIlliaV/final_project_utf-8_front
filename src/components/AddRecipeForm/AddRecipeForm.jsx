@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 import { StyledSection3 } from './AddRecipeForm.styled';
-import RecipeDescriptionFields from 'components/AddRecipeForm/RecipeDescriptionFields';
-import RecipePreparationFields from 'components/AddRecipeForm/RecipePreparationFields';
-import RecipeIngredientsFields from 'components/AddRecipeForm/RecipeIngredientsFields';
-import { AllCategories } from 'components/AddRecipeForm/redux/AddRecipeSelector';
-import { addRecipe } from 'components/AddRecipeForm/redux/AddRecipreOperation';
+import RecipeDescriptionFields from 'components/RecipeDescriptionFields/RecipeDescriptionFields';
+import RecipePreparationFields from 'components/RecipePreparationFields/RecipePreparationFields';
+import RecipeIngredientsFields from 'components/RecipeIngredientsFields/RecipeIngredientsFields';
+import { AllCategories } from 'redux/AddRecipePage/AddRecipeSelector';
+import { addRecipe } from 'redux/AddRecipePage/AddRecipreOperation';
+let ingredientsToSend = [];
 
 export const AddRecipeForm = () => {
   const allCategories = useSelector(AllCategories);
@@ -15,21 +16,14 @@ export const AddRecipeForm = () => {
   const [about, setAbout] = useState('');
   const [title, setTitle] = useState('');
   const [photo, setPhoto] = useState('');
-  // const [ingredients, setIngredient] = useState([{}]);
+  const [ingredients, setIngredient] = useState([]);
   const [preparation, setPreparation] = useState('');
 
   const dispatch = useDispatch();
 
-  const ingredients = [
-    {
-      id: '640c2dd963a319ea671e3724',
-      measure: '200 g',
-    },
-    {
-      id: '640c2dd963a319ea671e3663',
-      measure: '250 g',
-    },
-  ];
+  useEffect(() => {
+    ingredients.map(el => ingredientsToSend.push({ id: el._id, measure: el.measure }));
+  }, [ingredients]);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -40,12 +34,12 @@ export const AddRecipeForm = () => {
     formData.append('instructions', preparation);
     formData.append('description', about);
     formData.append('time', cookTime);
-    formData.append('ingredients', JSON.stringify(ingredients));
-    const formDataObject = {};
-    for (const [key, value] of formData.entries()) {
-      formDataObject[key] = value;
-    }
-    console.log(formDataObject);
+    formData.append('ingredients', JSON.stringify(ingredientsToSend));
+    // const formDataObject = {};
+    // for (const [key, value] of formData.entries()) {
+    //   formDataObject[key] = value;
+    // }
+    // console.log(formDataObject);
     dispatch(addRecipe(formData));
   };
 
@@ -60,18 +54,14 @@ export const AddRecipeForm = () => {
           setTitle={setTitle}
           setCookTime={setCookTime}
         />
-        <RecipeIngredientsFields />
+        <RecipeIngredientsFields setIngredient={setIngredient} />
         <RecipePreparationFields setPreparation={setPreparation} />
         <StyledSection3>
           <div>
-            <button type="button">
+            <button type="submit">
               <span>Add</span>
             </button>
           </div>
-
-          <button type="submit">
-            <span>Proverka</span>
-          </button>
         </StyledSection3>
       </form>
     </>

@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import MainPageTitle from 'components/MainPageTitle/MainPageTitle';
 import { StyledBody } from './AddRecipePage.styled';
 import HeadContainer from 'components/HeadContainer/HeadContainer';
-import FallowUs from 'components/AddRecipeForm/FallowUs';
-import Popular from 'components/AddRecipeForm/PopularRecipe';
+import FallowUs from 'components/FollowUs/FollowUs';
+import Popular from 'components/PopularRecipe/PopularRecipe';
 import { AddRecipeForm } from 'components/AddRecipeForm/AddRecipeForm';
-import { getIngredients, getCategories } from 'components/AddRecipeForm/redux/AddRecipreOperation';
+import { getIngredients, getCategories } from 'redux/AddRecipePage/AddRecipreOperation';
 
 export default function AddRecipePage() {
   const dispatch = useDispatch();
