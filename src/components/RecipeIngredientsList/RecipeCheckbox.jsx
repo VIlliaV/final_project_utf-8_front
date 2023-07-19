@@ -10,11 +10,36 @@ import {
 import { useAuth } from 'utils/hooks/useAuth';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import defaultImgMobile from 'img/Stub_Recipe_Mobile.jpg';
-import defaultImgTablet from 'img/Stub_Recipe_Tablet.jpg';
-import defaultImgDesktop from 'img/Stub_Recipe_Desktop.jpg';
+import { useMediaQuery } from 'react-responsive';
+import { useEffect, useState } from 'react';
+
+import defaultImgMobile from 'img/Stub_Recipe_Mobile.png';
+import defaultImgTablet from 'img/Stub_Recipe_Tablet.png';
+import defaultImgDesktop from 'img/Stub_Recipe_Desktop.png';
 
 export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, isChecked }) => {
+  const breakpoints = {
+    mobile: 0,
+    tablet: 768,
+    desktop: 1440,
+  };
+
+  const isMobile = useMediaQuery({ maxWidth: breakpoints.tablet - 1 });
+  const isTablet = useMediaQuery({ minWidth: breakpoints.tablet, maxWidth: breakpoints.desktop - 1 });
+  const isDesktop = useMediaQuery({ minWidth: breakpoints.desktop });
+
+  const [currentViewport, setCurrentViewport] = useState('');
+
+  useEffect(() => {
+    if (isMobile) {
+      setCurrentViewport('mobile');
+    } else if (isTablet) {
+      setCurrentViewport('tablet');
+    } else if (isDesktop) {
+      setCurrentViewport('desktop');
+    }
+  }, [isDesktop, isMobile, isTablet]);
+
   const { isThemeToggle } = useAuth(); //?
   const {
     id: { _id: ingredientId, img, name },
@@ -28,11 +53,15 @@ export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, isC
     <ListItem key={`${recipeId}_${ingredientId}`} datatype={isThemeToggle.toString()}>
       <RILImageWrapper>
         <RILImage
-          src={img}
+          src={
+            img ||
+            (currentViewport === 'mobile'
+              ? defaultImgMobile
+              : currentViewport === 'tablet'
+              ? defaultImgTablet
+              : defaultImgDesktop)
+          }
           alt={name}
-          $defaultImgMobile={defaultImgMobile}
-          $defaultImgTablet={defaultImgTablet}
-          $defaultImgDesktop={defaultImgDesktop}
         />
       </RILImageWrapper>
       <Name datatype={isThemeToggle.toString()}>{name}</Name>
