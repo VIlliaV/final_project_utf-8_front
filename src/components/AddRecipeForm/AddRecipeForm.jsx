@@ -3,6 +3,7 @@ import { addImage } from './redux/AddRecipreOperation';
 import { useDispatch } from 'react-redux';
 import backgroundUploadImg from '../../img/image.jpg';
 import { ImageSrc, StyledInpytImg } from './AddRecipeForm.styled';
+import {addReciepe} from 'components/AddRecipeForm/redux/addRecipeSlice'
 
 export const FileInput = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -15,7 +16,7 @@ export const FileInput = () => {
     } else setImageUrl(backgroundUploadImg);
     console.log('selectedImage', selectedImage);
     // console.log('imageUrl', imageUrl);
-    dispatch(addImage(imageUrl));
+    dispatch(addReciepe(selectedImage));
   }, [dispatch, selectedImage]);
 
   return (

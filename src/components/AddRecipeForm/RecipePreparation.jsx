@@ -53,7 +53,7 @@ export default function RecipePreparation() {
     // console.log(recipePreparation);
     console.log(ingredients);
     const formData = new FormData();
-    formData.append('documents', JSON.stringify(documents));
+    formData.append('documents', documents);
     formData.append('title', title);
     formData.append('category', category);
     formData.append('instructions', recipePreparation);
