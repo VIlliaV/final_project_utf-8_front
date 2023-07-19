@@ -24,6 +24,7 @@ import Paginator from 'components/Paginator/Paginator';
 import { favoritesSelector } from 'redux/favorites/favoritesSelector';
 import { fetchMyRecipes } from 'redux/myRecipes/myRecipesOperations';
 import { myRecipesSelector } from 'redux/myRecipes/myRecipesSelector';
+import NoResult from 'components/NoResult/NoResult';
 
 export const MyRecipesList = ({ page }) => {
   const { favorites } = useSelector(favoritesSelector);
@@ -61,8 +62,9 @@ export const MyRecipesList = ({ page }) => {
     <HeadContainer>
       <MainPageTitle title={page} />
       <List>
-        {favorites.favorites?.length === 0 && myRecipes?.myRecipes.length === 0 ? (
-          <h2>You dont have anything on this page</h2>
+        {(page === 'Favorites' && favorites?.favorites?.length === 0) ||
+        (page === 'My recipes' && myRecipes.length === 0) ? (
+          <NoResult />
         ) : page === 'Favorites' && favorites.favorites ? (
           favorites.favorites.map(({ preview, title, description, time, _id }) => {
             return (
