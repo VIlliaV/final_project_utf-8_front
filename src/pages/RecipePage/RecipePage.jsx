@@ -92,16 +92,15 @@ function RecipePage() {
     <div>
       {recipe && (
         <>
+          <RecipePageHero
+            title={recipe.title}
+            description={recipe.description}
+            time={recipe.time}
+            isFavorite={isFavorite}
+            addToFavorite={addToFavorite}
+            removeFromFavorite={removeFromFavorite}
+          />
           <HeadContainer>
-            <RecipePageHero
-              title={recipe.title}
-              description={recipe.description}
-              time={recipe.time}
-              isFavorite={isFavorite}
-              addToFavorite={addToFavorite}
-              removeFromFavorite={removeFromFavorite}
-            />
-
             <Wrapper>
               <RecipeIngredientsList
                 recipe={recipe}
