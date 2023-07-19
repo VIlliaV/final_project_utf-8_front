@@ -111,7 +111,7 @@ function IngredientsShoppingList() {
                   {/* <source srcset={img} media="(min-width: 1200px)" />
                     <source srcset={img} media="(min-width: 768px)" />
                     <source srcset={img} media="(max-width: 767px)" /> */}
-                  <img src={_id.img} alt={_id.name} />
+                  <img src={id.img} alt={_id.name} />
                 </picture>
               </SLItemImage>
 
