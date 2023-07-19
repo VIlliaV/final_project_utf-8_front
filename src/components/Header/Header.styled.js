@@ -88,12 +88,12 @@ export const StyledNavLink = styled(NavLink)`
   font-weight: 500;
   line-height: 22.4px;
 
-  &.active {
+  /* &.active {
 	stroke: #8baa36;
     color: #8baa36;
     font-weight: bold;
 	animation: ${fadeIn} 0.5s;
-  }
+  } */
 `;
 
 export const LogoNav = styled(NavLink)`
