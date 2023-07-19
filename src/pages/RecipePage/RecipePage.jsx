@@ -7,9 +7,9 @@ import RecipePageHero from '../../components/RecipePageHero/RecipePageHero';
 import RecipeIngredientsList from '../../components/RecipeInngredientsList/RecipeIngredientsList';
 import RecipePreparation from '../../components/RecipePreparation/RecipePreparation';
 import { Wrapper } from './RecipePage.styled';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { shoppingListAdd, shoppingListGet, shoppingListRemove } from '../../redux/shoppingList/shoppingListOperations';
+import { shoppingListLoading } from 'redux/shoppingList/shoppingListSelectors';
 
 function RecipePage() {
   const { recipeId } = useParams();
@@ -17,6 +17,7 @@ function RecipePage() {
   const [recipe, setRecipe] = useState(null);
   const [ingredients, setIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  const loading = useSelector(shoppingListLoading);
 
   useEffect(() => {
     dispatch(shoppingListGet());
@@ -59,7 +60,11 @@ function RecipePage() {
     }
   };
 
-  const handleCheckboxChange = (ingredientId, isChecked, uniqId, recipeId) => {
+  const handleCheckboxChange = async (ingredientId, isChecked, uniqId, recipeId) => {
+    if (loading) {
+      return;
+    }
+
     const currentIngredient = ingredients.find(ingredient => ingredient.id._id === ingredientId);
 
     if (currentIngredient) {
@@ -75,8 +80,14 @@ function RecipePage() {
         recipeId,
       };
 
+      // const isElementAlreadyExist = savedShoppingList.find(ingredient => {
+      //   return ingredient.uniqId === uniqId;
+      // });
+
       if (isChecked) {
+        // if (!isElementAlreadyExist) {
         dispatch(shoppingListAdd(addIngredient));
+        // }
       } else {
         dispatch(shoppingListRemove(uniqId));
       }

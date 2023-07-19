@@ -5,25 +5,18 @@ import { toast } from 'react-hot-toast';
 
 import { CategoriesWrapper, CategoriesContainer, CategoryLink, CategoriesItem } from './CategoriesList.styled';
 
-const BASE_URL = 'https://final-project-utf-8-backend.onrender.com';
-
-export const CategoriesList = () => {
+export const CategoriesList = ({ dataCategoriesError, updateDataCategoriesError }) => {
   const tabListRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [startX, setStartX] = useState(null);
   const [scrollLeft, setScrollLeft] = useState(null);
   const [categories, setCategories] = useState([]);
-  const [dataError, setDataError] = useState(false);
 
   const { isThemeToggle } = useAuth();
 
   const getCategories = async () => {
     try {
-      const config = {
-        method: 'GET',
-        url: BASE_URL + '/recipes/category-list',
-      };
-      const res = await axiosInstance(config);
+      const res = await axiosInstance.get('/recipes/category-list');
       return res.data;
     } catch (error) {
       toast.error(`${error.message}`, {
@@ -38,17 +31,17 @@ export const CategoriesList = () => {
     getCategories()
       .then(res => {
         if (res === null) {
-          setDataError(true);
+          updateDataCategoriesError(true);
           return;
         }
-        setDataError(false);
+        updateDataCategoriesError(false);
         setCategories(res);
       })
       .catch(error => {
-        setDataError(true);
+        updateDataCategoriesError(true);
         console.log(error.message);
       });
-  }, []);
+  }, [updateDataCategoriesError]);
 
   const handleMouseDown = event => {
     setIsScrolling(true);
@@ -104,8 +97,7 @@ export const CategoriesList = () => {
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
       >
-        {dataError && <div>Load error</div>}
-        {!dataError &&
+        {!dataCategoriesError &&
           categories.map(el => {
             const linkName = el.toLowerCase();
             return (

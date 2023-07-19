@@ -2,6 +2,10 @@ import { ListItem, Image, Name, MeasureWrapper, Measure, CheckboxInput } from '.
 import { useAuth } from 'utils/hooks/useAuth';
 import SvgIcon from '@mui/material/SvgIcon';
 
+import defaultImgMobile from 'img/Stub_Recipe_Mobile.jpg';
+import defaultImgTablet from 'img/Stub_Recipe_Tablet.jpg';
+import defaultImgDesktop from 'img/Stub_Recipe_Desktop.jpg';
+
 export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, isChecked }) => {
   const { isThemeToggle } = useAuth(); //?
 
@@ -9,10 +13,15 @@ export const RecipeCheckbox = ({ handleCheckboxChange, recipeId, ingredient, isC
     handleCheckboxChange(ingredient.id._id, event.target.checked, `${recipeId}_${ingredient.id._id}`, recipeId);
   };
 
-  // todo Зробити первірку - якщо інгр з таким unicId вже є, то не додавати його
   return (
     <ListItem key={`${recipeId}_${ingredient.id._id}`} datatype={isThemeToggle.toString()}>
-      <Image src={ingredient.id.img} alt={ingredient.id.name} />
+      <Image
+        src={ingredient.id.img}
+        alt={ingredient.id.name}
+        $defaultImgMobile={defaultImgMobile}
+        $defaultImgTablet={defaultImgTablet}
+        $defaultImgDesktop={defaultImgDesktop}
+      />
       <Name datatype={isThemeToggle.toString()}>{ingredient.id.name}</Name>
       <MeasureWrapper>
         <Measure>{ingredient.measure} </Measure>

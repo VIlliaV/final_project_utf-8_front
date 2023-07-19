@@ -5,8 +5,7 @@ import { ReactComponent as EditIconSVG } from './img/edit.svg';
 import { ReactComponent as CloseIconSVG } from '../BurgerMenu/img/x.svg';
 import { ReactComponent as PlusIconSVG } from './img/plus.svg';
 import { ReactComponent as ArrowIconSVG } from './img/arrow-right.svg';
-import { ReactComponent as userSvgDefault } from './img/userSvgDefault.svg';
-
+import userDefaultPng from './img/userSvgDefault.svg'
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -181,7 +180,7 @@ export const EditText = styled.p`
 
 export const AvatarText = styled.p`
   margin-left: 15px;
-  color: var(--text_theme_1);
+  color: var(--text_third);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -354,12 +353,9 @@ export const ImgPlusButton = styled.button`
   border-radius: 15px;
 `;
 
-export const StyledUserSvgDefault = styled(userSvgDefault)``;
-
 export const AddNewImgButton = styled.button`
   cursor: pointer;
-  background-image: url(${StyledUserSvgDefault});
-  background-size: 100%;
+  background-image: url(${userDefaultPng});
   background-color: #D9D9D9;
   background-repeat: no-repeat;
   background-position: center;

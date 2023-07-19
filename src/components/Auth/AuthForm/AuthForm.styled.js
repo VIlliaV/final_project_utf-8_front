@@ -4,22 +4,21 @@ import { FiUser } from 'react-icons/fi';
 import { HiOutlineMail } from 'react-icons/hi';
 import { CgLock } from 'react-icons/cg';
 
+export const SuccessStatusIcon = styled.img`
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 13.5px;
+  right: 14px;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
 
- export const SuccessStatusIcon = styled.img`
-   width: 18px;
-   height: 18px;
-   position: absolute;
-   top: 13.5px;
-   right: 14px;
-
-   @media ${media.tablet} {
-     top: 17.5px;
-     right: 18px;
-     width: 20px;
-     height: 20px;
-   }
- `;
-
+  @media ${media.tablet} {
+    top: 17.5px;
+    right: 18px;
+    width: 20px;
+    height: 20px;
+  }
+`;
 
 export const NameIcon = styled(FiUser)`
   width: 18px;
@@ -46,7 +45,6 @@ export const NameIcon = styled(FiUser)`
   }
 `;
 
-
 export const EmailIcon = styled(HiOutlineMail)`
   width: 18px;
   height: 18px;
@@ -71,7 +69,6 @@ export const EmailIcon = styled(HiOutlineMail)`
     height: 24px;
   }
 `;
-
 
 export const PasswordIcon = styled(CgLock)`
   width: 18px;
@@ -98,7 +95,6 @@ export const PasswordIcon = styled(CgLock)`
   }
 `;
 
-
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -109,7 +105,6 @@ export const FormContainer = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.1);
   background-color: transparent;
-  
 
   @media ${media.mobile} {
     width: 335px;
@@ -122,28 +117,25 @@ export const FormContainer = styled.div`
 
   @media ${media.desktop} {
     margin: 0;
-    margin-top: ${prop => (prop.$isregisterpage === "true" ? '7px' : '40px')};
+    margin-top: ${prop => (prop.$isregisterpage === 'true' ? '7px' : '40px')};
     margin-bottom: auto;
     margin-right: auto;
   }
 `;
 
-
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-radius: 30px;
-    box-sizing: border-box;
-    padding: 32px 28px 40px;
-    background-color: #2a2c36;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 32px 28px 40px;
+  background-color: #2a2c36;
 
-     @media ${media.tablet} {
-        padding: 44px 50px;
-    }
+  @media ${media.tablet} {
+    padding: 44px 50px;
+  }
 `;
-
-
 
 export const Header = styled.h1`
   color: #fafafa;
@@ -161,7 +153,7 @@ export const Header = styled.h1`
 
   @media ${media.tablet} {
     font-size: 28px;
-    line-height: 1.07; 
+    line-height: 1.07;
     letter-spacing: -0.56px;
   }
 `;
@@ -197,8 +189,10 @@ export const Input = styled.input`
   }
 
   &:hover {
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
     border-color: #fafafa;
     &::placeholder {
+      transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
       color: #fafafa;
       opacity: 1;
     }
@@ -208,9 +202,7 @@ export const Input = styled.input`
     color: #fff;
     opacity: 0.5;
   }
-  
 `;
-
 
 export const NameInput = styled(Input)`
   border-color: ${prop => {
@@ -222,7 +214,6 @@ export const NameInput = styled(Input)`
   }};
 `;
 
-
 export const EmailInput = styled(Input)`
   border-color: ${prop => {
     if (prop.$haserror) {
@@ -232,7 +223,6 @@ export const EmailInput = styled(Input)`
     }
   }};
 `;
-
 
 export const PasswordInput = styled(Input)`
   border-color: ${prop => {
@@ -244,6 +234,7 @@ export const PasswordInput = styled(Input)`
   }};
 
   &:focus {
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
     outline: none !important;
     border-color: ${prop => {
       if (prop.$tooshort.length > 0 && prop.$tooshort.length < 6 && prop.$path === '/register') {
@@ -269,6 +260,7 @@ export const SubmitButton = styled.button`
   line-height: 1.12;
 
   &:hover {
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
     color: #22252a;
     cursor: pointer;
   }
@@ -298,8 +290,7 @@ export const Link = styled.a`
   }
 `;
 
-
- const InputContainer = styled.div`
+const InputContainer = styled.div`
   margin-bottom: 12px;
   min-width: 100%;
   position: relative;
@@ -314,6 +305,7 @@ export const NameInputContainer = styled(InputContainer)`
   &:hover ${NameIcon} {
     color: #fafafa;
     opacity: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   }
 `;
 
@@ -321,6 +313,7 @@ export const EmailInputContainer = styled(InputContainer)`
   &:hover ${EmailIcon} {
     color: #fafafa;
     opacity: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   }
 `;
 
@@ -328,12 +321,13 @@ export const PasswordInputContainer = styled(InputContainer)`
   &:hover ${PasswordIcon} {
     color: #fafafa;
     opacity: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   }
 `;
 
 export const InputErrorContainer = styled.div`
   margin-top: 8px;
-  color: red; 
+  color: red;
 `;
 
 export const InputWarningContainer = styled.div`
@@ -342,8 +336,8 @@ export const InputWarningContainer = styled.div`
 `;
 
 export const ErrorMessage = styled.div`
-color: red;
-/* margin-top: 8px; */
-margin-left: auto;
-margin-right: auto;
-`
+  color: red;
+  /* margin-top: 8px; */
+  margin-left: auto;
+  margin-right: auto;
+`;

@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-// font-family: 'Inter', sans-serif;
-// font-family: 'Montserrat', sans-serif;
-// font-family: 'Poppins', sans-serif;
-
-// const mobile = '375px';
 const tablet = '768px';
 const desktop = '1440px';
 
@@ -56,21 +51,28 @@ const SLItem = styled.li`
   }
 `;
 
-const SLItemImage = styled.div`
+const SLItemImage = styled.img`
   width: 60px;
   height: 60px;
   padding: 6px;
 
   border-radius: 6px;
-  background: #ebf3d4;
+  background-color: #ebf3d4;
+
+  background-image: url(${props => props.src || props.$defaultImgMobile});
+  background-repeat: no-repeat;
+  background-size: cover;
 
   @media screen and (min-width: ${tablet}) {
     width: 93px;
     height: 97px;
     padding: 8px 6px;
     border-radius: 8px;
+
+    background-image: url(${props => props.src || props.$defaultImgDesktop});
   }
 `;
+
 const SLItemImageName = styled.p`
   margin-left: 10px;
 
@@ -105,7 +107,7 @@ const SlItemAmount = styled.p`
   background: var(--fix_back);
   word-break: break-word;
 
-  color: var(--back_theme_1);
+  color: var(--back_fix);
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
