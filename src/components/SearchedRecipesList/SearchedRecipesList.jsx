@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { axiosInstance } from 'redux/auth/authOperations';
 import toast from 'react-hot-toast';
-import { ListContainer } from './SearchedRecipesList.styled';
+import { ListContainer, SearchImg, SearchWrapper } from './SearchedRecipesList.styled';
 import Loader from 'components/Loader/Loader';
 import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
 import Paginator from 'components/Paginator/Paginator';
@@ -12,7 +12,7 @@ let value;
 
 const SearchedRecipesList = () => {
   const [searchParams] = useSearchParams();
-  const [recipeList, setRecipeList] = useState([]);
+  const [recipeList, setRecipeList] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [totalPage, setTotalPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +20,6 @@ const SearchedRecipesList = () => {
   useEffect(() => {
     const [currentParams] = Object.keys(Object.fromEntries([...searchParams]));
     value = searchParams.get(currentParams);
-
     if (!value) {
       return;
     }
@@ -36,6 +35,11 @@ const SearchedRecipesList = () => {
       setTotalPage(data.totalPages);
       setRecipeList(data.recipes);
     });
+
+    // if (recipeList.length === 0) {
+    //   searchParams.delete(currentParams);
+    //   console.log(value);
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, currentPage]);
 
@@ -65,6 +69,12 @@ const SearchedRecipesList = () => {
   return (
     <>
       {isLoading && <Loader />}
+      {!isLoading && !recipeList && (
+        <SearchWrapper>
+          <SearchImg />
+          <p>Find recipe by title or ingredient</p>
+        </SearchWrapper>
+      )}
       {!isLoading && recipeList?.length > 0 ? (
         <>
           <ListContainer>
@@ -83,7 +93,7 @@ const SearchedRecipesList = () => {
           <Paginator totalPage={totalPage} page={currentPage} setCurrentPage={handleCurrentPage} />
         </>
       ) : (
-        !isLoading && <NoResult />
+        !isLoading && recipeList?.length === 0 && <NoResult />
       )}
     </>
   );
