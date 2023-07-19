@@ -3,7 +3,6 @@ import { media } from 'utils/media';
 
 import { ReactComponent as PlusIconSVG } from './img/plus.svg';
 
-
 export const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -22,13 +21,6 @@ export const AvatarButton = styled.div`
   border-radius: 20px;
 `;
 
-
-
-
-
-
-
-
 export const ButtonRadius = styled.button`
   border: 0;
   width: 34px;
@@ -40,11 +32,6 @@ export const ButtonRadius = styled.button`
   }
 `;
 
-
-
-
-
-
 export const AvatarText = styled.p`
   margin-left: 15px;
   color: var(--text_third);
@@ -55,7 +42,7 @@ export const AvatarText = styled.p`
 `;
 
 export const ButtonYes = styled.button`
-cursor: pointer;
+  cursor: pointer;
   width: 140px;
   height: 50px;
   color: var(--text_theme_1);
@@ -69,38 +56,31 @@ cursor: pointer;
     height: 60px;
   }
 
-  &:hover, &:focus {
-	background-color: var(--active_theme_2);
-	color: var(--active);
+  &:hover,
+  &:focus {
+    background-color: var(--active_theme_2);
+    color: var(--active);
   }
 `;
 
 export const ButtonNo = styled.button`
-cursor: pointer;
+  cursor: pointer;
   width: 140px;
   height: 50px;
   background-color: #d9d9d9;
   border: 0;
   border-radius: 6px;
 
-
   @media ${media.tablet} {
     width: 195px;
     height: 60px;
   }
-  &:hover, &:focus {
-	background-color: var(--back_fix);
-	border: 1px solid black;
+  &:hover,
+  &:focus {
+    background-color: var(--back_fix);
+    border: 1px solid black;
   }
 `;
-
-
-
-
-
-
-
-
 
 export const AvatarDefaultImg = styled.button`
   width: 90px;
@@ -115,21 +95,9 @@ export const AvatarDefaultImg = styled.button`
   }
 `;
 
-
-
-
-
-
-
-
-
-
 export const StyledPlusIconSVG = styled(PlusIconSVG)`
   width: 20;
   height: 20;
   @media ${media.tablet} {
   }
 `;
-
-
-

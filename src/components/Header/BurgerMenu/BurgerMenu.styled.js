@@ -13,6 +13,8 @@ export const BurgerIcon = styled.div`
   display: flex;
   font-size: 24px;
   cursor: pointer;
+
+  stroke: white;
 `;
 
 export const Menu = styled.div`
@@ -88,7 +90,7 @@ export const Switcher = styled.div`
 `;
 
 export const StyledMenuIconSvg = styled(MenuIconSvg)`
-  stroke: var(--fix_back_2);
+  stroke: var(--text_third);
   width: 28px;
   height: 28px;
   @media ${media.tablet} {

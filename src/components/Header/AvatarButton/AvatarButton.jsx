@@ -1,15 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AvatarButton, AvatarText, ButtonRadius } from './AvatarButton.styled';
 import LogoutPopupComponent from './LogoutPopupComponent/LogoutPopupComponent';
 import MainPopup from './MainPopup/MainPopup';
 import EditPopup from './EditPopup/EditPopup';
 import { useAuth } from 'utils/hooks/useAuth';
 
+
 const AvatarButtonComponent = ({ shouldChangeStyle }) => {
   const { userName, userAvatar } = useAuth();
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
   const [showPopupEdit, setShowPopupEdit] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const buttonRef = useRef(null);
 
   const handlePopupConfirmChange = newState => {
@@ -23,6 +25,16 @@ const AvatarButtonComponent = ({ shouldChangeStyle }) => {
   const handlePopupEditChange = newState => {
     setShowPopupEdit(newState);
   };
+
+  useEffect(() => {
+    function handleResize() {
+      setScreenWidth(window.innerWidth);
+    }
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <AvatarButton>
@@ -41,7 +53,7 @@ const AvatarButtonComponent = ({ shouldChangeStyle }) => {
       <EditPopup showPopupEdit={showPopupEdit} onPopupEditChange={handlePopupEditChange} />
       <AvatarText
         style={{
-          color: shouldChangeStyle ? `var(--fix_back_2)` : 'var(--text_third)',
+			color: shouldChangeStyle && screenWidth > 1440 ? 'var(--fix_back_2)' : 'var(--text_third)',
         }}
       >
         {userName}
