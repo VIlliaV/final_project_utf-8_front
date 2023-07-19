@@ -1,6 +1,6 @@
 # SoYummy
 
-![SoYummy Logo] <img src="https://github.com/VIlliaV/final_project_utf-8_front/tree/main/public/logo192.png" alt="Logo">
+
 SoYummy is a web application that allows users to share, discover, and create various recipes . You can also make a
 shopping list of ingredients for one or more recipesThis repository contains the source code for the SoYummy website.
 Users can register an account, log in, switch between light and dark themes, change their username, and update their
