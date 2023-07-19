@@ -12,11 +12,11 @@ export const SharedLayout = () => {
   return (
     <Container>
       {isLoggedIn && <Header />}
-      <maim>
+      <main>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-      </maim>
+      </main>
       {isLoggedIn && <Footer />}
     </Container>
   );
