@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from './images/logo.svg';
 import { axiosInstance } from 'redux/auth/authOperations';
@@ -54,10 +54,29 @@ const Footer = () => {
     setEmail('');
   };
 
+
+
+	const footerRef = useRef(null);
+  
+	useEffect(() => {
+	  const handleResize = () => {
+		const footer = footerRef.current;
+		if (footer) {
+		  const isFooterVisible = footer.getBoundingClientRect().top + footer.offsetHeight >= window.innerHeight;
+		  footer.style.position = isFooterVisible ? 'relative' : 'fixed';
+		}
+	  };
+  
+	  window.addEventListener('resize', handleResize);
+	  return () => {
+		window.removeEventListener('resize', handleResize);
+	  };
+	}, []);
+
   return (
-    <ResponsiveFooterContainer>
-      <FooterDivContainer>
-        <FooterMainContainer>
+    <ResponsiveFooterContainer >
+      <FooterDivContainer >
+        <FooterMainContainer ref={footerRef}>
           <FooterLeftContainer>
             <LogoNav to="/">
               <LogoImg src={logo} alt="" />
