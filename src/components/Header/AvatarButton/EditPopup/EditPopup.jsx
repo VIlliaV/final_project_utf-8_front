@@ -66,6 +66,7 @@ const EditPopup = ({ showPopupEdit, onPopupEditChange }) => {
 
   const handleSubmit = useCallback(
     e => {
+
       e.preventDefault();
       const formData = new FormData();
       formData.append('avatar', newUserAvatar);

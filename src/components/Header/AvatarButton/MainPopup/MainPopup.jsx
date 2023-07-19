@@ -1,9 +1,8 @@
-import { useRef, useEffect, useCallback, useState } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { ButtonIconEdit, EditDiv, EditText, LogoutButton, Popup, StyledArrowIconSVG, StyledEditIconSVG } from "./MainPopup.styled";
 
 const MainPopup = ({ showPopup, showPopupConfirm, showPopupEdit, onPopupMainChange, onPopupConfirmChange, onPopupEditChange }) => {
   const popupRef = useRef(null);
-  const [isFocused, setIsFocused] = useState(false);
 
   const handleLogoutButton = () => {
     onPopupMainChange(false);
@@ -33,14 +32,6 @@ const MainPopup = ({ showPopup, showPopupConfirm, showPopupEdit, onPopupMainChan
     [onPopupMainChange]
   );
 
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKeyDown);
@@ -54,11 +45,11 @@ const MainPopup = ({ showPopup, showPopupConfirm, showPopupEdit, onPopupMainChan
     <>
       {showPopup && (
         <Popup ref={popupRef}>
-          <EditDiv onFocus={handleFocus} onBlur={handleBlur} onClick={handlePopupEdit}>
-            <EditText isFocused={isFocused}>Edit profile</EditText>
+          <EditDiv onClick={handlePopupEdit}>
+            <EditText>Edit profile</EditText>
 
-            <ButtonIconEdit>
-              <StyledEditIconSVG isFocused={isFocused} />
+            <ButtonIconEdit >
+              <StyledEditIconSVG />
             </ButtonIconEdit>
           </EditDiv>
 
