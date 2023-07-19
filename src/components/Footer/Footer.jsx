@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from './images/logo.svg';
 import { axiosInstance } from 'redux/auth/authOperations';
@@ -54,10 +54,29 @@ const Footer = () => {
     setEmail('');
   };
 
+
+
+	const footerRef = useRef(null);
+  
+	useEffect(() => {
+	  const handleResize = () => {
+		const footer = footerRef.current;
+		if (footer) {
+		  const isFooterVisible = footer.getBoundingClientRect().top + footer.offsetHeight >= window.innerHeight;
+		  footer.style.position = isFooterVisible ? 'relative' : 'fixed';
+		}
+	  };
+  
+	  window.addEventListener('resize', handleResize);
+	  return () => {
+		window.removeEventListener('resize', handleResize);
+	  };
+	}, []);
+
   return (
-    <ResponsiveFooterContainer>
-      <FooterDivContainer>
-        <FooterMainContainer>
+    <ResponsiveFooterContainer >
+      <FooterDivContainer >
+        <FooterMainContainer ref={footerRef}>
           <FooterLeftContainer>
             <LogoNav to="/">
               <LogoImg src={logo} alt="" />
@@ -102,16 +121,16 @@ const Footer = () => {
         </SubscribeContainer>
       </FooterDivContainer>
       <Media>
-        <NavLink to="https://www.youtube.com/">
+        <NavLink to="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
           <StyledYoutube />
         </NavLink>
-        <NavLink to="https://www.twitter.com/">
+        <NavLink to="https://www.twitter.com/" target="_blank" rel="noopener noreferrer">
           <StyledTwitter />
         </NavLink>
-        <NavLink to="https://www.facebook.com/">
+        <NavLink to="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
           <StyledFacebook />
         </NavLink>
-        <NavLink to="https://www.instagram.com/">
+        <NavLink to="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
           <StyledInstagram />
         </NavLink>
       </Media>
