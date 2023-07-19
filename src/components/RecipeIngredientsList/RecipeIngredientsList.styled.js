@@ -1,4 +1,4 @@
-import { media } from '../../utils/media';
+import { media } from 'utils/media';
 import styled from 'styled-components';
 import { styled as muiStyled } from '@mui/material/styles';
 import { Checkbox } from '@mui/material';
@@ -78,7 +78,7 @@ const SecondListTitle = styled(ListTitle)`
     width: 78px;
     margin-right: 38px;
   }
-  @media ${media.desktop} {
+  @media${media.desktop} {
     width: 78px;
     margin-right: 109px;
   }
@@ -145,7 +145,7 @@ const RILImageWrapper = styled.div`
   height: 65px;
   padding: 4px;
 
-  @media screen and (min-width: ${media.tablet}) {
+  @media ${media.tablet} {
     width: 144px;
     height: 146px;
     padding: 17px 16px;
