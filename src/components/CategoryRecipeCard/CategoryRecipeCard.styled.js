@@ -2,10 +2,7 @@ import styled, { css } from 'styled-components';
 import { media } from 'utils/media';
 import { Link } from 'react-router-dom';
 
-export const RecipeCardWrapper = styled.div`
-  /* width: 343px;
-    height: 323px; */
-`;
+export const RecipeCardWrapper = styled.div``;
 
 export const RecipeLink = styled(Link)`
   display: flex;
@@ -14,6 +11,11 @@ export const RecipeLink = styled(Link)`
   position: relative;
 
   text-decoration: none;
+
+  &:focus {
+    outline: none;
+    transform: scale(1.03);
+  }
 `;
 
 export const RecipeImg = styled.img`
