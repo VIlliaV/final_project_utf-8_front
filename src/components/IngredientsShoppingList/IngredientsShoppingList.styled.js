@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-
-const tablet = '768px';
-const desktop = '1440px';
+import { media } from 'utils/media';
 
 const SLList = styled.ul`
   display: flex;
@@ -12,7 +10,7 @@ const SLList = styled.ul`
   margin-right: 8px;
   margin-bottom: 100px;
 
-  @media screen and (min-width: ${tablet}) {
+  @media ${media.tablet} {
     gap: 88px;
     margin-top: 50px;
     margin-left: 0;
@@ -20,7 +18,7 @@ const SLList = styled.ul`
     margin-bottom: 200px;
   }
 
-  @media screen and (min-width: ${desktop}) {
+  @media ${media.desktop} {
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 196px;
@@ -42,11 +40,11 @@ const SLItem = styled.li`
     background-color: #e0e0e0;
   }
 
-  @media screen and (min-width: ${tablet}) {
+  @media ${media.tablet} {
     width: 704px;
   }
 
-  @media screen and (min-width: ${desktop}) {
+  @media ${media.desktop} {
     width: 1160px;
   }
 `;
@@ -57,7 +55,7 @@ const SLImageWrapper = styled.div`
   padding: 6px;
   border-radius: 6px;
   background-color: #ebf3d4;
-  @media screen and (min-width: ${tablet}) {
+  @media ${media.tablet} {
     width: 93px;
     height: 97px;
     padding: 8px 6px;
@@ -73,7 +71,7 @@ const SLItemImage = styled.img`
   background-repeat: no-repeat;
   background-size: cover;
 
-  @media screen and (min-width: ${tablet}) {
+  @media ${media.tablet} {
     width: 81px;
     height: 81px;
 
@@ -91,7 +89,7 @@ const SLItemImageName = styled.p`
   font-weight: 500;
   line-height: 12px;
 
-  @media screen and (min-width: ${tablet}) {
+  @media ${media.tablet} {
     margin-left: 16px;
 
     font-size: 16px;
@@ -123,7 +121,7 @@ const SlItemAmount = styled.p`
   font-weight: 600;
   line-height: normal;
 
-  @media screen and (min-width: ${tablet}) {
+  @media ${media.tablet} {
     min-height: 35px;
 
     margin-right: 110px;
@@ -132,7 +130,7 @@ const SlItemAmount = styled.p`
     font-size: 18px;
   }
 
-  @media screen and (min-width: ${desktop}) {
+  @media ${media.desktop} {
     margin-right: 174px;
   }
 `;
@@ -147,13 +145,13 @@ const SLItemRemove = styled.button`
   cursor: pointer;
   color: white;
 
-  @media screen and (min-width: ${tablet}) {
+  @media ${media.tablet} {
     width: 20px;
     height: 20px;
     margin-right: 44px;
   }
 
-  @media screen and (min-width: ${desktop}) {
+  @media ${media.desktop} {
     margin-right: 28px;
   }
 `;
