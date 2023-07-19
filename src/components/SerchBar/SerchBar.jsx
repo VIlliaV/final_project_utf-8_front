@@ -26,7 +26,7 @@ const SearchBar = () => {
   };
   return (
     <SearchBarWrapper>
-      <Search buttonStyle="inversion-button" handleSubmit={handleSubmit} />
+      <Search buttonStyle="inversion-button" handleSubmit={handleSubmit} queryType={state} />
       <SearchTypeSelector setValue={handleQueryType} />
     </SearchBarWrapper>
   );
