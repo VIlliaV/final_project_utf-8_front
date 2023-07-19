@@ -51,23 +51,31 @@ const SLItem = styled.li`
   }
 `;
 
-const SLItemImage = styled.img`
+const SLImageWrapper = styled.div`
   width: 60px;
   height: 60px;
   padding: 6px;
-
   border-radius: 6px;
   background-color: #ebf3d4;
+  @media screen and (min-width: ${tablet}) {
+    width: 93px;
+    height: 97px;
+    padding: 8px 6px;
+    border-radius: 8px;
+  }
+`;
+
+const SLItemImage = styled.img`
+  width: 48px;
+  height: 48px;
 
   background-image: url(${props => props.src || props.$defaultImgMobile});
   background-repeat: no-repeat;
   background-size: cover;
 
   @media screen and (min-width: ${tablet}) {
-    width: 93px;
-    height: 97px;
-    padding: 8px 6px;
-    border-radius: 8px;
+    width: 81px;
+    height: 81px;
 
     background-image: url(${props => props.src || props.$defaultImgDesktop});
   }
@@ -150,8 +158,4 @@ const SLItemRemove = styled.button`
   }
 `;
 
-// const StyledGrClose = styled.GrClose`
-//   stroke: blue;
-// `;
-
-export { SLList, SLItem, SLItemRemove, SlItemAmount, SLItemImageName, SLItemImage };
+export { SLList, SLItem, SLItemRemove, SlItemAmount, SLItemImageName, SLItemImage, SLImageWrapper };
