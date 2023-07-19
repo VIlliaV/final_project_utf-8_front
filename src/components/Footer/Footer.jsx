@@ -121,16 +121,16 @@ const Footer = () => {
         </SubscribeContainer>
       </FooterDivContainer>
       <Media>
-        <NavLink to="https://www.youtube.com/">
+        <NavLink to="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
           <StyledYoutube />
         </NavLink>
-        <NavLink to="https://www.twitter.com/">
+        <NavLink to="https://www.twitter.com/" target="_blank" rel="noopener noreferrer">
           <StyledTwitter />
         </NavLink>
-        <NavLink to="https://www.facebook.com/">
+        <NavLink to="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
           <StyledFacebook />
         </NavLink>
-        <NavLink to="https://www.instagram.com/">
+        <NavLink to="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
           <StyledInstagram />
         </NavLink>
       </Media>
