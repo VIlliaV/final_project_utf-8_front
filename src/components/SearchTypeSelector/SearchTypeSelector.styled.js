@@ -5,7 +5,6 @@ export const Form = styled.label`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 50px;
   margin-top: 24px;
 
   label {
@@ -43,7 +42,26 @@ export const selectStyles = {
     lineHeight: 'normal',
     letterSpacing: '-0.24px',
     border: 'none',
+    cursor: 'pointer',
+    '&:after': {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      display: 'inline-block',
+      height: '1em',
+      width: '100%',
+      borderBottom: '1px solid',
+      color: 'var(--active)',
+      marginTop: '10px',
+      opacity: 0,
+      transition: 'opacity 0.35s, transform 0.35s',
+      transform: 'scale(0,1)',
+    },
 
+    '&:hover:after': {
+      opacity: 1,
+      transform: 'scale(1)',
+    },
     backgroundColor: state.isFocused ? 'var(--active_select_1)' : 'var(--active_select_1)',
 
     '@media screen and (min-width: 768px)': {
@@ -79,6 +97,7 @@ export const selectStyles = {
     outline: 'none',
     border: 'none',
     boxShadow: 'none',
+    cursor: 'pointer',
 
     '&:hover': {
       border: 'none',
