@@ -2,7 +2,15 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { signupUser, loginUser, logoutUser, fetchCurrentUser, themeToggle, updateUser } from './authOperations';
+import {
+  signupUser,
+  loginUser,
+  logoutUser,
+  fetchCurrentUser,
+  themeToggle,
+  updateUser,
+  googleAuth,
+} from './authOperations';
 
 const initialState = {
   user: { name: null, email: null, avatarURL: null },
@@ -49,6 +57,9 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.errorMessage = action.payload;
       })
+      .addCase(googleAuth.pending, (state, action) => {})
+      .addCase(googleAuth.fulfilled, (state, action) => {})
+      .addCase(googleAuth.rejected, (state, action) => {})
       .addCase(logoutUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -85,7 +96,7 @@ const authSlice = createSlice({
         state.user.name = action.payload.name;
         if (action.payload.avatarURL) {
           state.user.avatarURL = action.payload.avatarURL;
-        };
+        }
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.isRefreshing = false;

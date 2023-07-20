@@ -3,11 +3,12 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
-import { loginUser, signupUser } from 'redux/auth/authOperations';
+import { loginUser, signupUser, googleAuth } from 'redux/auth/authOperations';
 import inputIconSuccess from 'img/inputIconSuccess.svg';
 import inputIconError from 'img/inputIconError.svg';
 import { useAuth } from 'utils/hooks/useAuth';
 import { clearErrorMessage } from 'redux/auth/authSlice';
+import googleLogo from 'img/googleLogo.svg';
 import {
   Container,
   Header,
@@ -28,6 +29,7 @@ import {
   PasswordInputContainer,
   ErrorMessage,
   InputWarningContainer,
+  GoogleButton,
 } from './AuthForm.styled';
 
 
@@ -55,18 +57,12 @@ export const AuthForm = () => {
       setIsRegisterPage(false);
       setInitialValues(signInInitialValues);
     }
-
-    if (pathname === '/signin' && errorMessage === 'Email in use') {
-      dispatch(clearErrorMessage());
-    }
-    if (pathname === '/register' && errorMessage === 'Email or password is wrong') {
-      dispatch(clearErrorMessage());
-    }
   }, [pathname, dispatch, errorMessage]);
 
 
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
+    dispatch(clearErrorMessage());
   }, [navigate, isRegisterPage]);
 
   const onSubmit = useCallback(
@@ -83,6 +79,10 @@ export const AuthForm = () => {
     },
     [dispatch, isRegisterPage]
   ); 
+
+  const handleGoogleSubmit = () => {
+    dispatch(googleAuth());
+  }
 
   const validate = values => {
     const errors = {};
@@ -197,8 +197,12 @@ export const AuthForm = () => {
             )}
             {formik.touched.password && !formik.errors.password && <SuccessStatusIcon src={inputIconSuccess} />}
           </PasswordInputContainer>
-          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage> }
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
+          <GoogleButton type="button" onClick={handleGoogleSubmit}>
+            {isRegisterPage ? 'Sign up with Google' : 'Sign In with Google'}
+            <img style={{ marginLeft: 8 }} height={25} width={25} alt="googleLogo" src={googleLogo} />
+          </GoogleButton>
         </Form>
       </Container>
       <Link onClick={handleNavigate}>{isRegisterPage ? 'Sign In' : 'Registration'}</Link>

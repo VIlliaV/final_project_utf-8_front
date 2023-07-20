@@ -117,3 +117,14 @@ export const updateUser = createAsyncThunk('users/update', async (data, thunkAPI
     thunkAPI.rejectWithValue(error.message);
   }
 });
+
+
+export const googleAuth = createAsyncThunk('users/google', async (_, thunkAPI) => {
+  try {
+    const response = await axiosInstance.get('users/google');
+    console.log(response)
+    // return response.data;
+  } catch (error) {
+    thunkAPI.rejectWithValue(error.message);
+  }
+})
