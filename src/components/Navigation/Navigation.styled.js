@@ -36,6 +36,11 @@ export const StyledNavLink = styled(NavLink)`
 	animation: ${fadeIn} 0.5s;
   }
 
+  &.disabledMy {
+	stroke: var(--fix_back_2);
+    color: var(--fix_back_2);
+  }
+
 `;
 
 export const StyledUserSvgDefault = styled(userSvgDefault)`

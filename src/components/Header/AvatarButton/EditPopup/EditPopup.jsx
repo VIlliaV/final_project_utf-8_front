@@ -81,6 +81,7 @@ const EditPopup = ({ showPopupEdit, onPopupEditChange }) => {
       formData.append('name', newUserName);
       dispatch(updateUser(formData));
       onPopupEditChange(!showPopupEdit);
+
     },
     [dispatch, newUserAvatar, newUserName, onPopupEditChange, showPopupEdit]
   );
