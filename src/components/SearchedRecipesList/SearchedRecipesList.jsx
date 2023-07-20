@@ -7,7 +7,6 @@ import Loader from 'components/Loader/Loader';
 import { CategoryRecipeCard } from 'components/CategoryRecipeCard/CategoryRecipeCard';
 import Paginator from 'components/Paginator/Paginator';
 import NoResult from 'components/NoResult/NoResult';
-import { CategoryRecipeCardWrapper } from 'components/CategoriesRecipesList/CategoriesRecipesList.styled';
 
 let value;
 
@@ -24,7 +23,10 @@ const SearchedRecipesList = () => {
     if (!value) {
       return;
     }
-
+    if (value === 'ingridients') {
+      setRecipeList();
+      return;
+    }
     if (currentParams === 'query') {
       fetchData('search', value).then(data => {
         setTotalPage(data.totalPages);
@@ -33,7 +35,7 @@ const SearchedRecipesList = () => {
       return;
     }
     fetchData('ingredients', value).then(data => {
-      setTotalPage(data?.totalPages);
+      setTotalPage(data.totalPages);
       setRecipeList(data.recipes);
     });
 
@@ -58,7 +60,7 @@ const SearchedRecipesList = () => {
       return response.data;
     } catch (error) {
       toast.error('Oops...Something went wrong. Try again');
-      setRecipeList();
+      setRecipeList([]);
       setIsLoading(false);
     }
   };
@@ -81,15 +83,13 @@ const SearchedRecipesList = () => {
           <ListContainer>
             {recipeList.map(({ _id, title, thumb }) => {
               return (
-                <CategoryRecipeCardWrapper key={_id}>
-                  <CategoryRecipeCard
-                    key={_id}
-                    itemId={_id}
-                    imageUrl={thumb}
-                    imageAlt={title}
-                    title={title}
-                  ></CategoryRecipeCard>
-                </CategoryRecipeCardWrapper>
+                <CategoryRecipeCard
+                  key={_id}
+                  itemId={_id}
+                  imageUrl={thumb}
+                  imageAlt={title}
+                  title={title}
+                ></CategoryRecipeCard>
               );
             })}
           </ListContainer>
