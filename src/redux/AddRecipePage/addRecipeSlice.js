@@ -38,11 +38,11 @@ const recipeSlice = createSlice({
         state.title = action.payload;
       })
       .addCase(addRecipe.pending, (state, action) => {
-        console.log(action);
         state.createRecipe = false;
       })
       .addCase(addRecipe.fulfilled, (state, action) => {
         state.createRecipe = true;
+        console.log(action);
         // state.createRecipe = false;
       })
       .addCase(addRecipe.rejected, (state, action) => {
