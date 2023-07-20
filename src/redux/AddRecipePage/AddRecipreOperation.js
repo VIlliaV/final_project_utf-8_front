@@ -6,6 +6,10 @@ export const addImage = createAsyncThunk('/addRecipes/addImage', async (data, th
   return data;
 });
 
+export const changeStatus = createAsyncThunk('/addRecipes/addImage', async (data, thunkAPI) => {
+  return data;
+});
+
 export const addTitle = createAsyncThunk('/addRecipes/addTitle', async (text, thunkAPI) => {
   return text;
 });
@@ -65,7 +69,7 @@ export const addRecipe = createAsyncThunk('/addRecipes/addRecipe', async recipe 
     axiosInstance.headers = {
       Authorization: `Bearer ${accessToken}`,
     };
-    return response;
+    return response.data;
   } catch (error) {
     return toast.error(error?.response.data.message);
   }

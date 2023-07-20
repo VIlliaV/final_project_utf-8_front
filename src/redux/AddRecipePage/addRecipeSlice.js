@@ -11,11 +11,13 @@ import {
   addAbout,
   addTitle,
   addRecipe,
+  changeStatus,
 } from './AddRecipreOperation';
 
 const initialState = {
   allIngredients: { _id: null, name: null, desc: null, img: null },
   allCategories: null,
+  createRecipe: false,
 };
 
 const recipeSlice = createSlice({
@@ -40,14 +42,11 @@ const recipeSlice = createSlice({
         state.createRecipe = false;
       })
       .addCase(addRecipe.fulfilled, (state, action) => {
-        if (action.payload.status === 200) {
-          state.createRecipe = true;
-        } else state.createRecipe = false;
+        state.createRecipe = true;
+        // state.createRecipe = false;
       })
       .addCase(addRecipe.rejected, (state, action) => {
-        console.log(action);
         state.createRecipe = false;
-        state.createRecipeErrorsMessage = action.payload;
       })
       .addCase(addAbout.fulfilled, (state, action) => {
         state.description = action.payload;
@@ -63,6 +62,9 @@ const recipeSlice = createSlice({
       })
       .addCase(addTime.fulfilled, (state, action) => {
         state.time = action.payload;
+      })
+      .addCase(changeStatus.fulfilled, (state, action) => {
+        state.createRecipe = false;
       })
       .addDefaultCase(state => state);
   },
