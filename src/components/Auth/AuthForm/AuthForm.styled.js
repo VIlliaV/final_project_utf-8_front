@@ -271,6 +271,20 @@ export const SubmitButton = styled.button`
   }
 `;
 
+export const GoogleButton = styled(SubmitButton)`
+  background-color: #fafafa;
+  color: #23262a;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+  }
+`;
+
 export const Link = styled.a`
   display: inline-flex;
   margin-left: auto;
