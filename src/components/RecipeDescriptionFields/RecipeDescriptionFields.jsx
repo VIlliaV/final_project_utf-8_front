@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import backgroundUploadImg from '../../img/image.jpg';
-import { TextField } from '@mui/material';
+import { TextField, CircularProgress } from '@mui/material';
 import {
   StyledAutoCategory,
   StyledLabelCategory,
@@ -20,14 +20,40 @@ export default function RecipeDescriptionFields({
   setCategories,
   photo,
 }) {
+  const [open, setOpen] = React.useState(false);
+  const [optionsCategory, setOptionsCategory] = React.useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const loadingCategory = open && optionsCategory.length === 0;
 
   let cooking_time = [];
 
   for (let i = 5; i <= 180; i = i + 5) {
     cooking_time.push(i.toString());
   }
+
+  const loadingCookTime = open && cooking_time.length === 0;
+
+  useEffect(() => {
+    let active = true;
+    if (!loadingCategory) {
+      return undefined;
+    }
+    (async () => {
+      if (active) {
+        setOptionsCategory([...allCategories]);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [allCategories, loadingCategory]);
+
+  React.useEffect(() => {
+    if (!open) {
+      setOptionsCategory([]);
+    }
+  }, [open]);
 
   useEffect(() => {
     setImageUrl(backgroundUploadImg);
@@ -80,25 +106,11 @@ export default function RecipeDescriptionFields({
       <StyledInputGroup>
         <div>
           <label>Enter item title</label>
-          <StyledInput
-            id="item_title"
-            onChange={handleChangeTitle}
-            // label="Enter item title"
-            // variant="filled"
-            // placeholder="Enter item title"
-            autoComplete="off"
-          />
+          <StyledInput id="item_title" onChange={handleChangeTitle} autoComplete="off" />
         </div>
         <div>
           <label>Enter about recipe</label>
-          <StyledInput
-            id="item_title"
-            onChange={handleChangeAbout}
-            label="Enter about recipe"
-            // variant="filled"
-            // placeholder="Enter about recipe"
-            autoComplete="off"
-          />
+          <StyledInput id="item_title" onChange={handleChangeAbout} label="Enter about recipe" autoComplete="off" />
         </div>
         <StyledLabelCategory htmlFor="category">
           Category
@@ -106,11 +118,38 @@ export default function RecipeDescriptionFields({
             disablePortal
             id="category"
             onChange={handleChangeCategory}
+            open={open}
+            onOpen={() => {
+              setOpen(true);
+            }}
+            onClose={() => {
+              setOpen(false);
+            }}
             ListboxProps={{
               style: { maxHeight: 220, backgroundColor: 'var(--active_select_1)', color: 'var(--select_text_1)' },
             }}
-            options={allCategories}
-            renderInput={params => <TextField {...params} label="Category" />}
+            // isOptionEqualToValue={(option, value) => option.title === value.title}
+            // getOptionLabel={option => option.title}
+            options={optionsCategory}
+            loading={loadingCategory}
+            renderInput={
+              params => (
+                <TextField
+                  {...params}
+                  label="Categories"
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <React.Fragment>
+                        {loadingCategory ? <CircularProgress color="inherit" size={20} /> : null}
+                        {params.InputProps.endAdornment}
+                      </React.Fragment>
+                    ),
+                  }}
+                />
+              )
+              // <TextField {...params} label="Category" />
+            }
           />
         </StyledLabelCategory>
         <StyledLabelCategory htmlFor="cooking_time">
@@ -122,8 +161,26 @@ export default function RecipeDescriptionFields({
             ListboxProps={{
               style: { maxHeight: 220, backgroundColor: 'var(--active_select_1)', color: 'var(--select_text_1)' },
             }}
-            options={cooking_time}
-            renderInput={params => <TextField {...params} label="Cooking time" />}
+            options={cooking_time || []}
+            loading={loadingCookTime}
+            renderInput={
+              params => (
+                <TextField
+                  {...params}
+                  label="CookTime"
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <React.Fragment>
+                        {loadingCookTime ? <CircularProgress color="inherit" size={20} /> : []}
+                        {params.InputProps.endAdornment}
+                      </React.Fragment>
+                    ),
+                  }}
+                />
+              )
+              // <TextField {...params} label="Cooking time" />
+            }
           />
         </StyledLabelCategory>
       </StyledInputGroup>
