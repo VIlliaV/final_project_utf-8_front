@@ -6,8 +6,9 @@ import { StyledSection3 } from './AddRecipeForm.styled';
 import RecipeDescriptionFields from 'components/RecipeDescriptionFields/RecipeDescriptionFields';
 import RecipePreparationFields from 'components/RecipePreparationFields/RecipePreparationFields';
 import RecipeIngredientsFields from 'components/RecipeIngredientsFields/RecipeIngredientsFields';
-import { AllCategories } from 'redux/AddRecipePage/AddRecipeSelector';
-import { addRecipe } from 'redux/AddRecipePage/AddRecipreOperation';
+import { AllCategories, isAddRecipeSelector } from 'redux/AddRecipePage/AddRecipeSelector';
+import { addRecipe, changeStatus } from 'redux/AddRecipePage/AddRecipreOperation';
+import { useNavigate } from 'react-router-dom';
 
 export const AddRecipeForm = () => {
   const allCategories = useSelector(AllCategories);
@@ -19,6 +20,8 @@ export const AddRecipeForm = () => {
   const [photo, setPhoto] = useState('');
   const [ingredients, setIngredient] = useState([]);
   const [preparation, setPreparation] = useState('');
+  const navigate = useNavigate();
+  const isAddRecipe = useSelector(isAddRecipeSelector);
 
   const dispatch = useDispatch();
 
@@ -26,6 +29,11 @@ export const AddRecipeForm = () => {
     let ingredientsToSend = [];
     ingredients.map(el => ingredientsToSend.push({ id: el._id, measure: el.measure }));
   }, [ingredients]);
+
+  useEffect(() => {
+    if (isAddRecipe) navigate('/my');
+    dispatch(changeStatus());
+  }, [dispatch, isAddRecipe, navigate]);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -43,6 +51,7 @@ export const AddRecipeForm = () => {
     // }
     // console.log('formData', formDataObject);
     dispatch(addRecipe(formData));
+
     // console.log('addRecipeStatus', addRecipeStatus);
   };
 
