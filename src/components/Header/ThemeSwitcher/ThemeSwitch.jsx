@@ -17,9 +17,11 @@ export default function ThemeSwitcher() {
   const dispatch = useDispatch();
 
   const getValue = () => {
+
 	dispatch(themeToggle());
 
 	setChecked(!checked); // изменяем значение на противоположное
+
 
   };
 
