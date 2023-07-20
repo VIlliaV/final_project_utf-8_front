@@ -39,9 +39,6 @@ export const StyledSvg = style.svg`
 &:hover {
   fill:var(--active_theme_2);
 }
-// &:focus {
-//   fill:var(--active_theme_2);
-// }
 
 @media ${media.desktop} {
 display: flex;
