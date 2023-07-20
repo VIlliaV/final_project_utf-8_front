@@ -1,7 +1,5 @@
 import { ListBox, FirstListTitle, SecondListTitle, LastListTitle, ListContainer } from './RecipeIngredientsList.styled';
-
 import { useSelector } from 'react-redux';
-
 import { shoppingList } from 'redux/shoppingList/shoppingListSelectors';
 import { RecipeCheckbox } from './RecipeCheckbox';
 import { useCallback, useEffect, useState } from 'react';
@@ -13,28 +11,26 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
   const [checkedIngredients, setCheckedIngredients] = useState([]);
 
   const isInRecipe = useCallback(
-    ingredientId => {
-      return recipeIngredients.some(ingredient => ingredient.id._id === ingredientId);
-    },
-    [recipeIngredients]
-  );
-
-  const isInShoppingList = useCallback(
-    ingredientId => {
-      return savedShoppingList.some(item => {
-        return item.id?._id === ingredientId;
+    recipeId => {
+      return savedShoppingList.filter(ingredient => {
+        return ingredient.recipeId === recipeId;
       });
     },
     [savedShoppingList]
   );
 
   useEffect(() => {
-    const updatedCheckedIngredients = recipeIngredients.map(
-      ingredient => isInRecipe(ingredient.id._id) && isInShoppingList(ingredient.id._id)
-    );
+    const filteredIngredients = isInRecipe(recipeId);
 
-    setCheckedIngredients(updatedCheckedIngredients);
-  }, [recipeIngredients, isInRecipe, isInShoppingList]);
+    const checkedIngredients = recipeIngredients.map(ingredient => {
+      const foundIngredient = filteredIngredients.find(
+        filteredIngredient => filteredIngredient.id._id === ingredient.id._id
+      );
+      return foundIngredient ? true : false;
+    });
+
+    setCheckedIngredients(checkedIngredients);
+  }, [isInRecipe, recipeId, recipeIngredients]);
 
   return (
     <>
@@ -45,8 +41,7 @@ const RecipeIngredientsList = ({ recipe, handleCheckboxChange }) => {
       </ListBox>
       <ListContainer>
         {recipeIngredients.map((ingredient, index) => {
-          const isChecked = checkedIngredients[index] !== undefined ? checkedIngredients[index] : false;
-
+          const isChecked = checkedIngredients[index] || false;
           return (
             <RecipeCheckbox
               key={`${recipeId}_${ingredient.id._id}`}
