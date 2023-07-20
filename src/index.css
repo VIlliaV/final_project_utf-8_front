@@ -84,6 +84,7 @@ ol {
 }
 
 ul,
+ol,
 li {
   list-style: none;
 }
