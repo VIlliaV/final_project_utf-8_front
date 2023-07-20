@@ -36,7 +36,7 @@ const Header = () => {
         <UserDiv>
           <AvatarButtonComponent shouldChangeStyle={shouldChangeStyle ? 'active-link' : ''} />
           <ShowContentTablet>
-            <BurgerMenu />
+            <BurgerMenu shouldChangeStyle={shouldChangeStyle}/>
           </ShowContentTablet>
           <HideContentDesktop>
             <ThemeSwitcher />

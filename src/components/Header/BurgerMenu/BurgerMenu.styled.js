@@ -12,8 +12,6 @@ import burgurTab2 from './img/kisspng-tablet@2x.png';
 export const BurgerMenuContainer = styled.div`
   position: relative;
   z-index: 10;
-  overflow: ${({ menuVisible }) => (menuVisible ? 'hidden' : 'visible')};
-
 `;
 
 export const BurgerIcon = styled.div`
@@ -33,7 +31,7 @@ export const Menu = styled.div`
   display: none;
 
   &.visible {
-	overflow: hidden;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,8 +40,8 @@ export const Menu = styled.div`
 
   background-color: var(--back_second_2);
   background-image: url(${burgurMob});
-  background-position: top 0px left 0px; 
-  background-repeat: no-repeat; 
+  background-position: top 0px left 0px;
+  background-repeat: no-repeat;
   background-size: 360px auto;
 
   @media ${media.mobile + media.retina} {
@@ -102,7 +100,6 @@ export const StyledNavLink = styled(NavLink)`
   @media ${media.tablet} {
     margin-bottom: 32px;
     font-size: 24px;
-    font-style: normal;
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.48px;
@@ -126,12 +123,12 @@ export const StyledMenuIconSvg = styled(MenuIconSvg)`
   width: 28px;
   height: 28px;
   @media ${media.tablet} {
+    width: 32px;
+    height: 32px;
   }
 `;
 
 export const StyledCloseIconSVG = styled(CloseIconSVG)`
   stroke: var(--text_theme_1);
   width: 32px;
-  @media ${media.tablet} {
-  }
 `;

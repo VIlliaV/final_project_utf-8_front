@@ -8,6 +8,7 @@ import {
   getThemeToggle,
   getErorrMessage,
   getAccessToken,
+  getEmailMessage,
 } from 'redux/auth/authSelectors';
 
 export const useAuth = () => {
@@ -19,6 +20,7 @@ export const useAuth = () => {
   const isThemeToggle = useSelector(getThemeToggle);
   const errorMessage = useSelector(getErorrMessage);
   const accessToken = useSelector(getAccessToken);
+  const emailMessage = useSelector(getEmailMessage);
 
   return {
     isLoggedIn,
@@ -29,5 +31,6 @@ export const useAuth = () => {
     isThemeToggle,
     errorMessage,
     accessToken,
+    emailMessage,
   };
 };

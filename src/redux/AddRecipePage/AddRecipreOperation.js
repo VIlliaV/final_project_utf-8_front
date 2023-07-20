@@ -69,7 +69,7 @@ export const addRecipe = createAsyncThunk('/addRecipes/addRecipe', async (recipe
     axiosInstance.headers = {
       Authorization: `Bearer ${accessToken}`,
     };
-    console.log('🚀 ~ response.data:', response.data);
+
     return response.data;
   } catch (error) {
     toast.error(error?.response.data.message);

@@ -17,10 +17,11 @@ import {
 import { AllIngredients } from 'redux/AddRecipePage/AddRecipeSelector';
 
 export default function RecipeIngredientsFields({ setIngredient }) {
+
   const ingredients = useSelector(AllIngredients);
   const [counter, setCounter] = useState(1);
   // const [loadLocale, setLoadLocale] = useState([]);
-  const [ingredientsList, setIngredientsList] = useState([{ id: nanoid(), _id: '', name: '', measure: '' }]);
+  const [ingredientsList, setIngredientsList] = useState([{ findid: nanoid(), id: '', name: '', measure: '' }]);
   let searchItem = [];
 
   const loading = ingredients.length === 0;
@@ -64,7 +65,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
     setCounter(counter + 1);
 
     setIngredientsList(prevState => {
-      return [...prevState, { id: nanoid(), _id: '', name: '', measure: '' }];
+      return [...prevState, { findid: nanoid(), id: '', name: '', measure: '' }];
     });
     // localStorage.setItem('ingredientCount', counter);
   };
@@ -82,7 +83,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
   const handleChangeIngredient = event => {
     searchItem.name = event.currentTarget.textContent;
     const currentId = ingredients.find(el => el.name === searchItem.name);
-    searchItem._id = currentId._id;
+    searchItem.id = currentId._id;
     // localStorage.setItem('IngredientList', JSON.stringify(ingredientList));
   };
 
@@ -92,14 +93,16 @@ export default function RecipeIngredientsFields({ setIngredient }) {
   };
 
   const handleChangeItem = event => {
-    searchItem = ingredientsList.find(options => options.id === event.currentTarget.id);
+    const tempId = event.currentTarget;
+    searchItem = ingredientsList.find(options => options.findid === tempId.id);
+
     if (event.target.name === 'btnDelete') {
       if (counter > 1) {
         handleDecrement();
       } else throw toast.error("this items don't remove");
     }
   };
-
+  // ingredientsList.map(el => console.log(el));
   return (
     <>
       <StyledSection2 name="label_ingredience">
@@ -140,7 +143,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
 
         <ul name="detailIngrediantList">
           {ingredientsList.map(el => (
-            <li key={el.id} id={el.id} name="ingredient" onClick={handleChangeItem}>
+            <li key={el.findid} id={el.findid} onClick={handleChangeItem}>
               <StyledIngredientList>
                 {ingredients.length > 0 ? (
                   <>
