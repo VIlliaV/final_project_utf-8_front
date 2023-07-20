@@ -3,7 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
 export const addImage = createAsyncThunk('/addRecipes/addImage', async (data, thunkAPI) => {
-  console.log('data', data);
   return data;
 });
 
@@ -32,7 +31,7 @@ export const getCategories = createAsyncThunk('/addRecipes/getCategories', async
     const response = await axiosInstance.get('/recipes/category-list');
     return response.data;
   } catch (error) {
-    return toast.error(error.message);
+    return toast.error(error?.response.data.message);
   }
 });
 
@@ -41,7 +40,7 @@ export const getIngredients = createAsyncThunk('/addRecipes/getIngredients', asy
     const response = await axiosInstance.get('/ingredients/list');
     return response.data;
   } catch (error) {
-    return toast.error(error.message);
+    return toast.error(error?.response.data.message);
   }
 });
 
@@ -50,11 +49,11 @@ export const getPopular = createAsyncThunk('/addRecipes/getPopular', async (_, t
     const response = await axiosInstance.get('/popular-recipe');
     return response.data;
   } catch (error) {
-    return toast.error(error.message);
+    return toast.error(error?.response.data.message);
   }
 });
 
-export const addRecipe = createAsyncThunk('/addRecipes/getPopular', async (recipe, thunkAPI) => {
+export const addRecipe = createAsyncThunk('/addRecipes/addRecipe', async recipe => {
   const accessToken = localStorage.getItem('accessToken');
 
   axiosInstance.headers = {
@@ -68,6 +67,6 @@ export const addRecipe = createAsyncThunk('/addRecipes/getPopular', async (recip
     };
     return response;
   } catch (error) {
-    return toast.error(error.message);
+    return toast.error(error?.response.data.message);
   }
 });

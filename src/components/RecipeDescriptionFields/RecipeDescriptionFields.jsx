@@ -18,6 +18,7 @@ export default function RecipeDescriptionFields({
   allCategories,
   setPhoto,
   setCategories,
+  photo,
 }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -29,18 +30,18 @@ export default function RecipeDescriptionFields({
   }
 
   useEffect(() => {
-    // setSelectedImage(backgroundUploadImg);
-    console.log('selectedImage', selectedImage);
+    setImageUrl(backgroundUploadImg);
+  }, []);
 
+  useEffect(() => {
     if (selectedImage) {
-      console.log('selectedImage2', selectedImage);
-      if (selectedImage === undefined) {
-        setImageUrl(URL.createObjectURL(selectedImage));
-        setPhoto(selectedImage);
-      }
-      setPhoto(backgroundUploadImg);
-    } else setImageUrl(backgroundUploadImg);
-  }, [selectedImage, setPhoto]);
+      setPhoto(selectedImage);
+      setImageUrl(URL.createObjectURL(selectedImage));
+    }
+    if (selectedImage === undefined) {
+      setImageUrl(photo);
+    }
+  }, [photo, selectedImage, setPhoto]);
 
   const handleChangeTitle = event => {
     const title = event.target.value;

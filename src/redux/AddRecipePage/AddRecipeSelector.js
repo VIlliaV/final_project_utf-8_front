@@ -8,3 +8,4 @@ export const Instructions = state => state.addRecipePage.instructions;
 export const Documents = state => state.addRecipePage.documents;
 export const AllIngredients = state => state.addRecipePage.allIngredients;
 export const AllCategories = state => state.addRecipePage.allCategories;
+export const AddRecipeStatus = state => state.addRecipePage.createRecipe;

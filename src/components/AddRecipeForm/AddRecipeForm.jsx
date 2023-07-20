@@ -8,10 +8,10 @@ import RecipePreparationFields from 'components/RecipePreparationFields/RecipePr
 import RecipeIngredientsFields from 'components/RecipeIngredientsFields/RecipeIngredientsFields';
 import { AllCategories } from 'redux/AddRecipePage/AddRecipeSelector';
 import { addRecipe } from 'redux/AddRecipePage/AddRecipreOperation';
-let ingredientsToSend = [];
 
 export const AddRecipeForm = () => {
   const allCategories = useSelector(AllCategories);
+  // const addRecipeStatus = useSelector(AddRecipeStatus);
   const [category, setCategory] = useState('');
   const [cookTime, setCookTime] = useState('');
   const [about, setAbout] = useState('');
@@ -23,6 +23,7 @@ export const AddRecipeForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    let ingredientsToSend = [];
     ingredients.map(el => ingredientsToSend.push({ id: el._id, measure: el.measure }));
   }, [ingredients]);
 
@@ -35,15 +36,14 @@ export const AddRecipeForm = () => {
     formData.append('instructions', preparation);
     formData.append('description', about);
     formData.append('time', cookTime);
-    formData.append('ingredients', JSON.stringify(ingredientsToSend));
-    const formDataObject = {};
-    for (const [key, value] of formData.entries()) {
-      formDataObject[key] = value;
-    }
-    console.log(formDataObject);
-    console.log(ingredientsToSend);
-    const result = dispatch(addRecipe(formData));
-    console.log(result);
+    formData.append('ingredients', JSON.stringify(ingredients));
+    // const formDataObject = {};
+    // for (const [key, value] of formData.entries()) {
+    //   formDataObject[key] = value;
+    // }
+    // console.log('formData', formDataObject);
+    dispatch(addRecipe(formData));
+    // console.log('addRecipeStatus', addRecipeStatus);
   };
 
   return (
@@ -52,6 +52,7 @@ export const AddRecipeForm = () => {
         <RecipeDescriptionFields
           allCategories={allCategories}
           setPhoto={setPhoto}
+          photo={photo}
           setCategories={setCategory}
           setAbout={setAbout}
           setTitle={setTitle}
