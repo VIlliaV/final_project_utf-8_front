@@ -17,18 +17,43 @@ import {
 import { AllIngredients } from 'redux/AddRecipePage/AddRecipeSelector';
 
 export default function RecipeIngredientsFields({ setIngredient }) {
-
   const ingredients = useSelector(AllIngredients);
   const [counter, setCounter] = useState(1);
+  const [open, setOpen] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
   // const [loadLocale, setLoadLocale] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([{ findid: nanoid(), id: '', name: '', measure: '' }]);
   let searchItem = [];
-
-  const loading = ingredients.length === 0;
+  const loading = open && options.length === 0;
+  // const loading = ingredients.length === 0;
 
   useEffect(() => {
     setIngredient(ingredientsList);
   }, [ingredientsList, setIngredient]);
+
+  useEffect(() => {
+    let active = true;
+
+    if (!loading) {
+      return undefined;
+    }
+
+    (async () => {
+      if (active) {
+        setOptions([...ingredients]);
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [ingredients, loading]);
+
+  useEffect(() => {
+    if (!open) {
+      setOptions([]);
+    }
+  }, [open]);
 
   // function loadFromLocale(key) {
   //   try {
@@ -102,7 +127,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
       } else throw toast.error("this items don't remove");
     }
   };
-  // ingredientsList.map(el => console.log(el));
+
   return (
     <>
       <StyledSection2 name="label_ingredience">
@@ -149,8 +174,15 @@ export default function RecipeIngredientsFields({ setIngredient }) {
                   <>
                     <StyledAutoComplete
                       disableClearable
-                      name="ingredientsName"
-                      id="ingredientsName"
+                      key={el.findid}
+                      id={el.findid}
+                      open={open}
+                      onOpen={() => {
+                        setOpen(true);
+                      }}
+                      onClose={() => {
+                        setOpen(false);
+                      }}
                       ListboxProps={{
                         style: {
                           maxHeight: 220,
@@ -158,10 +190,13 @@ export default function RecipeIngredientsFields({ setIngredient }) {
                           color: 'var(--select_text_1)',
                         },
                       }}
-                      isOptionEqualToValue={(option, value) => option === value}
-                      getOptionLabel={option => option}
+                      isOptionEqualToValue={(option, value) => option.name === value.name}
+                      getOptionLabel={option => option.name}
                       onChange={handleChangeIngredient}
-                      options={ingredients.map(el => el.name)}
+                      options={
+                        options
+                        // ingredients.map(el => el.name)
+                      }
                       loading={loading}
                       renderInput={params => (
                         <TextField
@@ -171,7 +206,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
                             ...params.InputProps,
                             endAdornment: (
                               <React.Fragment>
-                                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                                {loading ? <CircularProgress color="inherit" size={20} /> : []}
                                 {params.InputProps.endAdornment}
                               </React.Fragment>
                             ),
@@ -181,7 +216,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
                     />
                     <StyledInputIngredient
                       name="measure"
-                      autocomplete="off"
+                      autoComplete="off"
                       onChange={handleChangeMeaure}
                       type="text"
                       placeholder="count tbs,tps,kg,g"
