@@ -63,7 +63,7 @@ export const AuthForm = () => {
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
     dispatch(clearErrorMessage());
-  }, [navigate, isRegisterPage]);
+  }, [navigate, isRegisterPage, dispatch]);
 
   const onSubmit = useCallback(
     data => {
