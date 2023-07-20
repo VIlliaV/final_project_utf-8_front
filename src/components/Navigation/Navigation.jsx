@@ -18,7 +18,7 @@ const Navigation = () => {
       <StyledNavLink to="/my" className={recipePathRegex.test(location.pathname) && 'active'}>
         My recipes
       </StyledNavLink>
-      <StyledNavLink to="/favorites">
+      <StyledNavLink to="/favorite">
         Favorites
       </StyledNavLink>
       <StyledNavLink to="/shopping-list">
