@@ -110,7 +110,14 @@ export default function RecipeDescriptionFields({
         </div>
         <div>
           <label>Enter about recipe</label>
-          <StyledInput id="item_title" onChange={handleChangeAbout} label="Enter about recipe" autoComplete="off" />
+          <StyledInput
+            id="item_title"
+            onChange={handleChangeAbout}
+            label="Enter about recipe"
+            variant="filled"
+            // placeholder="Enter about recipe"
+            autocomplete="off"
+          />
         </div>
         <StyledLabelCategory htmlFor="category">
           Category
