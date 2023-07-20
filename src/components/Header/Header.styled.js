@@ -94,6 +94,7 @@ export const StyledNavLink = styled(NavLink)`
     font-weight: bold;
 	animation: ${fadeIn} 0.5s;
   }
+
 `;
 
 export const LogoNav = styled(NavLink)`

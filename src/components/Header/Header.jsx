@@ -25,13 +25,14 @@ const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Здесь вы можете указать условие для изменения стиля
     if (location.pathname === '/main') {
       setShouldChangeStyle(true);
     } else {
       setShouldChangeStyle(false);
     }
   }, [location]);
+
+  const recipePathRegex = /^\/recipe\/\w+/;
 
   return (
     <ResponsiveHeaderContainer>
@@ -47,10 +48,10 @@ const Header = () => {
             <StyledNavLink to="/add">
               Add recipes
             </StyledNavLink>
-            <StyledNavLink to="/my">
+            <StyledNavLink to="/my" className={recipePathRegex.test(location.pathname) && 'active'}>
               My recipes
             </StyledNavLink>
-            <StyledNavLink to="/favorite">
+            <StyledNavLink to="/favorites">
               Favorites
             </StyledNavLink>
             <StyledNavLink to="/shopping-list">
@@ -62,7 +63,7 @@ const Header = () => {
           </Nav>
         </HideContentDesktop>
         <UserDiv>
-          <AvatarButtonComponent shouldChangeStyle={shouldChangeStyle} />
+          <AvatarButtonComponent shouldChangeStyle={shouldChangeStyle ? 'active-link' : ''} />
           <ShowContentTablet>
             <BurgerMenu />
           </ShowContentTablet>
