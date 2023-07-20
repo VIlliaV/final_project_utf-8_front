@@ -105,7 +105,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
   // ingredientsList.map(el => console.log(el));
   return (
     <>
-      <StyledSection2 name="label_ingredience" sx={{ color: 'white' }}>
+      <StyledSection2 name="label_ingredience" >
         <StyledH3>Ingredients</StyledH3>
         <StyledButtonGroup aria-label="outlined primary button group">
           <StyledInputBtn onClick={handleDecrement} name="decrementBtn">
@@ -181,7 +181,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
                     />
                     <StyledInputIngredient
                       name="measure"
-                      autocomplete="off"
+                      autoComplete="off"
                       onChange={handleChangeMeaure}
                       type="text"
                       placeholder="count tbs,tps,kg,g"
