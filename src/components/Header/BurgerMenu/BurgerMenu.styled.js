@@ -12,6 +12,8 @@ import burgurTab2 from './img/kisspng-tablet@2x.png';
 export const BurgerMenuContainer = styled.div`
   position: relative;
   z-index: 10;
+  overflow: ${({ menuVisible }) => (menuVisible ? 'hidden' : 'visible')};
+
 `;
 
 export const BurgerIcon = styled.div`
@@ -31,6 +33,7 @@ export const Menu = styled.div`
   display: none;
 
   &.visible {
+	overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,7 +41,6 @@ export const Menu = styled.div`
   }
 
   background-color: var(--back_second_2);
-
   background-image: url(${burgurMob});
   background-position: top 0px left 0px; 
   background-repeat: no-repeat; 
