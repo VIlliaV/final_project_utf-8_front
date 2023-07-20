@@ -6,7 +6,7 @@ export const Form = styled.label`
   flex-direction: row;
   align-items: center;
   margin-top: 24px;
-
+  margin-bottom: 50px;
   label {
     font-size: 12px;
     font-weight: 500;
