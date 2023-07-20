@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
-import { loginUser, signupUser, googleAuth } from 'redux/auth/authOperations';
+import { loginUser, signupUser } from 'redux/auth/authOperations';
 import inputIconSuccess from 'img/inputIconSuccess.svg';
 import inputIconError from 'img/inputIconError.svg';
 import { useAuth } from 'utils/hooks/useAuth';
@@ -80,9 +80,9 @@ export const AuthForm = () => {
     [dispatch, isRegisterPage]
   ); 
 
-  const handleGoogleSubmit = () => {
-    dispatch(googleAuth());
-  }
+  // const handleGoogleSubmit = () => {
+  //   dispatch(googleAuth());
+  // }
 
   const validate = values => {
     const errors = {};
@@ -208,8 +208,10 @@ export const AuthForm = () => {
           </PasswordInputContainer>
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
-          <GoogleButton type="button" onClick={handleGoogleSubmit}>
-            {isRegisterPage ? 'Sign up with Google' : 'Sign In with Google'}
+          <GoogleButton type="button">
+            <a href="https://final-project-utf-8-backend.onrender.com/users/google">
+              {isRegisterPage ? 'Sign up with Google' : 'Sign In with Google'}
+            </a>
             <img style={{ marginLeft: 8 }} height={25} width={25} alt="googleLogo" src={googleLogo} />
           </GoogleButton>
         </Form>
