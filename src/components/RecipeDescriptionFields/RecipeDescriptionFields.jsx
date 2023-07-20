@@ -84,9 +84,9 @@ export default function RecipeDescriptionFields({
             id="item_title"
             onChange={handleChangeTitle}
             // label="Enter item title"
-            variant="filled"
+            // variant="filled"
             // placeholder="Enter item title"
-            autocomplete="off"
+            autoComplete="off"
           />
         </div>
         <div>
@@ -95,9 +95,9 @@ export default function RecipeDescriptionFields({
             id="item_title"
             onChange={handleChangeAbout}
             label="Enter about recipe"
-            variant="filled"
+            // variant="filled"
             // placeholder="Enter about recipe"
-            autocomplete="off"
+            autoComplete="off"
           />
         </div>
         <StyledLabelCategory htmlFor="category">

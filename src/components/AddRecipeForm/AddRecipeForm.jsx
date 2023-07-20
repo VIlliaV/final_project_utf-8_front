@@ -38,8 +38,8 @@ export const AddRecipeForm = () => {
   const onSubmit = e => {
     e.preventDefault();
     const objectsToSend = [];
-    console.log('ingredients', ingredients);
-    ingredients.map(({ id, measure }) => objectsToSend.push({ id, measure }));
+    // console.log('ingredients', ingredients);
+    ingredients?.map(({ id, measure }) => objectsToSend.push({ id, measure }));
     console.log('objectsToSend', objectsToSend);
     const formData = new FormData();
     formData.append('documents', photo);
