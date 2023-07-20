@@ -48,11 +48,10 @@ const Footer = () => {
     axiosInstance
       .post('/subscribe', { email })
       .then(response => {
-		if(response.status === 200 )
-		toast.success("Subscription successfully processed");
+        toast.success("Subscription successfully processed");
       })
       .catch(error => {
-		toast.error("subscribe email send failed");
+        toast.error("subscribe email send failed");
       });
     setEmail('');
   };
