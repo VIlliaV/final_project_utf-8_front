@@ -51,6 +51,8 @@ export const MyRecipesList = ({ page }) => {
   }, [dispatch, page, isDeleting, currentPage]);
 
   const onDeleteBtnClick = id => {
+    console.log('🚀 ~ id:', id);
+
     setIsDeleting(id);
   };
   let backgroundColor = '';
@@ -118,7 +120,12 @@ export const MyRecipesList = ({ page }) => {
                   <div>
                     <TitleIconWrapper>
                       <MyRecipesItemTitle $color={isThemeToggle}>{title}</MyRecipesItemTitle>
-                      <SvgWrapper $backgroundColor={backgroundColor}>
+                      <SvgWrapper
+                        $backgroundColor={backgroundColor}
+                        onClick={() => {
+                          onDeleteBtnClick(_id);
+                        }}
+                      >
                         <TrashIcon src={page === 'Favorites' ? trashIconBlack : trashIconWhite} />
                       </SvgWrapper>
                     </TitleIconWrapper>
