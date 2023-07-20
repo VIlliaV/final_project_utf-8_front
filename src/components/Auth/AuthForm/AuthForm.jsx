@@ -32,37 +32,37 @@ import {
   GoogleButton,
 } from './AuthForm.styled';
 
-
-const registerInitialValues = {
+const userInitialValues = {
   name: '',
   email: '',
   password: '',
 };
+localStorage.setItem('authInitialValues', JSON.stringify(userInitialValues));
 
-const signInInitialValues = {
-  email: '',
-  password: '',
-};
 
 export const AuthForm = () => {
-  const [initialValues, setInitialValues] = useState(registerInitialValues);
+  const [initialValues, setInitialValues] = useState(JSON.parse(localStorage.getItem('authInitialValues')));
   const [isRegisterPage, setIsRegisterPage] = useState(true);
   const { pathname } = useLocation();
   const { errorMessage } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // console.log(initialValues);
+
   useEffect(() => {
+    localStorage.setItem('authInitialValues', JSON.stringify(initialValues));
     if (pathname === '/signin') {
       setIsRegisterPage(false);
-      setInitialValues(signInInitialValues);
+      // setInitialValues(signInInitialValues);
     }
-  }, [pathname, dispatch, errorMessage]);
+  }, [pathname, dispatch, errorMessage, initialValues]);
 
 
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
     dispatch(clearErrorMessage());
+    localStorage.setItem('authInitialValues', JSON.stringify(userInitialValues));
   }, [navigate, isRegisterPage, dispatch]);
 
   const onSubmit = useCallback(
@@ -132,7 +132,10 @@ export const AuthForm = () => {
                 type="text"
                 name="name"
                 placeholder="Name"
-                onChange={formik.handleChange}
+                onChange={e => {
+                  formik.handleChange(e);
+                  setInitialValues({ ...initialValues, name: e.target.value });
+                }}
                 value={formik.values.name}
                 onBlur={formik.handleBlur}
               />
@@ -157,7 +160,10 @@ export const AuthForm = () => {
               type="email"
               name="email"
               placeholder="Email"
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                setInitialValues({ ...initialValues, email: e.target.value });
+              }}
               value={formik.values.email}
               onBlur={formik.handleBlur}
             />
@@ -182,7 +188,10 @@ export const AuthForm = () => {
               type="password"
               name="password"
               placeholder="Password"
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                setInitialValues({ ...initialValues, password: e.target.value });
+              }}
               value={formik.values.password}
               onBlur={formik.handleBlur}
             />

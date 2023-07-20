@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 401) {
       const refreshToken = localStorage.getItem('refreshToken');
       try {
-        const { data } = await axiosInstance.post('/users/refresh', { refreshToken });
+        const { data } = await axiosInstance.post('users/refresh', { refreshToken });
         axiosInstance.headers = { Authorization: `Bearer ${data.accessToken}` };
         localStorage.setItem('refreshToken', data.refreshToken);
         localStorage.setItem('accessToken', data.accessToken);
@@ -47,7 +47,7 @@ axiosInstance.interceptors.response.use(
 
 export const signupUser = createAsyncThunk('users/register', async ({ name, email, password }, thunkAPI) => {
   try {
-    const response = await axiosInstance.post('/users/register', {
+    const response = await axiosInstance.post('users/register', {
       name,
       email,
       password,
@@ -63,7 +63,7 @@ export const signupUser = createAsyncThunk('users/register', async ({ name, emai
 
 export const loginUser = createAsyncThunk('users/login', async (credentials, thunkAPI) => {
   try {
-    const response = await axiosInstance.post('/users/login', credentials);
+    const response = await axiosInstance.post('users/login', credentials);
     axiosInstance.headers = { Authorization: `Bearer ${response.data.accessToken}` };
     localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);
@@ -75,7 +75,7 @@ export const loginUser = createAsyncThunk('users/login', async (credentials, thu
 
 export const logoutUser = createAsyncThunk('users/logout', async (_, thunkAPI) => {
   try {
-    await axiosInstance.post('/users/logout');
+    await axiosInstance.post('users/logout');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -84,7 +84,7 @@ export const logoutUser = createAsyncThunk('users/logout', async (_, thunkAPI) =
 
 export const fetchCurrentUser = createAsyncThunk('users/current', async (_, thunkAPI) => {
   try {
-    const response = await axiosInstance.get('/users/current');
+    const response = await axiosInstance.get('users/current');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
