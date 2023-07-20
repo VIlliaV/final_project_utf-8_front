@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
-import { loginUser, signupUser, googleAuth } from 'redux/auth/authOperations';
+import { loginUser, signupUser } from 'redux/auth/authOperations';
 import inputIconSuccess from 'img/inputIconSuccess.svg';
 import inputIconError from 'img/inputIconError.svg';
 import { useAuth } from 'utils/hooks/useAuth';
@@ -32,37 +32,37 @@ import {
   GoogleButton,
 } from './AuthForm.styled';
 
-
-const registerInitialValues = {
+const userInitialValues = {
   name: '',
   email: '',
   password: '',
 };
+localStorage.setItem('authInitialValues', JSON.stringify(userInitialValues));
 
-const signInInitialValues = {
-  email: '',
-  password: '',
-};
 
 export const AuthForm = () => {
-  const [initialValues, setInitialValues] = useState(registerInitialValues);
+  const [initialValues, setInitialValues] = useState(JSON.parse(localStorage.getItem('authInitialValues')));
   const [isRegisterPage, setIsRegisterPage] = useState(true);
   const { pathname } = useLocation();
   const { errorMessage } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // console.log(initialValues);
+
   useEffect(() => {
+    localStorage.setItem('authInitialValues', JSON.stringify(initialValues));
     if (pathname === '/signin') {
       setIsRegisterPage(false);
-      setInitialValues(signInInitialValues);
+      // setInitialValues(signInInitialValues);
     }
-  }, [pathname, dispatch, errorMessage]);
+  }, [pathname, dispatch, errorMessage, initialValues]);
 
 
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
     dispatch(clearErrorMessage());
+    localStorage.setItem('authInitialValues', JSON.stringify(userInitialValues));
   }, [navigate, isRegisterPage, dispatch]);
 
   const onSubmit = useCallback(
@@ -80,9 +80,9 @@ export const AuthForm = () => {
     [dispatch, isRegisterPage]
   ); 
 
-  const handleGoogleSubmit = () => {
-    dispatch(googleAuth());
-  }
+  // const handleGoogleSubmit = () => {
+  //   dispatch(googleAuth());
+  // }
 
   const validate = values => {
     const errors = {};
@@ -132,7 +132,10 @@ export const AuthForm = () => {
                 type="text"
                 name="name"
                 placeholder="Name"
-                onChange={formik.handleChange}
+                onChange={e => {
+                  formik.handleChange(e);
+                  setInitialValues({ ...initialValues, name: e.target.value });
+                }}
                 value={formik.values.name}
                 onBlur={formik.handleBlur}
               />
@@ -157,7 +160,10 @@ export const AuthForm = () => {
               type="email"
               name="email"
               placeholder="Email"
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                setInitialValues({ ...initialValues, email: e.target.value });
+              }}
               value={formik.values.email}
               onBlur={formik.handleBlur}
             />
@@ -182,7 +188,10 @@ export const AuthForm = () => {
               type="password"
               name="password"
               placeholder="Password"
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                setInitialValues({ ...initialValues, password: e.target.value });
+              }}
               value={formik.values.password}
               onBlur={formik.handleBlur}
             />
@@ -199,8 +208,10 @@ export const AuthForm = () => {
           </PasswordInputContainer>
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
-          <GoogleButton type="button" onClick={handleGoogleSubmit}>
-            {isRegisterPage ? 'Sign up with Google' : 'Sign In with Google'}
+          <GoogleButton type="button">
+            <a href="https://final-project-utf-8-backend.onrender.com/users/google">
+              {isRegisterPage ? 'Sign up with Google' : 'Sign In with Google'}
+            </a>
             <img style={{ marginLeft: 8 }} height={25} width={25} alt="googleLogo" src={googleLogo} />
           </GoogleButton>
         </Form>

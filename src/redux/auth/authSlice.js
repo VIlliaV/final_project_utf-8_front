@@ -9,7 +9,6 @@ import {
   fetchCurrentUser,
   themeToggle,
   updateUser,
-  googleAuth,
 } from './authOperations';
 
 const initialState = {
@@ -57,9 +56,6 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.errorMessage = action.payload;
       })
-      .addCase(googleAuth.pending, (state, action) => {})
-      .addCase(googleAuth.fulfilled, (state, action) => {})
-      .addCase(googleAuth.rejected, (state, action) => {})
       .addCase(logoutUser.pending, state => {
         state.isRefreshing = true;
       })
