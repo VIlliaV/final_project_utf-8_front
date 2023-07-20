@@ -10,16 +10,10 @@ import {
   addTime,
   addAbout,
   addTitle,
+  addRecipe,
 } from './AddRecipreOperation';
 
 const initialState = {
-  documents: null,
-  title: null,
-  description: null,
-  category: null,
-  time: null,
-  ingredients: [],
-  instructions: null,
   allIngredients: { _id: null, name: null, desc: null, img: null },
   allCategories: null,
 };
@@ -40,6 +34,20 @@ const recipeSlice = createSlice({
       })
       .addCase(addTitle.fulfilled, (state, action) => {
         state.title = action.payload;
+      })
+      .addCase(addRecipe.pending, (state, action) => {
+        console.log(action);
+        state.createRecipe = false;
+      })
+      .addCase(addRecipe.fulfilled, (state, action) => {
+        if (action.payload.status === 200) {
+          state.createRecipe = true;
+        } else state.createRecipe = false;
+      })
+      .addCase(addRecipe.rejected, (state, action) => {
+        console.log(action);
+        state.createRecipe = false;
+        state.createRecipeErrorsMessage = action.payload;
       })
       .addCase(addAbout.fulfilled, (state, action) => {
         state.description = action.payload;
