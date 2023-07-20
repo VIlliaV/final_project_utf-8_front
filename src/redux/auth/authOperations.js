@@ -7,7 +7,7 @@ export const axiosInstance = axios.create({
 
 const clearAuthHeader = () => {
   axiosInstance.defaults.headers.common['Authorization'] = '';
-  localStorage.removeIFtem('accessToken');
+  localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
 };
 
