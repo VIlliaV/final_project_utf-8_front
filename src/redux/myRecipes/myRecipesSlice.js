@@ -16,7 +16,7 @@ const myRecipesSlice = createSlice({
       })
       .addCase(fetchMyRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.favorites = action.payload;
+        state.myRecipes = action.payload;
         state.error = null;
       })
       .addCase(fetchMyRecipes.rejected, (state, action) => {
@@ -28,7 +28,7 @@ const myRecipesSlice = createSlice({
       })
       .addCase(deleteMyRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.favorites = action.payload;
+        state.myRecipes = action.payload;
         state.error = null;
       })
       .addCase(deleteMyRecipes.rejected, (state, action) => {

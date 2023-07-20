@@ -34,20 +34,19 @@ export const MyRecipesList = ({ page }) => {
   const { myRecipes } = useSelector(myRecipesSelector);
   const [isDeleting, setIsDeleting] = useState('');
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (isDeleting && page === 'Favorites') {
       dispatch(deleteFavorite(isDeleting));
       setIsDeleting('');
     } else if (isDeleting && page === 'My recipes') {
-      dispatch(deleteMyRecipes);
+      dispatch(deleteMyRecipes(isDeleting));
       setIsDeleting('');
     }
 
     if (page === 'Favorites') {
       dispatch(fetchFavorites(currentPage));
     } else if (page === 'My recipes') {
-      dispatch(fetchMyRecipes());
+      dispatch(fetchMyRecipes(currentPage));
     }
   }, [dispatch, page, isDeleting, currentPage]);
 
@@ -78,14 +77,14 @@ export const MyRecipesList = ({ page }) => {
         ) : page === 'Favorites' && favorites.favorites ? (
           favorites.favorites.map(({ preview, title, description, time, _id }) => {
             return (
-              <MyRecipesItem key={_id}>
+              <MyRecipesItem key={_id} $backgroundColor={isThemeToggle}>
                 <ImgWrapper>
                   <MyRecipesImg src={preview} alt={title} />
                 </ImgWrapper>
                 <MyRecipeInfo>
                   <div>
                     <TitleIconWrapper>
-                      <MyRecipesItemTitle>{title}</MyRecipesItemTitle>
+                      <MyRecipesItemTitle $buttonColor={isThemeToggle}>{title}</MyRecipesItemTitle>
                       <SvgWrapper
                         $backgroundColor={backgroundColor}
                         onClick={() => {
@@ -108,17 +107,17 @@ export const MyRecipesList = ({ page }) => {
             );
           })
         ) : (
-          myRecipes.myRecipes &&
-          myRecipes.myRecipes.map(({ preview, title, description, time, _id }) => {
+          myRecipes.recipes &&
+          myRecipes.recipes.map(({ preview, title, description, time, _id }) => {
             return (
-              <MyRecipesItem key={_id}>
+              <MyRecipesItem key={_id} $backgroundColor={isThemeToggle}>
                 <ImgWrapper>
                   <MyRecipesImg src={preview} alt={title} />
                 </ImgWrapper>
                 <MyRecipeInfo>
                   <div>
                     <TitleIconWrapper>
-                      <MyRecipesItemTitle>{title}</MyRecipesItemTitle>
+                      <MyRecipesItemTitle $color={isThemeToggle}>{title}</MyRecipesItemTitle>
                       <SvgWrapper $backgroundColor={backgroundColor}>
                         <TrashIcon src={page === 'Favorites' ? trashIconBlack : trashIconWhite} />
                       </SvgWrapper>
@@ -139,7 +138,7 @@ export const MyRecipesList = ({ page }) => {
       </List>
       {
         <Paginator
-          totalPage={page === 'Favorites' ? favorites.totalPages : myRecipes.totalPage}
+          totalPage={page === 'Favorites' ? favorites.totalPages : 1}
           page={currentPage}
           setCurrentPage={setCurrentPage}
         />
