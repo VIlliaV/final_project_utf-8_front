@@ -7,7 +7,7 @@ export const axiosInstance = axios.create({
 
 const clearAuthHeader = () => {
   axiosInstance.defaults.headers.common['Authorization'] = '';
-  localStorage.removeItem('accessToken');
+  localStorage.removeIFtem('accessToken');
   localStorage.removeItem('refreshToken');
 };
 
@@ -40,7 +40,7 @@ axiosInstance.interceptors.response.use(
       } catch (error) {
         return Promise.reject(error);
       }
-    } 
+    }
     return Promise.reject(error);
   }
 );
