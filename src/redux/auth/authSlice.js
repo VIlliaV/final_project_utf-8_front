@@ -1,6 +1,7 @@
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 
 import {
   signupUser,
@@ -17,6 +18,7 @@ const initialState = {
   isRefreshing: false,
   isThemeToggle: false,
   errorMessage: null,
+  emailMessage: null,
 };
 
 const authSlice = createSlice({
@@ -37,7 +39,9 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        // state.emailMessage = "Verification link sent to your email address. Please check"
         state.errorMessage = null;
+        localStorage.removeItem('authInitialValues');
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
@@ -51,6 +55,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.errorMessage = null;
+        localStorage.removeItem('authInitialValues');
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isRefreshing = false;
@@ -77,6 +82,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.errorMessage = null;
+        state.emailMessage = null;
       })
       .addCase(fetchCurrentUser.rejected, state => {
         state.user = initialState.user;
@@ -93,9 +99,11 @@ const authSlice = createSlice({
         if (action.payload.avatarURL) {
           state.user.avatarURL = action.payload.avatarURL;
         }
+        toast.success('New user information sent');
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.isRefreshing = false;
+        toast.error('Ups, something went wrong, try again later');
       })
       .addCase(themeToggle.pending, state => {
         state.isRefreshing = true;

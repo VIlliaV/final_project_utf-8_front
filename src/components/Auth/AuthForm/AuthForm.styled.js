@@ -3,6 +3,49 @@ import { media } from 'utils/media';
 import { FiUser } from 'react-icons/fi';
 import { HiOutlineMail } from 'react-icons/hi';
 import { CgLock } from 'react-icons/cg';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+
+export const OpenedEye = styled(AiOutlineEye)`
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 13.5px;
+  right: 40px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media ${media.tablet} {
+    top: 17.5px;
+    right: 50px;
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const ClosedEye = styled(AiOutlineEyeInvisible)`
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 13.5px;
+  right: 40px;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media ${media.tablet} {
+    top: 17.5px;
+    right: 50px;
+    width: 20px;
+    height: 20px;
+  }
+`;
 
 export const SuccessStatusIcon = styled.img`
   width: 18px;
@@ -116,7 +159,8 @@ export const FormContainer = styled.div`
 
   @media ${media.desktop} {
     margin: 0;
-    margin-top: ${prop => (prop.$isregisterpage === 'true' ? '7px' : '40px')};
+    /* margin-top: ${prop => (prop.$isregisterpage === 'true' ? '7px' : '40px')}; */
+    margin-top: auto;
     margin-bottom: auto;
     margin-right: auto;
   }
@@ -225,6 +269,8 @@ export const EmailInput = styled(Input)`
 `;
 
 export const PasswordInput = styled(Input)`
+  padding-left: 40px;
+  padding-right: 58px;
   border-color: ${prop => {
     if (prop.$haserror) {
       return 'red';
@@ -232,6 +278,11 @@ export const PasswordInput = styled(Input)`
       return 'green';
     }
   }};
+
+  @media ${media.tablet} {
+    padding-left: 50px;
+    padding-right: 70px;
+  }
 
   &:focus {
     transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
@@ -271,13 +322,29 @@ export const SubmitButton = styled.button`
   }
 `;
 
-export const GoogleButton = styled(SubmitButton)`
+export const GoogleButton = styled.a`
+  height: 45px;
+  border-radius: 6px;
   background-color: #fafafa;
   color: #23262a;
   opacity: 0.7;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin-top: 16px;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.12;
+
+  @media ${media.tablet} {
+    margin-top: 26px;
+    height: 59px;
+  }
 
   &:hover {
     opacity: 1;
@@ -360,4 +427,9 @@ export const ErrorMessage = styled.div`
   /* margin-top: 8px; */
   margin-left: auto;
   margin-right: auto;
+`;
+
+export const EmailMessage = styled(ErrorMessage)`
+  color: #fafafa;
+  text-align: center;
 `;

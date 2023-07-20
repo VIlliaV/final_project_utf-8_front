@@ -40,7 +40,6 @@ export const Container = styled.div`
     background-position-y: 350px;
     flex-direction: row;
     padding: 0;
-    padding-top: 115px;
     padding-left: 113px;
     padding-right: 180px;
   }
@@ -75,6 +74,7 @@ export const Image = styled.div`
   @media ${media.desktop} {
     width: 532px;
     height: 468px;
+    margin-top: 115px;
     margin-right: 115px;
     background-image: url(${authorizationPageImageDesktop});
   }
