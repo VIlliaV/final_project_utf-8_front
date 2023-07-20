@@ -102,7 +102,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
 
   return (
     <>
-      <StyledSection2 name="label_ingredience" sx={{ color: 'white' }}>
+      <StyledSection2 name="label_ingredience">
         <StyledH3>Ingredients</StyledH3>
         <StyledButtonGroup aria-label="outlined primary button group">
           <StyledInputBtn onClick={handleDecrement} name="decrementBtn">

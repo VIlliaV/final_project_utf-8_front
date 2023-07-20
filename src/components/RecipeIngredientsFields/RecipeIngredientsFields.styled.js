@@ -65,7 +65,7 @@ text-align: center;
     height: 50px;
     border:none;
     padding: 5px 0;
-    border: 1px solid var( --selectBack_theme_1);
+    border: 1px solid var(--select_text_1);
     border-radius: 4px;
     margin-right: 35px;
     display:flex;
@@ -88,6 +88,7 @@ export const StyledSection2 = style.div`
     align-items: center;
     margin: 45px 0 25px 0;
     width: 345px;
+    // height: 50px;
     & ul {
       margin-top: 25px;
     }
@@ -142,7 +143,7 @@ export const StyledInputBtn = styled(Button)({
   },
 });
 export const StyledIngredientList = style.div`
-
+height: 50px;
 width:345px;
 display: flex;
 flex-direction: row;
@@ -162,6 +163,7 @@ margin-bottom:20px;
 }
     `;
 export const StyledAutoComplete = styled(Autocomplete)({
+  display: 'flex',
   '& div label': {
     color: 'var(--select_text_1)',
   },
@@ -175,6 +177,7 @@ export const StyledAutoComplete = styled(Autocomplete)({
   padding: theme.spacing(1),
   [theme.breakpoints.up('start')]: {
     width: '195px',
+    height: '50px',
     cursor: 'pointer',
   },
   [theme.breakpoints.up('tablet')]: {
@@ -182,6 +185,7 @@ export const StyledAutoComplete = styled(Autocomplete)({
   },
   [theme.breakpoints.up('desktop')]: {},
 });
+
 export const StyledIngredientBtn = style.button`
 color: var(--select_text_1);
 background-color:transparent;
