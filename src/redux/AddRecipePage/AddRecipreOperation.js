@@ -66,7 +66,7 @@ export const addRecipe = createAsyncThunk('/addRecipes/getPopular', async (recip
     axiosInstance.headers = {
       Authorization: `Bearer ${accessToken}`,
     };
-    return response.data;
+    return response;
   } catch (error) {
     return toast.error(error.message);
   }

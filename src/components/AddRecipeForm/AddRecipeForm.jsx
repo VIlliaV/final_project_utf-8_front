@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import toast from 'react-hot-toast';
 import { StyledSection3 } from './AddRecipeForm.styled';
 import RecipeDescriptionFields from 'components/RecipeDescriptionFields/RecipeDescriptionFields';
 import RecipePreparationFields from 'components/RecipePreparationFields/RecipePreparationFields';
 import RecipeIngredientsFields from 'components/RecipeIngredientsFields/RecipeIngredientsFields';
 import { AllCategories } from 'redux/AddRecipePage/AddRecipeSelector';
-// import { addRecipe } from 'redux/AddRecipePage/AddRecipreOperation';
+import { addRecipe } from 'redux/AddRecipePage/AddRecipreOperation';
 let ingredientsToSend = [];
 
 export const AddRecipeForm = () => {
@@ -20,7 +20,7 @@ export const AddRecipeForm = () => {
   const [ingredients, setIngredient] = useState([]);
   const [preparation, setPreparation] = useState('');
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     ingredients.map(el => ingredientsToSend.push({ id: el._id, measure: el.measure }));
@@ -41,8 +41,9 @@ export const AddRecipeForm = () => {
       formDataObject[key] = value;
     }
     console.log(formDataObject);
-    // const result = dispatch(addRecipe(formData));
-    // console.log(result);
+    console.log(ingredientsToSend);
+    const result = dispatch(addRecipe(formData));
+    console.log(result);
   };
 
   return (

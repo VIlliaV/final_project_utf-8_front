@@ -95,7 +95,7 @@ export default function RecipeIngredientsFields({ setIngredient }) {
     searchItem = ingredientsList.find(options => options.id === event.currentTarget.id);
     if (event.target.name === 'btnDelete') {
       if (counter > 1) {
-        counter();
+        handleDecrement();
       } else throw toast.error("this items don't remove");
     }
   };
