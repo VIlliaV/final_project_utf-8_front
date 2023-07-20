@@ -5,21 +5,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   getCategories,
   getIngredients,
-  addIngredientRecipe,
+  addPreparation,
   addСategory,
   addTime,
   addAbout,
   addTitle,
+  addRecipe,
 } from './AddRecipreOperation';
 
 const initialState = {
-  // documents: URL
-  title: null,
-  description: null,
-  category: null,
-  time: null,
-  ingredients: [{ id: null, measure: null }],
-  instructions: null,
   allIngredients: { _id: null, name: null, desc: null, img: null },
   allCategories: null,
 };
@@ -27,7 +21,11 @@ const initialState = {
 const recipeSlice = createSlice({
   name: 'add',
   initialState,
-  reducers: {},
+  reducers: {
+    addRecipePhoto: (state, action) => {
+      state.documents = action.payload;
+    },
+  },
 
   extraReducers: builder => {
     builder
@@ -37,8 +35,25 @@ const recipeSlice = createSlice({
       .addCase(addTitle.fulfilled, (state, action) => {
         state.title = action.payload;
       })
+      .addCase(addRecipe.pending, (state, action) => {
+        console.log(action);
+        state.createRecipe = false;
+      })
+      .addCase(addRecipe.fulfilled, (state, action) => {
+        if (action.payload.status === 200) {
+          state.createRecipe = true;
+        } else state.createRecipe = false;
+      })
+      .addCase(addRecipe.rejected, (state, action) => {
+        console.log(action);
+        state.createRecipe = false;
+        state.createRecipeErrorsMessage = action.payload;
+      })
       .addCase(addAbout.fulfilled, (state, action) => {
         state.description = action.payload;
+      })
+      .addCase(addPreparation.fulfilled, (state, action) => {
+        state.instructions = action.payload;
       })
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.allIngredients = action.payload;
@@ -49,29 +64,6 @@ const recipeSlice = createSlice({
       .addCase(addTime.fulfilled, (state, action) => {
         state.time = action.payload;
       })
-      .addCase(addIngredientRecipe.fulfilled, (state, action) => {
-        console.log(state.ingredients);
-        console.log(action.payload);
-        state.ingredients = action.payload;
-      })
-      // .addCase(addСategory.fulfilled, (state, action) => {
-      //   state.category = action.payload;
-      // })
-      // .addCase(addTime.fulfilled, (state, action) => {
-      //   state.time = action.payload;
-      // })
-
-      // .addCase(loginUser.fulfilled, (state, action) => {
-      //   state.user = action.payload.user;
-      //   state.token = action.payload.token;
-      //   state.isLoggedIn = true;
-      //   state.isRefreshing = false;
-      //   state.errorMessage = null;
-      // })
-      // .addCase(loginUser.rejected, (state, action) => {
-      //   state.isRefreshing = false;
-      //   state.errorMessage = action.payload.response.data.message;
-      // })
       .addDefaultCase(state => state);
   },
 });
@@ -81,7 +73,9 @@ const persistConfig = {
 
   version: 1,
   storage,
-  whitelist: ['title', 'description', 'ingredients'],
+  whitelist: [],
 };
 
 export const AddrecipeReducer = persistReducer(persistConfig, recipeSlice.reducer);
+
+export const { addRecipePhoto } = recipeSlice.actions;

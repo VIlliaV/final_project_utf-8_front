@@ -6,12 +6,14 @@ export const List = styled.ul`
     display: flex;
     flex-direction: column;
     margin-top: 50px
+    margin-bottom: 40px;
 
     gap: 18px;
 
     @media ${media.tablet} {
         gap: 40px;
         margin-top: 100px;
+        margin-bottom: 50px;
     }
 
     @media ${media.desktop} {
@@ -37,12 +39,18 @@ export const PageTitle = styled.h1`
 `;
 
 export const MyRecipesItem = styled.li`
+  background-color: ${prop => {
+    if (prop.$backgroundColor === true) {
+      return '#ffffff';
+    } else {
+      return '#2A2C36';
+    }
+  }};
+
   display: flex;
   justify-content: center;
 
   padding: 14px 9px;
-
-  background-color: #ffffff;
 
   @media ${media.tablet} {
     padding: 28px 24px;
@@ -89,6 +97,8 @@ export const SvgWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 
   width: 24px;
   height: 24px;
@@ -142,6 +152,14 @@ export const ImgWrapper = styled.div`
 `;
 
 export const MyRecipesItemTitle = styled.h2`
+  color: ${prop => {
+    if (prop.$buttonColor === true) {
+      return '#3e4462';
+    } else {
+      return '#FAFAFA';
+    }
+  }};
+
   font-size: 14px;
   font-weight: 500;
   line-height: 14px;
@@ -186,6 +204,7 @@ export const MyRecipesDescription = styled.p`
   }
 
   @media ${media.desktop} {
+    min-width: 758px;
     font-size: 18px;
     line-height: 24px;
   }
@@ -215,6 +234,16 @@ export const MyRecipeBtn = styled(NavLink)`
       return '#22252A';
     }
   }};
+
+  &:hover {
+    background-color: ${prop => {
+      if (prop.$buttonColor === '#8BAA36') {
+        return '#22252A';
+      } else {
+        return '#8BAA36';
+      }
+    }};
+  }
   color: #fafafa;
   border-radius: 24px 44px;
   border: transparent;

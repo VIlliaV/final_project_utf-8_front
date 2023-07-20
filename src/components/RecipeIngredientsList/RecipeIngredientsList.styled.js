@@ -163,24 +163,16 @@ const RILImage = styled.img`
   height: 57px;
   margin-right: 12px;
 
-  background-image: url(${props => props.src || props.$defaultImgMobile});
-  background-repeat: no-repeat;
-  background-size: cover;
-
   @media ${media.tablet} {
     width: 112px;
     height: 112px;
     margin-right: 12px;
-
-    background-image: url(${props => props.src || props.$defaultImgTablet});
   }
 
   @media ${media.desktop} {
     width: 128px;
     height: 128px;
     margin-right: 40px;
-
-    background-image: url(${props => props.src || props.$defaultImgDesktop});
   }
 `;
 

@@ -1,8 +1,28 @@
 import { Container, Icon, Title, TextBlock } from './WellcomPage.styled';
 import icon from 'img/icon.svg';
-import {AuthNav} from 'components/Auth/AuthNav/AuthNav';
+import { AuthNav } from 'components/Auth/AuthNav/AuthNav';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { fetchCurrentUser, axiosInstance } from 'redux/auth/authOperations';
 
 function WellcomPage() {
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+
+  
+  useEffect(() => {
+    const accessToken = searchParams.get('accessToken');
+    const refreshToken = searchParams.get('refreshToken');
+
+    if (accessToken && refreshToken) {
+      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('accessToken', accessToken);
+      axiosInstance.headers = { Authorization: `Bearer ${accessToken}` };
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch, searchParams]);
+
   return (
     <Container>
       <Icon src={icon} />

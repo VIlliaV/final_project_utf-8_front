@@ -23,7 +23,10 @@ const SearchedRecipesList = () => {
     if (!value) {
       return;
     }
-
+    if (value === 'ingridients') {
+      setRecipeList();
+      return;
+    }
     if (currentParams === 'query') {
       fetchData('search', value).then(data => {
         setTotalPage(data.totalPages);

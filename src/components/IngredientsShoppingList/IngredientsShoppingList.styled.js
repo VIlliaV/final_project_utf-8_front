@@ -67,15 +67,9 @@ const SLItemImage = styled.img`
   width: 48px;
   height: 48px;
 
-  background-image: url(${props => props.src || props.$defaultImgMobile});
-  background-repeat: no-repeat;
-  background-size: cover;
-
   @media ${media.tablet} {
     width: 81px;
     height: 81px;
-
-    background-image: url(${props => props.src || props.$defaultImgDesktop});
   }
 `;
 

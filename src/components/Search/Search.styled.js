@@ -11,7 +11,7 @@ export const SearchForm = styled.form`
     outline: none;
     background-color: #fff;
     &[datatype='false'] {
-      background-color: var(--fix-transparent);
+      background-color: #1e1f28;
     }
     border-width: 1px;
     border-style: solid;
@@ -76,7 +76,7 @@ export const SearchForm = styled.form`
     &:hover {
       background-color: var(--fix_back);
       &[datatype='false'] {
-        background-color: var(--fix-transparent);
+        background-color: #1e1f28;
       }
       border-color: var(--fix_back);
     }
@@ -92,7 +92,7 @@ export const SearchForm = styled.form`
     &:hover {
       background-color: var(--fix_back_2);
       &[datatype='false'] {
-        background-color: var(--fix-transparent);
+        background-color: #1e1f28;
       }
       border-color: var(--active_theme_2);
     }

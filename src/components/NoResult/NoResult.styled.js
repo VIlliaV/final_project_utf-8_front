@@ -8,7 +8,6 @@ export const NoResultWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
   p {
     color: var(--select_text_1);
     font-size: 14px;

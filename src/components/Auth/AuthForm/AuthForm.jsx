@@ -8,6 +8,7 @@ import inputIconSuccess from 'img/inputIconSuccess.svg';
 import inputIconError from 'img/inputIconError.svg';
 import { useAuth } from 'utils/hooks/useAuth';
 import { clearErrorMessage } from 'redux/auth/authSlice';
+import googleLogo from 'img/googleLogo.svg';
 import {
   Container,
   Header,
@@ -28,46 +29,41 @@ import {
   PasswordInputContainer,
   ErrorMessage,
   InputWarningContainer,
+  GoogleButton,
 } from './AuthForm.styled';
 
-
-const registerInitialValues = {
+const userInitialValues = {
   name: '',
   email: '',
   password: '',
 };
+localStorage.setItem('authInitialValues', JSON.stringify(userInitialValues));
 
-const signInInitialValues = {
-  email: '',
-  password: '',
-};
 
 export const AuthForm = () => {
-  const [initialValues, setInitialValues] = useState(registerInitialValues);
+  const [initialValues, setInitialValues] = useState(JSON.parse(localStorage.getItem('authInitialValues')));
   const [isRegisterPage, setIsRegisterPage] = useState(true);
   const { pathname } = useLocation();
   const { errorMessage } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // console.log(initialValues);
+
   useEffect(() => {
+    localStorage.setItem('authInitialValues', JSON.stringify(initialValues));
     if (pathname === '/signin') {
       setIsRegisterPage(false);
-      setInitialValues(signInInitialValues);
+      // setInitialValues(signInInitialValues);
     }
-
-    if (pathname === '/signin' && errorMessage === 'Email in use') {
-      dispatch(clearErrorMessage());
-    }
-    if (pathname === '/register' && errorMessage === 'Email or password is wrong') {
-      dispatch(clearErrorMessage());
-    }
-  }, [pathname, dispatch, errorMessage]);
+  }, [pathname, dispatch, errorMessage, initialValues]);
 
 
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
-  }, [navigate, isRegisterPage]);
+    dispatch(clearErrorMessage());
+    localStorage.setItem('authInitialValues', JSON.stringify(userInitialValues));
+  }, [navigate, isRegisterPage, dispatch]);
 
   const onSubmit = useCallback(
     data => {
@@ -83,6 +79,10 @@ export const AuthForm = () => {
     },
     [dispatch, isRegisterPage]
   ); 
+
+  // const handleGoogleSubmit = () => {
+  //   dispatch(googleAuth());
+  // }
 
   const validate = values => {
     const errors = {};
@@ -132,7 +132,10 @@ export const AuthForm = () => {
                 type="text"
                 name="name"
                 placeholder="Name"
-                onChange={formik.handleChange}
+                onChange={e => {
+                  formik.handleChange(e);
+                  setInitialValues({ ...initialValues, name: e.target.value });
+                }}
                 value={formik.values.name}
                 onBlur={formik.handleBlur}
               />
@@ -157,7 +160,10 @@ export const AuthForm = () => {
               type="email"
               name="email"
               placeholder="Email"
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                setInitialValues({ ...initialValues, email: e.target.value });
+              }}
               value={formik.values.email}
               onBlur={formik.handleBlur}
             />
@@ -182,7 +188,10 @@ export const AuthForm = () => {
               type="password"
               name="password"
               placeholder="Password"
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                setInitialValues({ ...initialValues, password: e.target.value });
+              }}
               value={formik.values.password}
               onBlur={formik.handleBlur}
             />
@@ -197,8 +206,14 @@ export const AuthForm = () => {
             )}
             {formik.touched.password && !formik.errors.password && <SuccessStatusIcon src={inputIconSuccess} />}
           </PasswordInputContainer>
-          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage> }
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
+          <GoogleButton type="button">
+            <a href="https://final-project-utf-8-backend.onrender.com/users/google">
+              {isRegisterPage ? 'Sign up with Google' : 'Sign In with Google'}
+            </a>
+            <img style={{ marginLeft: 8 }} height={25} width={25} alt="googleLogo" src={googleLogo} />
+          </GoogleButton>
         </Form>
       </Container>
       <Link onClick={handleNavigate}>{isRegisterPage ? 'Sign In' : 'Registration'}</Link>
