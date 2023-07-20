@@ -108,6 +108,8 @@ export const StyledInputGroup = style.div`
             color: var(--select_text_1);
             &  div label {
               position:absolute;
+              // color: var(--select_text_1)
+
             }        
 `;
 
@@ -139,8 +141,8 @@ width: '280px',
     height: '345px',
 }`;
 export const StyledInput = style.input`
-
-  border: transparent;
+text-align: center;
+border: transparent;
 color:var(--select_text_1);
 background-color:transparent;
 position: relative;
@@ -154,5 +156,6 @@ position: relative;
  @media ${media.desktop}{
     width: 100%;
     text-align: right;
+    padding-right:20px;
   },
 `;

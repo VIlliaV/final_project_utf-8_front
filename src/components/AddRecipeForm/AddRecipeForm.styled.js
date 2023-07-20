@@ -68,6 +68,10 @@ export const StyledSection3 = style.div`
           color: white;
           border-radius: 24px 44px;
           border: 1px solid var(--active_theme_2);
+          &:hover {
+            background-color:var(--active);
+            border: 1px solid var(--active);
+          }
         }
                  & span {
                     color: var(--back_fix) 

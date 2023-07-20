@@ -29,11 +29,18 @@ export default function RecipeDescriptionFields({
   }
 
   useEffect(() => {
+    // setSelectedImage(backgroundUploadImg);
+    console.log('selectedImage', selectedImage);
+
     if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
+      console.log('selectedImage2', selectedImage);
+      if (selectedImage === undefined) {
+        setImageUrl(URL.createObjectURL(selectedImage));
+        setPhoto(selectedImage);
+      }
+      setPhoto(backgroundUploadImg);
     } else setImageUrl(backgroundUploadImg);
-    setPhoto(selectedImage);
-  }, [selectedImage]);
+  }, [selectedImage, setPhoto]);
 
   const handleChangeTitle = event => {
     const title = event.target.value;
@@ -77,20 +84,19 @@ export default function RecipeDescriptionFields({
             onChange={handleChangeTitle}
             // label="Enter item title"
             variant="filled"
-            placeholder="Enter item title"
-            autoComplete="off"
-            label="1234"
+            // placeholder="Enter item title"
+            autocomplete="off"
           />
         </div>
         <div>
-          <label>Enter item title</label>
+          <label>Enter about recipe</label>
           <StyledInput
             id="item_title"
             onChange={handleChangeAbout}
             label="Enter about recipe"
             variant="filled"
-            placeholder="Enter about recipe"
-            autoComplete="off"
+            // placeholder="Enter about recipe"
+            autocomplete="off"
           />
         </div>
         <StyledLabelCategory htmlFor="category">
