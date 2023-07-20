@@ -1,18 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { media } from '../../utils/media';
-import { ReactComponent as userSvgDefault } from './AvatarButton/img/search.svg';
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-`;
 
 
 export const HideContentTablet = styled.div`
@@ -72,66 +59,9 @@ export const HeaderContainer = styled.header`
   padding: 20px;
 `;
 
-export const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
-export const StyledNavLink = styled(NavLink)`
-  color: var(--text_third);
-  stroke: var(--text_third);
-  text-decoration: none;
-  margin-right: 30px;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22.4px;
 
-  &.active {
-	stroke: #8baa36;
-    color: #8baa36;
-    font-weight: bold;
-	animation: ${fadeIn} 0.5s;
-  }
 
-`;
-
-export const LogoNav = styled(NavLink)`
-  color: white;
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 18px;
-  letter-spacing: 0.27px;
-
-  @media ${media.tablet} {
-    font-size: 28px;
-    line-height: 28px;
-    letter-spacing: 0.42px;
-    justify-content: normal;
-    padding-bottom: 0;
-  }
-  @media ${media.desktop} {
-    width: 145px;
-  }
-`;
-
-export const LogoImg = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background-color: #8baa36;
-  color: black;
-  @media ${media.desktop} {
-    width: 44px;
-    height: 44px;
-  }
-`;
 
 export const UserDiv = styled.div`
   display: flex;
@@ -146,22 +76,3 @@ export const UserDiv = styled.div`
   }
 `;
 
-export const StyledUserSvgDefault = styled(userSvgDefault)`
-  width: 24px;
-  height: 24px;
-
-  text-decoration: none;
-  margin-right: 30px;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22.4px;
-
-  &.active {
-	text-decoration: none;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22.4px;
-  }
-`;
