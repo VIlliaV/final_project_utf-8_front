@@ -37,6 +37,10 @@ export const AddRecipeForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    const objectsToSend = [];
+    console.log('ingredients', ingredients);
+    ingredients.map(({ id, measure }) => objectsToSend.push({ id, measure }));
+    console.log('objectsToSend', objectsToSend);
     const formData = new FormData();
     formData.append('documents', photo);
     formData.append('title', title);
@@ -44,12 +48,13 @@ export const AddRecipeForm = () => {
     formData.append('instructions', preparation);
     formData.append('description', about);
     formData.append('time', cookTime);
-    formData.append('ingredients', JSON.stringify(ingredients));
-    // const formDataObject = {};
-    // for (const [key, value] of formData.entries()) {
-    //   formDataObject[key] = value;
-    // }
-    // console.log('formData', formDataObject);
+    formData.append('ingredients', JSON.stringify(objectsToSend));
+    const formDataObject = {};
+    for (const [key, value] of formData.entries()) {
+      formDataObject[key] = value;
+    }
+    console.log('formData', formDataObject);
+
     dispatch(addRecipe(formData));
 
     // console.log('addRecipeStatus', addRecipeStatus);
