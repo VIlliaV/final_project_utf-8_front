@@ -23,6 +23,7 @@ export const SearchWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 
   p {
     color: var(--select_text_1);
@@ -42,6 +43,7 @@ export const SearchWrapper = styled.div`
     }
   }
 `;
+
 export const SearchImg = styled.div`
   background-image: url(${searchImg});
   background-size: contain;

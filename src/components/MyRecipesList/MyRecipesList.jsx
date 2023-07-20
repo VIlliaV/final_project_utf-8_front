@@ -28,25 +28,27 @@ import NoResult from 'components/NoResult/NoResult';
 import { useAuth } from 'utils/hooks/useAuth';
 
 export const MyRecipesList = ({ page }) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const { isThemeToggle } = useAuth();
   const { favorites } = useSelector(favoritesSelector);
   const { myRecipes } = useSelector(myRecipesSelector);
   const [isDeleting, setIsDeleting] = useState('');
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (isDeleting && page === 'Favorites') {
       dispatch(deleteFavorite(isDeleting));
+      setIsDeleting('');
     } else if (isDeleting && page === 'My recipes') {
-      dispatch(deleteMyRecipes);
+      dispatch(deleteMyRecipes(isDeleting));
+      setIsDeleting('');
     }
 
     if (page === 'Favorites') {
-      dispatch(fetchFavorites());
+      dispatch(fetchFavorites(currentPage));
     } else if (page === 'My recipes') {
-      dispatch(fetchMyRecipes());
+      dispatch(fetchMyRecipes(currentPage));
     }
-  }, [dispatch, page, isDeleting]);
+  }, [dispatch, page, isDeleting, currentPage]);
 
   const onDeleteBtnClick = id => {
     setIsDeleting(id);
@@ -69,20 +71,20 @@ export const MyRecipesList = ({ page }) => {
     <HeadContainer>
       <MainPageTitle title={page} />
       <List>
-        {(page === 'Favorites' && favorites?.favorites?.length === 0) ||
+        {(page === 'Favorites' && favorites.favorites?.length === 0) ||
         (page === 'My recipes' && myRecipes.length === 0) ? (
           <NoResult />
         ) : page === 'Favorites' && favorites.favorites ? (
           favorites.favorites.map(({ preview, title, description, time, _id }) => {
             return (
-              <MyRecipesItem key={_id}>
+              <MyRecipesItem key={_id} $backgroundColor={isThemeToggle}>
                 <ImgWrapper>
                   <MyRecipesImg src={preview} alt={title} />
                 </ImgWrapper>
                 <MyRecipeInfo>
                   <div>
                     <TitleIconWrapper>
-                      <MyRecipesItemTitle>{title}</MyRecipesItemTitle>
+                      <MyRecipesItemTitle $buttonColor={isThemeToggle}>{title}</MyRecipesItemTitle>
                       <SvgWrapper
                         $backgroundColor={backgroundColor}
                         onClick={() => {
@@ -105,17 +107,17 @@ export const MyRecipesList = ({ page }) => {
             );
           })
         ) : (
-          myRecipes.myRecipes &&
-          myRecipes.myRecipes.map(({ preview, title, description, time, _id }) => {
+          myRecipes.recipes &&
+          myRecipes.recipes.map(({ preview, title, description, time, _id }) => {
             return (
-              <MyRecipesItem key={_id}>
+              <MyRecipesItem key={_id} $backgroundColor={isThemeToggle}>
                 <ImgWrapper>
                   <MyRecipesImg src={preview} alt={title} />
                 </ImgWrapper>
                 <MyRecipeInfo>
                   <div>
                     <TitleIconWrapper>
-                      <MyRecipesItemTitle>{title}</MyRecipesItemTitle>
+                      <MyRecipesItemTitle $color={isThemeToggle}>{title}</MyRecipesItemTitle>
                       <SvgWrapper $backgroundColor={backgroundColor}>
                         <TrashIcon src={page === 'Favorites' ? trashIconBlack : trashIconWhite} />
                       </SvgWrapper>
@@ -134,7 +136,13 @@ export const MyRecipesList = ({ page }) => {
           })
         )}
       </List>
-      <Paginator totalPage={favorites.totalPages} page={1} setCurrentPage={1} />
+      {
+        <Paginator
+          totalPage={page === 'Favorites' ? favorites.totalPages : 1}
+          page={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      }
     </HeadContainer>
   );
 };

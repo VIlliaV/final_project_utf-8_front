@@ -1,7 +1,9 @@
+import { useSearchParams } from 'react-router-dom';
 import { Form, selectStyles } from './SearchTypeSelector.styled';
 import Select, { components } from 'react-select';
 
 import arrow from '../../img/chevron-up.svg';
+import { useState } from 'react';
 
 const selectOptions = [
   { value: 'query', label: 'Title' },
@@ -17,6 +19,10 @@ const DropdownIndicator = props => {
 };
 
 const SearchTypeSelector = ({ setValue }) => {
+  const [searchParams] = useSearchParams();
+  const typeQuery = searchParams.get('type');
+  const [option] = useState(typeQuery ? selectOptions[1] : selectOptions[0]);
+
   return (
     <Form>
       <label>Search by:</label>
@@ -27,7 +33,7 @@ const SearchTypeSelector = ({ setValue }) => {
         components={{ DropdownIndicator }}
         styles={selectStyles}
         classNamePrefix="select"
-        defaultValue={selectOptions[0]}
+        defaultValue={option}
         name="select"
         options={selectOptions}
       />

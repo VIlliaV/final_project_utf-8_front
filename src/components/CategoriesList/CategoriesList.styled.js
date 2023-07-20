@@ -55,9 +55,18 @@ export const CategoryLink = styled(NavLink)`
   font-weight: 400;
   line-height: 1;
 
+  &:hover {
+    color: ${props => css`var(--fix_back)`};
+  }
+  &:focus {
+    color: ${props => css`var(--fix_back)`};
+    outline: none;
+  }
+
   &.active {
     color: ${props => css`var(--fix_back)`};
   }
+
   &.active::after {
     content: '';
     display: block;

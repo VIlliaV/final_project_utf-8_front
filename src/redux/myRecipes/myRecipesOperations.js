@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosInstance } from 'redux/auth/authOperations';
 
-export const fetchMyRecipes = createAsyncThunk('myRecipes/get', async (_, thunkAPI) => {
+export const fetchMyRecipes = createAsyncThunk('myRecipes/get', async (currentPage, thunkAPI) => {
   try {
-    const response = await axiosInstance.get('/ownrecipes');
+    const response = await axiosInstance.get(`/ownrecipes?page=${currentPage}`);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
