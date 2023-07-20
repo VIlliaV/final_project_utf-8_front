@@ -13,9 +13,10 @@ import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitch';
 import { useAuth } from 'utils/hooks/useAuth';
 import { useLocation } from 'react-router-dom';
 
-const BurgerMenu = ({shouldChangeStyle}) => {
+const BurgerMenu = ({ shouldChangeStyle }) => {
   const location = useLocation();
   const recipePathRegex = /^\/recipe\/\w+/;
+
   const [menuVisible, setMenuVisible] = useState(() => {
     const savedMenuVisible = localStorage.getItem('burgerMenuVisible');
     return savedMenuVisible ? JSON.parse(savedMenuVisible) : false;
@@ -33,16 +34,28 @@ const BurgerMenu = ({shouldChangeStyle}) => {
 
   const { isThemeToggle } = useAuth();
 
+  let strokeColor;
+  switch (true) {
+	case recipePathRegex.test(location.pathname):
+	  strokeColor = 'black';
+	  break;
+	case location.pathname === '/main':
+		strokeColor = 'var(--text_third)';
+		break;
+	case shouldChangeStyle:
+	  strokeColor = 'var(--fix_back_2)';
+	  break;
+	default:
+	  strokeColor = 'var(--text_third)';
+	  break;
+  }
+
   return (
     <BurgerMenuContainer datatype={isThemeToggle.toString()}>
       <BurgerIcon onClick={handleToggleMenu}>
         <StyledMenuIconSvg
           style={{
-            stroke: recipePathRegex.test(location.pathname)
-              ? 'black'
-              : shouldChangeStyle 
-              ? 'var(--fix_back_2)'
-              : 'var(--text_third)',
+            stroke: strokeColor,
           }}
         />
       </BurgerIcon>
