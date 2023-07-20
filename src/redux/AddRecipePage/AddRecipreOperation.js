@@ -57,7 +57,7 @@ export const getPopular = createAsyncThunk('/addRecipes/getPopular', async (_, t
   }
 });
 
-export const addRecipe = createAsyncThunk('/addRecipes/addRecipe', async recipe => {
+export const addRecipe = createAsyncThunk('/addRecipes/addRecipe', async (recipe, thunkAPI) => {
   const accessToken = localStorage.getItem('accessToken');
 
   axiosInstance.headers = {
@@ -69,8 +69,10 @@ export const addRecipe = createAsyncThunk('/addRecipes/addRecipe', async recipe 
     axiosInstance.headers = {
       Authorization: `Bearer ${accessToken}`,
     };
+    console.log('🚀 ~ response.data:', response.data);
     return response.data;
   } catch (error) {
-    return toast.error(error?.response.data.message);
+    toast.error(error?.response.data.message);
+    return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });

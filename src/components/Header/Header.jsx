@@ -31,7 +31,7 @@ const Header = () => {
       <MainDiv>
 	  <Logo />
         <HideContentDesktop>
-		<Navigation />
+		<Navigation shouldChangeStyle={shouldChangeStyle ? 'active-link' : ''} />
         </HideContentDesktop>
         <UserDiv>
           <AvatarButtonComponent shouldChangeStyle={shouldChangeStyle ? 'active-link' : ''} />

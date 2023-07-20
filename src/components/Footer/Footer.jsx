@@ -33,6 +33,7 @@ import {
   StyledInstagram,
   StyledMail,
 } from './Footer.styled';
+import { toast } from 'react-hot-toast';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -47,10 +48,11 @@ const Footer = () => {
     axiosInstance
       .post('/subscribe', { email })
       .then(response => {
-        console.log(response);
+		if(response.status === 200 )
+		toast.success("Subscription successfully processed");
       })
       .catch(error => {
-        console.log(error);
+		toast.error("subscribe email send failed");
       });
     setEmail('');
   };
