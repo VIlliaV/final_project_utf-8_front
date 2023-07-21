@@ -36,6 +36,7 @@ import {
   EmailMessage,
   OpenedEye,
   ClosedEye,
+  ResendButton,
 } from './AuthForm.styled';
 
 const userInitialValues = {
@@ -67,7 +68,7 @@ export const AuthForm = () => {
     if (pathname === '/signin') {
       setIsRegisterPage(false);
     }
-  }, [pathname, dispatch, errorMessage, initialValues]);
+  }, [pathname, dispatch, initialValues]);
 
 
   const handleNavigate = useCallback(() => {
@@ -100,7 +101,7 @@ export const AuthForm = () => {
 
   const resendVerificationHandler = async () => {
     const { email } = initialValues;
-    const response = await axiosInstance.get(`users/verify/`, { email });
+    const response = await axiosInstance.post(`users/verify`, { email });
     dispatch(setEmailMessage(response.message))
   }
 
@@ -168,7 +169,6 @@ export const AuthForm = () => {
               {formik.touched.name && !formik.errors.name && <SuccessStatusIcon src={inputIconSuccess} />}
             </NameInputContainer>
           )}
-
           <EmailInputContainer>
             <EmailIcon
               $haserror={formik.touched.email && formik.errors.email}
@@ -235,12 +235,9 @@ export const AuthForm = () => {
           </PasswordInputContainer>
           {emailMessage && <EmailMessage>{emailMessage}</EmailMessage>}
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-          {verificationError && <EmailMessage>{errorMessage}</EmailMessage>}
-          {verificationError && (
-            <button type="button" onClick={resendVerificationHandler}>
-              {'Re-send verification code'}
-            </button>
-          )}
+          {verificationError && ( <ResendButton type="button" onClick={resendVerificationHandler}>
+            {'Re-send verification code'}
+          </ResendButton>)}
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
           <GoogleButton href="https://final-project-utf-8-backend.onrender.com/users/google">
             {isRegisterPage ? 'Sign up with Google' : 'Sign In with Google'}
