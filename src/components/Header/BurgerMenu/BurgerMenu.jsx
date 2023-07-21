@@ -69,7 +69,7 @@ const BurgerMenu = ({ shouldChangeStyle }) => {
         </CloseButton>
 
         <StyledNavLink
-          to="/categories/beef"
+          to="categories/beef"
           onClick={handleLinkClick}
           className={navData => (navData.isActive ? 'active-style' : 'none')}
         >
@@ -77,35 +77,35 @@ const BurgerMenu = ({ shouldChangeStyle }) => {
         </StyledNavLink>
 
         <StyledNavLink
-          to="/add"
+          to="add"
           onClick={handleLinkClick}
           className={navData => (navData.isActive ? 'active-style' : 'none')}
         >
           Add recipes
         </StyledNavLink>
         <StyledNavLink
-          to="/my"
+          to="my"
           onClick={handleLinkClick}
           className={recipePathRegex.test(location.pathname) && 'active'}
         >
           My recipes
         </StyledNavLink>
         <StyledNavLink
-          to="/favorite"
+          to="favorite"
           onClick={handleLinkClick}
           className={navData => (navData.isActive ? 'active-style' : 'none')}
         >
           Favorites
         </StyledNavLink>
         <StyledNavLink
-          to="/shopping-list"
+          to="shopping-list"
           onClick={handleLinkClick}
           className={navData => (navData.isActive ? 'active-style' : 'none')}
         >
           Shopping list
         </StyledNavLink>
         <StyledNavLink
-          to="/search"
+          to="search"
           onClick={handleLinkClick}
           className={navData => (navData.isActive ? 'active-style' : 'none')}
         >
