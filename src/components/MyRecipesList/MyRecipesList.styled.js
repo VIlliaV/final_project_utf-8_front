@@ -121,6 +121,10 @@ export const SvgWrapper = styled.div`
     width: 44px;
     height: 44px;
   }
+
+  &:hover {
+    scale: 1.03;
+  }
 `;
 
 export const TitleIconWrapper = styled.div`
@@ -153,7 +157,7 @@ export const ImgWrapper = styled.div`
 
 export const MyRecipesItemTitle = styled.h2`
   color: ${prop => {
-    if (prop.$buttonColor === true) {
+    if (prop.$color === true) {
       return '#3e4462';
     } else {
       return '#FAFAFA';
@@ -165,7 +169,6 @@ export const MyRecipesItemTitle = styled.h2`
   line-height: 14px;
   letter-spacing: -0.24px;
   text-align: left;
-  color: #3e4462;
 
   @media ${media.tablet} {
     font-size: 24px;
@@ -192,6 +195,14 @@ export const Container = styled.div`
 `;
 
 export const MyRecipesDescription = styled.p`
+  color: ${prop => {
+    if (prop.$descColor === true) {
+      console.log(prop.$descColor);
+      return '#23262A';
+    } else {
+      return 'rgba(250, 250, 250, 0.60)';
+    }
+  }};
   font-size: 8px;
   font-weight: 400;
   line-height: 10px;
@@ -211,6 +222,13 @@ export const MyRecipesDescription = styled.p`
 `;
 
 export const MyRecipeTime = styled.p`
+  color: ${prop => {
+    if (prop.$timeColor === true) {
+      return '#3E4462';
+    } else {
+      return '#FAFAFA;';
+    }
+  }};
   font-size: 10px;
   font-weight: 500;
   line-height: 14px;
