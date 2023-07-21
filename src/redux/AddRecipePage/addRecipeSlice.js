@@ -15,7 +15,7 @@ import {
 } from './AddRecipreOperation';
 
 const initialState = {
-  // allIngredients: [{ _id: null, name: null, desc: null, img: '' }],
+  allIngredients: [{}],
   allCategories: null,
   createRecipe: false,
 };
