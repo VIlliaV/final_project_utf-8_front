@@ -23,9 +23,6 @@ export const AddRecipeForm = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log('photo', photo);
-  }, [photo]);
 
   useEffect(() => {
     if (isAddRecipe) navigate('/my');
