@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import backgroundUploadImg from '../../img/image.jpg';
 import { TextField, CircularProgress } from '@mui/material';
 import {
@@ -20,8 +20,8 @@ export default function RecipeDescriptionFields({
   setCategories,
   photo,
 }) {
-  const [open, setOpen] = React.useState(false);
-  const [optionsCategory, setOptionsCategory] = React.useState([]);
+  const [open, setOpen] = useState(false);
+  const [optionsCategory, setOptionsCategory] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const loadingCategory = open && optionsCategory.length === 0;
@@ -49,7 +49,7 @@ export default function RecipeDescriptionFields({
     };
   }, [allCategories, loadingCategory]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open) {
       setOptionsCategory([]);
     }
@@ -110,14 +110,7 @@ export default function RecipeDescriptionFields({
         </div>
         <div>
           <label>Enter about recipe</label>
-          <StyledInput
-            id="item_title"
-            onChange={handleChangeAbout}
-            label="Enter about recipe"
-            variant="filled"
-            // placeholder="Enter about recipe"
-            autocomplete="off"
-          />
+          <StyledInput id="item_title" onChange={handleChangeAbout} label="Enter about recipe" autoComplete="off" />
         </div>
         <StyledLabelCategory htmlFor="category">
           Category
@@ -147,10 +140,10 @@ export default function RecipeDescriptionFields({
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
-                      <React.Fragment>
+                      <Fragment>
                         {loadingCategory ? <CircularProgress color="inherit" size={20} /> : null}
                         {params.InputProps.endAdornment}
-                      </React.Fragment>
+                      </Fragment>
                     ),
                   }}
                 />
@@ -168,7 +161,7 @@ export default function RecipeDescriptionFields({
             ListboxProps={{
               style: { maxHeight: 220, backgroundColor: 'var(--active_select_1)', color: 'var(--select_text_1)' },
             }}
-            options={cooking_time || []}
+            options={cooking_time}
             loading={loadingCookTime}
             renderInput={
               params => (
@@ -178,10 +171,10 @@ export default function RecipeDescriptionFields({
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
-                      <React.Fragment>
+                      <Fragment>
                         {loadingCookTime ? <CircularProgress color="inherit" size={20} /> : []}
                         {params.InputProps.endAdornment}
-                      </React.Fragment>
+                      </Fragment>
                     ),
                   }}
                 />
