@@ -67,6 +67,7 @@ export default function RecipeDescriptionFields({
     if (selectedImage === undefined) {
       setImageUrl(photo);
     }
+    setPhoto(photo);
   }, [photo, selectedImage, setPhoto]);
 
   const handleChangeTitle = event => {
