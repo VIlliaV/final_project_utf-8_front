@@ -51,10 +51,9 @@ export const MyRecipesList = ({ page }) => {
   }, [dispatch, page, isDeleting, currentPage]);
 
   const onDeleteBtnClick = id => {
-    console.log('🚀 ~ id:', id);
-
     setIsDeleting(id);
   };
+
   let backgroundColor = '';
   let buttonsColor = '';
 
@@ -86,7 +85,7 @@ export const MyRecipesList = ({ page }) => {
                 <MyRecipeInfo>
                   <div>
                     <TitleIconWrapper>
-                      <MyRecipesItemTitle $buttonColor={isThemeToggle}>{title}</MyRecipesItemTitle>
+                      <MyRecipesItemTitle $color={isThemeToggle}>{title}</MyRecipesItemTitle>
                       <SvgWrapper
                         $backgroundColor={backgroundColor}
                         onClick={() => {
@@ -96,10 +95,10 @@ export const MyRecipesList = ({ page }) => {
                         <TrashIcon src={page === 'Favorites' && isThemeToggle ? trashIconBlack : trashIconWhite} />
                       </SvgWrapper>
                     </TitleIconWrapper>
-                    <MyRecipesDescription>{description}</MyRecipesDescription>
+                    <MyRecipesDescription $descColor={isThemeToggle}> {description}</MyRecipesDescription>
                   </div>
                   <TimeBtnWrapper>
-                    <MyRecipeTime>{time} min</MyRecipeTime>
+                    <MyRecipeTime $timeColor={isThemeToggle}>{time} min</MyRecipeTime>
                     <MyRecipeBtn to={`/recipe/${_id}`} $buttonColor={buttonsColor}>
                       See recipe
                     </MyRecipeBtn>
@@ -129,10 +128,10 @@ export const MyRecipesList = ({ page }) => {
                         <TrashIcon src={page === 'Favorites' ? trashIconBlack : trashIconWhite} />
                       </SvgWrapper>
                     </TitleIconWrapper>
-                    <MyRecipesDescription>{description}</MyRecipesDescription>
+                    <MyRecipesDescription $descColor={isThemeToggle}>{description}</MyRecipesDescription>
                   </div>
                   <TimeBtnWrapper>
-                    <MyRecipeTime>{time} min</MyRecipeTime>
+                    <MyRecipeTime $timeColor={isThemeToggle}>{time} min</MyRecipeTime>
                     <MyRecipeBtn to={`/recipe/${_id}`} $buttonColor={buttonsColor}>
                       See recipe
                     </MyRecipeBtn>
