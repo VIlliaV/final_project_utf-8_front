@@ -52,9 +52,9 @@ export const signupUser = createAsyncThunk('users/register', async ({ name, emai
       email,
       password,
     });
-    axiosInstance.headers = { Authorization: `Bearer ${response.data.accessToken}` };
-    localStorage.setItem('accessToken', response.data.accessToken);
-    localStorage.setItem('refreshToken', response.data.refreshToken);
+    // axiosInstance.headers = { Authorization: `Bearer ${response.data.accessToken}` };
+    // localStorage.setItem('accessToken', response.data.accessToken);
+    // localStorage.setItem('refreshToken', response.data.refreshToken);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.message);
