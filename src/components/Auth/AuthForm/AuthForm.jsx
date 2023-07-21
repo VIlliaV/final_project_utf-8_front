@@ -4,11 +4,12 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { useRef } from 'react';
 
+import { axiosInstance } from 'redux/auth/authOperations';
 import { loginUser, signupUser } from 'redux/auth/authOperations';
 import inputIconSuccess from 'img/inputIconSuccess.svg';
 import inputIconError from 'img/inputIconError.svg';
 import { useAuth } from 'utils/hooks/useAuth';
-import { clearErrorMessage } from 'redux/auth/authSlice';
+import { clearErrorMessage, clearVerificationError, clearEmailMessage, setEmailMessage } from 'redux/auth/authSlice';
 import googleLogo from 'img/googleLogo.svg';
 
 import {
@@ -50,7 +51,7 @@ export const AuthForm = () => {
   const [isRegisterPage, setIsRegisterPage] = useState(true);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const { pathname } = useLocation();
-  const { errorMessage, emailMessage } = useAuth();
+  const { errorMessage, emailMessage, verificationError } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const passwordRef = useRef(null)
@@ -72,6 +73,8 @@ export const AuthForm = () => {
   const handleNavigate = useCallback(() => {
     isRegisterPage ? navigate('/signin') : navigate('/register');
     dispatch(clearErrorMessage());
+    dispatch(clearVerificationError());
+    dispatch(clearEmailMessage());
     localStorage.removeItem('authInitialValues');
   }, [navigate, isRegisterPage, dispatch]);
 
@@ -94,6 +97,12 @@ export const AuthForm = () => {
     },
     [dispatch, isRegisterPage]
   ); 
+
+  const resendVerificationHandler = async () => {
+    const { email } = initialValues;
+    const response = await axiosInstance.get(`users/verify/`, { email });
+    dispatch(setEmailMessage(response.message))
+  }
 
   const validate = values => {
     const errors = {};
@@ -146,7 +155,6 @@ export const AuthForm = () => {
                 onChange={e => {
                   formik.handleChange(e);
                   setInitialValues({ ...initialValues, name: e.target.value });
-                
                 }}
                 value={formik.values.name}
                 onBlur={formik.handleBlur}
@@ -175,7 +183,6 @@ export const AuthForm = () => {
               onChange={e => {
                 formik.handleChange(e);
                 setInitialValues({ ...initialValues, email: e.target.value });
-              
               }}
               value={formik.values.email}
               onBlur={formik.handleBlur}
@@ -193,28 +200,27 @@ export const AuthForm = () => {
               $haserror={formik.touched.password && formik.errors.password}
               $correct={formik.touched.password && !formik.errors.password && formik.values.password !== ''}
             />
-              <PasswordInput
-                $haserror={formik.touched.password && formik.errors.password}
-                $correct={formik.touched.password && !formik.errors.password && formik.values.password !== ''}
-                $tooshort={formik.values.password}
-                $path={pathname}
-                type="password"
-                name="password"
-                placeholder="Password"
-                ref={passwordRef}
-                onChange={e => {
-                  formik.handleChange(e);
-                  setInitialValues({ ...initialValues, password: e.target.value });
-                
-                }}
-                value={formik.values.password}
-                onBlur={formik.handleBlur}
-              />
-              {isPasswordShown ? (
-                <OpenedEye onClick={toggleIsPasswordShown} />
-              ) : (
-                <ClosedEye onClick={toggleIsPasswordShown} />
-              )}
+            <PasswordInput
+              $haserror={formik.touched.password && formik.errors.password}
+              $correct={formik.touched.password && !formik.errors.password && formik.values.password !== ''}
+              $tooshort={formik.values.password}
+              $path={pathname}
+              type="password"
+              name="password"
+              placeholder="Password"
+              ref={passwordRef}
+              onChange={e => {
+                formik.handleChange(e);
+                setInitialValues({ ...initialValues, password: e.target.value });
+              }}
+              value={formik.values.password}
+              onBlur={formik.handleBlur}
+            />
+            {isPasswordShown ? (
+              <OpenedEye onClick={toggleIsPasswordShown} />
+            ) : (
+              <ClosedEye onClick={toggleIsPasswordShown} />
+            )}
 
             {formik.touched.password && formik.errors.password ? (
               <>
@@ -229,6 +235,12 @@ export const AuthForm = () => {
           </PasswordInputContainer>
           {emailMessage && <EmailMessage>{emailMessage}</EmailMessage>}
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+          {verificationError && <EmailMessage>{errorMessage}</EmailMessage>}
+          {verificationError && (
+            <button type="button" onClick={resendVerificationHandler}>
+              {'Re-send verification code'}
+            </button>
+          )}
           <SubmitButton type="submit">{isRegisterPage ? 'Sign up' : 'Sign In'}</SubmitButton>
           <GoogleButton href="https://final-project-utf-8-backend.onrender.com/users/google">
             {isRegisterPage ? 'Sign up with Google' : 'Sign In with Google'}

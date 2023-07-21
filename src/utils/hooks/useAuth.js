@@ -9,6 +9,7 @@ import {
   getErorrMessage,
   getAccessToken,
   getEmailMessage,
+  getVerificationError,
 } from 'redux/auth/authSelectors';
 
 export const useAuth = () => {
@@ -21,7 +22,8 @@ export const useAuth = () => {
   const errorMessage = useSelector(getErorrMessage);
   const accessToken = useSelector(getAccessToken);
   const emailMessage = useSelector(getEmailMessage);
-
+  const verificationError = useSelector(getVerificationError);
+;
   return {
     isLoggedIn,
     userName,
@@ -32,5 +34,6 @@ export const useAuth = () => {
     errorMessage,
     accessToken,
     emailMessage,
+    verificationError,
   };
 };
