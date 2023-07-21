@@ -16,11 +16,13 @@ function WellcomPage() {
     const refreshToken = searchParams.get('refreshToken');
     const verificationCode = searchParams.get('verificationCode');
 
+    console.log(verificationCode);
     const verifyEmailCode = async verificationCode => {
       try {
         const response = await axiosInstance.get(`users/verify/${verificationCode}`);
-        localStorage.setItem('refreshToken', response.refreshToken);
-        localStorage.setItem('accessToken', response.accessToken);
+        console.log(response)
+        localStorage.setItem('refreshToken', response.data.refreshToken);
+        localStorage.setItem('accessToken', response.data.accessToken);
         dispatch(fetchCurrentUser());
       } catch (error) {
         console.log(error.message);
