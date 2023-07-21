@@ -73,7 +73,7 @@ export const MyRecipesList = ({ page }) => {
       <MainPageTitle title={page} />
       <List>
         {(page === 'Favorites' && favorites.favorites?.length === 0) ||
-        (page === 'My recipes' && myRecipes.length === 0) ? (
+        (page === 'My recipes' && myRecipes.recipes?.length === 0) ? (
           <NoResult />
         ) : page === 'Favorites' && favorites.favorites ? (
           favorites.favorites.map(({ preview, title, description, time, _id }) => {
