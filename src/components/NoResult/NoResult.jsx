@@ -1,10 +1,10 @@
 import { NoResultWrapper, NoResultImg } from './NoResult.styled';
 
-const NoResult = () => {
+const NoResult = ({ noResultImgText }) => {
   return (
     <NoResultWrapper>
       <NoResultImg />
-      <p>Try looking for something else...</p>
+      <p>{noResultImgText || 'Try looking for something else...'}</p>
     </NoResultWrapper>
   );
 };

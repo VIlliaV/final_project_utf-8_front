@@ -78,4 +78,8 @@ const SLHeaderText = styled.p`
   }
 `;
 
-export { SLHeader, SLHeaderText, SLContainer };
+const DefaultImgContainer = styled.div`
+  margin: 50px auto;
+`;
+
+export { SLHeader, SLHeaderText, SLContainer, DefaultImgContainer };
