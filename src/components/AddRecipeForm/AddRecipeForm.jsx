@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-// import toast from 'react-hot-toast';
 import { StyledSection3 } from './AddRecipeForm.styled';
 import RecipeDescriptionFields from 'components/RecipeDescriptionFields/RecipeDescriptionFields';
 import RecipePreparationFields from 'components/RecipePreparationFields/RecipePreparationFields';
@@ -12,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const AddRecipeForm = () => {
   const allCategories = useSelector(AllCategories);
-  // const addRecipeStatus = useSelector(AddRecipeStatus);
   const [category, setCategory] = useState('');
   const [cookTime, setCookTime] = useState('');
   const [about, setAbout] = useState('');
@@ -24,11 +22,6 @@ export const AddRecipeForm = () => {
   const isAddRecipe = useSelector(isAddRecipeSelector);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    let ingredientsToSend = [];
-    ingredients.map(el => ingredientsToSend.push({ id: el._id, measure: el.measure }));
-  }, [ingredients]);
 
   useEffect(() => {
     if (isAddRecipe) navigate('/my');
@@ -47,15 +40,13 @@ export const AddRecipeForm = () => {
     formData.append('description', about);
     formData.append('time', cookTime);
     formData.append('ingredients', JSON.stringify(objectsToSend));
-    const formDataObject = {};
-    for (const [key, value] of formData.entries()) {
-      formDataObject[key] = value;
-    }
-    console.log('formData', formDataObject);
+    // const formDataObject = {};
+    // for (const [key, value] of formData.entries()) {
+    //   formDataObject[key] = value;
+    // }
+    // console.log('formData', formDataObject);
 
     dispatch(addRecipe(formData));
-
-    // console.log('addRecipeStatus', addRecipeStatus);
   };
 
   return (

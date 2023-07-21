@@ -48,15 +48,15 @@ export const StyledInputIngredients = style.label`
 `;
 
 export const StyledInputIngredient = style.input`
-&:focus {
-  border-color:green;
-}
-// &:hover {
-//   border-color:red;
+// &:focus {
+//   border-color:green;
 // }
-// &:active {
-//   border-color:yellow;
-// }
+// // &:hover {
+// //   border-color:red;
+// // }
+// // &:active {
+// //   border-color:yellow;
+// // }
 background-color:transparent; 
 color: var(--select_text_1);
 text-align: center;
@@ -65,7 +65,7 @@ text-align: center;
     height: 50px;
     border:none;
     padding: 5px 0;
-    border: 1px solid var(--select_text_1);
+    border: 1px solid var(--selectBack_theme_1);
     border-radius: 4px;
     margin-right: 35px;
     display:flex;
@@ -148,6 +148,7 @@ width:345px;
 display: flex;
 flex-direction: row;
 margin-bottom:20px;
+  align-items: center;
 @media ${media.tablet}{
     width:705px;
     margin-bottom:25px;
@@ -175,7 +176,7 @@ export const StyledAutoComplete = styled(Autocomplete)({
   },
   '& div fieldset': {
     // height: '50px',
-    borderColor: 'var( --selectBack_theme_1)',
+    borderColor: 'var(--selectBack_theme_1)',
   },
 
   [theme.breakpoints.up('start')]: {
@@ -195,7 +196,7 @@ color: var(--select_text_1);
 background-color:transparent;
   padding: 0;,
   display: flex;
-  minWidth: 30px;
+  width: 30px;
   height: 30px;
   border:none;
   cursor: pointer;
