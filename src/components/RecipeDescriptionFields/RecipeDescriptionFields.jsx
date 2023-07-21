@@ -22,8 +22,8 @@ export default function RecipeDescriptionFields({
 }) {
   const [open, setOpen] = useState(false);
   const [optionsCategory, setOptionsCategory] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [selectedImage, setSelectedImage] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const loadingCategory = open && optionsCategory.length === 0;
 
   let cooking_time = [];
@@ -61,13 +61,12 @@ export default function RecipeDescriptionFields({
 
   useEffect(() => {
     if (selectedImage) {
-      setPhoto(selectedImage);
       setImageUrl(URL.createObjectURL(selectedImage));
+      setPhoto(selectedImage);
     }
     if (selectedImage === undefined) {
       setImageUrl(photo);
     }
-    setPhoto(photo);
   }, [photo, selectedImage, setPhoto]);
 
   const handleChangeTitle = event => {
@@ -98,7 +97,9 @@ export default function RecipeDescriptionFields({
           id="select-image"
           background={imageUrl}
           style={{ display: 'none' }}
-          onChange={e => setSelectedImage(e.target.files[0])}
+          onChange={e => {
+            setSelectedImage(e.target.files[0]);
+          }}
         />
         <label htmlFor="select-image">
           <ImageSrc style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'contain' }} />
