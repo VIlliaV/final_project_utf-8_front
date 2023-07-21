@@ -19,6 +19,7 @@ const BurgerMenu = ({ shouldChangeStyle }) => {
 
   const [menuVisible, setMenuVisible] = useState(() => {
     const savedMenuVisible = localStorage.getItem('burgerMenuVisible');
+	console.log(savedMenuVisible);
     return savedMenuVisible ? JSON.parse(savedMenuVisible) : false;
   });
 
@@ -30,6 +31,9 @@ const BurgerMenu = ({ shouldChangeStyle }) => {
 
   const handleLinkClick = () => {
     setMenuVisible(false);
+	const newMenuVisible = !menuVisible;
+    setMenuVisible(newMenuVisible);
+    localStorage.setItem('burgerMenuVisible', JSON.stringify(newMenuVisible));
   };
 
   const { isThemeToggle } = useAuth();
@@ -65,7 +69,7 @@ const BurgerMenu = ({ shouldChangeStyle }) => {
         </CloseButton>
 
         <StyledNavLink
-          to="/categories/:categoryName"
+          to="/categories/beef"
           onClick={handleLinkClick}
           className={navData => (navData.isActive ? 'active-style' : 'none')}
         >
