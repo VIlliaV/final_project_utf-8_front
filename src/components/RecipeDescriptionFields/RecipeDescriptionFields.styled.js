@@ -146,7 +146,7 @@ border: transparent;
 color:var(--select_text_1);
 background-color:transparent;
 position: relative;
-  width: ;
+  width: 100%;
   height: 50px;
   border-bottom: 1px solid rgba(224, 224, 224, 1);
   align-content: end;

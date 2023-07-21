@@ -163,25 +163,29 @@ margin-bottom:20px;
 }
     `;
 export const StyledAutoComplete = styled(Autocomplete)({
+  height: '50px',
   display: 'flex',
   '& div label': {
     color: 'var(--select_text_1)',
   },
   '& div div': {
+    height: '50px',
+    padding: '5px',
     color: 'var(--select_text_1)',
   },
   '& div fieldset': {
+    // height: '50px',
     borderColor: 'var( --selectBack_theme_1)',
   },
 
-  padding: theme.spacing(1),
   [theme.breakpoints.up('start')]: {
     width: '195px',
-    height: '50px',
+    marginRight: '35px',
     cursor: 'pointer',
   },
   [theme.breakpoints.up('tablet')]: {
     width: '400px',
+    marginRight: '35px',
   },
   [theme.breakpoints.up('desktop')]: {},
 });
