@@ -1,11 +1,4 @@
 export const getRecipe = state => state.addRecipePage;
-export const Title = state => state.addRecipePage.title;
-export const Description = state => state.addRecipePage.description;
-export const Category = state => state.addRecipePage.category;
-export const Time = state => state.addRecipePage.time;
-export const Ingredients = state => state.addRecipePage.ingredients;
-export const Instructions = state => state.addRecipePage.instructions;
-export const Documents = state => state.addRecipePage.documents;
 export const AllIngredients = state => state.addRecipePage.allIngredients;
 export const AllCategories = state => state.addRecipePage.allCategories;
 export const AddRecipeStatus = state => state.addRecipePage.createRecipe;
