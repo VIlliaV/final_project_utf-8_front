@@ -161,7 +161,6 @@ export const FormContainer = styled.div`
 
   @media ${media.desktop} {
     margin: 0;
-    /* margin-top: ${prop => (prop.$isregisterpage === 'true' ? '7px' : '40px')}; */
     margin-top: auto;
     margin-bottom: auto;
     margin-right: auto;
@@ -434,4 +433,29 @@ export const ErrorMessage = styled.div`
 export const EmailMessage = styled(ErrorMessage)`
   color: #fafafa;
   text-align: center;
+`;
+
+export const ResendButton = styled.a`
+  border-radius: 6px;
+  background-color: #fafafa;
+  color: #23262a;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-top: 16px;
+  cursor: pointer;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.12;
+
+  &:hover {
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+  }
 `;

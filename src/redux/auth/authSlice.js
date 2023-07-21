@@ -44,25 +44,28 @@ const authSlice = createSlice({
     builder
       .addCase(signupUser.pending, state => {
         state.isRefreshing = true;
+        state.errorMessage = null;
+        state.emailMessage = null;
+        state.verificationError = false;
       })
       .addCase(signupUser.fulfilled, (state, action) => {
-        // state.user = action.payload.user;
-        // state.isLoggedIn = true;
         state.isRefreshing = false;
         state.emailMessage = 'Verification code was sent to your email, please check.';
         state.errorMessage = null;
-
+        state.verificationError = false;
         localStorage.removeItem('authInitialValues');
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.errorMessage = action.payload;
-        if (action.payload.status === 408) {
+        if (action.payload === 'Please check your email inbox.' || state.emailMessage) {
           state.verificationError = true;
         }
       })
       .addCase(loginUser.pending, state => {
         state.isRefreshing = true;
+        state.errorMessage = null;
+        state.verificationError = false;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
