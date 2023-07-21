@@ -4,7 +4,6 @@ import toast from 'react-hot-toast';
 import Loader from '../Loader/Loader';
 import { nanoid } from 'nanoid';
 import { CircularProgress, TextField } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import {
   StyledAutoComplete,
   StyledInputIngredient,
@@ -16,26 +15,19 @@ import {
   StyledH3,
 } from './RecipeIngredientsFields.styled';
 import { AllIngredients } from 'redux/AddRecipePage/AddRecipeSelector';
-import { getIngredients } from 'redux/AddRecipePage/AddRecipreOperation';
 
 export default function RecipeIngredientsFields({ setIngredient }) {
   const ingredients = useSelector(AllIngredients);
   const [counter, setCounter] = useState(1);
-  const [open, setOpen] = useState(false);
+
   // const [loadLocale, setLoadLocale] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([{ findid: nanoid(), id: '', name: '', measure: '' }]);
-  const dispatch = useDispatch();
   let searchItem = [];
-  const loading = open && ingredients.length === 0;
+  const loading = ingredients.length === 0;
 
   useEffect(() => {
     setIngredient(ingredientsList);
   }, [ingredientsList, setIngredient]);
-
-  const handleChangeGetIngredient = e => {
-    setOpen(true);
-    dispatch(getIngredients());
-  };
 
   const handleIncrement = e => {
     setCounter(counter + 1);
@@ -132,7 +124,6 @@ export default function RecipeIngredientsFields({ setIngredient }) {
                       }}
                       isOptionEqualToValue={(option, value) => option.name === value.name}
                       getOptionLabel={option => option.name}
-                      onClick={handleChangeGetIngredient}
                       onChange={handleChangeIngredient}
                       options={ingredients}
                       renderInput={params => (
