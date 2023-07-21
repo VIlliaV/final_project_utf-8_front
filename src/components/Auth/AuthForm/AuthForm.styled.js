@@ -33,6 +33,8 @@ export const ClosedEye = styled(AiOutlineEyeInvisible)`
   height: 18px;
   top: 13.5px;
   right: 40px;
+  opacity: 0.7;
+  cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
 
   &:hover {

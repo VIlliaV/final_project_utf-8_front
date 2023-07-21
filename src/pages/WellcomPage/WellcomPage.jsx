@@ -5,14 +5,31 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
+import { axiosInstance } from 'redux/auth/authOperations';
 
 function WellcomPage() {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect( () => {
     const accessToken = searchParams.get('accessToken');
     const refreshToken = searchParams.get('refreshToken');
+    const verificationCode = searchParams.get('verificationCode');
+
+    const verifyEmailCode = async verificationCode => {
+      try {
+        const response = await axiosInstance.get(`users/verify/${verificationCode}`);
+        localStorage.setItem('refreshToken', response.refreshToken);
+        localStorage.setItem('accessToken', response.accessToken);
+        dispatch(fetchCurrentUser());
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    if (verificationCode) {
+      verifyEmailCode(verificationCode);
+    }
 
     if (accessToken && refreshToken) {
       localStorage.setItem('refreshToken', refreshToken);

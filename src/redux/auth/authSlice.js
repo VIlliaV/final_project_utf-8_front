@@ -19,6 +19,7 @@ const initialState = {
   isThemeToggle: false,
   errorMessage: null,
   emailMessage: null,
+  verificationError: false,
 };
 
 const authSlice = createSlice({
@@ -28,6 +29,15 @@ const authSlice = createSlice({
     clearErrorMessage: state => {
       state.errorMessage = null;
     },
+    clearVerificationError: state => {
+      state.verificationError = false;
+    },
+    clearEmailMessage: state => {
+      state.emailMessage = null;
+    },
+    setEmailMessage: (state,action) => {
+      state.emailMessage = action.payload;
+    }
   },
 
   extraReducers: builder => {
@@ -36,16 +46,20 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(signupUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isLoggedIn = true;
+        // state.user = action.payload.user;
+        // state.isLoggedIn = true;
         state.isRefreshing = false;
-        // state.emailMessage = "Verification link sent to your email address. Please check"
+        state.emailMessage = 'Verification code was sent to your email, please check.';
         state.errorMessage = null;
+
         localStorage.removeItem('authInitialValues');
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.errorMessage = action.payload;
+        if (action.payload.status === 408) {
+          state.verificationError = true;
+        }
       })
       .addCase(loginUser.pending, state => {
         state.isRefreshing = true;
@@ -55,6 +69,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.errorMessage = null;
+        state.verificationError = false;
         localStorage.removeItem('authInitialValues');
       })
       .addCase(loginUser.rejected, (state, action) => {
@@ -83,6 +98,7 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.errorMessage = null;
         state.emailMessage = null;
+        state.verificationError = false;
       })
       .addCase(fetchCurrentUser.rejected, state => {
         state.user = initialState.user;
@@ -129,4 +145,4 @@ const persistConfig = {
 
 export const authPersistedReducer = persistReducer(persistConfig, authSlice.reducer);
 
-export const { clearErrorMessage } = authSlice.actions;
+export const { clearErrorMessage, clearVerificationError, clearEmailMessage, setEmailMessage } = authSlice.actions;
