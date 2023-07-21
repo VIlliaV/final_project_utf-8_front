@@ -141,7 +141,8 @@ width: '280px',
     height: '345px',
 }`;
 export const StyledInput = style.input`
-text-align: center;
+text-align: end;
+padding-right:20px;
 border: transparent;
 color:var(--select_text_1);
 background-color:transparent;
@@ -156,6 +157,6 @@ position: relative;
  @media ${media.desktop}{
     width: 100%;
     text-align: right;
-    padding-right:20px;
+    
   },
 `;

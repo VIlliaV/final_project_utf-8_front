@@ -126,7 +126,13 @@ export default function RecipeDescriptionFields({
               setOpen(false);
             }}
             ListboxProps={{
-              style: { maxHeight: 220, backgroundColor: 'var(--active_select_1)', color: 'var(--select_text_1)' },
+              style: {
+                maxHeight: 220,
+                width: '100%',
+                zIndex: 100,
+                backgroundColor: 'var(--active_select_1)',
+                color: 'var(--select_text_1)',
+              },
             }}
             // isOptionEqualToValue={(option, value) => option.title === value.title}
             // getOptionLabel={option => option.title}
