@@ -39,7 +39,7 @@ export default function RecipeDescriptionFields({
     if (!loadingCategory) {
       return undefined;
     }
-    (async () => {
+    (() => {
       if (active) {
         setOptionsCategory([...allCategories]);
       }
@@ -89,7 +89,7 @@ export default function RecipeDescriptionFields({
   };
 
   return (
-    <StyledLabel htmlFor="img_recipe">
+    <StyledLabel>
       <StyledInpytImg>
         <input
           accept="image/*"
@@ -112,7 +112,7 @@ export default function RecipeDescriptionFields({
         </div>
         <div>
           <label>Enter about recipe</label>
-          <StyledInput id="item_title" onChange={handleChangeAbout} label="Enter about recipe" autoComplete="off" />
+          <StyledInput id="item_about" onChange={handleChangeAbout} label="Enter about recipe" autoComplete="off" />
         </div>
         <StyledLabelCategory htmlFor="category">
           Category
@@ -136,31 +136,26 @@ export default function RecipeDescriptionFields({
                 color: 'var(--select_text_1)',
               },
             }}
-            // isOptionEqualToValue={(option, value) => option.title === value.title}
-            // getOptionLabel={option => option.title}
             options={optionsCategory}
             loading={loadingCategory}
-            renderInput={
-              params => (
-                <TextField
-                  {...params}
-                  label="Categories"
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <Fragment>
-                        {loadingCategory ? <CircularProgress color="inherit" size={20} /> : null}
-                        {params.InputProps.endAdornment}
-                      </Fragment>
-                    ),
-                  }}
-                />
-              )
-              // <TextField {...params} label="Category" />
-            }
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="Categories"
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <Fragment>
+                      {loadingCategory ? <CircularProgress color="inherit" size={20} /> : null}
+                      {params.InputProps.endAdornment}
+                    </Fragment>
+                  ),
+                }}
+              />
+            )}
           />
         </StyledLabelCategory>
-        <StyledLabelCategory htmlFor="cooking_time">
+        <StyledLabelCategory>
           Cooking time
           <StyledAutoCategory
             disablePortal
@@ -171,24 +166,21 @@ export default function RecipeDescriptionFields({
             }}
             options={cooking_time}
             loading={loadingCookTime}
-            renderInput={
-              params => (
-                <TextField
-                  {...params}
-                  label="CookTime"
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <Fragment>
-                        {loadingCookTime ? <CircularProgress color="inherit" size={20} /> : []}
-                        {params.InputProps.endAdornment}
-                      </Fragment>
-                    ),
-                  }}
-                />
-              )
-              // <TextField {...params} label="Cooking time" />
-            }
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="CookTime"
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <Fragment>
+                      {loadingCookTime ? <CircularProgress color="inherit" size={20} /> : null}
+                      {params.InputProps.endAdornment}
+                    </Fragment>
+                  ),
+                }}
+              />
+            )}
           />
         </StyledLabelCategory>
       </StyledInputGroup>
