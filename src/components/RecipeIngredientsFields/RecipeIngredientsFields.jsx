@@ -113,7 +113,6 @@ export default function RecipeIngredientsFields({ setIngredient }) {
                   <>
                     <StyledAutoComplete
                       disableClearable
-                      key={el.findid}
                       id={el.findid}
                       ListboxProps={{
                         style: {
@@ -129,7 +128,6 @@ export default function RecipeIngredientsFields({ setIngredient }) {
                       renderInput={params => (
                         <TextField
                           {...params}
-                          label="Ingredients"
                           InputProps={{
                             ...params.InputProps,
                             endAdornment: (

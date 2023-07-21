@@ -1,5 +1,3 @@
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getCategories, getIngredients, addRecipe, changeStatus } from './AddRecipreOperation';
@@ -10,7 +8,7 @@ const initialState = {
   createRecipe: false,
 };
 
-const recipeSlice = createSlice({
+const AddrecipeReducer = createSlice({
   name: 'add',
   initialState,
   reducers: {},
@@ -26,7 +24,6 @@ const recipeSlice = createSlice({
       })
       .addCase(addRecipe.fulfilled, (state, action) => {
         state.createRecipe = true;
-        // state.createRecipe = false;
       })
       .addCase(addRecipe.rejected, (state, action) => {
         state.createRecipe = false;
@@ -42,12 +39,4 @@ const recipeSlice = createSlice({
   },
 });
 
-const persistConfig = {
-  key: 'add',
-
-  version: 1,
-  storage,
-  whitelist: [],
-};
-
-export const AddrecipeReducer = persistReducer(persistConfig, recipeSlice.reducer);
+export default AddrecipeReducer.reducer;

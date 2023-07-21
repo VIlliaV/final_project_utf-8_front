@@ -23,7 +23,6 @@ export const AddRecipeForm = () => {
 
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     if (isAddRecipe) navigate('/my');
     dispatch(changeStatus());
@@ -41,18 +40,12 @@ export const AddRecipeForm = () => {
     formData.append('description', about);
     formData.append('time', cookTime);
     formData.append('ingredients', JSON.stringify(objectsToSend));
-    // const formDataObject = {};
-    // for (const [key, value] of formData.entries()) {
-    //   formDataObject[key] = value;
-    // }
-    // console.log('formData', formDataObject);
-
     dispatch(addRecipe(formData));
   };
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} id="formSubmit">
         <RecipeDescriptionFields
           allCategories={allCategories}
           setPhoto={setPhoto}

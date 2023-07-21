@@ -4,7 +4,7 @@ import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 
 import { authPersistedReducer } from './auth/authSlice';
 import shoppingListSlice from './shoppingList/shoppingListSlice';
 import favoritesSlice from './favorites/favoritesSlice';
-import { AddrecipeReducer } from './AddRecipePage/addRecipeSlice';
+import AddrecipeReducer from './AddRecipePage/addRecipeSlice';
 import myRecipesSlice from './myRecipes/myRecipesSlice';
 
 const rootReducer = combineReducers({
