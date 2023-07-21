@@ -39,7 +39,6 @@ export const CategoriesList = ({ dataCategoriesError, updateDataCategoriesError 
       })
       .catch(error => {
         updateDataCategoriesError(true);
-        console.log(error.message);
       });
   }, [updateDataCategoriesError]);
 
