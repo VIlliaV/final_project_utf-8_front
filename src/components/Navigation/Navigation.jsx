@@ -8,22 +8,22 @@ const Navigation = () => {
 
   return (
     <Nav>
-      <StyledNavLink to="/categories/beef" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
+      <StyledNavLink to="categories/beef" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
         Categories
       </StyledNavLink>
-      <StyledNavLink to="/add" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
+      <StyledNavLink to="add" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
         Add recipes
       </StyledNavLink>
-      <StyledNavLink to="/my" className={recipePathRegex.test(location.pathname) && 'active'}>
+      <StyledNavLink to="my" className={recipePathRegex.test(location.pathname) && 'active'}>
         My recipes
       </StyledNavLink>
-      <StyledNavLink to="/favorite" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
+      <StyledNavLink to="favorite" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
         Favorites
       </StyledNavLink>
-      <StyledNavLink to="/shopping-list" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
+      <StyledNavLink to="shopping-list" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
         Shopping list
       </StyledNavLink>
-      <StyledNavLink to="/search" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
+      <StyledNavLink to="search" className={recipePathRegex.test(location.pathname) && 'disabledMy'}>
         <StyledUserSvgDefault />
       </StyledNavLink>
     </Nav>
