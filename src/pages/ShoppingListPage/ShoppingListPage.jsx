@@ -16,7 +16,7 @@ function ShoppingListPage() {
   const dispatch = useDispatch();
   const mainPageTitle = 'Shopping list';
   const saveShoppingList = useSelector(shoppingList);
-  console.log('ShoppingListPage >> saveShoppingList:', saveShoppingList);
+
   const breakpoints = {
     mobile: 0,
     tablet: 768,

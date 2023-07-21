@@ -197,7 +197,6 @@ export const Container = styled.div`
 export const MyRecipesDescription = styled.p`
   color: ${prop => {
     if (prop.$descColor === true) {
-      console.log(prop.$descColor);
       return '#23262A';
     } else {
       return 'rgba(250, 250, 250, 0.60)';

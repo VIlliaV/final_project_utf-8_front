@@ -41,7 +41,7 @@ const SearchedRecipesList = () => {
 
     // if (recipeList.length === 0) {
     //   searchParams.delete(currentParams);
-    //   console.log(value);
+
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, currentPage]);

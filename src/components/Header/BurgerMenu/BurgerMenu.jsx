@@ -19,7 +19,6 @@ const BurgerMenu = ({ shouldChangeStyle }) => {
 
   const [menuVisible, setMenuVisible] = useState(() => {
     const savedMenuVisible = localStorage.getItem('burgerMenuVisible');
-	console.log(savedMenuVisible);
     return savedMenuVisible ? JSON.parse(savedMenuVisible) : false;
   });
 
@@ -31,7 +30,7 @@ const BurgerMenu = ({ shouldChangeStyle }) => {
 
   const handleLinkClick = () => {
     setMenuVisible(false);
-	const newMenuVisible = !menuVisible;
+    const newMenuVisible = !menuVisible;
     setMenuVisible(newMenuVisible);
     localStorage.setItem('burgerMenuVisible', JSON.stringify(newMenuVisible));
   };
@@ -40,18 +39,18 @@ const BurgerMenu = ({ shouldChangeStyle }) => {
 
   let strokeColor;
   switch (true) {
-	case recipePathRegex.test(location.pathname):
-	  strokeColor = 'black';
-	  break;
-	case location.pathname === '/main':
-		strokeColor = 'var(--text_third)';
-		break;
-	case shouldChangeStyle:
-	  strokeColor = 'var(--fix_back_2)';
-	  break;
-	default:
-	  strokeColor = 'var(--text_third)';
-	  break;
+    case recipePathRegex.test(location.pathname):
+      strokeColor = 'black';
+      break;
+    case location.pathname === '/main':
+      strokeColor = 'var(--text_third)';
+      break;
+    case shouldChangeStyle:
+      strokeColor = 'var(--fix_back_2)';
+      break;
+    default:
+      strokeColor = 'var(--text_third)';
+      break;
   }
 
   return (
